@@ -1,0 +1,17 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"editorconfig.editorconfig",
+		"vue.volar",
+		"streetsidesoftware.code-spell-checker",
+		"streetsidesoftware.code-spell-checker-russian",
+		"gruntfuggly.todo-tree"
+	],
+	"unwantedRecommendations": [
+		"octref.vetur",
+		"hookyqr.beautify",
+		"dbaeumer.jshint",
+		"ms-vscode.vscode-typescript-tslint-plugin"
+	]
+}

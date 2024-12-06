@@ -1,0 +1,69 @@
+{
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.codeActionsOnSave": ["source.fixAll.eslint"],
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"prettier.tabWidth": 4,
+	"vetur.format.defaultFormatter.js": "prettier-eslint",
+	"vetur.format.options.tabSize": 4,
+	"editor.tabSize": 4,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"cSpell.words": [
+		"Codebook",
+		"Codebooks",
+		"eaist",
+		"grbs",
+		"Hpsm",
+		"Inited",
+		"Keycloak",
+		"Pagy",
+		"ГРБС",
+		"ЕАИСТ",
+		"Полифил"
+	],
+	"cSpell.language": "en,ru",
+	"[jsonc]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+	},
+
+	// tree-todo
+	"todo-tree.general.showActivityBarBadge": true,
+	"todo-tree.general.tags": ["!", "?", "TODO", "FIXME"],
+	"todo-tree.highlights.defaultHighlight": {
+		"type": "text-and-comment",
+	},
+	"todo-tree.highlights.customHighlight": {
+		"TODO": {
+			"foreground": "#FF8C00",
+			"iconColour": "#FF8C00",
+			"icon": "tasklist"
+		},
+		"FIXME": {
+			"foreground": "#FF2D00",
+			"iconColour": "#FF2D00",
+			"icon": "bug"
+		},
+		"!": {
+			"foreground": "#9F3ED5",
+			"iconColour": "#9F3ED5",
+			"icon": "bookmark"
+		},
+		"?": {
+			"foreground": "#3498DB",
+			"iconColour": "#3498DB",
+			"icon": "question"
+		},
+	},
+	"todo-tree.general.tagGroups": {
+        "FIXME": [
+            "FIXME",
+            "FIXIT",
+            "FIX",
+        ]
+    }
+}
