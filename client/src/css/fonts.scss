@@ -1,0 +1,106 @@
+@font-face {
+	font-family: 'Play';
+	src: url('fonts/play/Play-Bold.eot');
+	src: local('Play-Bold'),
+		url('fonts/play/Play-Bold.eot?#iefix') format('embedded-opentype'),
+		url('fonts/play/Play-Bold.woff') format('woff'),
+		url('fonts/play/Play-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Play';
+	src: url('fonts/play/Play.eot');
+	src: local('Play'),
+		url('fonts/play/Play.eot?#ieffonts/oswald/ix') format('embedded-opentype'),
+		url('fonts/play/Play.woff') format('woff'),
+		url('fonts/play/Play.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-SemiBold.eot');
+    src: local('Oswald SemiBold'), local('Oswald-SemiBold'),
+        url('fonts/oswald/Oswald-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-SemiBold.woff') format('woff'),
+        url('fonts/oswald/Oswald-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-ExtraLight.eot');
+    src: local('Oswald ExtraLight'), local('Oswald-ExtraLight'),
+        url('fonts/oswald/Oswald-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-ExtraLight.woff') format('woff'),
+        url('fonts/oswald/Oswald-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-Light.eot');
+    src: local('Oswald Light'), local('Oswald-Light'),
+        url('fonts/oswald/Oswald-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-Light.woff') format('woff'),
+        url('fonts/oswald/Oswald-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-Bold.eot');
+    src: local('Oswald Bold'), local('Oswald-Bold'),
+        url('fonts/oswald/Oswald-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-Bold.woff') format('woff'),
+        url('fonts/oswald/Oswald-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-Regular.eot');
+    src: local('Oswald Regular'), local('Oswald-Regular'),
+        url('fonts/oswald/Oswald-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-Regular.woff') format('woff'),
+        url('fonts/oswald/Oswald-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('fonts/oswald/Oswald-Medium.eot');
+    src: local('Oswald Medium'), local('Oswald-Medium'),
+        url('fonts/oswald/Oswald-Medium.eot?#iefix') format('embedded-opentype'),
+        url('fonts/oswald/Oswald-Medium.woff') format('woff'),
+        url('fonts/oswald/Oswald-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Humane';
+	src: url('fonts/humane/humane-regular.eot'); /* IE 9 Compatibility Mode */
+	src: url('fonts/humane/humane-regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('fonts/humane/humane-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		url('fonts/humane/humane-regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('fonts/humane/humane-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+	font-family: 'Humane';
+	src: url('fonts/humane/humane-bold.eot'); /* IE 9 Compatibility Mode */
+	src: url('fonts/humane/humane-bold.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('fonts/humane/humane-bold.woff2') format('woff2'), /* Super Modern Browsers */
+		url('fonts/humane/humane-bold.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('fonts/humane/humane-bold.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: bold;
+}

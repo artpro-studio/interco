@@ -1,1 +1,45 @@
-// app global css in SCSS form
+@import url('./fonts.scss');
+
+:root {
+	--red: #B22222;
+	--dark-blue: #1A1A2E;
+	--yellow: #D4AF37;
+	--gray: #E3E3E3;
+	--white: #FFFFFF;
+	--dark-green: #333333;
+	--gradient-yellow: linear-gradient(90deg, #EFC66C 0%, #D59F26 100%);
+	--gray-light: rgba(255,255,255, .3);
+	--secondary-blue: #gba(0,0,0, .3);
+}
+
+.container {
+	max-width: 1312px;
+	margin: 0 auto;
+	padding: 0 16px;
+}
+
+body {
+	font-size: 18px;
+	font-family: 'Play', sans-serif;
+	background-color: var(--dark-blue);
+
+	@media (max-width: $breakpoint-md-min) {
+		font-size: 16px;
+	}
+}
+
+.fonts-oswald {
+	font-family: 'Oswald', sans-serif;
+}
+
+.fonts-play {
+	font-family: 'Play', sans-serif;
+}
+
+.fonts-humane {
+	font-family: 'Humane', sans-serif;
+}
+p,h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+}

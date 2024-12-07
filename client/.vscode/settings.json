@@ -13,19 +13,6 @@
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"cSpell.words": [
-		"Codebook",
-		"Codebooks",
-		"eaist",
-		"grbs",
-		"Hpsm",
-		"Inited",
-		"Keycloak",
-		"Pagy",
-		"ГРБС",
-		"ЕАИСТ",
-		"Полифил"
-	],
 	"cSpell.language": "en,ru",
 	"[jsonc]": {
 		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
