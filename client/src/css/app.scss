@@ -43,3 +43,82 @@ p,h1,h2,h3,h4,h5,h6 {
 	margin: 0;
 	padding: 0;
 }
+// 56px
+.headline-1 {
+	font-size: 3.1em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	line-height: 1.2;
+
+	@media (max-width: $breakpoint-md-min) {
+		font-size: 2em
+	}
+}
+// 44px
+.headline-2 {
+	font-size: 2.4em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	line-height: 1;
+}
+// 38px
+.headline-3 {
+	font-size: 2em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	line-height: 1;
+
+	@media (max-width: $breakpoint-md-min) {
+		font-size: 1.6em
+	}
+
+	@media (max-width: $breakpoint-sm-min) {
+		font-size: 1.3em
+	}
+}
+.headline-4 {
+	font-size: 1.7em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	line-height: 1;
+
+	@media (max-width: $breakpoint-sm-min) {
+		font-size: 1.5em;
+	}
+}
+.text-black {
+	color: var(--dark-blue);
+}
+.text-white {
+	color: var(--white);
+}
+.text-gradient {
+	background: linear-gradient(90deg, #efc66c 0%, #d59f26 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.text-red {
+	color: var(--red);
+}
+.pt-8 {
+	padding-top: 80px;
+
+	@media (max-width: $breakpoint-sm-min) {
+		padding-bottom: 40px;
+	}
+}
+.pb-12 {
+	padding-bottom: 120px;
+
+	@media (max-width: $breakpoint-sm-min) {
+		padding-bottom: 56px;
+	}
+}
+.pt-12 {
+	padding-top: 120px;
+
+	@media (max-width: $breakpoint-sm-min) {
+		padding-top: 40px;
+	}
+}

@@ -21,6 +21,9 @@
 </template>
 <style lang="scss" scoped>
 	.lang {
+		position: relative;
+		z-index: 3;
+
 		&__item {
 			color: var(--white);
 			cursor: pointer;

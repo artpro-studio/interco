@@ -1,3 +1,4 @@
+import Head from './home/head';
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
@@ -8,4 +9,5 @@ export default {
 	menuNews: 'Новости',
 	menuContacts: 'Контакты',
 	headerStatusLink: 'Статус заказа',
+	...Head,
   };

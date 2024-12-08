@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 	import Lang from 'src/components/lang/lang.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 <template>
 	<div class="head">
@@ -7,21 +10,21 @@
 			<lang />
 			<div class="head__top row">
 				<div class="head__top__item">
-					<p class="head__top__item__title fonts-oswald">Производство</p>
+					<p class="head__top__item__title fonts-oswald">{{ t('production') }}</p>
 					<div class="line1"></div>
 				</div>
 				<div class="head__top__item">
-					<p class="head__top__item__title fonts-oswald">Cтроительство</p>
+					<p class="head__top__item__title fonts-oswald">{{ t('construction') }}</p>
 					<div class="line2"></div>
 				</div>
 				<div class="head__top__item">
-					<p class="head__top__item__title fonts-oswald">Технологии</p>
+					<p class="head__top__item__title fonts-oswald">{{ t('technologies') }}</p>
 				</div>
 			</div>
 			<div class="head__body row items-end no-wrap">
-				<!-- <h1 class="head__body__title fonts-oswald fonts-humane">SA<br>International</h1> -->
-				<q-img class="head__body__text" src="images/text-SA-International.svg" fit="contain" />
-				<q-img class="head__body__img" src="icons/arrow-head.svg" fit="contain" />
+				<h1 class="head__body__title fonts-oswald fonts-humane ">SA<br>International</h1>
+				<q-img class="head__body__text" src="images/text-SA-International.svg" title="SAInternational " fit="contain" />
+				<q-img class="head__body__img" src="icons/arrow-head.svg" fit="contain" alt="Стрелки" />
 			</div>
 		</div>
 	</div>
@@ -34,10 +37,47 @@
 		width: 100%;
 		padding-top: 200px;
 		padding-bottom: 119px;
+		position: relative;
+		overflow: hidden;
+
+		&::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background-image: url('images/head-line.svg');
+			background-repeat: no-repeat;
+			background-size: contain;
+			position: absolute;
+			top: 0;
+			left: 8%;
+		}
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			background: linear-gradient(180deg, #021729 0%, #06213A 100%);
+			position: absolute;
+			opacity: .1;
+			filter: blur(40px);
+			top: 0;
+			left: 0;
+			z-index: 2;
+		}
+
+		@media (max-width: 1500px) {
+			&::before {
+				left: 0;
+			}
+		}
 
 		@media (max-width: $breakpoint-sm-min) {
 			padding-top: 112px;
-			padding-bottom: 60px;
+			padding-bottom: 70px;
+
+			&::before {
+				display: none;
+			}
 		}
 
 		.line1, .line2 {
@@ -69,6 +109,9 @@
 
 		&__top {
 			margin-top: 23px;
+			position: relative;
+			z-index: 3;
+
 			@media (max-width: $breakpoint-sm-min) {
 				margin-top: 235px;
 			}
@@ -94,6 +137,7 @@
 
 		&__body {
 			margin-top: 87px;
+			position: relative;
 
 			@media (max-width: $breakpoint-sm-min) {
 				margin-top: 34px;
@@ -106,24 +150,25 @@
 				color: var(--white);
 				font-weight: bold;
 				text-transform: uppercase;
+				display: none;
 			}
 
 			&__text {
-				min-width: calc(100% - 7% - 28px);
+				min-width: calc(100% - 6.7% - 28px);
 
 				@media (max-width: $breakpoint-sm-min) {
-					min-width: calc(100% - 7% - 16px);
+					min-width: calc(100% - 6.7% - 16px);
 				}
 			}
 
 			&__img {
 				margin-left: 28px;
-				min-width: calc(7% - 28px);
+				min-width: calc(6.7% - 28px);
 				position: relative;
 
 				@media (max-width: $breakpoint-sm-min) {
 					margin-left: 16px;
-					min-width: calc(7% - 16px);
+					min-width: calc(6.7% - 16px);
 				}
 			}
 		}

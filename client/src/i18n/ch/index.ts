@@ -1,4 +1,6 @@
 
+import Head from './home/head';
+
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
@@ -9,4 +11,5 @@ export default {
 	menuNews: '新闻',
 	menuContacts: '联络人',
 	headerStatusLink: '订单状况',
+	...Head,
 };
