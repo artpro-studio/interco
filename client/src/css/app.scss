@@ -48,7 +48,8 @@ p,h1,h2,h3,h4,h5,h6 {
 	font-size: 3.1em;
 	font-family: 'Oswald', sans-serif;
 	font-weight: 500;
-	line-height: 1.2;
+	line-height: 140%;
+
 
 	@media (max-width: $breakpoint-md-min) {
 		font-size: 2em
@@ -56,10 +57,18 @@ p,h1,h2,h3,h4,h5,h6 {
 }
 // 44px
 .headline-2 {
-	font-size: 2.4em;
+	font-size: 2.45em;
 	font-family: 'Oswald', sans-serif;
 	font-weight: 500;
 	line-height: 1;
+
+	@media (max-width: $breakpoint-md-min) {
+		font-size: 2em;
+	}
+
+	@media (max-width: $breakpoint-sm-min) {
+		font-size: 1.5em;
+	}
 }
 // 38px
 .headline-3 {
@@ -101,18 +110,21 @@ p,h1,h2,h3,h4,h5,h6 {
 .text-red {
 	color: var(--red);
 }
+.text-dark {
+	color: var(--dark-blue);
+}
 .pt-8 {
 	padding-top: 80px;
 
 	@media (max-width: $breakpoint-sm-min) {
-		padding-bottom: 40px;
+		padding-top: 40px;
 	}
 }
 .pb-12 {
 	padding-bottom: 120px;
 
 	@media (max-width: $breakpoint-sm-min) {
-		padding-bottom: 56px;
+		padding-bottom: 40px;
 	}
 }
 .pt-12 {
