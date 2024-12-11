@@ -2,13 +2,24 @@
 	import { inject, ref } from 'vue';
 	import { menuData } from '../data';
 	import { useI18n } from 'vue-i18n';
+	import { RouterName } from 'src/router/routerName';
+	import { useRouter } from 'vue-router';
 
 	const emit = defineEmits(['on-click'])
 	const { t } = useI18n();
+	const router = useRouter();
 
 	const scrollTop = inject<number>('scrollTop', 0)
 
 	const menuDataItems = ref(menuData)
+
+	const getUrlPath = (name: RouterName) => {
+		const path = router.resolve({
+			name
+		});
+
+		return path.fullPath;
+	}
 </script>
 
 <template>
@@ -24,7 +35,7 @@
 				<nav class="headers__menu">
 					<ul class="row">
 						<li v-for="(item, index) in menuDataItems" :key="index" class="headers__menu__item">
-							<router-link to="/">{{ t(item.title) }}</router-link>
+							<router-link :to="getUrlPath(item.path)">{{ t(item.title) }}</router-link>
 						</li>
 					</ul>
 				</nav>

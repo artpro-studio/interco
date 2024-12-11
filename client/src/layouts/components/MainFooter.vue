@@ -1,41 +1,22 @@
 <script lang="ts" setup>
 	import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
+	import { useI18n } from 'vue-i18n';
+	import { menuFooter } from '../data';
+	import { RouterName } from 'src/router/routerName';
+	import { useRouter } from 'vue-router';
 
+	const router = useRouter();
 	const { t } = useI18n();
 
-	const footerMenu = ref(
-		[
-			[
-				{
-					link: '/',
-					title: t('footerPolyce')
-				},
-				{
-					link: '/',
-					title: t('footerContact')
-				},
-				{
-					link: '/',
-					title: t('footerFaq')
-				},
-			],
-			[
-				{
-					link: '/',
-					title: t('footerStatus')
-				},
-				{
-					link: '/',
-					title: t('footerPartner')
-				},
-				{
-					link: '/',
-					title: t('footerJobs')
-				},
-			],
-		]
-	)
+	const footerMenu = ref(menuFooter);
+
+	const getUrlPath = (name: RouterName) => {
+		const path = router.resolve({
+			name
+		});
+
+		return path.fullPath;
+	}
 </script>
 
 <template>
@@ -60,13 +41,13 @@ import { useI18n } from 'vue-i18n';
 							<q-img src="icons/telegram.svg" width="24px" />
 						</a>
 					</div>
-					<router-link to="/" class="footer__link fonts-oswald text-white">{{ t('footerConsent') }}</router-link>
+					<router-link :to="getUrlPath(RouterName.Policy)" class="footer__link fonts-oswald text-white">{{ t('footerConsent') }}</router-link>
 				</div>
 				<div v-for="(item, index) in footerMenu" :key="index" class="footer__menu">
 					<nav>
 						<ul>
 							<li v-for="(el, indx) in item" :key="indx">
-								<router-link :to="el.link">{{ el.title }}</router-link>
+								<router-link :to="el.link">{{ t(el.title) }}</router-link>
 							</li>
 						</ul>
 					</nav>

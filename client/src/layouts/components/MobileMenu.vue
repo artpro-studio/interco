@@ -2,6 +2,8 @@
 	import { computed, inject, onMounted, ref } from 'vue';
 	import { menuData } from '../data';
 	import { useI18n } from 'vue-i18n';
+	import { RouterName } from 'src/router/routerName';
+	import { useRouter } from 'vue-router';
 
 	interface IProps {
 		value: boolean;
@@ -9,6 +11,7 @@
 	const props = defineProps<IProps>()
 	const emit = defineEmits(['value:update'])
 	const { t } = useI18n()
+	const router = useRouter();
 
 	const widthScreen = inject('widthScreen')
 
@@ -18,6 +21,14 @@
 		get: () => props.value,
 		set: (value: boolean) => emit('value:update', value)
 	})
+
+	const getUrlPath = (name: RouterName) => {
+		const path = router.resolve({
+			name
+		});
+
+		return path.fullPath;
+	}
 
 	onMounted(() => {
 		console.log(t('menuService'))
@@ -56,7 +67,7 @@
 							class="mobile-menu__item text-right"
 							clickable
 						>
-							<router-link :to="item.path" class="mobile-menu__item__link text-right text-white">{{ t(item.title) }}</router-link>
+							<router-link :to="getUrlPath(item.path)" class="mobile-menu__item__link text-right text-white">{{ t(item.title) }}</router-link>
 						</div>
 					</nav>
 				</div>
