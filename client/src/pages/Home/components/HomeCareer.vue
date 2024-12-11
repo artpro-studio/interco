@@ -1,13 +1,19 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="home-career text-center pt-12 pb-12">
 		<div class="container">
 			<div class="home-career__body">
-				<h4 class="home-career__title headline-1 text-gradient text-uppercase">Карьера в SA International</h4>
-				<p class="text-white">Присоединяйтесь к нашей команде профессионалов и станьте частью инновационной компании, ведущей промышленность в будущее.</p>
+				<h4 class="home-career__title headline-1 text-gradient text-uppercase">{{ t('careerTitle') }}</h4>
+				<p class="text-white">{{ t('careerText') }}</p>
 				<q-btn color="white" class="home-career__btn text-bold" flat>
 					<div class="row no-wrap">
-						<div>Подробнее</div>
-						<q-img src="icons/arrow-yellow-full.svg" class="q-ml-md" width="16px" alt="Подробнее" />
+						<div>{{ t('moreDetailed') }}</div>
+						<q-img src="icons/arrow-yellow-full.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
 					</div>
 				</q-btn>
 			</div>

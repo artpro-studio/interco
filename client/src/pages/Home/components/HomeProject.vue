@@ -1,14 +1,20 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="home-project pt-12 pb-12">
 		<div class="container">
 			<div class="home-project__header row no-wrap items-center">
-				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">Стратегические проекты</h4>
+				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">{{ t('projectTitle') }}</h4>
 				<div class="home-project__header__right row items-center no-wrap">
 					<div class="line"></div>
 					<q-btn color="black" class="home-project__header__btn text-bold" flat>
 						<div class="row no-wrap">
-							<div>Подробнее</div>
-							<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" alt="Подробнее" />
+							<div class="text-no-wrap">{{ t('moreDetailed') }}</div>
+							<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
 						</div>
 					</q-btn>
 				</div>
@@ -17,26 +23,26 @@
 				<q-img src="images/home-project.png" class="home-project__img" height="278px" width="422px" />
 				<div class="home-project__content">
 					<div class="home-project__content__item">
-						<h4 class="home-project__content__item__title">Создание бартерной биржи</h4>
-						<p>Совместно с ведущими компаниями мы инвестировали в создание инновационной бартерной биржи, которая позволит предприятиям эффективно обмениваться товарами и услугами.</p>
+						<h4 class="home-project__content__item__title">{{ t('projectItem1Title') }}</h4>
+						<p>{{ t('projectItem1Text') }}</p>
 					</div>
 					<div class="home-project__content__item">
-						<h4 class="home-project__content__item__title">Строительство завода роботов-манипуляторов в России</h4>
-						<p>Мы начинаем строительство завода по производству роботизированных рук в России, стремясь к полной локализации производства к 2028 году и развитию промышленного потенциала региона.</p>
+						<h4 class="home-project__content__item__title">{{ t('projectItem2Title') }}</h4>
+						<p>{{ t('projectItem2Text') }}</p>
 					</div>
 				</div>
 			</div>
 			<div class="home-project__contacts pt-8">
 				<div class="home-project__contacts__top row no-wrap items-center">
 					<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-project__contacts__top__img" />
-					<h3 class="home-project__contacts__top__title headline-1 text-dark">Сотрудничество с нами</h3>
+					<h3 class="home-project__contacts__top__title headline-1 text-dark">{{ t('projectContactTitle') }}</h3>
 				</div>
 				<div class="home-project__contacts__body row no-wrap items-center">
 					<div class="home-project__contacts__text">
-						<p class="fonts-oswald text-dark">Мы приглашаем к сотрудничеству компании, стремящиеся к развитию и инновациям.</p>
+						<p class="fonts-oswald text-dark">{{ t('projectContactText') }}</p>
 					</div>
 					<div class="home-project__contacts__info">
-						<p class="text-dark">Наша цель — стать вашим надежным партнером и помочь достичь новых высот в бизнесе.</p>
+						<p class="text-dark">{{ t('projectContactInfo') }}</p>
 					</div>
 				</div>
 			</div>
@@ -46,6 +52,10 @@
 <style lang="scss" scoped>
 	.home-project {
 		background-color: var(--white);
+
+		.text-no-wrap {
+			white-space: nowrap;
+		}
 
 		&__header {
 			margin-bottom: 40px;

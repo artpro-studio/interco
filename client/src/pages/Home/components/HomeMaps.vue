@@ -1,22 +1,26 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
 
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="home-maps pt-8 pb-12">
 		<div class="container">
 			<div class="home-maps__top row no-wrap items-center">
 				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-maps__top__img" />
-				<h3 class="home-maps__top__title headline-1 text-white">Наши направления деятельности</h3>
+				<h3 class="home-maps__top__title headline-1 text-white">{{ t('mapTitle') }}</h3>
 			</div>
 			<div class="home-maps__body">
 				<q-img src="images/maps.png" class="home-maps__img" />
 			</div>
 			<div class="home-maps__list row no-wrap justify-between">
 				<div class="home-maps__list__item">
-					<h4 class="home-maps__list__item__title fonts-oswald">Страны СНГ</h4>
-					<p class="home-maps__list__item__text">Россия, Беларусь, Узбекистан, Казахстан, Таджикистан</p>
+					<h4 class="home-maps__list__item__title fonts-oswald">{{ t('mapItem1Title') }}</h4>
+					<p class="home-maps__list__item__text">{{ t('mapItem1Text') }}</p>
 				</div>
 				<div class="home-maps__list__item">
-					<h4 class="home-maps__list__item__title fonts-oswald">Международные рынки</h4>
-					<p class="home-maps__list__item__text">Европа, США, Канада, Малайзия, Индия, Южная Корея, Австралия, Таиланд</p>
+					<h4 class="home-maps__list__item__title fonts-oswald">{{ t('mapItem2Title') }}</h4>
+					<p class="home-maps__list__item__text">{{ t('mapItem2Text') }}</p>
 				</div>
 			</div>
 		</div>

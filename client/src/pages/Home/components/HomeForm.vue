@@ -3,6 +3,9 @@
 	import VTextArea from 'src/components/UI/VTextArea/VTextArea.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue'
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const form = ref({
 		comments: '',
@@ -18,7 +21,7 @@
 			<div class="home-form__body row no-wrap">
 				<div class="home-form__left pt-8 pb-12">
 					<div class="home-form__left__header row no-wrap items-center">
-						<h4 class="home-form__left__header__title headline-1 text-white text-uppercase">Оставьте заявку</h4>
+						<h4 class="home-form__left__header__title headline-1 text-white text-uppercase">{{ t('homeFormTitle') }}</h4>
 						<div class="home-form__left__header__arrows row no-wrap items-center">
 							<q-img src="icons/arrow-white.svg" class="home-form__left__header__arrows__item" width="26px" />
 							<q-img src="icons/arrow-white.svg" class="home-form__left__header__arrows__item" width="26px" />
@@ -27,11 +30,11 @@
 					<div class="home-form__left__fields">
 						<v-text-area
 							v-model="form.comments"
-							label="Комментарий к заявке (по желанию)"
+							:placeholder="t('homeFormComment')"
 						/>
 					</div>
 					<div class="home-form__social">
-						<h5 class="home-form__social__title fonts-oswald text-white">Следите за нами в социальных сетях</h5>
+						<h5 class="home-form__social__title fonts-oswald text-white">{{ t('homeFormSocial') }}</h5>
 						<div class="home-form__social__body">
 							<a href="/" class="home-form__social__item">
 								<q-img src="icons/whatsapp.svg" class="home-form__social__item__img" width="40px" />
@@ -47,31 +50,31 @@
 				</div>
 				<div class="home-form__right pt-8 pb-12">
 					<div class="home-form__right__header">
-						<h4 class="home-form__right__header__title headline-2 text-dark">Готовы обсудить ваш проект? </h4>
-						<p class="fonts-oswald">Заполните форму, и наш специалист свяжется с вами в ближайшее время</p>
+						<h4 class="home-form__right__header__title headline-2 text-dark">{{ t('homeFormSubTitle') }}</h4>
+						<p class="fonts-oswald">{{ t('homeFormSubText') }}</p>
 					</div>
 					<q-form class="home-form__right__form">
 						<div class="home-form__right__form__field">
 							<v-input
 								v-model="form.firstName"
-								placeholder="Ваше имя"
+								:placeholder="t('homeFormFirstName')"
 							/>
 						</div>
 						<div class="home-form__right__form__field">
 							<v-input
 								v-model="form.email"
-								placeholder="Ваше e-mail"
+								:placeholder="t('homeFormEmail')"
 							/>
 						</div>
 						<div class="home-form__right__form__field">
 							<v-input
 								v-model="form.phone"
-								placeholder="Номер телефона"
+								:placeholder="t('homeFormPhone')"
 							/>
 						</div>
 						<v-btn color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
-								<span>Оставить заявку</span>
+								<span>{{ t('submitApplication') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</div>
 						</v-btn>

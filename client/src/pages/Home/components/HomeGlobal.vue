@@ -1,13 +1,18 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="home-global pt-12 pb-12">
 		<div class="container">
-			<h4 class="home-global__title headline-1 text-gradient text-uppercase">Глобальное присутствие</h4>
+			<h4 class="home-global__title headline-1 text-gradient text-uppercase">{{ t('globalTitle') }}</h4>
 			<div class="home-global__body row no-wrap items-center">
 				<div class="home-global__text">
-					<p class="fonts-oswald">С головным офисом в Шанхае и представительствами в Иу, Гонконге и Благовещенске, мы обеспечиваем оперативную поддержку клиентов по всему миру.</p>
+					<p class="fonts-oswald">{{ t('globalText') }}.</p>
 				</div>
 				<div class="home-global__info">
-					<p>Мы активно расширяем наше присутствие и готовимся к открытию новых офисов в <strong>Москве и Крыму</strong></p>
+					<p v-html="t('globalInfo')"></p>
 				</div>
 			</div>
 		</div>

@@ -1,17 +1,22 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="home-company pt-8 pb-12">
 		<div class="container">
 			<div class="home-company__top row no-wrap items-center">
-				<h4 class="home-company__top__title headline-3 text-white">Ваш надежный партнер в мире</h4>
+				<h4 class="home-company__top__title headline-3 text-white">{{ t('companyTop') }}</h4>
 				<div class="line"></div>
 			</div>
-			<h2 class="home-company__title text-gradient fonts-oswald">Промышленного оборудования и технологий</h2>
+			<h2 class="home-company__title text-gradient fonts-oswald">{{ t('companyTitle') }}</h2>
 			<div class="home-company__body row no-wrap">
 				<div class="home-company__body__item">
-					<p>SA International — ведущая международная компания, специализирующаяся на поставке, производстве и разработке промышленного оборудования и технологий. </p>
+					<p>{{ t('companyText1') }}</p>
 				</div>
 				<div class="home-company__body__item">
-					<p>С 2017 года мы помогаем предприятиям по всему миру достигать новых высот, предоставляя комплексные решения в различных отраслях промышленности.</p>
+					<p>{{ t('companyText2') }}</p>
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,8 @@
 import { computed } from 'vue';
 
 	interface IProps {
-		modelValue: string
+		modelValue: string;
+		placeholder?: string;
 	}
 	const props = defineProps<IProps>();
 	const emit = defineEmits(['update:model-value']);
@@ -21,7 +22,7 @@ import { computed } from 'vue';
 			color="white"
 			class="v-text-area__field"
 			type="textarea"
-			placeholder="Комментарий к заявке (по желанию)"
+			:placeholder="placeholder"
 			rows="3"
 		/>
 	</div>

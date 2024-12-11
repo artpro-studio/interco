@@ -1,4 +1,15 @@
 import Head from './home/head';
+import Company from './home/company';
+import Direction from './home/direction';
+import Global from './home/global';
+import Map from './home/map';
+import Advantages from './home/advantages';
+import Project from './home/project';
+import Career from './home/career';
+import Contacts from './home/contacts';
+import Form from './home/form';
+import Footer from './footer';
+
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
@@ -9,5 +20,17 @@ export default {
 	menuNews: 'Новости',
 	menuContacts: 'Контакты',
 	headerStatusLink: 'Статус заказа',
+	moreDetailed: 'Подробнее',
+	submitApplication: 'Оставить заявку',
 	...Head,
+	...Company,
+	...Direction,
+	...Global,
+	...Map,
+	...Advantages,
+	...Project,
+	...Career,
+	...Contacts,
+	...Form,
+	...Footer,
   };

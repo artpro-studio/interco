@@ -3,6 +3,7 @@
 	import { provide, ref } from 'vue';
 	import MainHeaders from './components/MainHeaders.vue';
 	import MobileMenu from './components/MobileMenu.vue';
+	import MainFooter from './components/MainFooter.vue';
 
 	const leftDrawerOpen = ref(false);
 	const widthScreen = ref(0);
@@ -30,7 +31,7 @@
 		<q-page-container class="page-contaoner">
 			<router-view />
 		</q-page-container>
-
+		<main-footer />
 		<q-resize-observer @resize="onResize" />
 		<q-scroll-observer @scroll="scrollHandler" />
   </q-layout>

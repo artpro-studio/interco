@@ -1,19 +1,25 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="home-advantages pt-8 pb-12">
 		<div class="container">
-			<h3 class="home-advantages__title headline-1 text-white">Наши направления деятельности</h3>
+			<h3 class="home-advantages__title headline-1 text-white">{{ t('advantagesTitle') }}</h3>
 		</div>
 		<div class="home-advantages__body">
 				<div class="home-advantages__first">
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">1. Комплексные решения</h4>
-								<p>Мы предлагаем полный спектр услуг — от разработки концепции до запуска и обслуживания оборудования.</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem1Title') }}</h4>
+								<p>{{ t('advantagesItem1Text') }}</p>
 							</div>
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">2. Индивидуальный подход</h4>
-								<p>Каждое решение разрабатывается с учетом специфики и потребностей вашего бизнеса.</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem2Title') }}</h4>
+								<p>{{ t('advantagesItem2Text') }}</p>
 							</div>
 						</div>
 					</div>
@@ -22,12 +28,12 @@
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">3. Инновации и технологии</h4>
-								<p>Мы постоянно внедряем передовые технологии, включая искусственный интеллект, для повышения эффективности и конкурентоспособности наших клиентов.</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem3Title') }}</h4>
+								<p>{{ t('advantagesItem3Text') }}</p>
 							</div>
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">4. Профессиональная команда</h4>
-								<p>Наши специалисты имеют многолетний опыт и готовы предоставить экспертную поддержку на всех этапах сотрудничества.</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem4Title') }}</h4>
+								<p>{{ t('advantagesItem4Text') }}</p>
 							</div>
 						</div>
 					</div>
@@ -36,8 +42,8 @@
 				<div class="home-advantages__three">
 					<div class="container">
 						<div class="home-advantages__item">
-							<h4 class="home-advantages__item__title fonts-oswald text-uppercase">5. Гарантия качества</h4>
-							<p>Мы сотрудничаем только с проверенными поставщиками и производим собственное оборудование по высоким стандартам качества.</p>
+							<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem5Title') }}</h4>
+							<p>{{ t('advantagesItem5Text') }}</p>
 						</div>
 					</div>
 

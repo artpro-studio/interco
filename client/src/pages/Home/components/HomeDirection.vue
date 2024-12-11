@@ -1,8 +1,42 @@
+
 <script lang="ts" setup>
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const sliderRef = ref<any>();
 	const slide = ref('slide1');
+
+	const sliderData = ref(
+		[
+			{
+				title: t('directionSlide1Title'),
+				list: [t('directionSlide1Text1'), t('directionSlide1Text2'), t('directionSlide1Text3')],
+				images: 'images/direction-sllide1.png',
+			},
+			{
+				title: t('directionSlide2Title'),
+				list: [t('directionSlide2Text1'), t('directionSlide2Text2'), t('directionSlide2Text3')],
+				images: 'images/direction-sllide2.png',
+			},
+			{
+				title: t('directionSlide3Title'),
+				list: [t('directionSlide3Text1'), t('directionSlide3Text2'), t('directionSlide3Text3')],
+				images: 'images/direction-sllide3.png',
+			},
+			{
+				title: t('directionSlide4Title'),
+				list: [t('directionSlide4Text1'), t('directionSlide4Text2'), t('directionSlide4Text3')],
+				images: 'images/direction-sllide4.png',
+			},
+			{
+				title: t('directionSlide5Title'),
+				list: [t('directionSlide5Text1'), t('directionSlide5Text2')],
+				images: 'images/direction-sllide5.png',
+			},
+		]
+	)
 
 	const onPrev = () => {
 		sliderRef.value?.previous();
@@ -17,9 +51,9 @@
 		<div class="container">
 			<div class="home-direction__top row no-wrap items-center">
 				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-direction__top__img" />
-				<h3 class="home-direction__top__title headline-1 text-white">Наши направления деятельности</h3>
+				<h3 class="home-direction__top__title headline-1 text-white">{{ t('directionTitle') }}</h3>
 			</div>
-			<h4 class="headline-3 text-white text-uppercase">1. Поставка и производство оборудования</h4>
+			<h4 class="headline-3 text-white text-uppercase">{{ t('directionSubTitle') }}</h4>
 		</div>
 		<div class="home-direction__slider">
 			<div class="container">
@@ -43,47 +77,28 @@
 						infinite
 						control-color="primary"
 					>
-						<q-carousel-slide name="slide1" class="column no-wrap q-pa-none">
+						<q-carousel-slide
+							v-for="(item, index) in sliderData"
+							:key="index"
+							:name="'slide' + index"
+							class="column no-wrap q-pa-none"
+						>
 							<div class="home-direction__slide row no-wrap">
 								<div class="home-direction__slide__info">
-									<h5 class="home-direction__slide__info__title headline-4 text-white text-uppercase">Строительное оборудование</h5>
+									<h5 class="home-direction__slide__info__title headline-4 text-white text-uppercase">{{ item.title }}</h5>
 									<ul>
-										<li>Бетонные заводы</li>
-										<li>Смесительные системы</li>
-										<li>Бетоносмесители</li>
+										<li v-for="(el, indx) in item.list" :key="indx">{{ el }}</li>
 									</ul>
 
 									<q-btn color="white" class="home-direction__slide__btn text-bold" flat>
 										<div class="row no-wrap">
-											<q-img src="icons/arrow-white.svg" class="q-mr-md" width="16px" alt="Подробнее" />
-											<div>Подробнее</div>
+											<q-img src="icons/arrow-white.svg" class="q-mr-md" width="16px" :alt="t('moreDetailed')" />
+											<div>{{ t('moreDetailed') }}</div>
 										</div>
 									</q-btn>
 								</div>
 								<div class="home-direction__slide__images">
-									<q-img src="images/direction-sllide1.png" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
-								</div>
-							</div>
-      					</q-carousel-slide>
-						<q-carousel-slide name="slide2" class="column no-wrap q-pa-none">
-							<div class="home-direction__slide row no-wrap">
-								<div class="home-direction__slide__info">
-									<h5 class="home-direction__slide__info__title headline-4 text-white text-uppercase">Строительное оборудование2</h5>
-									<ul>
-										<li>Бетонные заводы</li>
-										<li>Смесительные системы</li>
-										<li>Бетоносмесители</li>
-									</ul>
-
-									<q-btn color="white" class="home-direction__slide__btn text-bold" flat>
-										<div class="row no-wrap">
-											<q-img src="icons/arrow-white.svg" class="q-mr-md" width="16px" alt="Подробнее" />
-											<div>Подробнее</div>
-										</div>
-									</q-btn>
-								</div>
-								<div class="home-direction__slide__images">
-									<q-img src="images/direction-sllide1.png" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
+									<q-img :src="item.images" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
 								</div>
 							</div>
       					</q-carousel-slide>
