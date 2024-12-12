@@ -26,14 +26,16 @@
 
 <template>
 	<q-layout view="lHh lpr lFf" class="main-layout">
-		<main-headers @on-click="toggleLeftDrawer"/>
-		<mobile-menu v-model:value="leftDrawerOpen" @value:update="leftDrawerOpen = $event" />
-		<q-page-container class="page-contaoner">
-			<router-view />
-		</q-page-container>
-		<main-footer />
-		<q-resize-observer @resize="onResize" />
-		<q-scroll-observer @scroll="scrollHandler" />
+		<div class="main-layout__body">
+			<main-headers @on-click="toggleLeftDrawer"/>
+			<mobile-menu v-model:value="leftDrawerOpen" @value:update="leftDrawerOpen = $event" />
+			<q-page-container class="page-contaoner">
+				<router-view />
+			</q-page-container>
+			<main-footer />
+			<q-resize-observer @resize="onResize" />
+			<q-scroll-observer @scroll="scrollHandler" />
+		</div>
   </q-layout>
 </template>
 <style lang="scss" scoped>
@@ -54,6 +56,10 @@
 			left: 0;
 			opacity: .9;
 			z-index: 0;
+		}
+
+		&__body {
+			position: relative;
 		}
 	}
 </style>

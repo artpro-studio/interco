@@ -1,0 +1,15 @@
+export default {
+	policyUserTitle: '用户协议',
+	policyUserText1: '用户协议规定了我们网站的使用条款和条件以及我们提供的服务',
+	policyUserText2: '阅读本文档将帮助您了解您在与我们公司互动时的权利和义务',
+	policyUserLinkText: '阅读用户协议',
+	policyUserListTitle: '主要组别:',
+	policyUserListItem1: '一般规定：协议的范围，基本术语的定义',
+	policyUserListItem2: '用户的权利和义务：网站上的行为规则，对所提供信息的责任',
+	policyUserListItem3: '公司的权利和义务：我们对用户的义务，更改内容和条件的权利',
+	policyUserListItem4: '知识产权：网站上发布的材料使用规则',
+	policyUserListItem5: '责任限制：公司对某些行为或事件不负责的条件',
+	policyUserListItem6: '争议解决程序：解决可能分歧的机制',
+	policyUserListItem7: '协议的更改：更改和通知用户的程序',
+	policyUserListItem8: '适用法律：管辖权和适用法律的说明',
+}

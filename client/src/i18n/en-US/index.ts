@@ -11,6 +11,7 @@ import Career from './home/career';
 import Contacts from './home/contacts';
 import Form from './home/form';
 import Footer from './footer';
+import Policy from './policy';
 
 export default {
 	failed: 'Action failed',
@@ -35,4 +36,5 @@ export default {
 	...Contacts,
 	...Form,
 	...Footer,
+	...Policy,
 };

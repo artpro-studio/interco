@@ -1,17 +1,23 @@
 <script lang="ts" setup>
-	import { inject, ref } from 'vue';
+	import { computed, inject, ref } from 'vue';
 	import { menuData } from '../data';
 	import { useI18n } from 'vue-i18n';
 	import { RouterName } from 'src/router/routerName';
-	import { useRouter } from 'vue-router';
+	import { useRoute, useRouter } from 'vue-router';
+	import lang from 'src/components/lang/lang.vue';
 
 	const emit = defineEmits(['on-click'])
 	const { t } = useI18n();
 	const router = useRouter();
+	const route = useRoute();
 
 	const scrollTop = inject<number>('scrollTop', 0)
 
 	const menuDataItems = ref(menuData)
+
+	const isHome = computed(() => {
+		return route.name === RouterName.Home;
+	})
 
 	const getUrlPath = (name: RouterName) => {
 		const path = router.resolve({
@@ -55,8 +61,8 @@
 						@click="emit('on-click')"
 					/>
 				</div>
-
 			</div>
+			<lang v-if="!isHome" class="headers__lang justify-end" />
 		</div>
     </q-header>
 </template>
@@ -75,10 +81,19 @@
 		&.on-scroll {
 			background-color: var(--dark-blue);
 			padding: 20px 0;
+
+			.headers__lang {
+				padding-top: 00px;
+			}
 		}
 
 		@media (max-width: $breakpoint-md-min) {
 			padding: 24px 0;
+		}
+
+		&__lang {
+			padding-top: 30px;
+			transition: .4s all;
 		}
 
 		&__logo {
