@@ -1,0 +1,15 @@
+export default {
+	careerProccesTitle: '甄选程序',
+	careerProccesItem1Title: '提交简历',
+	careerProccesItem1Text: '在网站上填写表格或通过电子邮件发送简历hr@inter-sa.com 通过在信的主题中指明空缺的名称',
+	careerProccesItem2Title: '初步面试',
+	careerProccesItem2Text: '我们的招聘专家将与您联系进行电话或在线面试，讨论您的经验和期望',
+	careerProccesItem3Title: '测试任务',
+	careerProccesItem3Text: '对于某些职位，可能需要完成一项测试任务来评估专业技能',
+	careerProccesItem4Title: '个人面试',
+	careerProccesItem4Text: '与部门负责人和人力资源代表会面，以便更详细地了解和讨论工作条件',
+	careerProccesItem5Title: '做出决定',
+	careerProccesItem5Text: '在所有阶段成功完成的情况下，我们会给你一个正式的工作机会，说明所有的条件',
+	careerProccesItem6Title: '去上班',
+	careerProccesItem6Text: '完成必要的文件，开始你在SA国际的职业生涯',
+}

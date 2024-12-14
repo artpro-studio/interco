@@ -6,12 +6,15 @@
 	import CareerEmployee from './components/CareerEmployee.vue';
 	import CareerForm from './components/CareerForm.vue';
 	import BannerContacts from 'src/components/BannerContacts/BannerContacts.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<head-global
-		title="Добро пожаловать в раздел карьеры компании SA International"
-		text="Мы всегда рады приветствовать талантливых и амбициозных специалистов, готовых присоединиться к нашей команде и вместе достигать новых высот в мире промышленного оборудования и технологий"
+		:title="t('careerHeadTitle')"
+		:text="t('careerHeadDescription')"
 		width-text="653px"
 		width-title="957px"
 		images="images/career-head.svg"
@@ -23,7 +26,7 @@
 	<career-employee />
 	<career-form />
 	<banner-contacts
-		title="Контактная информация отдела кадров"
+		:title="t('careerContactsTitle')"
 		phone="+86-21-5432-2755 (ext. 812)"
 		email="hr@inter-sa.com"
 		text="Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505"

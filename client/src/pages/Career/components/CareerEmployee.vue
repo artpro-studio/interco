@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const breakpoints: any = {
 		'901': {
@@ -19,10 +22,10 @@
 			<div class="career-employee__header row no-wrap justify-between items-center">
 				<div class="career-employee__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="career-employee__header__arrow" width="40px" />
-					<h4 class="career-employee__header__title headline-1 text-uppercase">Истории сотрудников</h4>
+					<h4 class="career-employee__header__title headline-1 text-uppercase">{{ t('careerEmployeeTitle') }}</h4>
 				</div>
 				<div class="career-employee__header__info">
-					<p>Познакомьтесь с историями успеха наших сотрудников, которые уже стали частью команды SA International</p>
+					<p>{{ t('careerEmployeeText') }}</p>
 				</div>
 			</div>
 			<div class="career-employee__body">

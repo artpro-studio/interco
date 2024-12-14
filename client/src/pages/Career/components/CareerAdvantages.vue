@@ -1,8 +1,14 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="career-advantages pt-8 pb-120">
 		<div class="container">
 			<div class="career-advantages__header">
-				<h4 class="career-advantages__header__title headline-1 text-gradient text-uppercase">Преимущества работы у нас</h4>
+				<h4 class="career-advantages__header__title headline-1 text-gradient text-uppercase">{{ t('careerAdvantagesTitle') }}</h4>
 			</div>
 			<div class="career-advantages__body">
 				<div class="career-advantages__body__section row no-wrap">
@@ -12,19 +18,19 @@
 					<div class="career-advantages__body__item" style="max-width: 326px;">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>1.</span>
-							<h5>Конкурентоспособная оплата труда</h5>
+							<h5>{{ t('careerAdvantagesItem1Title') }}</h5>
 						</div>
-						<p>Мы ценим вклад каждого сотрудника и предлагаем достойную заработную плату, соответствующую опыту и квалификации</p>
+						<p>{{ t('careerAdvantagesItem1Text') }}</p>
 					</div>
 					<div class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>2.</span>
-							<h5>Социальный пакет и бонусы</h5>
+							<h5>{{ t('careerAdvantagesItem2Title') }}</h5>
 						</div>
 						<ul>
-							<li>Медицинская страховка: полис, покрывающий широкий спектр медицинских услуг</li>
-							<li>Оплачиваемый отпуск: ежегодный отпуск, соответствующий законодательству</li>
-							<li>Бонусная система: поощрения за достижение результатов и перевыполнение планов</li>
+							<li>{{ t('careerAdvantagesItem2List1') }}</li>
+							<li>{{ t('careerAdvantagesItem2List2') }}</li>
+							<li>{{ t('careerAdvantagesItem2List3') }}</li>
 						</ul>
 					</div>
 				</div>
@@ -32,23 +38,23 @@
 					<div class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>3.</span>
-							<h5>Возможности профессионального роста</h5>
+							<h5>{{ t('careerAdvantagesItem3Title') }}</h5>
 						</div>
 						<ul>
-							<li>Обучение и развитие: курсы, тренинги, участие в конференциях и семинарах.</li>
-							<li>Карьерный рост: прозрачная система продвижения по службе.</li>
-							<li>Международный опыт: работа в мультикультурной среде и проекты за рубежом.</li>
+							<li>{{ t('careerAdvantagesItem3List1') }}</li>
+							<li>{{ t('careerAdvantagesItem3List2') }}</li>
+							<li>{{ t('careerAdvantagesItem3List3') }}</li>
 						</ul>
 					</div>
 					<div class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>4.</span>
-							<h5>Комфортные условия труда</h5>
+							<h5>{{ t('careerAdvantagesItem4Title') }}</h5>
 						</div>
 						<ul>
-							<li>Современные офисы: оборудованные всем необходимым для продуктивной работы.</li>
-							<li>Дружный коллектив: поддерживающая и позитивная атмосфера в команде.</li>
-							<li>Корпоративные мероприятия: тимбилдинги, праздники, спортивные мероприятия.q</li>
+							<li>{{ t('careerAdvantagesItem4List1') }}</li>
+							<li>{{ t('careerAdvantagesItem4List2') }}</li>
+							<li>{{ t('careerAdvantagesItem4List3') }}</li>
 						</ul>
 					</div>
 				</div>

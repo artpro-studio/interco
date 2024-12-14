@@ -4,6 +4,9 @@
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
 	import { computed, inject, onMounted, ref, watch } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const widthScreen = inject<any>('widthScreen', 0);
 	const widthSlider = ref(0);
@@ -30,7 +33,7 @@
 <template>
 	<div class="job-openings pt-8 pb-8">
 		<div class="container">
-			<section-title title="Актуальные вакансии" />
+			<section-title :title="t('careerJobTitle')" />
 		</div>
 		<div class="job-openings__body">
 			<div class="container">

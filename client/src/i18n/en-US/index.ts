@@ -12,6 +12,7 @@ import Contacts from './home/contacts';
 import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
+import CareerPage from './career'
 
 export default {
 	failed: 'Action failed',
@@ -37,4 +38,5 @@ export default {
 	...Form,
 	...Footer,
 	...Policy,
+	...CareerPage,
 };

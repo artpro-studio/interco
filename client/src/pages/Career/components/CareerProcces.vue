@@ -1,41 +1,47 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="career-procces pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="career-procces__header">
-				<h4 class="career-procces__title headline-1 text-gradient text-uppercase">Процесс отбора</h4>
+				<h4 class="career-procces__title headline-1 text-gradient text-uppercase">{{ t('careerProccesTitle') }}</h4>
 			</div>
 			<div class="career-procces__body">
 				<div class="career-procces__section row justify-between no-wrap">
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">1. Подача резюме</h5>
-						<p>Заполните форму на сайте или отправьте резюме на электронную почту hr@inter-sa.com, указав в теме письма название вакансии</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">1. {{ t('careerProccesItem1Title') }}</h5>
+						<p>{{ t('careerProccesItem1Text') }}</p>
 					</div>
 					<q-img src="icons/arrow-red-outline.svg" class="career-procces__arrow" fit="contain" width="64px" />
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">2. Первичное интервью</h5>
-						<p>Наши специалисты по подбору персонала свяжутся с вами для проведения телефонного или онлайн-интервью, чтобы обсудить ваш опыт и ожидания</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">2. {{ t('careerProccesItem2Title') }}</h5>
+						<p>{{ t('careerProccesItem2Text') }}</p>
 					</div>
 					<q-img src="icons/arrow-red-outline.svg" class="career-procces__arrow" fit="contain" width="64px" />
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">3. Тестовое задание</h5>
-						<p>Для некоторых позиций может потребоваться выполнение тестового задания для оценки профессиональных навыков</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">3. {{ t('careerProccesItem3Title') }}</h5>
+						<p>{{ t('careerProccesItem3Text') }}</p>
 					</div>
 					<q-img src="icons/arrow-red-outline.svg" class="career-procces__arrow desktop-hide" fit="contain" width="64px" />
 				</div>
 				<div class="career-procces__section row justify-between no-wrap">
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">4. Личное интервью</h5>
-						<p>Встреча с руководителем отдела и представителями HR для более детального знакомства и обсуждения условий работы</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">4. {{ t('careerProccesItem4Title') }}</h5>
+						<p>{{ t('careerProccesItem4Text') }}</p>
 					</div>
 					<q-img src="icons/arrow-red-outline.svg" class="career-procces__arrow" fit="contain" width="64px" />
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">5. Принятие решения</h5>
-						<p>В случае успешного прохождения всех этапов мы сделаем вам официальное предложение о работе с указанием всех условий</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">5. {{ t('careerProccesItem5Title') }}</h5>
+						<p>{{ t('careerProccesItem5Text') }}</p>
 					</div>
 					<q-img src="icons/arrow-red-outline.svg" class="career-procces__arrow" fit="contain" width="64px" />
 					<div class="career-procces__item">
-						<h5 class="career-procces__item__title fonts-oswald text-uppercase">6. Выход на работу</h5>
-						<p>Оформление необходимых документов и начало вашей карьеры в SA International</p>
+						<h5 class="career-procces__item__title fonts-oswald text-uppercase">6. {{ t('careerProccesItem6Title') }}</h5>
+						<p>{{ t('careerProccesItem6Text') }}</p>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 	import VBtnGradient from 'src/components/UI/VBtnGradient/VBtnGradient.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 <template>
 	<div class="job-openings__slide">
@@ -8,30 +11,30 @@
 			<h4 class="job-openings__slide__header__title text-gradient">Директор по продажам</h4>
 		</div>
 		<div class="job-openings__slide__body">
-			<h5>Местоположение</h5>
+			<h5>{{ t('careerJobLocation') }}</h5>
 			<p>Шанхай, Китай</p>
-			<h5>Требования</h5>
+			<h5>{{ t('careerJobRequirements') }}</h5>
 			<ul>
 				<li> - Навыки стратегического мышления и лидерства</li>
 				<li> - Опыт работы на руководящей позиции в продажах не менее 5 лет</li>
 				<li> - Высшее образование в области маркетинга, экономики или управления</li>
 				<li> - Знание английского и/или китайского языков на высоком уровне</li>
 			</ul>
-			<h5>Обязанности</h5>
+			<h5>{{ t('careerJobResponsibilities') }}</h5>
 			<ul>
 				<li> - Разработка и реализация стратегии продаж</li>
 				<li> - Управление командой менеджеров по продажам</li>
 				<li> - Установление и поддержание отношений с ключевыми клиентами</li>
 				<li> - Анализ рынка и поиск новых возможностей для развития бизнеса</li>
 			</ul>
-			<h5>Условия</h5>
+			<h5>{{ t('careerJobTerm') }}</h5>
 			<ul>
 				<li> - Конкурентоспособная заработная плата</li>
 				<li> - Бонусы по результатам работы</li>
 				<li> - Социальный пакет и медицинская страховка</li>
 				<li> - Возможности для профессионального роста</li>
 			</ul>
-			<v-btn-gradient class="job-openings__slide__btn" :height="44">отправить резюме</v-btn-gradient>
+			<v-btn-gradient class="job-openings__slide__btn" :height="44">{{ t('careerJobTextButton') }}</v-btn-gradient>
 		</div>
 	</div>
 </template>

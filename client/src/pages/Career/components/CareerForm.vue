@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
@@ -8,30 +11,30 @@
 			<div class="career-form__body row no-wrap">
 				<div class="career-form__info pt-8 pb-8">
 					<div class="career-form__info__header row items-center no-wrap">
-						<h4 class="career-form__info__title headline-2 text-uppercase text-white">Как подать заявку?</h4>
+						<h4 class="career-form__info__title headline-2 text-uppercase text-white">{{ t('careerFormTitle') }}</h4>
 						<div class="career-form__info__arrow row items-center no-wrap">
 							<q-img src="icons/arrow-white.svg" width="25px" fit="contain" class="career-form__info__arrow__item" />
 							<q-img src="icons/arrow-white.svg" width="25px" fit="contain" class="career-form__info__arrow__item" />
 						</div>
 					</div>
 					<div class="career-form__info__text">
-						<p class="fonts-oswald text-uppercase"> — Присоединяйтесь к команде SA International и станьте частью будущего промышленности и технологий!</p>
+						<p class="fonts-oswald text-uppercase">{{ t('careerFormText') }}</p>
 					</div>
 				</div>
 				<div class="career-form__form pb-8">
 					<div class="career-form__form__header row items-center no-wrap justify-between">
-						<h4 class="career-form__form__title headline-2">Онлайн форма</h4>
+						<h4 class="career-form__form__title headline-2">{{ t('careerFormTitle2') }}</h4>
 						<v-btn color="primary">
 							<div class="row no-wrap">
-								<span class="text-white">Заполнить анкету</span>
+								<span class="text-white">{{ t('careerFormTextButton') }}</span>
 								<q-img src="icons/arrow-red.svg" fit="contain" class="q-ml-md" width="16px" />
 							</div>
 						</v-btn>
 					</div>
 					<div class="career-form__form__text">
-						<p class="fonts-oswald">Или отправьте резюме и сопроводительное письмо на hr@inter-sa.com</p>
+						<p class="fonts-oswald">{{ t('careerFormTextInfo') }}</p>
 					</div>
-					<p class="career-form__form__info fonts-oswald">Если у вас есть вопросы, свяжитесь с нашим отделом кадров по телефону +86-21-5432-2755 (ext. 814)</p>
+					<p class="career-form__form__info fonts-oswald">{{ t('careerFormTextInfo2') }}</p>
 				</div>
 			</div>
 		</div>
