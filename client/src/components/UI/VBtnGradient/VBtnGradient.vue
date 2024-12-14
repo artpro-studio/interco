@@ -3,13 +3,14 @@
 
 	interface IProps {
 		color?: NamedColor | undefined;
+		height?: number;
 	}
 	defineProps<IProps>();
 	const emit = defineEmits(['on-click'])
 </script>
 <template>
 	<div class="v-btn-gradient">
-		<q-btn class="v-btn-gradient__wrap" @click="emit('on-click')" dense>
+		<q-btn class="v-btn-gradient__wrap" @click="emit('on-click')" dense :style="{height: height + 'px'}">
 			<slot name="default" />
 		</q-btn>
 	</div>

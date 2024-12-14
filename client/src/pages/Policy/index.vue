@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import HeadGlobal from './components/HeadGlobal.vue';
+	import HeadGlobal from 'src/components/HeadGlobal/HeadGlobal.vue';
 	import PolicySection from './components/PolicySection.vue';
 	import PolicyUser from './components/PolicyUser.vue';
 	import PolicyWarning from './components/PolicyWarning.vue';

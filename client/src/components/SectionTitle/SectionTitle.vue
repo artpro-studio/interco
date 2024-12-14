@@ -31,7 +31,7 @@
 			margin-bottom: 40px;
 			&__img {
 				margin-right: 18px;
-				width: 40px !important;
+				width: 35px !important;
 			}
 
 			&__title {

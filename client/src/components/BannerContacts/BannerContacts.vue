@@ -12,7 +12,7 @@
 <template>
 	<div class="banner-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 class="banner-contacts__title headline-1 text-gradient">{{ title }}</h4>
+			<h4 class="banner-contacts__title headline-1 text-gradient text-uppercase">{{ title }}</h4>
 			<div v-if="description" class="banner-contacts__description fonts-oswald text-white">
 				<p>{{ description }}</p>
 			</div>
