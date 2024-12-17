@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-	import { useI18n } from 'vue-i18n';
+	import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+	import { useRoute } from 'vue-router';
 
+	const route = useRoute();
 	const { locale } = useI18n({ useScope: 'global' })
 	const localeOptions = [
         { value: 'ru', label: 'RU' },
@@ -8,12 +11,16 @@
         { value: 'ch', label: 'CH' }
     ];
 
+	const isWhite = computed(() => {
+		return route.meta.background === 'white';
+	})
+
 	const onChange = (lang: string) => {
 		locale.value = lang;
 	}
 </script>
 <template>
-	<div class="lang row no-wrap">
+	<div class="lang row no-wrap" :class="{white: isWhite}">
 		<div v-for="item in localeOptions" :key="item.value" @click="onChange(item.value)" class="lang__item" :class="{'active': locale === item.value}">
 			{{ item.label }}
 		</div>
@@ -49,6 +56,17 @@
 
 			&.active {
 				opacity: 1;
+			}
+		}
+
+		&.white {
+			.lang__item {
+				color: #888891;
+				opacity: 1;
+
+				&.active {
+					color: var(--dark-blue);;
+				}
 			}
 		}
 	}

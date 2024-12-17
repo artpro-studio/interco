@@ -1,15 +1,22 @@
 
 <script setup lang="ts">
-	import { provide, ref } from 'vue';
+	import { computed, provide, ref } from 'vue';
 	import MainHeaders from './components/MainHeaders.vue';
 	import MobileMenu from './components/MobileMenu.vue';
 	import MainFooter from './components/MainFooter.vue';
+	import { useRoute } from 'vue-router';
+
+	const route = useRoute();
 
 	const leftDrawerOpen = ref(false);
 	const widthScreen = ref(0);
 	const scrollTop = ref(0);
 	provide('widthScreen', widthScreen)
 	provide('scrollTop', scrollTop)
+
+	const isWhite = computed(() => {
+		return route.meta.background === 'white';
+	})
 
 	function toggleLeftDrawer () {
 		leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -25,7 +32,7 @@
 </script>
 
 <template>
-	<q-layout view="lHh lpr lFf" class="main-layout">
+	<q-layout view="lHh lpr lFf" class="main-layout" :class="{white: isWhite}">
 		<div class="main-layout__body">
 			<main-headers @on-click="toggleLeftDrawer"/>
 			<mobile-menu v-model:value="leftDrawerOpen" @value:update="leftDrawerOpen = $event" />
@@ -56,6 +63,14 @@
 			left: 0;
 			opacity: .9;
 			z-index: 0;
+		}
+
+		&.white {
+			background-color: #f5f5f5;
+
+			&::before {
+				display: none;
+			}
 		}
 
 		&__body {

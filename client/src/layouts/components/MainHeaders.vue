@@ -15,6 +15,10 @@
 
 	const menuDataItems = ref(menuData)
 
+	const isWhite = computed(() => {
+		return route.meta.background === 'white';
+	})
+
 	const isHome = computed(() => {
 		return route.name === RouterName.Home;
 	})
@@ -29,7 +33,7 @@
 </script>
 
 <template>
-	<q-header class="headers" :class="{'on-scroll': scrollTop > 70}">
+	<q-header class="headers" :class="{'on-scroll': scrollTop > 70, white: isWhite}">
 		<div class="container">
 			<div class="headers__body row items-center justify-between">
 				<div class="headers__logo">
@@ -66,6 +70,55 @@
 		</div>
     </q-header>
 </template>
+
+<style lang="scss">
+	.headers {
+		&.on-scroll {
+			.lang__item {
+				color: var(--white) !important;
+				opacity: .4 !important;
+
+				&:hover {
+					opacity: 1 !important;
+				}
+
+				&.active {
+					opacity: 1 !important;
+				}
+			}
+
+			.headers__menu {
+				&__item {
+					a {
+						color: var(--white) !important;
+						opacity: .7 !important;
+
+						&:hover {
+							opacity: 1 !important;
+						}
+					}
+				}
+			}
+			.headers__actions {
+				&__links {
+					color: var(--white) !important;
+				}
+				&__phone {
+					color: var(--white) !important;
+				}
+			}
+			.headers__logo {
+				span {
+					color: var(--white) !important;
+				}
+			}
+			.headers__btn-menu {
+				color: var(--white) !important;
+			}
+
+		}
+	}
+</style>
 
 <style lang="scss" scoped>
 	.headers {
@@ -148,6 +201,7 @@
 				font-size: .83em;
 				white-space: nowrap;
 				margin-right: 16px;
+				font-weight: bold;
 
 				&__img {
 					margin-left: 10px;
@@ -163,6 +217,7 @@
 				margin-left: 18px;
 				color: var(--white);
 				text-decoration: none;
+				font-weight: bold;
 
 				@media (max-width: $breakpoint-sm-min) {
 					display: none;
@@ -182,6 +237,39 @@
 
 			@media (max-width: $breakpoint-md-min) {
 				display: flex;
+			}
+		}
+
+		&.white {
+			.headers__menu {
+				&__item {
+					a {
+						color: rgba(136, 136, 145, 1);
+
+						&:hover {
+							color: var(--dark-blue);
+						}
+					}
+				}
+			}
+			.headers__actions {
+				&__links {
+					color: var(--dark-blue);
+					font-weight: bold;
+				}
+				&__phone {
+					color: var(--dark-blue);
+					font-weight: bold;
+				}
+			}
+			.headers__logo {
+				span {
+					color: var(--dark-blue);
+					font-weight: bold;
+				}
+			}
+			.headers__btn-menu {
+				color: var(--dark-blue);
 			}
 		}
 	}

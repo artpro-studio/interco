@@ -5,9 +5,11 @@ import { computed } from 'vue';
 		title: string;
 		tag?: string;
 		color?: 'red' | 'gold';
+		colorText?: 'white' | 'black';
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		color: 'red',
+		colorText: 'white',
 	});
 
 	const imagesPath = computed(() => {
@@ -22,7 +24,7 @@ import { computed } from 'vue';
 <template>
 	<div class="section__title row no-wrap items-center">
 		<q-img :src="imagesPath" width="26px" fit="contain" class="section__title__img" />
-		<h3 class="section__title__title headline-1 text-white">{{ title }}</h3>
+		<h3 class="section__title__title headline-1" :class="{'text-white': props.colorText === 'white'}">{{ title }}</h3>
 	</div>
 </template>
 <style lang="scss" scoped>

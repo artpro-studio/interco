@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { computed, ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import { menuFooter } from '../data';
 	import { RouterName } from 'src/router/routerName';
-	import { useRouter } from 'vue-router';
+	import { useRoute, useRouter } from 'vue-router';
 
+	const route = useRoute();
 	const router = useRouter();
 	const { t } = useI18n();
 
 	const footerMenu = ref(menuFooter);
+
+	const isWhite = computed(() => {
+		return route.meta.background === 'white';
+	})
 
 	const getUrlPath = (name: RouterName) => {
 		const path = router.resolve({
@@ -20,7 +25,7 @@
 </script>
 
 <template>
-	<footer class="footer pt-12 pb-12">
+	<footer class="footer pt-12 pb-12" :class="{white: isWhite}">
 		<div class="container">
 			<div class="footer__body row items-start justify-between">
 				<div class="footer__left">
@@ -138,6 +143,10 @@
 			&__menu {
 				margin-bottom: 12px;
 			}
+		}
+
+		&.white {
+			background-color: var(--dark-blue);
 		}
 	}
 </style>

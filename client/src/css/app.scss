@@ -5,6 +5,7 @@
 	--dark-blue: #1A1A2E;
 	--yellow: #D4AF37;
 	--gray: #E3E3E3;
+	--gray-secondary: rgba(136, 136, 145, 1);
 	--white: #FFFFFF;
 	--dark-green: #333333;
 	--gradient-yellow: linear-gradient(90deg, #EFC66C 0%, #D59F26 100%);
@@ -22,6 +23,7 @@ body {
 	font-size: 18px;
 	font-family: 'Play', sans-serif;
 	background-color: var(--dark-blue);
+	color: var(--dark-blue);
 
 	@media (max-width: $breakpoint-md-min) {
 		font-size: 16px;

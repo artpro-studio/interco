@@ -4,7 +4,7 @@
 	import ClientsBanner from './components/ClientsBanner.vue';
 	import Faq from './components/Faq.vue';
 	import ClientsForm from './components/ClientsForm.vue';
-	import ClientsContacts from './components/ClientsContacts.vue';
+	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import ClientsSectionText from './components/ClientsSectionText.vue';
 </script>
 
