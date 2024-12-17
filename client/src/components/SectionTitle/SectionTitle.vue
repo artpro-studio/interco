@@ -1,14 +1,27 @@
 <script lang="ts" setup>
+import { computed } from 'vue';
+
 	interface IProps {
 		title: string;
 		tag?: string;
+		color?: 'red' | 'gold';
 	}
-	defineProps<IProps>();
+	const props = withDefaults(defineProps<IProps>(), {
+		color: 'red',
+	});
+
+	const imagesPath = computed(() => {
+		if (props.color === 'gold') {
+			return 'icons/arrow-gradient.svg'
+		}
+
+		return 'icons/arrow-red.svg';
+	})
 
 </script>
 <template>
 	<div class="section__title row no-wrap items-center">
-		<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="section__title__img" />
+		<q-img :src="imagesPath" width="26px" fit="contain" class="section__title__img" />
 		<h3 class="section__title__title headline-1 text-white">{{ title }}</h3>
 	</div>
 </template>

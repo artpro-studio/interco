@@ -4,6 +4,8 @@
 	import ClientsBanner from './components/ClientsBanner.vue';
 	import Faq from './components/Faq.vue';
 	import ClientsForm from './components/ClientsForm.vue';
+	import ClientsContacts from './components/ClientsContacts.vue';
+	import ClientsSectionText from './components/ClientsSectionText.vue';
 </script>
 
 <template>
@@ -19,4 +21,6 @@
 	<clients-banner />
 	<faq />
 	<clients-form />
+	<clients-contacts />
+	<clients-section-text />
 </template>
