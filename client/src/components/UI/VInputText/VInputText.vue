@@ -4,10 +4,12 @@
 	interface IProps {
 		modelValue: string;
 		placeholder?: string;
-		color?: 'dark' | 'white'
+		color?: 'dark' | 'white';
+		rows?: number
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		color: 'dark',
+		rows: 3,
 	});
 	const emit = defineEmits(['update:model-value']);
 
@@ -18,17 +20,19 @@
 </script>
 
 <template>
-	<div class="v-input">
+	<div class="v-input-text">
 		<q-input
 			v-model="currentValue"
-			:class="`v-input__field ` + props.color"
+			color="white"
+			:class="`v-input-text__field ` + props.color"
+			type="textarea"
 			:placeholder="placeholder"
+			:rows="rows"
 		/>
 	</div>
-
 </template>
 <style lang="scss">
-	.v-input {
+	.v-input-text {
 		.q-field {
 			font-size: 1em !important;
 		}
@@ -47,7 +51,7 @@
 					}
 				}
 
-				input {
+				textarea {
 					color:var(--dark-blue);
 
 					&::placeholder {
@@ -66,7 +70,7 @@
 					}
 				}
 
-				input {
+				textarea {
 					color: var(--white);
 
 					&::placeholder {
@@ -75,7 +79,7 @@
 				}
 			}
 
-			input {
+			textarea {
 				font-size: 1em;
 			}
 		}

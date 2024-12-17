@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 	import HeadGlobal from 'src/components/HeadGlobal/HeadGlobal.vue';
 	import Support from './components/Support.vue';
+	import ClientsBanner from './components/ClientsBanner.vue';
+	import Faq from './components/Faq.vue';
+	import ClientsForm from './components/ClientsForm.vue';
 </script>
 
 <template>
@@ -13,4 +16,7 @@
 		:dense="false"
 	/>
 	<support />
+	<clients-banner />
+	<faq />
+	<clients-form />
 </template>

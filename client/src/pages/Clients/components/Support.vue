@@ -36,7 +36,7 @@
 </script>
 
 <template>
-	<div class="support pb-8 pt-8">
+	<div class="support pt-8">
 		<div class="container">
 			<section-title title="Сервис и поддержка" />
 			<p class="support__description headline-2">Мы предлагаем полный спектр сервисных услуг, направленных на поддержание бесперебойной работы вашего оборудования и обеспечение максимальной эффективности</p>
@@ -115,6 +115,7 @@
 <style lang="scss">
 	.support {
 		color: var(--white);
+		margin-bottom: 40px;
 		&__description {
 			max-width: 1200px;
 			line-height: 135%;

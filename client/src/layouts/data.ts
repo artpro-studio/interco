@@ -38,7 +38,7 @@ export const menuFooter = [
 			title: 'footerContact',
 		},
 		{
-			link: RouterName.About,
+			link: RouterName.Clients,
 			title: 'footerFaq',
 		},
 	],
