@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
+	import { useSlots } from 'vue';
+
+	const slots = useSlots()
 </script>
 
 <template>
@@ -7,7 +10,7 @@
 		<div class="container">
 			<section-title title="Контактная информация" color="gold" class="clients-contacts__title" />
 			<div class="clients-contacts__body row justify-between no-wrap">
-				<div class="clients-contacts__item">
+				<div v-if="!slots['column1']" class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Служба поддержки</h6>
 					<div class="clients-contacts__item__link">
 						<a href="tel:+8654322755">+86-5432-2755 (ext. 804)</a>
@@ -16,57 +19,43 @@
 						<a href="mailto:support@inter-sa.com">support@inter-sa.com</a>
 					</div>
 				</div>
-				<div class="clients-contacts__item">
+				<slot v-else name="column1" />
+
+				<div v-if="!slots['column2']" class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Отдел запасных частей</h6>
 					<div class="clients-contacts__item__link">
 						<a href="mailto:support@inter-sa.com">parts@inter-sa.com</a>
 					</div>
 				</div>
-				<div class="clients-contacts__item">
+				<slot v-else name="column2" />
+
+				<div v-if="!slots['column3']" class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Общие вопросы</h6>
 					<div class="clients-contacts__item__link">
 						<a href="mailto:support@inter-sa.com">info@inter-sa.com</a>
 					</div>
 				</div>
-				<div class="clients-contacts__item">
+				<slot v-else name="column3" />
+
+				<div v-if="!slots['column4']" class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Адрес главного офиса</h6>
 					<div class="clients-contacts__item__link">
 						<p>Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505</p>
 					</div>
 				</div>
+				<slot v-else name="column4" />
 			</div>
 		</div>
 	</div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.clients-contacts {
-		background-image: url('images/bg-client-contacts.png');
-		background-repeat: no-repeat;
-		background-position: top center;
-		background-size: cover;
-		position: relative;
-
-		&::before {
-			content: '';
-			width: 100%;
-			height: 100%;
-			background-color: rgba(16, 16, 41, 0.69);
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-
-		&__body {
-			margin-top: 64px;
-			position: relative;
-			color: var(--white);
-		}
-
 		&__item {
 			padding-right: 35px;
 			border-right: 2px rgba(255, 255, 255, 0.5) solid;
 			margin-right: 35px;
+			width: 25%;
 
 			&:last-child {
 				padding-right: 0;
@@ -95,10 +84,17 @@
 				text-decoration: none;
 				font-size: 1.22em;
 				transition: .4s all;
+				font-family: 'Oswald', sans-serif;
 
 				&:hover {
 					color: var(--red);
+					font-size: 1.22em;
 				}
+			}
+
+			p {
+				font-family: 'Oswald', sans-serif;
+				font-size: 1.22em;
 			}
 
 			@media (max-width: 1310px) {
@@ -138,6 +134,33 @@
 				}
 			}
 		}
+	}
+</style>
+
+<style lang="scss" scoped>
+	.clients-contacts {
+		background-image: url('images/bg-client-contacts.png');
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
+		position: relative;
+
+		&::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background-color: rgba(16, 16, 41, 0.69);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&__body {
+			margin-top: 64px;
+			position: relative;
+			color: var(--white);
+		}
+
 		@media (max-width: $breakpoint-md-min) {
 			&__body {
 				flex-wrap: wrap;

@@ -6,6 +6,7 @@
 		text: string;
 		images: string;
 		dense?:boolean;
+		top?: number
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		dense: true,
@@ -20,7 +21,7 @@
 				<div class="home-global__text" :style="{maxWidth: props.widthText}">
 					<p class="text-white">{{ text }}</p>
 				</div>
-				<q-img :src="images" class="home-global__bg" />
+				<q-img :src="images" class="home-global__bg" :style="{top: top}" />
 			</div>
 		</div>
 	</div>
