@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
-	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
+	import VTextArea from '../UI/VTextArea/VTextArea.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import { ref } from 'vue';
 
@@ -9,9 +9,12 @@
 
 	const isChecked = ref(false);
 	const form = ref({
+		lasttName: '',
 		firstName: '',
+		middleName: '',
 		email: '',
 		phone: '',
+		place: '',
 		message: '',
 	})
 </script>
@@ -29,7 +32,21 @@
 								<v-input
 									v-model="form.firstName"
 									color="gray"
-									placeholder="Ваше имя"
+									placeholder="Имя"
+								/>
+							</div>
+							<div class="modal-application__form__field">
+								<v-input
+									v-model="form.lasttName"
+									color="gray"
+									placeholder="Фамилия"
+								/>
+							</div>
+							<div class="modal-application__form__field">
+								<v-input
+									v-model="form.middleName"
+									color="gray"
+									placeholder="Отчество"
 								/>
 							</div>
 							<div class="modal-application__form__field">
@@ -48,11 +65,24 @@
 							</div>
 						</div>
 						<div class="modal-application__form__column">
-							<v-input-text
+							<div class="modal-application__form__field__label row no-wrap items-center fonts-oswald">
+								Запрос
+								<div class="modal-application__form__field__label__icon">
+									<q-icon name="question_mark" />
+									<q-tooltip anchor="top middle" self="bottom middle">
+										Пожалуйста, подробно опишите ваш запрос или необходимую услугу. Укажите конкретные требования, важные детали и любую дополнительную информацию(например, сроки, условия и т. д.), которая поможет нам точно понять и эффективно выполнить вашу задачу. Чем точнее описание, тем быстрее и качественнее мы сможем предоставить помощь.
+									</q-tooltip>
+								</div>
+							</div>
+							<v-text-area
 								v-model="form.message"
 								color="gray"
-								placeholder="Сообщение"
 								:rows="10"
+							/>
+							<v-input
+								v-model="form.place"
+								color="gray"
+								placeholder="Место доставки"
 							/>
 						</div>
 					</div>
@@ -184,9 +214,27 @@
 			}
 
 			&__field {
-				margin-bottom: 19px;
+				margin-bottom: 6px;
 				&:last-child {
 					margin-bottom: 0;
+				}
+
+				&__label {
+					color: #888891;
+					border-bottom: 1px #E3E3E3 solid;
+					padding-top: 14px;
+					padding-bottom: 14px;
+
+					&__icon {
+						background-color: #DADADA;
+						width: 24px;
+						height: 24px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border-radius: 50%;
+						margin-left: 8px;
+					}
 				}
 			}
 
@@ -236,7 +284,7 @@
 				}
 
 				&__btn {
-					min-width: 322px;
+					min-width: 216px;
 				}
 
 				@media (max-width: 800px) {

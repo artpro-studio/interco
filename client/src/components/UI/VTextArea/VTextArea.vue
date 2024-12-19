@@ -4,6 +4,7 @@ import { computed } from 'vue';
 	interface IProps {
 		modelValue: string;
 		placeholder?: string;
+		color?: 'gray'
 	}
 	const props = defineProps<IProps>();
 	const emit = defineEmits(['update:model-value']);
@@ -15,12 +16,12 @@ import { computed } from 'vue';
 </script>
 
 <template>
-	<div class="v-text-area">
+	<div :class="`v-text-area ` + props.color">
 		<div class="v-text-area__lines"></div>
 		<q-input
 			v-model="currentValue"
 			color="white"
-			class="v-text-area__field"
+			:class="`v-text-area__field ` + props.color"
 			type="textarea"
 			:placeholder="placeholder"
 			rows="3"
@@ -71,6 +72,18 @@ import { computed } from 'vue';
 					display: none;
 				}
 			}
+		}
+
+		&.gray {
+			.v-text-area__lines {
+				&::before, &::after {
+					background: repeating-linear-gradient(to bottom, #E3E3E3 0, #E3E3E3 1px, transparent 1px, transparent 64px);
+				}
+			}
+			textarea {
+				color: var(--dark-blue) !important;
+			}
+
 		}
 	}
 </style>
