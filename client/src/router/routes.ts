@@ -42,7 +42,10 @@ const routes: RouteRecordRaw[] = [
 			{
 				name: RouterName.News,
 				path: 'news',
-				component: () => import('src/pages/News/index.vue')
+				component: () => import('src/pages/News/index.vue'),
+				meta: {
+					background: 'white',
+				}
 			},
 			{
 				name: RouterName.About,
