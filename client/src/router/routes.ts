@@ -55,7 +55,10 @@ const routes: RouteRecordRaw[] = [
 			{
 				name: RouterName.Contacts,
 				path: 'contacts',
-				component: () => import('src/pages/Contacts/index.vue')
+				component: () => import('src/pages/Contacts/index.vue'),
+				meta: {
+					background: 'white',
+				}
 			},
 		],
 	},

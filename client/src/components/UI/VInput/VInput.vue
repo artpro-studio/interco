@@ -4,7 +4,7 @@
 	interface IProps {
 		modelValue: string;
 		placeholder?: string;
-		color?: 'dark' | 'white'
+		color?: 'dark' | 'white' | 'gray'
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		color: 'dark',
@@ -40,6 +40,26 @@
 				.q-field__control {
 					&::before {
 						border-bottom: 1px solid rgba(97, 97, 113, 1);
+					}
+
+					&::after {
+						background-color: rgba(97, 97, 113, 1) !important;
+					}
+				}
+
+				input {
+					color:var(--dark-blue);
+
+					&::placeholder {
+						color: #616171;
+					}
+				}
+			}
+
+			&.gray {
+				.q-field__control {
+					&::before {
+						border-bottom: 1px solid #E3E3E3;
 					}
 
 					&::after {
