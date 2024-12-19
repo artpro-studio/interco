@@ -4,6 +4,7 @@
 		widthText: string;
 		title: string;
 		text: string;
+		subTitle?:string;
 		images: string;
 		dense?:boolean;
 		top?: number
@@ -19,6 +20,7 @@
 			<div class="home-global__body">
 				<h3 class="home-global__title text-white" :class="{dense: props.dense}" :style="{maxWidth: props.widthTitle}">{{ title }}</h3>
 				<div class="home-global__text" :style="{maxWidth: props.widthText}">
+					<h4 v-if="subTitle">{{ subTitle }}</h4>
 					<p class="text-white">{{ text }}</p>
 				</div>
 				<q-img :src="images" class="home-global__bg" :style="{top: top}" />
@@ -60,6 +62,14 @@
 		&__text {
 			position: relative;
 			z-index: 2;
+
+			h4 {
+				font-size: 1.5em;
+				font-weight: bold;
+				font-family: 'Oswald', sans-serif;
+				margin-bottom: 24px;
+				color: var(--white);
+			}
 			p {
 				font-size: 1.2em;
 			}
