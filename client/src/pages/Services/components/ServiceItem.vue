@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
+	import { ref } from 'vue';
 
 	interface IProps {
 		title: string;
@@ -11,6 +13,8 @@
 		advantages: any;
 	}
 	defineProps<IProps>();
+
+	const isOpenDialog = ref(false);
 </script>
 
 <template>
@@ -53,7 +57,7 @@
 						</div>
 						<div class="service-product__item__buttons row no-wrap items-center justify-between">
 							<p>Запрос коммерческого предложения</p>
-							<v-btn color="primary" class="service-product__item__buttons__btn">
+							<v-btn color="primary" class="service-product__item__buttons__btn" @on-click="isOpenDialog = true">
 								<span>Связаться с нами</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</v-btn>
@@ -65,6 +69,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 
 <style lang="scss" scoped>
