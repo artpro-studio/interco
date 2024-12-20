@@ -13,6 +13,7 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+// import ClientsPage from './clients'
 
 export default {
 	failed: 'Action failed',
@@ -39,4 +40,5 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	// ...ClientsPage,
 };
