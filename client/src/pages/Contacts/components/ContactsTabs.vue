@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { reactive, ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const tab = ref('contact1');
 
-	const dataTabs = [
+	const dataTabs = reactive([
 		{
 			key: 'contact1',
-			name: 'Шанхай (Главный офис)',
+			name: t('contactsTabsTitle1'),
 			data: {
 				address: {
 					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
@@ -30,7 +33,7 @@
 		},
 		{
 			key: 'contact2',
-			name: 'Иу',
+			name: t('contactsTabsTitle2'),
 			data: {
 				address: {
 					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
@@ -54,7 +57,7 @@
 		},
 		{
 			key: 'contact3',
-			name: 'Гонконг',
+			name: t('contactsTabsTitle3'),
 			data: {
 				address: {
 					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
@@ -78,7 +81,7 @@
 		},
 		{
 			key: 'contact4',
-			name: 'Благовещенск',
+			name: t('contactsTabsTitle4'),
 			data: {
 				address: {
 					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
@@ -100,7 +103,7 @@
 				time: 'Понедельник – Пятница: 9:00 – 18:00<br>Суббота: 10:00 – 16:00<br>Воскресенье: выходной'
 			}
 		},
-	]
+	])
 </script>
 
 <template>
@@ -133,7 +136,7 @@
 					>
 						<div class="contacts-tabs__content row no-wrap">
 							<div class="contacts-tabs__item">
-								<h5 class="contacts-tabs__item__title">Адрес</h5>
+								<h5 class="contacts-tabs__item__title">{{ t('address') }}</h5>
 								<div class="contacts-tabs__item__info">
 									<p>{{ item.data.address.text }}</p>
 									<div v-if="item.data.address.link" class="contacts-tabs__item__info__link">
@@ -143,7 +146,7 @@
 								</div>
 							</div>
 							<div class="contacts-tabs__item">
-								<h5 class="contacts-tabs__item__title">Телефон</h5>
+								<h5 class="contacts-tabs__item__title">{{ t('phone') }}</h5>
 								<div class="contacts-tabs__item__contact row">
 									<span>Общий:</span>
 									<a :href="'tel:' + item.data.phone.common">{{ item.data.phone.common }}</a>
@@ -158,7 +161,7 @@
 								</div>
 							</div>
 							<div class="contacts-tabs__item">
-								<h5 class="contacts-tabs__item__title">Электронная почта</h5>
+								<h5 class="contacts-tabs__item__title">{{ t('email') }}</h5>
 								<div class="contacts-tabs__item__contact row">
 									<span>Общий:</span>
 									<a :href="'mailto:' + item.data.email.common">{{ item.data.email.common }}</a>
@@ -173,7 +176,7 @@
 								</div>
 							</div>
 							<div class="contacts-tabs__item">
-								<h5 class="contacts-tabs__item__title">Время работы</h5>
+								<h5 class="contacts-tabs__item__title">{{ t('timeJob') }}</h5>
 								<div class="contacts-tabs__item__info time">
 									<p v-html="item.data.time"></p>
 								</div>

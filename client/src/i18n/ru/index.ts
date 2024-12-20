@@ -15,6 +15,7 @@ import ClientsPage from './clients'
 import ClientsNews from './news'
 import Social from './Social'
 import BannerCallback from './bannerCallback'
+import ContactsPage from './contacts'
 
 export default {
 	failed: 'Action failed',
@@ -29,6 +30,9 @@ export default {
 	moreDetailed: 'Подробнее',
 	submitApplication: 'Оставить заявку',
 	phone: 'Телефон',
+	address: 'Адрес',
+	email: 'Электронная почта',
+	timeJob: 'Время работы',
 	...Head,
 	...Company,
 	...Direction,
@@ -46,4 +50,5 @@ export default {
 	...ClientsNews,
 	...Social,
 	...BannerCallback,
+	...ContactsPage,
   };

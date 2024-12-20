@@ -1,10 +1,16 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="home-global pb-8">
 		<div class="container">
 			<div class="home-global__body">
-				<h3 class="home-global__title">Контакты</h3>
+				<h3 class="home-global__title">{{ t('contactsHeadTitle') }}</h3>
 				<div class="home-global__text">
-					<p>Мы всегда рады общению и готовы ответить на все ваши вопросы. Свяжитесь с нами удобным для вас способом или посетите один из наших офисов.</p>
+					<p>{{ t('contactsHeadDescription') }}</p>
 				</div>
 			</div>
 		</div>

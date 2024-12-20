@@ -17,6 +17,7 @@ import ClientsPage from './clients'
 import ClientsNews from './news'
 import Social from './Social'
 import BannerCallback from './bannerCallback'
+import ContactsPage from './contacts'
 
 export default {
 	failed: 'Action failed',
@@ -48,4 +49,5 @@ export default {
 	...ClientsNews,
 	...Social,
 	...BannerCallback,
+	...ContactsPage,
 };
