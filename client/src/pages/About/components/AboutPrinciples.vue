@@ -1,28 +1,33 @@
 <script lang="ts" setup>
-	const principles = [
+	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+
+	const principles = ref([
 		{
-			title: '1. Открытость и коммуникация',
-			text: 'Поощряем свободный обмен идеями и мнениями, ценим вклад каждого сотрудника.',
+			title: t('aboutPrinciplesItem1Title'),
+			text: t('aboutPrinciplesItem1Text'),
 			isFull: true,
 		},
 		{
-			title: '2.Инновационный подход',
-			text: 'Стремимся к постоянному улучшению и внедрению новых решений.',
+			title: t('aboutPrinciplesItem2Title'),
+			text: t('aboutPrinciplesItem2Text'),
 			isFull: true,
 		},
 		{
-			title: '3. Командная работа',
-			text: 'Верим, что успех компании — результат совместных усилий всей команды.',
+			title: t('aboutPrinciplesItem3Title'),
+			text: t('aboutPrinciplesItem3Text'),
 		},
 		{
-			title: '4. Ответственность',
-			text: 'Каждый из нас несет ответственность за свою работу и вклад в общее дело.',
+			title: t('aboutPrinciplesItem4Title'),
+			text: t('aboutPrinciplesItem4Text'),
 		},
 		{
-			title: '5. Уважение и доверие',
-			text: 'Строим отношения на основе взаимного уважения и доверия.',
+			title: t('aboutPrinciplesItem5Title'),
+			text: t('aboutPrinciplesItem5Text'),
 		}
-	]
+	])
 </script>
 
 <template>
@@ -31,10 +36,10 @@
 			<div class="about-principles__header row no-wrap justify-between items-center">
 				<div class="about-principles__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="about-principles__header__arrow" width="40px" />
-					<h4 class="about-principles__header__title headline-1 text-uppercase">Наши принципы</h4>
+					<h4 class="about-principles__header__title headline-1 text-uppercase">{{ t('aboutPrinciplesTitle') }}</h4>
 				</div>
 				<div class="about-principles__header__info">
-					<p>Мы гордимся тем, что у нас сформирована дружная и профессиональная команда, где каждый сотрудник ощущает свою значимость и получает возможность для роста и развития.</p>
+					<p>{{ t('aboutPrinciplesDescription') }}</p>
 				</div>
 			</div>
 			<div class="about-principles__body row q-gutter-lg">

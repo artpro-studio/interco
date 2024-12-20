@@ -9,13 +9,16 @@
 	import AboutPrinciples from './components/AboutPrinciples.vue';
 	import BannerCallback from 'src/components/BannerCallback/BannerCallback.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<head-global
-		title="О компании"
-		sub-title="История компании"
-		text="Основанная в 2020 году, компания SA International (上海亚际机电有限公司) начала свой путь как часть SIBC Group, фокусируясь на предоставлении консалтинговых услуг и подборе промышленного оборудования для различных отраслей. Наша цель с самого начала заключалась в том, чтобы стать надежным партнером для предприятий по всему миру, предлагая инновационные решения и высокий уровень сервиса."
+		:title="t('aboutHeadTitle')"
+		:sub-title="t('aboutHeadSubTitle')"
+		:text="t('aboutHeadSubText')"
 		images="images/head-about-bg.png"
 		width-text="653px"
 		width-title="957px"
@@ -30,7 +33,7 @@
 	<about-principles />
 	<banner-callback />
 	<banner-sa-international
-		title="SA International —  "
-		description="ваш надежный партнер в мире промышленного оборудования и технологий"
+		:title="t('aboutBannerTitle')"
+		:description="t('aboutBannerDescription')"
 	/>
 </template>

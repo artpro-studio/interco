@@ -1,0 +1,16 @@
+export default {
+	aboutMissionTitle: '使命与价值观',
+	aboutMissionSubTitle1: '我们的使命',
+	aboutMissionSubTitle2: '我们的价值观',
+	aboutMissionText: '我们致力成为提供创新工业解决方案的领导者，为企业的发展作出贡献，并提高企业在全球市场的竞争力。 我们的目标是为客户提供高品质的设备和先进的技术，帮助他们在业务上达到新的高度。',
+	aboutMissionList1Title: '创新科技',
+	aboutMissionList1Text: '持续推行新技术，为客户寻找最佳解决方案',
+	aboutMissionList2Title: '品质',
+	aboutMissionList2Text: '从产品到服务，我们所做的每一件事都是高标准的',
+	aboutMissionList3Title: '可靠性',
+	aboutMissionList3Text: '与合作伙伴和客户建立长期和信任的关系',
+	aboutMissionList4Title: '责任',
+	aboutMissionList4Text: '商业道德、关怀社会和环境',
+	aboutMissionList5Title: '团队合作',
+	aboutMissionList5Text: '为每位员工的合作和专业成长创造良好的氛围',
+}
