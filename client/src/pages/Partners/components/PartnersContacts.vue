@@ -70,7 +70,6 @@
 			padding-right: 35px;
 			border-right: 2px rgba(255, 255, 255, 0.5) solid;
 			margin-right: 35px;
-			min-width: 280px;
 
 			&:last-child {
 				padding-right: 0;
