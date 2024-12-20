@@ -1,50 +1,55 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="partners-principles pt-8 pb-8 bg-white">
 		<div class="container">
-			<h3 class="partners-principles__title text-gradient headline-1 text-uppercase">Принципы партнерства</h3>
+			<h3 class="partners-principles__title text-gradient headline-1 text-uppercase">{{t('partnersPrinciplesTitle')}}</h3>
 			<div class="partners-principles__body row">
 				<div class="partners-principles__item">
-					<h5 class="text-red text-uppercase fonts-oswald text-bold">1. Взаимное доверие и уважение</h5>
+					<h5 class="text-red text-uppercase fonts-oswald text-bold">1. {{t('partnersPrinciplesItem1Title')}}</h5>
 					<div class="partners-principles__item__content">
-						<h6>Открытая коммуникация</h6>
-						<p>Честность и прозрачность во всех аспектах сотрудничества</p>
+						<h6>{{t('partnersPrinciplesItem1SubTitle1')}}</h6>
+						<p>{{t('partnersPrinciplesItem1Text1')}}</p>
 					</div>
 					<div class="partners-principles__item__content">
-						<h6>Уважение интересов</h6>
-						<p>Учитываем цели и потребности наших партнеров при принятии решений</p>
-					</div>
-				</div>
-				<div class="partners-principles__item">
-					<h5 class="text-red text-uppercase fonts-oswald text-bold">2. Долгосрочное сотрудничество</h5>
-					<div class="partners-principles__item__content">
-						<h6>Стратегические отношения</h6>
-						<p>Стремимся к построению устойчивых и продолжительных партнерских связей</p>
-					</div>
-					<div class="partners-principles__item__content">
-						<h6>Совместный рост</h6>
-						<p>Работая вместе, мы помогаем друг другу достигать новых высот</p>
+						<h6>{{t('partnersPrinciplesItem1SubTitle2')}}</h6>
+						<p>{{t('partnersPrinciplesItem1Text2')}}</p>
 					</div>
 				</div>
 				<div class="partners-principles__item">
-					<h5 class="text-red text-uppercase fonts-oswald text-bold">3. Ответственность и этика</h5>
+					<h5 class="text-red text-uppercase fonts-oswald text-bold">2. {{t('partnersPrinciplesItem2Title')}}</h5>
 					<div class="partners-principles__item__content">
-						<h6>Соблюдение обязательств</h6>
-						<p>Выполняем договоренности точно и в срок</p>
+						<h6>{{t('partnersPrinciplesItem2SubTitle1')}}</h6>
+						<p>{{t('partnersPrinciplesItem2Text1')}}</p>
 					</div>
 					<div class="partners-principles__item__content">
-						<h6>Этические стандарты</h6>
-						<p>Придерживаемся высоких этических норм в бизнесе</p>
+						<h6>{{t('partnersPrinciplesItem2SubTitle2')}}</h6>
+						<p>{{t('partnersPrinciplesItem2Text2')}}</p>
 					</div>
 				</div>
 				<div class="partners-principles__item">
-					<h5 class="text-red text-uppercase fonts-oswald text-bold">4. Инновационность и развитие</h5>
+					<h5 class="text-red text-uppercase fonts-oswald text-bold">3. {{t('partnersPrinciplesItem3Title')}}</h5>
 					<div class="partners-principles__item__content">
-						<h6>Поиск новых возможностей</h6>
-						<p>Постоянно ищем способы улучшить наши продукты и услуги</p>
+						<h6>{{t('partnersPrinciplesItem3SubTitle1')}}</h6>
+						<p>{{t('partnersPrinciplesItem3Text1')}}</p>
 					</div>
 					<div class="partners-principles__item__content">
-						<h6>Обучение и обмен опытом</h6>
-						<p>Поощряем совместное обучение и развитие компетенций</p>
+						<h6>{{t('partnersPrinciplesItem3SubTitle2')}}</h6>
+						<p>{{t('partnersPrinciplesItem3Text2')}}</p>
+					</div>
+				</div>
+				<div class="partners-principles__item">
+					<h5 class="text-red text-uppercase fonts-oswald text-bold">4. {{t('partnersPrinciplesItem4Title')}}</h5>
+					<div class="partners-principles__item__content">
+						<h6>{{t('partnersPrinciplesItem4SubTitle1')}}</h6>
+						<p>{{t('partnersPrinciplesItem4Text1')}}</p>
+					</div>
+					<div class="partners-principles__item__content">
+						<h6>{{t('partnersPrinciplesItem4SubTitle2')}}</h6>
+						<p>{{t('partnersPrinciplesItem4Text2')}}</p>
 					</div>
 				</div>
 			</div>

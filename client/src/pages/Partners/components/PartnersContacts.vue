@@ -1,28 +1,33 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="clients-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 class="clients-contacts__title headline-1 text-gradient text-center text-uppercase">Контакты для связи</h4>
+			<h4 class="clients-contacts__title headline-1 text-gradient text-center text-uppercase">{{t('partnersContactsTitle')}}</h4>
 			<div class="clients-contacts__body row justify-between no-wrap">
 				<div class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">E-mail</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersContactsSubTitle1')}}</h6>
 					<div class="clients-contacts__item__link">
 						<a href="tel:+8654322755">partners@inter-sa.com</a>
 					</div>
 				</div>
 				<div class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">телефон</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{t('phone')}}</h6>
 					<div class="clients-contacts__item__link">
 						<a href="mailto:support@inter-sa.com">8+6-21-5432-2755 (ext. 818)</a>
 					</div>
 				</div>
 				<div class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Адрес главного офиса</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersContactsSubTitle3')}}</h6>
 					<div class="clients-contacts__item__link">
 						<p>Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505</p>
 					</div>
 				</div>
 				<div class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">контактное лицо</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersContactsSubTitle4')}}</h6>
 					<div class="clients-contacts__item__link">
 						<p>Дмитрий Александрович Гаврилов,
 							Директор по развитию бизнеса</p>

@@ -3,6 +3,9 @@
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const form = ref({
 		firstName: '',
@@ -18,9 +21,9 @@
 		<div class="container">
 			<div class="clients-form__body row no-wrap">
 				<div class="clients-form__column">
-					<h4 class="clients-form__title text-uppercase fonts-oswald">Готовы обсудить возможности сотрудничества?</h4>
+					<h4 class="clients-form__title text-uppercase fonts-oswald">{{t('partnersFormTitle')}}</h4>
 					<div class="clients-form__info">
-						<p>Мы открыты для диалога и будем рады узнать больше о вашей компании и предложениях</p>
+						<p>{{t('partnersFormDescription')}}</p>
 						<div class="clients-form__info__links">
 							<div class="clients-form__info__links__item">
 								<a href="mailto:partners@inter-sa.com" class="text-gradient">partners@inter-sa.com</a>
@@ -35,24 +38,24 @@
 					<q-form class="clients-form__form">
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.firstName" color="white" placeholder="Имя" />
+								<v-input v-model="form.firstName" color="white" :placeholder="t('partnersFormFirstName')" />
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.email" color="white" placeholder="E-mail" />
+								<v-input v-model="form.email" color="white" :placeholder="t('partnersFormEmail')" />
 							</div>
 						</div>
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.company" color="white" placeholder="Компания" />
+								<v-input v-model="form.company" color="white" :placeholder="t('partnersFormCompany')" />
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.phone" color="white" placeholder="Номер телефона" />
+								<v-input v-model="form.phone" color="white" :placeholder="t('partnersFormPhone')" />
 							</div>
 						</div>
-						<v-input-text v-model="form.comment" color="white" :rows="1" class="clients-form__form__comment" placeholder="Сообщение" />
+						<v-input-text v-model="form.comment" color="white" :rows="1" class="clients-form__form__comment" :placeholder="t('partnersFormComment')" />
 						<v-btn color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
-								<span>Отправить</span>
+								<span>{{t('partnersFormSubmit')}}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</div>
 						</v-btn>

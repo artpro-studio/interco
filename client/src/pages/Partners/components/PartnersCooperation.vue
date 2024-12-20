@@ -1,23 +1,26 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<div class="partners-cooperation pt-8 pb-8 bg-white">
 		<div class="container">
-			<section-title class="partners-cooperation__title" color-text="black" title="Условия сотрудничества" />
+			<section-title class="partners-cooperation__title" color-text="black" :title="t('partnersCooperationTitle')" />
 			<div class="partners-cooperation__body row no-wrap justify-between">
 				<div class="partners-cooperation__item">
-					<h4 class="partners-cooperation__item__title">Взаимный интерес</h4>
-					<p>Совпадение стратегических целей и интересов обеих сторон</p>
+					<h4 class="partners-cooperation__item__title">{{t('partnersCooperationItem1Title')}}</h4>
+					<p>{{t('partnersCooperationItem1SubTitle')}}</p>
 				</div>
 				<div class="partners-cooperation__item">
-					<h4 class="partners-cooperation__item__title">Соблюдение стандартов</h4>
-					<p>Готовность придерживаться высоких стандартов качества и этики</p>
+					<h4 class="partners-cooperation__item__title">{{t('partnersCooperationItem2Title')}}</h4>
+					<p>{{t('partnersCooperationItem2SubTitle')}}</p>
 				</div>
 				<div class="partners-cooperation__item">
-					<h4 class="partners-cooperation__item__title">Компетентность и надежность</h4>
-					<p>Наличие опыта и ресурсов для успешной реализации совместных проектов</p>
+					<h4 class="partners-cooperation__item__title">{{t('partnersCooperationItem3Title')}}</h4>
+					<p>{{t('partnersCooperationItem3SubTitle')}}</p>
 				</div>
 			</div>
 		</div>

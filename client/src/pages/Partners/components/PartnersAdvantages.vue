@@ -1,54 +1,57 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<div class="partners-advantages pt-8 pb-8">
 		<div class="container">
-			<section-title title=" Преимущества сотрудничества" class="partners-advantages__title" />
+			<section-title :title="t('partnersAdvantagesTitle')" class="partners-advantages__title" />
 			<div class="partners-advantages__body row">
 				<div class="partners-advantages__item">
-					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">1. Широкий спектр возможностей</h5>
+					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">1. {{t('partnersAdvantagesItem1Title')}}</h5>
 					<div class="partners-advantages__item__content">
-						<h6>Многоотраслевая экспертиза</h6>
-						<p>Мы работаем в различных отраслях промышленности, включая строительство, металлургию, горнодобывающую, химическую и пищевую промышленность</p>
+						<h6>{{t('partnersAdvantagesItem1SubTitle1')}}</h6>
+						<p>{{t('partnersAdvantagesItem1Text1')}}</p>
 					</div>
 					<div class="partners-advantages__item__content">
-						<h6>Глобальное присутствие</h6>
-						<p>Наши офисы и представительства в Китае и России, а также планируемое расширение в другие регионы, позволяют нам эффективно взаимодействовать с партнерами на международном уровне</p>
-					</div>
-				</div>
-				<div class="partners-advantages__item">
-					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">2. Индивидуальный подход</h5>
-					<div class="partners-advantages__item__content">
-						<h6>Гибкость в сотрудничестве</h6>
-						<p>Мы адаптируемся к потребностям каждого партнера, предлагая индивидуальные решения и условия</p>
-					</div>
-					<div class="partners-advantages__item__content">
-						<h6>Совместное развитие проектов</h6>
-						<p>Готовы рассматривать различные формы сотрудничества, включая совместные инвестиции, проекты "под ключ" и технологические партнерства</p>
+						<h6>{{t('partnersAdvantagesItem1SubTitle2')}}</h6>
+						<p>{{t('partnersAdvantagesItem1Text2')}}</p>
 					</div>
 				</div>
 				<div class="partners-advantages__item">
-					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">3. Надежность и качество</h5>
+					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">2. {{t('partnersAdvantagesItem2Title')}}</h5>
 					<div class="partners-advantages__item__content">
-						<h6>Высокие стандарты</h6>
-						<p>Гарантируем качество продукции и услуг, соответствующее международным стандартам</p>
+						<h6>{{t('partnersAdvantagesItem2SubTitle1')}}</h6>
+						<p>{{t('partnersAdvantagesItem2Text1')}}</p>
 					</div>
 					<div class="partners-advantages__item__content">
-						<h6>Опыт и профессионализм</h6>
-						<p>Наша команда состоит из экспертов с многолетним опытом в своей области</p>
+						<h6>{{t('partnersAdvantagesItem2SubTitle2')}}</h6>
+						<p>{{t('partnersAdvantagesItem2Text2')}}</p>
 					</div>
 				</div>
 				<div class="partners-advantages__item">
-					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">4. Инновации и технологии</h5>
+					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">3. {{t('partnersAdvantagesItem3Title')}}</h5>
 					<div class="partners-advantages__item__content">
-						<h6>Интеграция передовых технологий</h6>
-						<p>Используем современные технологии, включая искусственный интеллект, для повышения эффективности и конкурентоспособности</p>
+						<h6>{{t('partnersAdvantagesItem3SubTitle1')}}</h6>
+						<p>{{t('partnersAdvantagesItem3Text1')}}</p>
 					</div>
 					<div class="partners-advantages__item__content">
-						<h6>Разработка новых решений</h6>
-						<p>Совместная работа над инновационными проектами и внедрение новых технологий на рынке</p>
+						<h6>{{t('partnersAdvantagesItem3SubTitle2')}}</h6>
+						<p>{{t('partnersAdvantagesItem3Text2')}}</p>
+					</div>
+				</div>
+				<div class="partners-advantages__item">
+					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">4. {{t('partnersAdvantagesItem4Title')}}</h5>
+					<div class="partners-advantages__item__content">
+						<h6>{{t('partnersAdvantagesItem4SubTitle1')}}</h6>
+						<p>{{t('partnersAdvantagesItem4Text1')}}</p>
+					</div>
+					<div class="partners-advantages__item__content">
+						<h6>{{t('partnersAdvantagesItem4SubTitle2')}}</h6>
+						<p>{{t('partnersAdvantagesItem4Text2')}}</p>
 					</div>
 				</div>
 			</div>

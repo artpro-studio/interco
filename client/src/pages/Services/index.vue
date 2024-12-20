@@ -4,14 +4,18 @@
 	import ServiceFilter from './components/ServiceFilter.vue';
 	import ServiceItem from './components/ServiceItem.vue';
 	import { serviceData } from './data';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const ServiceData = serviceData;
+
 </script>
 
 <template>
 	<services-head
-		title="Продукты и услуги"
-		text="Мы предлагаем широкий спектр продуктов и услуг, направленных на удовлетворение потребностей предприятий в различных отраслях промышленности. Наши решения основаны на передовых технологиях и многолетнем опыте работы в сфере поставок и производства промышленного оборудования."
+		:title="t('servicesHeadTitle')"
+		:text="t('servicesHeadDescription')"
 		width-title="1000px"
 		width-text="717px"
 		images="images/SA.svg"

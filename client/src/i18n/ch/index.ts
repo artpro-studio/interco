@@ -12,6 +12,8 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+import ServicesPage from './services'
+import PartnersPage from './partners'
 
 export default {
 	failed: 'Action failed',
@@ -25,6 +27,7 @@ export default {
 	headerStatusLink: '订单状况',
 	moreDetailed: '更详细',
 	submitApplication: '递交申请',
+	phone: '電話',
 	...Head,
 	...Company,
 	...Direction,
@@ -38,4 +41,6 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	...ServicesPage,
+	...PartnersPage,
 };

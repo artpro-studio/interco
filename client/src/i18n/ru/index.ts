@@ -11,6 +11,8 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+import ServicesPage from './services'
+import PartnersPage from './partners'
 
 export default {
 	failed: 'Action failed',
@@ -24,6 +26,7 @@ export default {
 	headerStatusLink: 'Статус заказа',
 	moreDetailed: 'Подробнее',
 	submitApplication: 'Оставить заявку',
+	phone: 'Телефон',
 	...Head,
 	...Company,
 	...Direction,
@@ -37,4 +40,6 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	...ServicesPage,
+	...PartnersPage,
   };

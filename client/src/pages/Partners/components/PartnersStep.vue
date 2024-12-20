@@ -1,19 +1,24 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="home-advantages pt-8">
 		<div class="container">
-			<h3 class="home-advantages__title headline-1 text-white text-uppercase">Шаги для начала сотрудничества</h3>
+			<h3 class="home-advantages__title headline-1 text-white text-uppercase">{{t('partnersStepTitle')}}</h3>
 		</div>
 		<div class="home-advantages__body">
 				<div class="home-advantages__first">
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">1. Связаться с нами</h4>
-								<p>Заполните форму обратной связи или отправьте нам письмо на partners@inter-sa.com с кратким описанием вашей компании и предложением сотрудничества</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">1. {{t('partnersStepItem1Title')}}</h4>
+								<p>{{t('partnersStepItem1Text')}}</p>
 							</div>
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">2. Первичное обсуждение</h4>
-								<p>Наши специалисты свяжутся с вами для уточнения деталей и определения потенциальных направлений сотрудничества</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">2. {{t('partnersStepItem2Title')}}</h4>
+								<p>{{t('partnersStepItem2Text')}}</p>
 							</div>
 						</div>
 					</div>
@@ -22,12 +27,12 @@
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">3. Встреча или онлайн-конференция</h4>
-								<p>Организуем встречу или видеоконференцию для более детального обсуждения условий и возможностей партнерства</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">3. {{t('partnersStepItem3Title')}}</h4>
+								<p>{{t('partnersStepItem3Text')}}</p>
 							</div>
 							<div class="home-advantages__item">
-								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">4. Подготовка предложения</h4>
-								<p>Совместно разработаем коммерческое предложение или план сотрудничества, учитывая интересы обеих сторон}</p>
+								<h4 class="home-advantages__item__title fonts-oswald text-uppercase">4. {{t('partnersStepItem4Title')}}</h4>
+								<p>{{t('partnersStepItem4Text')}}</p>
 							</div>
 						</div>
 					</div>
@@ -36,8 +41,8 @@
 				<div class="home-advantages__three">
 					<div class="container">
 						<div class="home-advantages__item">
-							<h4 class="home-advantages__item__title fonts-oswald text-uppercase">5. Заключение договора</h4>
-							<p>Оформляем официальное соглашение о партнерстве, определяющее все условия и обязательства</p>
+							<h4 class="home-advantages__item__title fonts-oswald text-uppercase">5. {{t('partnersStepItem5Title')}}</h4>
+							<p>{{t('partnersStepItem5Text')}}</p>
 						</div>
 					</div>
 

@@ -13,6 +13,8 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+import ServicesPage from './services'
+import PartnersPage from './partners'
 
 export default {
 	failed: 'Action failed',
@@ -26,6 +28,7 @@ export default {
 	headerStatusLink: 'Order status',
 	moreDetailed: 'More detailed',
 	submitApplication: 'Submit your application',
+	phone: 'Phone',
 	...Head,
 	...Company,
 	...Direction,
@@ -39,4 +42,6 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	...ServicesPage,
+	...PartnersPage,
 };

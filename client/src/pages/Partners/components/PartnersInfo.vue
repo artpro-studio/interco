@@ -1,27 +1,32 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="partners-info pt-8 pb-8 bg-white">
 		<div class="container">
-			<h4 class="partners-info__title headline-1 text-uppercase text-red">Преимущества</h4>
+			<h4 class="partners-info__title headline-1 text-uppercase text-red">{{t('partnersInfoTitle')}}</h4>
 			<div class="partners-info__body row no-wrap justify-between">
 				<div class="partners-info__item">
-					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">Поддержка и обучение</h6>
+					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersInfoItem1Title')}}</h6>
 					<ul>
-						<li>- Предоставляем информационную и техническую поддержку</li>
-						<li>- Обучение персонала и доступ к обучающим материалам</li>
+						<li>- {{t('partnersInfoItem1Text1')}}</li>
+						<li>- {{t('partnersInfoItem1Text2')}}</li>
 					</ul>
 				</div>
 				<div class="partners-info__item">
-					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">Маркетинговая поддержка</h6>
+					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersInfoItem2Title')}}</h6>
 					<ul>
-						<li>- Совместные маркетинговые кампании</li>
-						<li>- Предоставление рекламных материалов и участие в выставках</li>
+						<li>- {{t('partnersInfoItem2Text1')}}</li>
+						<li>- {{t('partnersInfoItem2Text2')}}</li>
 					</ul>
 				</div>
 				<div class="partners-info__item">
-					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">Привилегированные условия</h6>
+					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersInfoItem3Title')}}</h6>
 					<ul>
-						<li>- Специальные цены и условия оплаты</li>
-						<li>- Приоритетный доступ к новым продуктам и технологиям</li>
+						<li>- {{t('partnersInfoItem3Text1')}}</li>
+						<li>- {{t('partnersInfoItem3Text2')}}</li>
 					</ul>
 				</div>
 			</div>
