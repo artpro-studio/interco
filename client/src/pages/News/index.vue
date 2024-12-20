@@ -7,12 +7,15 @@
 	import SectionSocial from 'src/components/SectionSocial/SectionSocial.vue';
 	import BannerCallback from 'src/components/BannerCallback/BannerCallback.vue';
 	import NewsBanner from './components/NewsBanner.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<news-head
-		title="Добро пожаловать в раздел новостей и статей компании SA International"
-		text="Здесь вы найдете актуальную информацию о наших последних проектах, достижениях, мероприятиях, а также экспертные материалы по различным отраслевым темам."
+		:title="t('newsHeadTitle')"
+		:text="t('newsHeadDescription')"
 		width-title="957px"
 		width-text="653px"
 		images="images/news-bg.svg"

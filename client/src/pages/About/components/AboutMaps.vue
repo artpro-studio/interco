@@ -1,44 +1,49 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 
 <template>
 	<div class="about-maps pt-8 pb-12">
 		<div class="container">
 			<div class="about-maps__top row no-wrap items-center">
 				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="about-maps__top__img" />
-				<h3 class="about-maps__top__title headline-1 text-white">География присутствия</h3>
+				<h3 class="about-maps__top__title headline-1 text-white">{{ t('aboutMapTitle') }}</h3>
 			</div>
 			<div class="about-maps__body">
 				<q-img src="images/maps.png" class="about-maps__img" />
 			</div>
 			<div class="about-maps__columns row no-wrap">
 				<div class="about-maps__column">
-					<h4 class="about-maps__column__title headline-2 text-gradient">Офисы и представительства</h4>
+					<h4 class="about-maps__column__title headline-2 text-gradient">{{ t('aboutMapSubTitle1') }}</h4>
 					<div class="about-maps__list">
 						<div class="about-maps__list__item">
-							<h5 class="about-maps__list__item__title fonts-oswald">Китай</h5>
-							<p class="about-maps__list__item__text">Шанхай (главный офис), Иу, Гонконг</p>
+							<h5 class="about-maps__list__item__title fonts-oswald">{{ t('aboutMapList1Title') }}</h5>
+							<p class="about-maps__list__item__text">{{ t('aboutMapList1Text') }}</p>
 						</div>
 						<div class="about-maps__list__item">
-							<h5 class="about-maps__list__item__title fonts-oswald">Россия</h5>
-							<p class="about-maps__list__item__text">Благовещенск, (скоро Москва, Крым)</p>
+							<h5 class="about-maps__list__item__title fonts-oswald">{{ t('aboutMapList2Title') }}</h5>
+							<p class="about-maps__list__item__text">{{ t('aboutMapList2Text') }}</p>
 						</div>
 					</div>
 				</div>
 				<div class="about-maps__column">
-					<h4 class="about-maps__column__title headline-2 text-gradient">География клиентов</h4>
+					<h4 class="about-maps__column__title headline-2 text-gradient">{{ t('aboutMapSubTitle2') }}</h4>
 					<div class="about-maps__list">
 						<div class="about-maps__list__item">
-							<h5 class="about-maps__list__item__title fonts-oswald">Страны СНГ</h5>
-							<p class="about-maps__list__item__text">Россия, Беларусь, Узбекистан, Казахстан, Таджикистан</p>
+							<h5 class="about-maps__list__item__title fonts-oswald">{{ t('aboutMapList3Title') }}</h5>
+							<p class="about-maps__list__item__text">{{ t('aboutMapList3Text') }}</p>
 						</div>
 						<div class="about-maps__list__item">
-							<h5 class="about-maps__list__item__title fonts-oswald">Международные рынки</h5>
-							<p class="about-maps__list__item__text">Европа, США, Канада, Малайзия, Индия, Южная Корея, Австралия, Таиланд</p>
+							<h5 class="about-maps__list__item__title fonts-oswald">{{ t('aboutMapList4Title') }}</h5>
+							<p class="about-maps__list__item__text">{{ t('aboutMapList4Text') }}</p>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="about-maps__info">
-				<p>Мы постоянно расширяем наше присутствие, открывая новые офисы и налаживая партнерские отношения, чтобы быть ближе к нашим клиентам и оперативно реагировать на их потребности</p>
+				<p>{{ t('aboutMapText') }}</p>
 			</div>
 		</div>
 	</div>

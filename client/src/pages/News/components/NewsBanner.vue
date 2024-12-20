@@ -1,10 +1,16 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="news-banner pt-8 pb-8">
 		<div class="container">
-			<h4 class="news-banner__title headline-1 text-gradient text-uppercase">SA International</h4>
+			<h4 class="news-banner__title headline-1 text-gradient text-uppercase">{{ t('newsBannerTitle') }}</h4>
 			<div class="news-banner__body row no-wrap justify-between">
 				<div class="news-banner__info fonts-oswald">
-					<p> — ваш источник актуальной информации и экспертных знаний в сфере промышленности и технологий</p>
+					<p>{{ t('newsBannerText') }}</p>
 				</div>
 				<div class="news-banner__contacts">
 					<div class="news-banner__link">

@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<div class="about-group pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="about-group__header">
-				<section-title title="Группа компаний" color-text="black" />
+				<section-title :title="t('aboutGroupTitle')" color-text="black" />
 			</div>
 			<div class="about-group__body row no-wrap">
 				<div class="about-group__content">

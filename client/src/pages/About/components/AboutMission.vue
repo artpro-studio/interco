@@ -1,41 +1,46 @@
 <script lang="ts" setup>
-	const missionData = [
+	import { reactive } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+
+	const missionData = reactive([
 		{
-			title: 'Инновации',
-			text: 'Постоянное внедрение новых технологий и поиск лучших решений для наших клиентов',
+			title: t('aboutMissionList1Title'),
+			text: t('aboutMissionList1Text'),
 		},
 		{
-			title: 'Качество',
-			text: 'Высокие стандарты во всем, что мы делаем, от продукции до обслуживания',
+			title: t('aboutMissionList2Title'),
+			text: t('aboutMissionList2Text'),
 		},
 		{
-			title: 'Надежность',
-			text: 'Строительство долгосрочных и доверительных отношений с партнерами и клиентами',
+			title: t('aboutMissionList3Title'),
+			text: t('aboutMissionList3Text'),
 		},
 		{
-			title: 'Ответственность',
-			text: 'Этический подход к бизнесу, забота об обществе и окружающей среде',
+			title: t('aboutMissionList4Title'),
+			text: t('aboutMissionList4Text'),
 		},
 		{
-			title: 'Командная работа',
-			text: 'Создание благоприятной атмосферы для сотрудничества и профессионального роста каждого сотрудника',
+			title: t('aboutMissionList5Title'),
+			text: t('aboutMissionList5Text'),
 		},
-	]
+	])
 </script>
 
 <template>
 	<div class="about-mission pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="about-mission__header">
-				<h3 class="about-mission__header__title headline-1 text-gradient text-uppercase">Миссия и ценности</h3>
+				<h3 class="about-mission__header__title headline-1 text-gradient text-uppercase">{{ t('aboutMissionTitle') }}</h3>
 			</div>
 			<div class="about-mission__body row no-wrap">
 				<div class="about-mission__item info">
-					<h5 class="fonts-oswald">Наша миссия</h5>
-					<p>Мы стремимся быть лидером в предоставлении инновационных промышленных решений, способствуя развитию предприятий и повышению их конкурентоспособности на мировом рынке. Наша задача — обеспечить клиентов высококачественным оборудованием и передовыми технологиями, помогающими им достигать новых высот в бизнесе.</p>
+					<h5 class="fonts-oswald">{{ t('aboutMissionSubTitle1') }}</h5>
+					<p>{{ t('aboutMissionText') }}</p>
 				</div>
 				<div class="about-mission__item">
-					<h5 class="fonts-oswald">Наши ценности</h5>
+					<h5 class="fonts-oswald">{{ t('aboutMissionSubTitle2') }}</h5>
 					<div
 						v-for="(item, index) in missionData"
 						:key="index"

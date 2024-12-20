@@ -1,0 +1,15 @@
+export default {
+	aboutMapTitle: 'Geography of presence',
+	aboutMapDescription: 'We are proud of our global presence and the ability to serve customers around the world.',
+	aboutMapText: 'We are constantly expanding our presence by opening new offices and establishing partnerships to be closer to our customers and respond promptly to their needs.',
+	aboutMapSubTitle1: 'Offices and representative offices',
+	aboutMapSubTitle2: 'Geography of clients',
+	aboutMapList1Title: 'China',
+	aboutMapList1Text: 'Shanghai (Main office), Yi Wu, Hong Kong',
+	aboutMapList2Title: 'Russia',
+	aboutMapList2Text: 'Blagoveshchensk, (Moscow is coming soon, Crimea)',
+	aboutMapList3Title: 'CIS countries',
+	aboutMapList3Text: 'Russia, Belarus, Uzbekistan, Kazakhstan, Tajikistan',
+	aboutMapList4Title: 'International markets',
+	aboutMapList4Text: 'Europe, USA, Canada, Malaysia, India, South Korea, Australia, Thailand',
+}

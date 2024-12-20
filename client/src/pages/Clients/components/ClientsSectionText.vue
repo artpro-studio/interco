@@ -1,8 +1,16 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="clients-section-text pt-8 pb-12">
 		<div class="container">
-			<div class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">SA International— всегда на связи с вами </div>
-			<p class="clients-section-text__text fonts-oswald text-uppercase text-center">Мы ценим ваше доверие и готовы поддерживать вас на каждом шагу сотрудничества. Наша команда специалистов всегда готова помочь и ответить на любые ваши вопросы.</p>
+			<div class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">{{ t('clientsBannerTitle') }}</div>
+			<p class="clients-section-text__text fonts-oswald text-uppercase text-center">
+				{{ t('clientsBannerText') }}
+			</p>
 		</div>
 		<div class="clients-section-text__arrows row no-wrap">
 			<q-img class="clients-section-text__arrows__item" src="icons/arrow-red.svg" />

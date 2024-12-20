@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+
 	const years = [
 		{
 			date: '2020',
@@ -27,7 +31,7 @@
 	<div class="about-years pt-8 pb-8">
 		<div class="container">
 			<div class="about-years__header">
-				<h3 class="about-years__header__title headline-1 text-gradient text-uppercase">Ключевые вехи</h3>
+				<h3 class="about-years__header__title headline-1 text-gradient text-uppercase">{{ t('aboutYearsTitle') }}</h3>
 			</div>
 			<div class="about-years__body">
 				<div

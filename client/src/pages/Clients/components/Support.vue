@@ -3,6 +3,9 @@
 	import 'swiper/css';
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const {t} = useI18n();
 
 	const swiperRef = ref();
 	const breakpoints: any = {
@@ -38,8 +41,8 @@
 <template>
 	<div class="support pt-8">
 		<div class="container">
-			<section-title title="Сервис и поддержка" />
-			<p class="support__description headline-2">Мы предлагаем полный спектр сервисных услуг, направленных на поддержание бесперебойной работы вашего оборудования и обеспечение максимальной эффективности</p>
+			<section-title :title="t('clientsSupportTitle')" />
+			<p class="support__description headline-2">{{ t('clientsSupportDescription') }}</p>
 
 			<div class="support__body">
 				<swiper
@@ -54,22 +57,22 @@
 				>
 					<swiper-slide>
 						<div class="support__section">
-							<h5 class="support__section__title text-gradient">Гарантийное обслуживание</h5>
+							<h5 class="support__section__title text-gradient">{{ t('clientsSupportGarantiaTitle') }}</h5>
 							<div class="support__section__body">
 								<div class="support__section__body__item">
-									<h6>Срок гарантии</h6>
-									<p>На все наше оборудование распространяется гарантия от производителя</p>
+									<h6>{{ t('clientsSupportGarantiaItem1Title') }}</h6>
+									<p>{{ t('clientsSupportGarantiaItem1Text') }}</p>
 								</div>
 								<div class="support__section__body__item">
-									<h6>Условия гарантии</h6>
-									<p>Подробная информация о гарантийных обязательствах указана в документации, прилагаемой к оборудованию</p>
+									<h6>{{ t('clientsSupportGarantiaItem2Title') }}</h6>
+									<p>{{ t('clientsSupportGarantiaItem2Text') }}</p>
 								</div>
 								<div class="support__section__body__item">
-									<h6>Как воспользоваться гарантией</h6>
+									<h6>{{ t('clientsSupportGarantiaItem3Title') }}</h6>
 									<ul class="support__section__body__item__normal">
-										<li>Свяжитесь с нашей службой поддержки по телефону +86-21-5432-2755 (ext. 804) или по электронной почте support@inter-sa.com</li>
-										<li>Предоставьте информацию о продукте и описании проблемы</li>
-										<li>Наши специалисты организуют ремонт или замену оборудования в кратчайшие сроки</li>
+										<li>{{ t('clientsSupportGarantiaItem3List1') }}</li>
+										<li>{{ t('clientsSupportGarantiaItem3List2') }}</li>
+										<li>{{ t('clientsSupportGarantiaItem3List3') }}</li>
 									</ul>
 								</div>
 							</div>
@@ -77,30 +80,30 @@
 					</swiper-slide>
 					<swiper-slide>
 						<div class="support__section">
-							<h5 class="support__section__title text-gradient">Ремонт и техническое обслуживание</h5>
+							<h5 class="support__section__title text-gradient">{{ t('clientsSupportTechTitle') }}</h5>
 							<div class="support__section__body">
 								<div class="support__section__body__item">
-									<h6>Плановое обслуживание</h6>
-									<p>Рекомендуем регулярное обслуживание оборудования для продления срока его службы и предотвращения возможных сбоев</p>
+									<h6>{{ t('clientsSupportTechItem1Title') }}</h6>
+									<p>{{ t('clientsSupportTechItem1Text') }}</p>
 								</div>
 								<div class="support__section__body__item">
-									<h6>Ремонтные работы</h6>
+									<h6>{{ t('clientsSupportTechItem2Title') }}</h6>
 									<ul class="support__section__body__item__list__number">
 										<li>
-											<p class="support__section__body__item__list__number__title">Срочный ремонт</p>
-											<p class="support__section__body__item__list__number__text">В случае непредвиденных поломок мы готовы оперативно провести ремонтные работы</p>
+											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List1Title') }}</p>
+											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List1Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">Запасные части</p>
-											<p class="support__section__body__item__list__number__text">Обеспечиваем поставку оригинальных запасных частей и комплектующих</p>
+											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List2Title') }}</p>
+											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List2Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">Сервисные центры</p>
-											<p class="support__section__body__item__list__number__text">Наши сервисные центры расположены в Шанхае, Иу и Благовещенске</p>
+											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List3Title') }}</p>
+											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List3Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">Квалифицированные специалисты</p>
-											<p class="support__section__body__item__list__number__text">Наши инженеры прошли обучение и имеют необходимый опыт для обслуживания вашего оборудования</p>
+											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List4Title') }}</p>
+											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List4Text') }}</p>
 										</li>
 									</ul>
 								</div>

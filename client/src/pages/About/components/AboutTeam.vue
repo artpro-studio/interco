@@ -2,6 +2,9 @@
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
 	import { computed, inject, onMounted, ref, watch } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const widthScreen = inject<any>('widthScreen', 0);
 	const widthSlider = ref(0);
@@ -80,10 +83,10 @@
 			<div class="about-team__header row no-wrap justify-between items-center">
 				<div class="about-team__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="about-team__header__arrow" width="40px" />
-					<h4 class="about-team__header__title headline-1 text-uppercase">Команда</h4>
+					<h4 class="about-team__header__title headline-1 text-uppercase">{{ t('aboutTeamTitle') }}</h4>
 				</div>
 				<div class="about-team__header__info">
-					<p>Наша команда — это главный ресурс и гордость SA International. Мы объединили высококвалифицированных специалистов с многолетним опытом в различных областях промышленности.</p>
+					<p>{{ t('aboutTeamDescription') }}</p>
 				</div>
 			</div>
 			<div class="about-team__body" :style="{width: getStyleWidth}">

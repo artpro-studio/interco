@@ -1,0 +1,15 @@
+export default {
+	aboutMapTitle: '存在的地理',
+	aboutMapDescription: '我们为我们的全球业务和为世界各地的客户提供服务的能力感到自豪。',
+	aboutMapText: '我们不断扩大我们的存在，开设新的办事处和建立伙伴关系，以更接近我们的客户和迅速响应他们的需要。',
+	aboutMapSubTitle1: '办事处及代表办事处',
+	aboutMapSubTitle2: '客户地理',
+	aboutMapList1Title: '中国',
+	aboutMapList1Text: '香港宜武上海(总办事处)',
+	aboutMapList2Title: '俄罗斯',
+	aboutMapList2Text: '布拉戈维申斯克（莫斯科即将到来，克里米亚）',
+	aboutMapList3Title: '独联体国家',
+	aboutMapList3Text: '俄罗斯、白俄罗斯、乌兹别克斯坦、哈萨克斯坦、塔吉克斯坦',
+	aboutMapList4Title: '国际市场',
+	aboutMapList4Text: '欧洲，美国，加拿大，马来西亚，印度，韩国，澳大利亚，泰国',
+}

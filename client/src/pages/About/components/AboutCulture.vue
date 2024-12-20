@@ -1,9 +1,15 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="about-culture pt-8 pb-8 bg-white text-center">
 		<div class="container">
 			<div class="about-culture__body fonts-oswald">
-				<h4 class="about-culture__title headline-1 text-gradient text-uppercase">Корпоративная культура</h4>
-				<p>В SA International мы создаем атмосферу, способствующую раскрытию потенциала каждого сотрудника и достижению общих целей.</p>
+				<h4 class="about-culture__title headline-1 text-gradient text-uppercase">{{ t('aboutCultureTitle') }}</h4>
+				<p>{{ t('aboutCultureDescription') }}</p>
 			</div>
 		</div>
 	</div>

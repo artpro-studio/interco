@@ -1,28 +1,34 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="contacts-general pt-8 pb-8 bg-white">
 		<div class="container">
-			<h4 class="contacts-general__title headline-1 text-gradient text-uppercase">Общие контакты</h4>
+			<h4 class="contacts-general__title headline-1 text-gradient text-uppercase">{{ t('contactsCommonTitle') }}</h4>
 			<div class="contacts-general__body row no-wrap">
 				<div class="contacts-general__column">
 					<div class="contacts-general__item">
-						<p class="contacts-general__label">Email для общих вопросов</p>
+						<p class="contacts-general__label">{{ t('contactsCommonGeneral') }}</p>
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">info@inter-sa.com</a>
 					</div>
 					<div class="contacts-general__item">
-						<p class="contacts-general__label">Email для партнеров</p>
+						<p class="contacts-general__label">{{ t('contactsCommonPartner') }}</p>
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">partners@inter-sa.com</a>
 					</div>
 					<div class="contacts-general__item">
-						<p class="contacts-general__label">Email для клиентов</p>
+						<p class="contacts-general__label">{{ t('contactsCommonClient') }}</p>
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">support@inter-sa.com</a>
 					</div>
 					<div class="contacts-general__item">
-						<p class="contacts-general__label">Email для прессы</p>
+						<p class="contacts-general__label">{{ t('contactsCommonPress') }}</p>
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">press@inter-sa.com</a>
 					</div>
 				</div>
 				<div class="contacts-general__column info row no-wrap">
-					<p class="contacts-general__label">Время работы</p>
+					<p class="contacts-general__label">{{ t('contactsCommonTime') }}</p>
 					<div class="contacts-general__info">
 						<p class="contacts-general__content">Понедельник – Пятница: 9:00 – 18:00</p>
 						<p class="contacts-general__content">Суббота: 10:00 – 16:00 (только главный офис)</p>

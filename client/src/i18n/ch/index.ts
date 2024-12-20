@@ -14,6 +14,12 @@ import Policy from './policy';
 import CareerPage from './career'
 import ServicesPage from './services'
 import PartnersPage from './partners'
+import ClientsPage from './clients'
+import ClientsNews from './news'
+import Social from './Social'
+import BannerCallback from './bannerCallback'
+import ContactsPage from './contacts'
+import AboutPages from './about'
 
 export default {
 	failed: 'Action failed',
@@ -43,4 +49,10 @@ export default {
 	...CareerPage,
 	...ServicesPage,
 	...PartnersPage,
+	...ClientsPage,
+	...ClientsNews,
+	...Social,
+	...BannerCallback,
+	...ContactsPage,
+	...AboutPages,
 };

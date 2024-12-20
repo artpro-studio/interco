@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="section-social pt-8 pb-8">
 		<div class="container">
@@ -33,8 +39,8 @@
 					</div>
 				</div>
 				<div class="section-social__content">
-					<h4 class="section-social__title fonts-oswald text-uppercase">Социальные сети</h4>
-					<p>Следите за нами в социальных сетях, чтобы получать оперативные обновления и участвовать в обсуждения</p>
+					<h4 class="section-social__title fonts-oswald text-uppercase">{{ t('socialTitle') }}</h4>
+					<p>{{ t('socialDescription') }}</p>
 				</div>
 			</div>
 		</div>
