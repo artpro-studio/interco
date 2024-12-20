@@ -1,48 +1,49 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 
 <template>
 	<div class="partners-programs pt-8 pb-8">
 		<div class="container">
 			<div class="partners-programs__header row no-wrap justify-between items-center">
-				<section-title title="Партнерская программа" class="partners-programs__title" style="margin-bottom: 0;" />
+				<section-title :title="t('partnersProgramTitle')" class="partners-programs__title" style="margin-bottom: 0;" />
 
 				<div class="partners-programs__header__info">
-					<p>Мы предлагаем различные формы сотрудничества, адаптированные под ваши потребности и возможности</p>
+					<p>{{t('partnersProgramDescription')}}</p>
 				</div>
 			</div>
-			<h4 class="partners-programs__subtitle headline-2"> Возможные формы сотрудничества</h4>
+			<h4 class="partners-programs__subtitle headline-2">{{t('partnersProgramSubTitle')}}</h4>
 			<div class="partners-programs__body row">
 				<div class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">Дилерство и дистрибуция</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem1Title')}}</h5>
 					<ul>
-						<li>Стать официальным представителем нашей продукции в вашем регионе</li>
-						<li>Обучение персонала и маркетинговая поддержка</li>
+						<li>{{t('partnersProgramItem1Text1')}}</li>
+						<li>{{t('partnersProgramItem1Text2')}}</li>
 					</ul>
 				</div>
 				<div class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">Совместные проекты</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem2Title')}}</h5>
 					<ul>
-						<li>Реализация совместных проектов в области производства, разработки технологий и инноваций</li>
-						<li>Совместные инвестиции и распределение рисков и прибыли</li>
+						<li>{{t('partnersProgramItem2Text1')}}</li>
+						<li>{{t('partnersProgramItem2Text2')}}</li>
 					</ul>
 				</div>
 				<div class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">Технологическое партнерство</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem3Title')}}</h5>
 					<ul>
-						<li>Обмен опытом и технологиями для создания новых продуктов и решений</li>
-						<li>Совместные исследования и разработки</li>
+						<li>{{t('partnersProgramItem3Text1')}}</li>
+						<li>{{t('partnersProgramItem3Text2')}}</li>
 					</ul>
-
 				</div>
 				<div class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">Логистическое сотрудничество</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem4Title')}}</h5>
 					<ul>
-						<li>Взаимодействие в сфере логистики и цепочек поставок через наше подразделение SA Logistics</li>
-						<li>Оптимизация транспортных и складских процессов</li>
+						<li>{{t('partnersProgramItem4Text1')}}</li>
+						<li>{{t('partnersProgramItem4Text2')}}</li>
 					</ul>
-
 				</div>
 			</div>
 		</div>

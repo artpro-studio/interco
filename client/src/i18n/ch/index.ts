@@ -12,6 +12,8 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+import ServicesPage from './services'
+import PartnersPage from './partners'
 import ClientsPage from './clients'
 import ClientsNews from './news'
 import Social from './Social'
@@ -31,7 +33,7 @@ export default {
 	headerStatusLink: '订单状况',
 	moreDetailed: '更详细',
 	submitApplication: '递交申请',
-	phone: '电话',
+	phone: '電話',
 	...Head,
 	...Company,
 	...Direction,
@@ -45,6 +47,8 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	...ServicesPage,
+	...PartnersPage,
 	...ClientsPage,
 	...ClientsNews,
 	...Social,

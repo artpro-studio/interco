@@ -11,13 +11,16 @@
 	import PartnersForm from './components/PartnersForm.vue';
 	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 </script>
 <template>
 	<head-global
 		width-title="957px"
 		width-text="653px"
-		title="Добро пожаловать в раздел для наших текущих и потенциальных партнеров"
-		text="Компания SA International ценит долгосрочные и взаимовыгодные отношения с партнерами по всему миру. Мы открыты для сотрудничества и готовы предложить гибкие и эффективные решения для совместного развития и достижения общих целей."
+		:title="t('partnersHeadTitle')"
+		:text="t('partnersHeadDescription')"
 		images="images/bg-partners.svg"
 		:dense="false"
 		:top="0"
@@ -66,5 +69,5 @@
 			</div>
 		</template>
 	</clients-contacts>
-	<banner-sa-international title="SA International — " description="Вместе создаем будущее промышленности и технологий" />
+	<banner-sa-international :title="t('partnersBannerTitle')" :description="t('partnersBannerDescription')" />
 </template>

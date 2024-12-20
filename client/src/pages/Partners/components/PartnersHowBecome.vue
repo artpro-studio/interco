@@ -1,11 +1,16 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
 <template>
 	<div class="partners-how-become pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="partners-how-become__body">
 				<div class="partners-how-become__header">
-					<h4 class="partners-how-become__title fonts-oswald headline-1 text-red text-uppercase">Как стать партнером?</h4>
+					<h4 class="partners-how-become__title fonts-oswald headline-1 text-red text-uppercase">{{t('partnersHowBecomeTitle')}}</h4>
 				</div>
-				<p class="fonts-oswald text-uppercase">Мы рады новым возможностям для сотрудничества и приглашаем вас стать частью нашей партнерской сети</p>
+				<p class="fonts-oswald text-uppercase">{{t('partnersHowBecomeSubTitle')}}</p>
 			</div>
 		</div>
 	</div>

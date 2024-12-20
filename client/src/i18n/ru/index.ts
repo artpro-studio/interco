@@ -11,6 +11,8 @@ import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
+import ServicesPage from './services'
+import PartnersPage from './partners'
 import ClientsPage from './clients'
 import ClientsNews from './news'
 import Social from './Social'
@@ -47,6 +49,8 @@ export default {
 	...Footer,
 	...Policy,
 	...CareerPage,
+	...ServicesPage,
+	...PartnersPage,
 	...ClientsPage,
 	...ClientsNews,
 	...Social,
