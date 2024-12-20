@@ -1,5 +1,5 @@
 export default {
-	lientSupportBannerTitle: 'Техническая поддержка',
+	clientSupportBannerTitle: 'Техническая поддержка',
 	clientSupportBannerBtnText: 'отправить сообщение',
 	clientSupportBannerItem1Title: 'Консультации 24/7',
 	clientSupportBannerItem1Text: 'Наша служба технической поддержки доступна круглосуточно для решения ваших вопросов',

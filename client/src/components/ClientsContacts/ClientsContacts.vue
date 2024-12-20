@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import { useSlots } from 'vue';
+	import { useI18n } from 'vue-i18n';
 
+	const { t } = useI18n();
 	const slots = useSlots()
 </script>
 
 <template>
 	<div class="clients-contacts pt-8 pb-12">
 		<div class="container">
-			<section-title title="Контактная информация" color="gold" class="clients-contacts__title" />
+			<section-title :title="t('clientsContactsTitle')" color="gold" class="clients-contacts__title" />
 			<div class="clients-contacts__body row justify-between no-wrap">
 				<div v-if="!slots['column1']" class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Служба поддержки</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('clientsContactsSubTitle1') }}</h6>
 					<div class="clients-contacts__item__link">
 						<a href="tel:+8654322755">+86-5432-2755 (ext. 804)</a>
 					</div>
@@ -22,7 +24,7 @@
 				<slot v-else name="column1" />
 
 				<div v-if="!slots['column2']" class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Отдел запасных частей</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('clientsContactsSubTitle2') }}</h6>
 					<div class="clients-contacts__item__link">
 						<a href="mailto:support@inter-sa.com">parts@inter-sa.com</a>
 					</div>
@@ -30,7 +32,7 @@
 				<slot v-else name="column2" />
 
 				<div v-if="!slots['column3']" class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Общие вопросы</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('clientsContactsSubTitle3') }}</h6>
 					<div class="clients-contacts__item__link">
 						<a href="mailto:support@inter-sa.com">info@inter-sa.com</a>
 					</div>
@@ -38,7 +40,7 @@
 				<slot v-else name="column3" />
 
 				<div v-if="!slots['column4']" class="clients-contacts__item">
-					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Адрес главного офиса</h6>
+					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('clientsContactsSubTitle4') }}</h6>
 					<div class="clients-contacts__item__link">
 						<p>Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505</p>
 					</div>

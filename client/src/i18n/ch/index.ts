@@ -26,6 +26,7 @@ export default {
 	headerStatusLink: '订单状况',
 	moreDetailed: '更详细',
 	submitApplication: '递交申请',
+	phone: '电话',
 	...Head,
 	...Company,
 	...Direction,

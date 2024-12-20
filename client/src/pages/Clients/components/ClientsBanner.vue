@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const {t} = useI18n();
 </script>
 <template>
 	<div class="clients-banner pb-8">
@@ -7,16 +10,16 @@
 			<div class="clients-banner__body">
 				<div class="clients-banner__wrapper">
 					<div class="clients-banner__header row no-wrap justify-between items-center">
-						<h4 class="clients-banner__header__title text-white text-uppercase">Техническая поддержка</h4>
-						<v-btn-red class="clients-banner__header__btn" style="width: 240px;">отправить сообщение</v-btn-red>
+						<h4 class="clients-banner__header__title text-white text-uppercase">{{ t('clientSupportBannerTitle') }}</h4>
+						<v-btn-red class="clients-banner__header__btn" style="width: 240px;">{{ t('clientSupportBannerBtnText') }}</v-btn-red>
 					</div>
 					<div class="clients-banner__content">
-						<h5>Консультации 24/7</h5>
-						<p>Наша служба технической поддержки доступна круглосуточно для решения ваших вопросов</p>
+						<h5>{{ t('clientSupportBannerItem1Title') }}</h5>
+						<p>{{ t('clientSupportBannerItem1Text') }}</p>
 					</div>
 					<div class="clients-banner__items row no-wrap justify-between items-start">
 						<div class="clients-banner__items__item">
-							<h6>Способы связи</h6>
+							<h6>{{ t('clientSupportBannerItem2Title') }}</h6>
 							<div class="clients-banner__items__item__link">
 								<span>Телефон:</span>
 								<a href="tel:+86-21-5432-2755">+86-21-5432-2755 (ext. 802)</a>
@@ -27,8 +30,8 @@
 							</div>
 						</div>
 						<div class="clients-banner__items__item">
-							<h6>Удаленная поддержка</h6>
-							<p>Возможность дистанционной диагностики и устранения неполадок через интернет</p>
+							<h6>{{ t('clientSupportBannerItem3Title') }}</h6>
+							<p>{{ t('clientSupportBannerItem3Text') }}</p>
 						</div>
 					</div>
 					<div class="clients-banner__mobile-button desktop-hide">

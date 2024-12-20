@@ -6,14 +6,17 @@
 	import ClientsForm from './components/ClientsForm.vue';
 	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import ClientsSectionText from './components/ClientsSectionText.vue';
+	import { useI18n } from 'vue-i18n';
+
+	const {t} = useI18n();
 </script>
 
 <template>
 	<head-global
 		width-title="957px"
 		width-text="653px"
-		title="Добро пожаловать в раздел для наших уважаемых клиентов"
-		text="SA International стремится обеспечить высокий уровень сервиса и поддержки на каждом этапе сотрудничества. Мы ценим ваше доверие и делаем все возможное, чтобы вы были довольны нашей продукцией и услугами."
+		:title="t('clientsHeadTitle')"
+		:text="t('clientsHeadDescription')"
 		images="images/clients-bg.png"
 		:dense="false"
 	/>

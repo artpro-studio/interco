@@ -1,12 +1,18 @@
+<script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
+</script>
+
 <template>
 	<div class="faq pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="faq__header">
-				<h3 class="faq__header__title headline-1 text-gradient text-uppercase">Часто задаваемые вопросы (FAQ)</h3>
+				<h3 class="faq__header__title headline-1 text-gradient text-uppercase">{{ t('clientsFaqTitle') }}</h3>
 			</div>
 			<div class="faq__body row items-lg-start justify-between">
 				<div class="faq__body__columns">
-					<h6 class="faq__body__title text-red text-uppercase">Общие вопросы</h6>
+					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle1') }}</h6>
 					<q-expansion-item
 						class="faq__body__item"
 						label="Как сделать заказ?"
@@ -39,7 +45,7 @@
    					 </q-expansion-item>
 				</div>
 				<div class="faq__body__columns">
-					<h6 class="faq__body__title text-red text-uppercase">Технические вопросы</h6>
+					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle2') }}</h6>
 					<q-expansion-item
 						class="faq__body__item"
 						label="Что делать, если оборудование не работает корректно?"

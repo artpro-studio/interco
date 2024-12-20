@@ -25,6 +25,7 @@ export default {
 	headerStatusLink: 'Статус заказа',
 	moreDetailed: 'Подробнее',
 	submitApplication: 'Оставить заявку',
+	phone: 'Телефон',
 	...Head,
 	...Company,
 	...Direction,
