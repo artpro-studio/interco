@@ -1,15 +1,18 @@
 <script lang="ts" setup>
+	import { useI18n } from 'vue-i18n';
 	import VBtn from '../UI/VBtn/VBtn.vue';
+
+	const { t } = useI18n();
 </script>
 <template>
 	<div class="banner-callback pt-8 pb-8 text-center">
 		<div class="container">
 			<div class="banner-callback__body">
-				<h4 class="banner-callback__title headline-1 text-uppercase">Свяжитесь с нами</h4>
-				<p class="banner-callback__text fonts-oswald">Если у вас есть дополнительные вопросы или вы хотите узнать больше о нашей компании, пожалуйста, свяжитесь с нами, Мы всегда рады общению и новым возможностям для сотрудничества.</p>
+				<h4 class="banner-callback__title headline-1 text-uppercase">{{ t('bannerCallbackTitle') }}</h4>
+				<p class="banner-callback__text fonts-oswald">{{ t('bannerCallbackDescription') }}</p>
 				<v-btn color="primary" class="banner-callback__btn">
 					<div class="row no-wrap">
-						<span>связаться с нами</span>
+						<span>{{ t('bannerCallbackBtnText') }}</span>
 						<q-img src="icons/arrow-red.svg" fit="contain" width="16px" class="q-ml-md" />
 					</div>
 				</v-btn>

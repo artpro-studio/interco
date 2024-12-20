@@ -2,6 +2,9 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
+
+	const { t } = useI18n();
 
 	const form = ref({
 		firstName: '',
@@ -14,22 +17,22 @@
 		<div class="container">
 			<div class="clients-form__body row no-wrap">
 				<div class="clients-form__column">
-					<h4 class="clients-form__title text-uppercase fonts-oswald">Хотите получать самые свежие новости и статьи прямо на вашу электронную почту? </h4>
+					<h4 class="clients-form__title text-uppercase fonts-oswald">{{ t('newsFormTitle') }}</h4>
 					<div class="clients-form__info">
-						<p>Подпишитесь на нашу рассылку, и мы будем держать вас в курсе всех важных событий и обновлений.</p>
+						<p>{{ t('newsFormDescription') }}</p>
 					</div>
 				</div>
 				<div class="clients-form__content">
 					<q-form class="clients-form__form">
 						<div class="clients-form__form__field">
-							<v-input v-model="form.firstName" color="white" placeholder="Имя" />
+							<v-input v-model="form.firstName" color="white" :placeholder="t('newsFormFirstName')" />
 						</div>
 						<div class="clients-form__form__field">
-							<v-input v-model="form.email" color="white" placeholder="E-mail" />
+							<v-input v-model="form.email" color="white" :placeholder="t('newsFormEmail')" />
 						</div>
 						<v-btn color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
-								<span>Подписаться</span>
+								<span>{{ t('newsFormBtnText') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</div>
 						</v-btn>

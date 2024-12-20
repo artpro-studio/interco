@@ -13,6 +13,9 @@ import Footer from './footer';
 import Policy from './policy';
 import CareerPage from './career'
 import ClientsPage from './clients'
+import ClientsNews from './news'
+import Social from './Social'
+import BannerCallback from './bannerCallback'
 
 export default {
 	failed: 'Action failed',
@@ -41,4 +44,7 @@ export default {
 	...Policy,
 	...CareerPage,
 	...ClientsPage,
+	...ClientsNews,
+	...Social,
+	...BannerCallback,
 };
