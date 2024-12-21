@@ -163,7 +163,7 @@
 				height: 100%;
 				width: 50%;
 				background-color: var(--dark-blue);
-				background-image: url(images/bg.png);
+				background-image: url('/images/bg.png');
 				position: absolute;
 				top: 0;
 				right: 0;

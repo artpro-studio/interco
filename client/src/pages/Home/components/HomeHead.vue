@@ -31,7 +31,7 @@
 </template>
 <style lang="scss" scoped>
 	.head {
-		background-image: url(images/head.png);
+		background-image: url('/images/head.png');
 		background-position: right;
 		background-size: cover;
 		width: 100%;
