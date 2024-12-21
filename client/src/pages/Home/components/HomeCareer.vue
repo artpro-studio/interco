@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 
 	const { t } = useI18n();
+
+	const isOpenDialog = ref(false);
 </script>
 
 <template>
@@ -10,7 +14,7 @@
 			<div class="home-career__body">
 				<h4 class="home-career__title headline-1 text-gradient text-uppercase">{{ t('careerTitle') }}</h4>
 				<p class="text-white">{{ t('careerText') }}</p>
-				<q-btn color="white" class="home-career__btn text-bold" flat>
+				<q-btn color="white" class="home-career__btn text-bold" @click="isOpenDialog = true" flat>
 					<div class="row no-wrap">
 						<div>{{ t('moreDetailed') }}</div>
 						<q-img src="icons/arrow-yellow-full.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
@@ -19,6 +23,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.home-career {

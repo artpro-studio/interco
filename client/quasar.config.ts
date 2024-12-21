@@ -3,7 +3,9 @@
 
 import { defineConfig } from '#q-app/wrappers';
 import { fileURLToPath } from 'node:url';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
+// eslint-disable-next-line max-lines-per-function
 export default defineConfig((ctx) => {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -68,6 +70,17 @@ export default defineConfig((ctx) => {
       // viteVuePluginOptions: {},
 
       vitePlugins: [
+		ViteImageOptimizer({
+            png: {
+                quality: 50,
+            },
+            jpeg: {
+                quality: 50,
+            },
+            jpg: {
+                quality: 50,
+            },
+        }),
         ['@intlify/unplugin-vue-i18n/vite', {
           // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
           // compositionOnly: false,
@@ -88,7 +101,8 @@ export default defineConfig((ctx) => {
             lintCommand: 'eslint -c ./eslint.config.js "./src*/**/*.{ts,js,mjs,cjs,vue}"',
             useFlatConfig: true
           }
-        }, { server: false }]
+        },
+		{ server: false }]
       ]
     },
 

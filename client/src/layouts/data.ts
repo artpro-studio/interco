@@ -11,7 +11,7 @@ export const menuData = [
 	},
 	{
 		title: 'menuProduct',
-		path: RouterName.Clients,
+		path: RouterName.Services,
 	},
 	{
 		title: 'menuProject',

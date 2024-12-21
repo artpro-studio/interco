@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 	import VBtnGradient from 'src/components/UI/VBtnGradient/VBtnGradient.vue';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 	import { useI18n } from 'vue-i18n';
+	import { ref } from 'vue';
 
 	const { t } = useI18n();
+	const isOpenDialog = ref(false);
 </script>
 <template>
 	<div class="job-openings__slide">
@@ -34,8 +37,11 @@
 				<li> - Социальный пакет и медицинская страховка</li>
 				<li> - Возможности для профессионального роста</li>
 			</ul>
-			<v-btn-gradient class="job-openings__slide__btn" :height="44">{{ t('careerJobTextButton') }}</v-btn-gradient>
+			<v-btn-gradient class="job-openings__slide__btn" :height="44" @on-click="isOpenDialog = true">{{ t('careerJobTextButton') }}</v-btn-gradient>
 		</div>
+		<q-dialog v-model="isOpenDialog">
+			<modal-application @on-close="isOpenDialog = false" />
+		</q-dialog>
 	</div>
 </template>
 <style lang="scss" scoped>
