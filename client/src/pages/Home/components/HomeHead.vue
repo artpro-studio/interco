@@ -44,7 +44,7 @@
 			content: '';
 			width: 100%;
 			height: 100%;
-			background-image: url('images/head-line.svg');
+			background-image: url('/images/head-line.svg');
 			background-repeat: no-repeat;
 			background-size: contain;
 			position: absolute;

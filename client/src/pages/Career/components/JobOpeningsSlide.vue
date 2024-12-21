@@ -58,7 +58,7 @@
 				content: '';
 				width: 324px;
 				height: 316px;
-				background-image: url('icons/arrow-big-blue.svg');
+				background-image: url('/icons/arrow-big-blue.svg');
 				background-repeat: no-repeat;
 				background-size: contain;
 				background-position: right;

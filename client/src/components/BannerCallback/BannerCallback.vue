@@ -29,7 +29,7 @@
 <style lang="scss" scoped>
 	.banner-callback {
 		color: var(--white);
-		background-image: url('images/bg-client-contacts.png');
+		background-image: url('/images/bg-client-contacts.png');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;

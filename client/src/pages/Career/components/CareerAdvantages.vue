@@ -149,7 +149,7 @@
 							content: '';
 							width: 32px;
 							height: 32px;
-							background-image: url('icons/arrow-yellow.svg');
+							background-image: url('/icons/arrow-yellow.svg');
 							background-repeat: no-repeat;
 							background-position: center;
 							position: absolute;

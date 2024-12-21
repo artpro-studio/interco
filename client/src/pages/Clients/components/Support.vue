@@ -147,7 +147,7 @@
 				content: '';
 				width: 324px;
 				height: 316px;
-				background-image: url('icons/arrow-big-blue.svg');
+				background-image: url('/icons/arrow-big-blue.svg');
 				background-repeat: no-repeat;
 				background-size: contain;
 				background-position: right;
@@ -194,7 +194,7 @@
 
 							&::before {
 								content: '';
-								background-image: url('icons/arrow-yellow.svg');
+								background-image: url('/icons/arrow-yellow.svg');
 								width: 30px;
 								height: 30px;
 								background-size: contain;
@@ -228,7 +228,7 @@
 								content: '';
 								width: 18px;
 								height: 19px;
-								background-image: url('icons/check-white.svg');
+								background-image: url('/icons/check-white.svg');
 								background-repeat: no-repeat;
 								background-position: center;
 								background-size: contain;

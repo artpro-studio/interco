@@ -141,7 +141,7 @@
 
 <style lang="scss" scoped>
 	.clients-contacts {
-		background-image: url('images/bg-client-contacts.png');
+		background-image: url('/images/bg-client-contacts.png');
 		background-repeat: no-repeat;
 		background-position: top center;
 		background-size: cover;

@@ -34,7 +34,7 @@
 </template>
 <style lang="scss" scoped>
 	.banner-contacts {
-		background-image: url('images/banner-contacts.png');
+		background-image: url('/images/banner-contacts.png');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;

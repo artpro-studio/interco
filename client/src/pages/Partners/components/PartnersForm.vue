@@ -67,7 +67,7 @@
 </template>
 <style lang="scss" scoped>
 	.clients-form {
-		background-image: url('icons/mail-bg.svg');
+		background-image: url('/icons/mail-bg.svg');
 		background-position: top left;
 		background-size: 300px;
 		background-repeat: no-repeat;

@@ -29,7 +29,7 @@
 </template>
 <style lang="scss" scoped>
 	.home-career {
-		background-image: url('images/career.png');
+		background-image: url('/images/career.png');
 		background-color: var(--dark-blue);
 		background-repeat: no-repeat;
 		background-position: center;

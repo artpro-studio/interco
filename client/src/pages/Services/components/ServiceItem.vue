@@ -191,7 +191,7 @@
 							content: '';
 							width: 25px;
 							height: 25px;
-							background-image: url('icons/arrow-yellow.svg');
+							background-image: url('/icons/arrow-yellow.svg');
 							background-repeat: no-repeat;
 							background-position: center;
 							background-size: contain;

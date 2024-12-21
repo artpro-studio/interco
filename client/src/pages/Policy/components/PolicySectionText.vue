@@ -79,7 +79,7 @@
 
 					&::before {
 						content: '';
-						background-image: url('icons/arrow-yellow.svg');
+						background-image: url('/icons/arrow-yellow.svg');
 						width: 30px;
 						height: 30px;
 						background-size: contain;

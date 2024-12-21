@@ -22,7 +22,7 @@
 
 		&::before {
 			content: '';
-			background-image: url('icons/mail-bg.svg');
+			background-image: url('/icons/mail-bg.svg');
 			background-repeat: no-repeat;
 			background-position: center left;
 			background-size: 250px;

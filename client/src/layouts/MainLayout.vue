@@ -54,7 +54,7 @@
 		position: relative;
 		&::before {
 			content: '';
-			background-image: url('images/bg.png');
+			background-image: url('/images/bg.png');
 			background-size: cover;
 			width: 100%;
 			height: 100%;
