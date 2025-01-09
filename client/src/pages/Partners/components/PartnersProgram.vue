@@ -65,6 +65,18 @@
 				padding-left: 40px;
 				border-left: 2px var(--yellow) solid;
 			}
+
+			@media (max-width: $breakpoint-sm-min) {
+				flex-wrap: wrap;
+
+				&__info {
+					border: none;
+					border-top: 2px var(--yellow) solid;
+					margin-top: 32px;
+					padding-left: 0;
+					padding-top: 16px;
+				}
+			}
 		}
 
 		&__subtitle {
@@ -86,6 +98,20 @@
     		background-color: rgba(35, 36, 57, 0.6);
 			padding: 40px;
 			margin-bottom: 40px;
+			position: relative;
+
+			&::before {
+				content: "";
+				width: 324px;
+				height: 100%;
+				background-image: url(/icons/arrow-big-blue.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: right;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
 
 			h5 {
 				margin-bottom: 40px;

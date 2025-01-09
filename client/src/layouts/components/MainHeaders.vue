@@ -50,7 +50,7 @@
 					</ul>
 				</nav>
 				<div class="headers__actions row no-wrpa">
-					<router-link to="/" class="headers__actions__links row items-center no-wrap">
+					<router-link to="/" class="headers__actions__links row items-center no-wrap" exact-active-class="active">
 						{{ t('headerStatusLink') }}
 						<q-img src="icons/arrow.svg" width="16px" fit="contain" class="headers__actions__links__img" />
 					</router-link>
@@ -95,6 +95,11 @@
 
 						&:hover {
 							opacity: 1 !important;
+						}
+
+						&.router-link-exact-active {
+							opacity: 1 !important;
+							color: var(--white);
 						}
 					}
 				}
@@ -196,6 +201,11 @@
 
 					&:hover {
 						opacity: 1;
+					}
+
+					&.router-link-exact-active {
+						opacity: 1 !important;
+						color: var(--dark-blue);
 					}
 				}
 			}

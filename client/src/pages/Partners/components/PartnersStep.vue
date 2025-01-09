@@ -179,6 +179,7 @@
 			.home-advantages__item {
 				&:first-child {
 					width: 85%;
+					max-width: 55%;
 					padding: 40px 60px;
 					margin-left: 0;
 				}

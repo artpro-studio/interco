@@ -53,6 +53,7 @@
 
 <style lang="scss">
 	.clients-contacts {
+		overflow: hidden;
 		&__item {
 			padding-right: 35px;
 			border-right: 2px rgba(255, 255, 255, 0.5) solid;
