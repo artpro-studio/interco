@@ -7,8 +7,8 @@
 <template>
 	<div class="home-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 class="home-contacts__title fonts-oswald headline-1 text-gradient">SA International</h4>
-			<div class="home-contacts__body row no-wrap justify-between items-center">
+			<h4 data-aos="fade-right" class="home-contacts__title fonts-oswald headline-1 text-gradient">SA International</h4>
+			<div data-aos="fade-left" class="home-contacts__body row no-wrap justify-between items-center">
 				<p class="fonts-oswald">{{ t('homeContactsText') }}</p>
 				<div class="home-contacts__info">
 					<div class="home-contacts__info__item">

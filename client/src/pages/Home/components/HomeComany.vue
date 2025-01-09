@@ -7,15 +7,23 @@
 	<div class="home-company pt-8 pb-12">
 		<div class="container">
 			<div class="home-company__top row no-wrap items-center">
-				<h4 class="home-company__top__title headline-3 text-white">{{ t('companyTop') }}</h4>
-				<div class="line"></div>
+				<h4
+					data-aos="fade-right"
+					class="home-company__top__title headline-3 text-white"
+				>{{ t('companyTop') }}</h4>
+				<div data-aos="fade-left" class="line"></div>
 			</div>
-			<h2 class="home-company__title text-gradient fonts-oswald">{{ t('companyTitle') }}</h2>
+			<h2
+				data-aos="fade-up"
+				class="home-company__title text-gradient fonts-oswald"
+				>
+				{{ t('companyTitle') }}
+			</h2>
 			<div class="home-company__body row no-wrap">
-				<div class="home-company__body__item">
+				<div data-aos="fade-right" class="home-company__body__item">
 					<p>{{ t('companyText1') }}</p>
 				</div>
-				<div class="home-company__body__item">
+				<div data-aos="fade-left"  class="home-company__body__item">
 					<p>{{ t('companyText2') }}</p>
 				</div>
 			</div>

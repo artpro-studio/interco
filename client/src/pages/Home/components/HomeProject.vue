@@ -7,7 +7,7 @@
 <template>
 	<div class="home-project pt-12 pb-12">
 		<div class="container">
-			<div class="home-project__header row no-wrap items-center">
+			<div data-aos="zoom-in" class="home-project__header row no-wrap items-center">
 				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">{{ t('projectTitle') }}</h4>
 				<div class="home-project__header__right row items-center no-wrap">
 					<div class="line"></div>
@@ -20,8 +20,8 @@
 				</div>
 			</div>
 			<div class="home-project__body row no-wrap">
-				<q-img src="images/home-project.png" class="home-project__img" height="278px" width="422px" />
-				<div class="home-project__content">
+				<q-img data-aos="fade-right" src="images/home-project.png" class="home-project__img" height="278px" width="422px" />
+				<div data-aos="fade-left" class="home-project__content">
 					<div class="home-project__content__item">
 						<h4 class="home-project__content__item__title">{{ t('projectItem1Title') }}</h4>
 						<p>{{ t('projectItem1Text') }}</p>
@@ -33,15 +33,15 @@
 				</div>
 			</div>
 			<div class="home-project__contacts pt-8">
-				<div class="home-project__contacts__top row no-wrap items-center">
+				<div data-aos="fade-right" class="home-project__contacts__top row no-wrap items-center">
 					<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-project__contacts__top__img" />
 					<h3 class="home-project__contacts__top__title headline-1 text-dark">{{ t('projectContactTitle') }}</h3>
 				</div>
 				<div class="home-project__contacts__body row no-wrap items-center">
-					<div class="home-project__contacts__text">
+					<div data-aos="fade-right" class="home-project__contacts__text">
 						<p class="fonts-oswald text-dark">{{ t('projectContactText') }}</p>
 					</div>
-					<div class="home-project__contacts__info">
+					<div  data-aos="fade-left" class="home-project__contacts__info">
 						<p class="text-dark">{{ t('projectContactInfo') }}</p>
 					</div>
 				</div>

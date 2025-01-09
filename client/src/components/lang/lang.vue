@@ -38,6 +38,7 @@ import { useI18n } from 'vue-i18n';
 			margin-right: 20px;
 			font-size: .95em;
 			opacity: .4;
+			transition: .4s all;
 
 			&::before {
 				content: '/';
@@ -57,14 +58,23 @@ import { useI18n } from 'vue-i18n';
 			&.active {
 				opacity: 1;
 			}
+
+			&:hover {
+				opacity: 1;
+			}
 		}
 
 		&.white {
 			.lang__item {
 				color: #888891;
 				opacity: 1;
+				transition: .4s all;
 
 				&.active {
+					color: var(--dark-blue);;
+				}
+
+				&:hover {
 					color: var(--dark-blue);;
 				}
 			}

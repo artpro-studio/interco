@@ -102,9 +102,19 @@
 			.headers__actions {
 				&__links {
 					color: var(--white) !important;
+					transition: .4s all;
+
+					&:hover {
+						color: var(--yellow) !important;
+					}
 				}
 				&__phone {
 					color: var(--white) !important;
+					transition: .4s all;
+
+					&:hover {
+						color: var(--yellow) !important;
+					}
 				}
 			}
 			.headers__logo {
@@ -202,6 +212,7 @@
 				white-space: nowrap;
 				margin-right: 16px;
 				font-weight: bold;
+				transition: .4s all;
 
 				&__img {
 					margin-left: 10px;
@@ -209,6 +220,10 @@
 
 				@media (max-width: $breakpoint-sm-min) {
 					display: none;
+				}
+
+				&:hover {
+					color: var(--yellow) !important;
 				}
 			}
 
@@ -218,9 +233,14 @@
 				color: var(--white);
 				text-decoration: none;
 				font-weight: bold;
+				transition: .4s all;
 
 				@media (max-width: $breakpoint-sm-min) {
 					display: none;
+				}
+
+				&:hover {
+					color: var(--yellow) !important;
 				}
 			}
 

@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 	import Lang from 'src/components/lang/lang.vue';
 	import { useI18n } from 'vue-i18n';
+	import HomeHeadArrow from './HomeHeadArrow.vue';
 
 	const { t } = useI18n();
 </script>
 <template>
 	<div class="head">
 		<div class="container">
-			<lang />
+			<lang  />
 			<div class="head__top row">
 				<div class="head__top__item">
 					<p class="head__top__item__title fonts-oswald">{{ t('production') }}</p>
@@ -21,11 +22,16 @@
 					<p class="head__top__item__title fonts-oswald">{{ t('technologies') }}</p>
 				</div>
 			</div>
-			<div class="head__body row items-end no-wrap">
+			<div
+				data-aos="fade-up"
+				class="head__body row items-end no-wrap"
+			>
 				<h1 class="head__body__title fonts-oswald fonts-humane ">SA<br>International</h1>
 				<q-img class="head__body__text" src="images/text-SA-International.svg" title="SAInternational " fit="contain" />
-				<q-img class="head__body__img" src="icons/arrow-head.svg" fit="contain" alt="Стрелки" />
+				<!-- <q-img class="head__body__img" src="icons/arrow-head.svg" fit="contain" alt="Стрелки" /> -->
+				<home-head-arrow class="head__body__img" />
 			</div>
+
 		</div>
 	</div>
 </template>

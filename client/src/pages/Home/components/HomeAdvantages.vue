@@ -7,10 +7,10 @@
 <template>
 	<div class="home-advantages pt-8 pb-12">
 		<div class="container">
-			<h3 class="home-advantages__title headline-1 text-white">{{ t('advantagesTitle') }}</h3>
+			<h3 data-aos="fade-right" class="home-advantages__title headline-1 text-white">{{ t('advantagesTitle') }}</h3>
 		</div>
 		<div class="home-advantages__body">
-				<div class="home-advantages__first">
+				<div data-aos="fade-right" class="home-advantages__first">
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
@@ -24,7 +24,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="home-advantages__two">
+				<div data-aos="fade-left" class="home-advantages__two">
 					<div class="container">
 						<div class="home-advantages__wrap row no-wrap q-gutter-lg q-ml-none">
 							<div class="home-advantages__item">
@@ -39,7 +39,7 @@
 					</div>
 
 				</div>
-				<div class="home-advantages__three">
+				<div data-aos="fade-up" class="home-advantages__three">
 					<div class="container">
 						<div class="home-advantages__item">
 							<h4 class="home-advantages__item__title fonts-oswald text-uppercase">{{ t('advantagesItem5Title') }}</h4>

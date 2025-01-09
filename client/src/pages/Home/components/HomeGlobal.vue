@@ -6,12 +6,12 @@
 <template>
 	<div class="home-global pt-12 pb-12">
 		<div class="container">
-			<h4 class="home-global__title headline-1 text-gradient text-uppercase">{{ t('globalTitle') }}</h4>
+			<h4 data-aos="fade-right" class="home-global__title headline-1 text-gradient text-uppercase">{{ t('globalTitle') }}</h4>
 			<div class="home-global__body row no-wrap items-center">
-				<div class="home-global__text">
+				<div data-aos="fade-right" class="home-global__text">
 					<p class="fonts-oswald">{{ t('globalText') }}.</p>
 				</div>
-				<div class="home-global__info">
+				<div data-aos="fade-left" class="home-global__info">
 					<p v-html="t('globalInfo')"></p>
 				</div>
 			</div>

@@ -11,7 +11,7 @@
 <template>
 	<div class="home-career text-center pt-12 pb-12">
 		<div class="container">
-			<div class="home-career__body">
+			<div data-aos="zoom-in" class="home-career__body">
 				<h4 class="home-career__title headline-1 text-gradient text-uppercase">{{ t('careerTitle') }}</h4>
 				<p class="text-white">{{ t('careerText') }}</p>
 				<q-btn color="white" class="home-career__btn text-bold" @click="isOpenDialog = true" flat>

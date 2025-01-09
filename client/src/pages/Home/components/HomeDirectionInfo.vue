@@ -6,7 +6,7 @@
 <template>
 	<div class="home-direction-info pb-12">
 		<div class="container">
-			<div class="home-direction-info__header row no-wrap items-center">
+			<div data-aos="zoom-in" class="home-direction-info__header row no-wrap items-center">
 				<h4 class="home-direction-info__header__title headline-3 text-uppercase text-red">{{ t('directionSubTitle2') }}</h4>
 				<div class="line"></div>
 				<q-btn color="black" class="home-direction-info__header__btn text-bold" flat>
@@ -16,7 +16,7 @@
 					</div>
 				</q-btn>
 			</div>
-			<div class="home-direction-info__icons row no-wrap justify-between">
+			<div data-aos="fade-up" class="home-direction-info__icons row no-wrap justify-between">
 				<div class="home-direction-info__icons__item row no-wrap items-center justify-between">
 					<div class="home-drection-info__icons__item__images">
 						<q-img src="images/icon-car.png" class="home-direction-info__icons__item__img" width="89px" />
@@ -37,14 +37,14 @@
 				</div>
 			</div>
 			<div class="home-direction-info__lists row no-wrap justify-between items-start">
-				<div class="home-direction-info__lists__item">
+				<div data-aos="fade-right" class="home-direction-info__lists__item">
 					<h5 class="home-direction-info__lists__item__title headline-3 text-uppercase text-red">{{ t('directionSubTitle3') }}</h5>
 					<div class="home-direction-info__lists__item__content row no-wrap items-center">
 						<q-img src="icons/arrow-black.svg" class="home-direction-info__lists__item__img" width="16px" />
 						<p>{{ t('directionText1') }}</p>
 					</div>
 				</div>
-				<div class="home-direction-info__lists__item">
+				<div data-aos="fade-left" class="home-direction-info__lists__item">
 					<h5 class="home-direction-info__lists__item__title headline-3 text-uppercase text-red">{{ t('directionSubTitle4') }}</h5>
 					<div class="home-direction-info__lists__item__content row no-wrap items-center">
 						<q-img src="icons/arrow-black.svg" class="home-direction-info__lists__item__img" width="16px" />

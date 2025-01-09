@@ -49,11 +49,11 @@
 <template>
 	<div class="home-direction pt-8">
 		<div class="container">
-			<div class="home-direction__top row no-wrap items-center">
+			<div data-aos="fade-right" class="home-direction__top row no-wrap items-center">
 				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-direction__top__img" />
 				<h3 class="home-direction__top__title headline-1 text-white">{{ t('directionTitle') }}</h3>
 			</div>
-			<h4 class="headline-3 text-white text-uppercase">{{ t('directionSubTitle') }}</h4>
+			<h4 data-aos="fade-up" class="headline-3 text-white text-uppercase">{{ t('directionSubTitle') }}</h4>
 		</div>
 		<div class="home-direction__slider">
 			<div class="container">
