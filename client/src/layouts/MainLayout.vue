@@ -75,6 +75,7 @@
 
 		&__body {
 			position: relative;
+			overflow: hidden;
 		}
 	}
 </style>
