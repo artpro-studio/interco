@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
 
 	const { t } = useI18n();
 
@@ -90,12 +91,7 @@
 										<li v-for="(el, indx) in item.list" :key="indx">{{ el }}</li>
 									</ul>
 
-									<q-btn color="white" class="home-direction__slide__btn text-bold" flat>
-										<div class="row no-wrap">
-											<q-img src="icons/arrow-white.svg" class="q-mr-md" width="16px" :alt="t('moreDetailed')" />
-											<div>{{ t('moreDetailed') }}</div>
-										</div>
-									</q-btn>
+									<v-btn-red color="white" class="home-direction__slide__btn text-bold" :text="t('moreDetailed')" flat></v-btn-red>
 								</div>
 								<div class="home-direction__slide__images">
 									<q-img :src="item.images" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
@@ -305,6 +301,10 @@
 
 			&__btn {
 				margin-top: 32px;
+				max-width: 140px;
+				@media (max-width: $breakpoint-sm-min) {
+					margin-top: 24px;
+				}
 			}
 
 			@media (max-width: 850px) {

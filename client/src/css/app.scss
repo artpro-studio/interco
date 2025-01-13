@@ -156,3 +156,21 @@ p,h1,h2,h3,h4,h5,h6 {
 	padding: 12px;
 	border-radius: 8px;
 }
+.q-btn {
+	.q-focus-helper {
+		display: none;
+	}
+
+	span {
+		transition: .4s all;
+	}
+
+	&:hover {
+		.q-btn__content{
+			span {
+				opacity: .7;
+			}
+		}
+
+	}
+}

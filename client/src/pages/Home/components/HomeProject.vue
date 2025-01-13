@@ -23,7 +23,7 @@
 					<div class="line"></div>
 					<q-btn :to="path" color="black" class="home-project__header__btn text-bold" flat>
 						<div class="row no-wrap">
-							<div class="text-no-wrap">{{ t('moreDetailed') }}</div>
+							<span class="text-no-wrap">{{ t('moreDetailed') }}</span>
 							<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
 						</div>
 					</q-btn>

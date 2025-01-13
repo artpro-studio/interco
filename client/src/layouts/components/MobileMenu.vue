@@ -4,6 +4,7 @@
 	import { useI18n } from 'vue-i18n';
 	import { RouterName } from 'src/router/routerName';
 	import { useRouter } from 'vue-router';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 
 	interface IProps {
 		value: boolean;
@@ -15,6 +16,7 @@
 
 	const widthScreen = inject('widthScreen')
 
+	const isOpenDialog = ref(false);
 	const menuDataItems = ref(menuData);
 
 	const leftDrawerOpen = computed({
@@ -73,15 +75,18 @@
 				</div>
 
 				<div class="mobile-menu__info">
-					<router-link to="/" class="mobile-menu__info__links row items-center no-wrap justify-end">
+					<div @click="isOpenDialog = true" class="mobile-menu__info__links row items-center no-wrap justify-end cursor-pointer">
 						{{ t('headerStatusLink') }}
 						<q-img src="icons/arrow.svg" width="16px" fit="contain" class="mobile-menu__info__links__img" />
-					</router-link>
+					</div>
 					<a href="tel:88000000000" class="mobile-menu__info__phone row items-center justify-end">8 800 000 00 00</a>
 				</div>
 			</div>
 		</div>
 	</q-drawer>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 <style lang="scss">
 	.q-drawer {

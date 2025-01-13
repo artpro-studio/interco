@@ -4,14 +4,18 @@
 	interface IProps {
 		color?: NamedColor | undefined;
 		height?: number;
+		text: string;
 	}
 	defineProps<IProps>();
 	const emit = defineEmits(['on-click'])
 </script>
 <template>
 	<div class="v-btn-red">
-		<q-btn class="v-btn-red__wrap" @click="emit('on-click')" dense :style="{height: height + 'px'}">
-			<slot name="default" />
+		<q-btn class="v-btn-red__wrap" @click="emit('on-click')" :style="{height: height + 'px'}">
+			<div class="row no-wrap items-center">
+				<q-img src="icons/arrow-white.svg" class="q-mr-md" width="16px" :alt="text" />
+				<div class="v-btn-red__text">{{ text }}</div>
+			</div>
 		</q-btn>
 	</div>
 </template>
@@ -32,6 +36,20 @@
 		.q-btn {
 			height: 44px;
 			background: var(--red);
+
+			.q-focus-helper {
+				display: none;
+			}
+
+			.v-btn-red__text {
+				transition: .4s all;
+			}
+
+			&:hover {
+				.v-btn-red__text {
+					opacity: .7;
+				}
+			}
 
 			&__content {
 				font-size: .7em;

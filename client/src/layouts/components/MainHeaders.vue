@@ -210,7 +210,7 @@
 
 					&.router-link-exact-active {
 						opacity: 1 !important;
-						color: var(--dark-blue);
+						color: var(--white);
 					}
 				}
 			}
@@ -282,6 +282,11 @@
 						color: rgba(136, 136, 145, 1);
 
 						&:hover {
+							color: var(--dark-blue);
+						}
+
+						&.router-link-exact-active {
+							opacity: 1 !important;
 							color: var(--dark-blue);
 						}
 					}

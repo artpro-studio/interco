@@ -15,7 +15,7 @@
 				<div class="clients-banner__wrapper">
 					<div class="clients-banner__header row no-wrap justify-between items-center">
 						<h4 class="clients-banner__header__title text-white text-uppercase">{{ t('clientSupportBannerTitle') }}</h4>
-						<v-btn-red class="clients-banner__header__btn" style="width: 240px;" @on-click="isOpenDialog = true">{{ t('clientSupportBannerBtnText') }}</v-btn-red>
+						<v-btn-red class="clients-banner__header__btn" style="width: 250px;" :text="t('clientSupportBannerBtnText')" @on-click="isOpenDialog = true"></v-btn-red>
 					</div>
 					<div class="clients-banner__content">
 						<h5>{{ t('clientSupportBannerItem1Title') }}</h5>
@@ -39,7 +39,7 @@
 						</div>
 					</div>
 					<div class="clients-banner__mobile-button desktop-hide">
-						<v-btn-red class="clients-banner__mobile-button__btn" style="width: 240px;">отправить сообщение</v-btn-red>
+						<v-btn-red class="clients-banner__mobile-button__btn" text="отправить сообщение" style="width: 240px;"></v-btn-red>
 					</div>
 
 				</div>
