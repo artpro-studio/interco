@@ -1,11 +1,17 @@
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { computed } from 'vue';
 	import { useI18n } from 'vue-i18n';
-	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
+	import { useRouter } from 'vue-router';
+	import { RouterName } from 'src/router/routerName';
 
 	const { t } = useI18n();
+	const router = useRouter();
 
-	const isOpenDialog = ref(false);
+	const path = computed(() => {
+		const thisRoute = router.resolve({name: RouterName.Career});
+
+		return thisRoute.fullPath;
+	})
 </script>
 
 <template>
@@ -14,7 +20,7 @@
 			<div data-aos="zoom-in" class="home-career__body">
 				<h4 class="home-career__title headline-1 text-gradient text-uppercase">{{ t('careerTitle') }}</h4>
 				<p class="text-white">{{ t('careerText') }}</p>
-				<q-btn color="white" class="home-career__btn text-bold" @click="isOpenDialog = true" flat>
+				<q-btn :to="path" color="white" class="home-career__btn text-bold" flat>
 					<div class="row no-wrap">
 						<div>{{ t('moreDetailed') }}</div>
 						<q-img src="icons/arrow-yellow-full.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
@@ -23,9 +29,6 @@
 			</div>
 		</div>
 	</div>
-	<q-dialog v-model="isOpenDialog">
-		<modal-application @on-close="isOpenDialog = false" />
-	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.home-career {

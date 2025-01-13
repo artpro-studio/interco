@@ -1,7 +1,17 @@
 <script lang="ts" setup>
+	import { RouterName } from 'src/router/routerName';
+import { computed } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import { useRouter } from 'vue-router';
 
 	const { t } = useI18n();
+	const router = useRouter();
+
+	const path = computed(() => {
+		const thisRoute = router.resolve({name: RouterName.Services});
+
+		return thisRoute.fullPath;
+	})
 </script>
 <template>
 	<div class="home-direction-info pb-12">
@@ -9,7 +19,7 @@
 			<div data-aos="zoom-in" class="home-direction-info__header row no-wrap items-center">
 				<h4 class="home-direction-info__header__title headline-3 text-uppercase text-red">{{ t('directionSubTitle2') }}</h4>
 				<div class="line"></div>
-				<q-btn color="black" class="home-direction-info__header__btn text-bold" flat>
+				<q-btn :to="path" color="black" class="home-direction-info__header__btn text-bold" flat>
 					<div class="row no-wrap">
 						<div class="text-no-wrap">{{ t('moreDetailed') }}</div>
 						<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />

@@ -1,7 +1,17 @@
 <script lang="ts" setup>
+	import { RouterName } from 'src/router/routerName';
+	import { computed } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import { useRouter } from 'vue-router';
 
 	const { t } = useI18n();
+	const router = useRouter();
+
+	const path = computed(() => {
+		const thisRoute = router.resolve({name: RouterName.News});
+
+		return thisRoute.fullPath;
+	})
 </script>
 
 <template>
@@ -11,7 +21,7 @@
 				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">{{ t('projectTitle') }}</h4>
 				<div class="home-project__header__right row items-center no-wrap">
 					<div class="line"></div>
-					<q-btn color="black" class="home-project__header__btn text-bold" flat>
+					<q-btn :to="path" color="black" class="home-project__header__btn text-bold" flat>
 						<div class="row no-wrap">
 							<div class="text-no-wrap">{{ t('moreDetailed') }}</div>
 							<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />

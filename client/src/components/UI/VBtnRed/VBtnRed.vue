@@ -9,14 +9,14 @@
 	const emit = defineEmits(['on-click'])
 </script>
 <template>
-	<div class="v-btn-gradient">
-		<q-btn class="v-btn-gradient__wrap" @click="emit('on-click')" dense :style="{height: height + 'px'}">
+	<div class="v-btn-red">
+		<q-btn class="v-btn-red__wrap" @click="emit('on-click')" dense :style="{height: height + 'px'}">
 			<slot name="default" />
 		</q-btn>
 	</div>
 </template>
 <style lang="scss">
-	.v-btn-gradient {
+	.v-btn-red {
 		width: 100%;
 		&__wrap {
 			width: 100%;

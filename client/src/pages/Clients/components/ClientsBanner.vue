@@ -1,8 +1,12 @@
 <script lang="ts" setup>
 	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
+	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
 	const {t} = useI18n();
+
+	const isOpenDialog = ref(false);
 </script>
 <template>
 	<div class="clients-banner pb-8">
@@ -11,7 +15,7 @@
 				<div class="clients-banner__wrapper">
 					<div class="clients-banner__header row no-wrap justify-between items-center">
 						<h4 class="clients-banner__header__title text-white text-uppercase">{{ t('clientSupportBannerTitle') }}</h4>
-						<v-btn-red class="clients-banner__header__btn" style="width: 240px;">{{ t('clientSupportBannerBtnText') }}</v-btn-red>
+						<v-btn-red class="clients-banner__header__btn" style="width: 240px;" @on-click="isOpenDialog = true">{{ t('clientSupportBannerBtnText') }}</v-btn-red>
 					</div>
 					<div class="clients-banner__content">
 						<h5>{{ t('clientSupportBannerItem1Title') }}</h5>
@@ -47,6 +51,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.clients-banner {

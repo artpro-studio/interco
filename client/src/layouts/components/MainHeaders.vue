@@ -5,6 +5,7 @@
 	import { RouterName } from 'src/router/routerName';
 	import { useRoute, useRouter } from 'vue-router';
 	import lang from 'src/components/lang/lang.vue';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 
 	const emit = defineEmits(['on-click'])
 	const { t } = useI18n();
@@ -13,6 +14,7 @@
 
 	const scrollTop = inject<number>('scrollTop', 0)
 
+	const isOpenDialog = ref(false);
 	const menuDataItems = ref(menuData)
 
 	const isWhite = computed(() => {
@@ -50,10 +52,10 @@
 					</ul>
 				</nav>
 				<div class="headers__actions row no-wrpa">
-					<router-link to="/" class="headers__actions__links row items-center no-wrap" exact-active-class="active">
+					<div @click="isOpenDialog = true" class="headers__actions__links row items-center no-wrap cursor-pointer" exact-active-class="active">
 						{{ t('headerStatusLink') }}
 						<q-img src="icons/arrow.svg" width="16px" fit="contain" class="headers__actions__links__img" />
-					</router-link>
+					</div>
 					<a href="tel:88000000000" class="headers__actions__phone row items-center">8 800 000 00 00</a>
 					<q-btn
 						class="headers__btn-menu"
@@ -69,6 +71,9 @@
 			<lang v-if="!isHome" class="headers__lang justify-end" />
 		</div>
     </q-header>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 
 <style lang="scss">
