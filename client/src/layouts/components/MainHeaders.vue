@@ -54,7 +54,9 @@
 				<div class="headers__actions row no-wrpa">
 					<div @click="isOpenDialog = true" class="headers__actions__links row items-center no-wrap cursor-pointer" exact-active-class="active">
 						{{ t('headerStatusLink') }}
-						<q-img src="icons/arrow.svg" width="16px" fit="contain" class="headers__actions__links__img" />
+						<svg class="headers__actions__links__img" width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M4 1L2.28238 1L3.13037 2.4937L6.25633 8L3.13037 13.5063L2.28238 15L4 15L8.59376 15L9.17596 15L9.46339 14.4937L12.8696 8.4937L13.1499 8L12.8696 7.5063L9.46339 1.5063L9.17596 1L8.59376 1L4 1Z" stroke="#DFB453" stroke-width="2"/>
+						</svg>
 					</div>
 					<a href="tel:88000000000" class="headers__actions__phone row items-center">8 800 000 00 00</a>
 					<q-btn
@@ -116,6 +118,12 @@
 
 					&:hover {
 						color: var(--yellow) !important;
+
+						svg {
+							path {
+								fill: var(--yellow);
+							}
+						}
 					}
 				}
 				&__phone {
@@ -237,8 +245,20 @@
 					display: none;
 				}
 
+				svg {
+					path {
+						transition: .4s all;
+					}
+				}
+
 				&:hover {
 					color: var(--yellow) !important;
+
+					svg {
+						path {
+							fill: var(--yellow);
+						}
+					}
 				}
 			}
 
@@ -256,6 +276,7 @@
 
 				&:hover {
 					color: var(--yellow) !important;
+
 				}
 			}
 

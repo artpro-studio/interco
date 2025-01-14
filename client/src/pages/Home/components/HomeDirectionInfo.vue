@@ -20,9 +20,11 @@ import { computed } from 'vue';
 				<h4 class="home-direction-info__header__title headline-3 text-uppercase text-red">{{ t('directionSubTitle2') }}</h4>
 				<div class="line"></div>
 				<q-btn :to="path" color="black" class="home-direction-info__header__btn text-bold" flat>
-					<div class="row no-wrap">
+					<div class="row no-wrap items-center">
 						<span class="text-no-wrap">{{ t('moreDetailed') }}</span>
-						<q-img src="icons/arrow-yellow.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
+						<svg class="q-ml-md" width="20" height="26" color="var(--yellow)" viewBox="0 0 20 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M14.0571 2.0063L13.7697 1.5L13.1875 1.5L4 1.5L2.28238 1.5L3.13037 2.9937L9.66258 14.5L3.13037 26.0063L2.28238 27.5L4 27.5L13.1875 27.5L13.7697 27.5L14.0571 26.9937L20.8696 14.9937L21.1499 14.5L20.8696 14.0063L14.0571 2.0063Z" stroke="#D4AF37" stroke-width="2"/>
+						</svg>
 					</div>
 				</q-btn>
 			</div>

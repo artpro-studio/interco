@@ -165,10 +165,22 @@ p,h1,h2,h3,h4,h5,h6 {
 		transition: .4s all;
 	}
 
+	svg {
+		path {
+			transition: .4s all;
+		}
+	}
+
 	&:hover {
 		.q-btn__content{
 			span {
 				opacity: .7;
+			}
+		}
+
+		svg {
+			path {
+				fill: currentColor;
 			}
 		}
 

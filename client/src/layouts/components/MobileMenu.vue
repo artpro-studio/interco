@@ -77,7 +77,9 @@
 				<div class="mobile-menu__info">
 					<div @click="isOpenDialog = true" class="mobile-menu__info__links row items-center no-wrap justify-end cursor-pointer">
 						{{ t('headerStatusLink') }}
-						<q-img src="icons/arrow.svg" width="16px" fit="contain" class="mobile-menu__info__links__img" />
+						<svg class="mobile-menu__info__links__img" width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M4 1L2.28238 1L3.13037 2.4937L6.25633 8L3.13037 13.5063L2.28238 15L4 15L8.59376 15L9.17596 15L9.46339 14.4937L12.8696 8.4937L13.1499 8L12.8696 7.5063L9.46339 1.5063L9.17596 1L8.59376 1L4 1Z" stroke="#DFB453" stroke-width="2"/>
+						</svg>
 					</div>
 					<a href="tel:88000000000" class="mobile-menu__info__phone row items-center justify-end">8 800 000 00 00</a>
 				</div>
