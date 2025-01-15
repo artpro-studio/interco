@@ -18,7 +18,7 @@
 </script>
 
 <template>
-	<div class="service-product pb-8">
+	<div data-aos="fade-up" class="service-product pb-8">
 		<div class="container">
 			<div class="service-product__header row no-wrap items-center justify-between">
 				<div class="service-product__header__title row no-wrap items-center">

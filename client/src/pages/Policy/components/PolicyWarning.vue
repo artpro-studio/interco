@@ -7,7 +7,7 @@
 <template>
 	<div class="policy-warning pt-8 pb-12">
 		<div class="container">
-			<div class="policy-warning__header row items-center no-wrap">
+			<div data-aos="fade-right" class="policy-warning__header row items-center no-wrap">
 				<h4 class="policy-warning__header__title headline-1 text-uppercase text-red">{{ t('policyWarningTitle') }}</h4>
 				<div class="policy-warning__header__arrows row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="policy-warning__header__arrows__item" width="35px" />
@@ -15,10 +15,10 @@
 				</div>
 			</div>
 			<div class="policy-warning__body row no-wrap items-center">
-				<div class="policy-warning__text">
+				<div data-aos="fade-right" class="policy-warning__text">
 					<p class="fonts-oswald">{{ t('policyWarningDescription') }}</p>
 				</div>
-				<div class="policy-warning__info">
+				<div data-aos="fade-left" class="policy-warning__info">
 					<p>{{ t('policyWarningInfo') }}</p>
 				</div>
 			</div>

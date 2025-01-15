@@ -6,12 +6,12 @@
 
 <template>
 	<div class="clients-section-text pt-8 pb-12">
-		<div class="container">
+		<div data-aos="fade-right" class="container">
 			<div class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase">{{ t('contactsBannerTitle') }}</div>
 			<h6 class="clients-section-text__subtitle fonts-oswald text-uppercase">{{ t('contactsBannerSubTitle') }}</h6>
 			<p class="clients-section-text__text fonts-oswald">{{ t('contactsBannerDescription') }}</p>
 		</div>
-		<div class="clients-section-text__arrows row no-wrap">
+		<div data-aos="fade-left" class="clients-section-text__arrows row no-wrap">
 			<q-img class="clients-section-text__arrows__item" src="icons/arrow-red.svg" />
 			<q-img class="clients-section-text__arrows__item" src="icons/arrow-red.svg" />
 		</div>

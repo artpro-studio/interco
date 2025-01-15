@@ -30,7 +30,7 @@
 <template>
 	<div class="about-years pt-8 pb-8">
 		<div class="container">
-			<div class="about-years__header">
+			<div data-aos="fade-right" class="about-years__header">
 				<h3 class="about-years__header__title headline-1 text-gradient text-uppercase">{{ t('aboutYearsTitle') }}</h3>
 			</div>
 			<div class="about-years__body">
@@ -38,6 +38,7 @@
 					v-for="(item, index) in years"
 					:key="index"
 					class="about-years__item row no-wrap"
+					data-aos="fade-up"
 				>
 					<div class="about-years__item__column headline-2">{{ item.date }}</div>
 					<div class="about-years__item__info">

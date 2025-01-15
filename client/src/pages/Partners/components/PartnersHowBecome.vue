@@ -5,7 +5,7 @@
 </script>
 <template>
 	<div class="partners-how-become pt-8 pb-8 bg-white">
-		<div class="container">
+		<div data-aos="fade-up" class="container">
 			<div class="partners-how-become__body">
 				<div class="partners-how-become__header">
 					<h4 class="partners-how-become__title fonts-oswald headline-1 text-red text-uppercase">{{t('partnersHowBecomeTitle')}}</h4>

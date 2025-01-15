@@ -9,7 +9,7 @@
 	<div class="partners-cooperation pt-8 pb-8 bg-white">
 		<div class="container">
 			<section-title class="partners-cooperation__title" color-text="black" :title="t('partnersCooperationTitle')" />
-			<div class="partners-cooperation__body row no-wrap justify-between">
+			<div data-aos="fade-up" class="partners-cooperation__body row no-wrap justify-between">
 				<div class="partners-cooperation__item">
 					<h4 class="partners-cooperation__item__title">{{t('partnersCooperationItem1Title')}}</h4>
 					<p>{{t('partnersCooperationItem1SubTitle')}}</p>

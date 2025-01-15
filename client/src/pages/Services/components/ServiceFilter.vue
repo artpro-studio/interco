@@ -1,5 +1,5 @@
 <template>
-	<div class="service-filter pb-8">
+	<div data-aos="fade-up" class="service-filter pb-8">
 		<div class="container">
 			<div class="service-filter__sections row">
 				<div class="service-filter__sections__item">

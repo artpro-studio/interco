@@ -22,7 +22,7 @@ import { computed } from 'vue';
 
 </script>
 <template>
-	<div class="section__title row no-wrap items-center">
+	<div data-aos="fade-right" class="section__title row no-wrap items-center">
 		<q-img :src="imagesPath" width="26px" fit="contain" class="section__title__img" />
 		<h3 class="section__title__title headline-1" :class="{'text-white': props.colorText === 'white'}">{{ title }}</h3>
 	</div>

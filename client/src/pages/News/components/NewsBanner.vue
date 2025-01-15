@@ -7,8 +7,8 @@
 <template>
 	<div class="news-banner pt-8 pb-8">
 		<div class="container">
-			<h4 class="news-banner__title headline-1 text-gradient text-uppercase">{{ t('newsBannerTitle') }}</h4>
-			<div class="news-banner__body row no-wrap justify-between">
+			<h4 data-aos="fade-right" class="news-banner__title headline-1 text-gradient text-uppercase">{{ t('newsBannerTitle') }}</h4>
+			<div data-aos="fade-left" class="news-banner__body row no-wrap justify-between">
 				<div class="news-banner__info fonts-oswald">
 					<p>{{ t('newsBannerText') }}</p>
 				</div>
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="news-banner__arrows row no-wrap">
+		<div data-aos="fade-left" class="news-banner__arrows row no-wrap">
 			<q-img class="news-banner__arrows__item" src="icons/arrow-red.svg" />
 			<q-img class="news-banner__arrows__item" src="icons/arrow-red.svg" />
 		</div>

@@ -18,7 +18,7 @@
 
 <template>
 	<div class="clients-form pt-8 pb-8">
-		<div class="container">
+		<div data-aos="zoom-in" class="container">
 			<div class="clients-form__body row no-wrap">
 				<div class="clients-form__column">
 					<h4 class="clients-form__title headline-1 text-red text-uppercase">{{ t('clientsFormTitle') }}</h4>

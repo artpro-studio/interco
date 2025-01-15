@@ -12,12 +12,12 @@
 <template>
 	<div class="banner-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 class="banner-contacts__title headline-1 text-gradient text-uppercase">{{ title }}</h4>
-			<div v-if="description" class="banner-contacts__description fonts-oswald text-white">
+			<h4 data-aos="fade-right" class="banner-contacts__title headline-1 text-gradient text-uppercase">{{ title }}</h4>
+			<div data-aos="fade-up" v-if="description" class="banner-contacts__description fonts-oswald text-white">
 				<p>{{ description }}</p>
 			</div>
 			<div class="banner-contacts__body row no-wrap items-center justify-between fonts-oswald">
-				<div class="banner-contacts__info">
+				<div data-aos="fade-right" class="banner-contacts__info">
 					<div class="banner-contacts__info__item">
 						<a :href="'tel:' + phone">{{ phone }}</a>
 					</div>
@@ -25,7 +25,7 @@
 						<a :href="'mailto:' + email">{{ email }}</a>
 					</div>
 				</div>
-				<div class="banner-contacts__text">
+				<div data-aos="fade-left" class="banner-contacts__text">
 					<p>{{ text }}</p>
 				</div>
 			</div>

@@ -7,11 +7,11 @@
 <template>
 	<div class="faq pt-8 pb-8 bg-white">
 		<div class="container">
-			<div class="faq__header">
+			<div data-aos="fade-right" class="faq__header">
 				<h3 class="faq__header__title headline-1 text-gradient text-uppercase">{{ t('clientsFaqTitle') }}</h3>
 			</div>
 			<div class="faq__body row items-lg-start justify-between">
-				<div class="faq__body__columns">
+				<div data-aos="fade-right" class="faq__body__columns">
 					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle1') }}</h6>
 					<q-expansion-item
 						class="faq__body__item"
@@ -44,7 +44,7 @@
 						</div>
    					 </q-expansion-item>
 				</div>
-				<div class="faq__body__columns">
+				<div data-aos="fade-left" class="faq__body__columns">
 					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle2') }}</h6>
 					<q-expansion-item
 						class="faq__body__item"

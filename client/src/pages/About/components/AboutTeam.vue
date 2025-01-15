@@ -81,15 +81,15 @@
 	<div class="about-team pt-8 pb-8">
 		<div class="container">
 			<div class="about-team__header row no-wrap justify-between items-center">
-				<div class="about-team__header__body row items-center no-wrap">
+				<div data-aos="fade-right" class="about-team__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="about-team__header__arrow" width="40px" />
 					<h4 class="about-team__header__title headline-1 text-uppercase">{{ t('aboutTeamTitle') }}</h4>
 				</div>
-				<div class="about-team__header__info">
+				<div data-aos="fade-left" class="about-team__header__info">
 					<p>{{ t('aboutTeamDescription') }}</p>
 				</div>
 			</div>
-			<div class="about-team__body" :style="{width: getStyleWidth}">
+			<div data-aos="fade-up" class="about-team__body" :style="{width: getStyleWidth}">
 				<swiper
 					class="swiper-container"
 					:slidesPerView="'auto'"
@@ -114,10 +114,10 @@
 				</swiper>
 			</div>
 			<div class="about-team__column row no-wrap items-center">
-				<div class="about-team__column__item ">
+				<div data-aos="fade-right" class="about-team__column__item ">
 					<p>Наш коллектив насчитывает более 50 сотрудников, включая инженеров, менеджеров по продажам, специалистов по работе с клиентами, логистов и финансовых экспертов. </p>
 				</div>
-				<div class="about-team__column__item info fonts-oswald">
+				<div data-aos="fade-left" class="about-team__column__item info fonts-oswald">
 					<p>Мы верим в непрерывное обучение и развитие, поэтому активно инвестируем в профессиональный рост каждого члена команды.</p>
 				</div>
 			</div>

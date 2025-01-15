@@ -6,8 +6,8 @@
 <template>
 	<div class="partners-info pt-8 pb-8 bg-white">
 		<div class="container">
-			<h4 class="partners-info__title headline-1 text-uppercase text-red">{{t('partnersInfoTitle')}}</h4>
-			<div class="partners-info__body row no-wrap justify-between">
+			<h4 data-aos="fade-right" class="partners-info__title headline-1 text-uppercase text-red">{{t('partnersInfoTitle')}}</h4>
+			<div data-aos="fade-up" class="partners-info__body row no-wrap justify-between">
 				<div class="partners-info__item">
 					<h6 class="partners-info__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersInfoItem1Title')}}</h6>
 					<ul>

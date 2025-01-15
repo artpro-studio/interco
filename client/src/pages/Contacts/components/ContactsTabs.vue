@@ -108,7 +108,7 @@
 
 <template>
 	<div class="contacts-tabs pb-8">
-		<div class="container">
+		<div data-aos="fade-up" class="container">
 			<div class="contacts-tabs__body">
 				<q-tabs
 					v-model="tab"

@@ -10,7 +10,7 @@
 		<div class="container">
 			<section-title :title="t('partnersAdvantagesTitle')" class="partners-advantages__title" />
 			<div class="partners-advantages__body row">
-				<div class="partners-advantages__item">
+				<div data-aos="fade-right" class="partners-advantages__item">
 					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">1. {{t('partnersAdvantagesItem1Title')}}</h5>
 					<div class="partners-advantages__item__content">
 						<h6>{{t('partnersAdvantagesItem1SubTitle1')}}</h6>
@@ -21,7 +21,7 @@
 						<p>{{t('partnersAdvantagesItem1Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-advantages__item">
+				<div data-aos="fade-left" class="partners-advantages__item">
 					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">2. {{t('partnersAdvantagesItem2Title')}}</h5>
 					<div class="partners-advantages__item__content">
 						<h6>{{t('partnersAdvantagesItem2SubTitle1')}}</h6>
@@ -32,7 +32,7 @@
 						<p>{{t('partnersAdvantagesItem2Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-advantages__item">
+				<div data-aos="fade-right" class="partners-advantages__item">
 					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">3. {{t('partnersAdvantagesItem3Title')}}</h5>
 					<div class="partners-advantages__item__content">
 						<h6>{{t('partnersAdvantagesItem3SubTitle1')}}</h6>
@@ -43,7 +43,7 @@
 						<p>{{t('partnersAdvantagesItem3Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-advantages__item">
+				<div data-aos="fade-left" class="partners-advantages__item">
 					<h5 class="text-gradient text-uppercase fonts-oswald text-bold">4. {{t('partnersAdvantagesItem4Title')}}</h5>
 					<div class="partners-advantages__item__content">
 						<h6>{{t('partnersAdvantagesItem4SubTitle1')}}</h6>

@@ -7,15 +7,15 @@
 <template>
 	<div class="about-maps pt-8 pb-12">
 		<div class="container">
-			<div class="about-maps__top row no-wrap items-center">
+			<div data-aos="fade-right" class="about-maps__top row no-wrap items-center">
 				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="about-maps__top__img" />
 				<h3 class="about-maps__top__title headline-1 text-white">{{ t('aboutMapTitle') }}</h3>
 			</div>
-			<div class="about-maps__body">
+			<div data-aos="fade-up" class="about-maps__body">
 				<q-img src="images/maps.png" class="about-maps__img" />
 			</div>
 			<div class="about-maps__columns row no-wrap">
-				<div class="about-maps__column">
+				<div data-aos="fade-right" class="about-maps__column">
 					<h4 class="about-maps__column__title headline-2 text-gradient">{{ t('aboutMapSubTitle1') }}</h4>
 					<div class="about-maps__list">
 						<div class="about-maps__list__item">
@@ -28,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="about-maps__column">
+				<div data-aos="fade-left" class="about-maps__column">
 					<h4 class="about-maps__column__title headline-2 text-gradient">{{ t('aboutMapSubTitle2') }}</h4>
 					<div class="about-maps__list">
 						<div class="about-maps__list__item">
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="about-maps__info">
+			<div data-aos="fade-up" class="about-maps__info">
 				<p>{{ t('aboutMapText') }}</p>
 			</div>
 		</div>

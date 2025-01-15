@@ -38,15 +38,15 @@
 	<div class="news-release pt-8 pb-8">
 		<div class="container">
 			<div class="news-release__header row no-wrap justify-between items-center">
-				<div class="news-release__header__body row items-center no-wrap">
+				<div data-aos="fade-right" class="news-release__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="news-release__header__arrow" width="40px" />
 					<h4 class="news-release__header__title headline-1 text-uppercase">Пресс-релизы</h4>
 				</div>
-				<div class="news-release__header__info">
+				<div data-aos="fade-left" class="news-release__header__info">
 					<p>Официальные заявления и анонсы компании SA International</p>
 				</div>
 			</div>
-			<div class="news-release__body">
+			<div data-aos="fade-up" class="news-release__body">
 				<swiper
 					class="swiper-container"
 					:slidesPerView="3"

@@ -8,8 +8,8 @@
 	<div class="home-global pb-8">
 		<div class="container">
 			<div class="home-global__body">
-				<h3 class="home-global__title">{{ t('contactsHeadTitle') }}</h3>
-				<div class="home-global__text">
+				<h3 data-aos="fade-right" class="home-global__title">{{ t('contactsHeadTitle') }}</h3>
+				<div data-aos="fade-up" class="home-global__text">
 					<p>{{ t('contactsHeadDescription') }}</p>
 				</div>
 			</div>

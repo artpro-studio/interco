@@ -20,7 +20,7 @@
 	<div class="clients-form pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="clients-form__body row no-wrap">
-				<div class="clients-form__column">
+				<div data-aos="fade-right" class="clients-form__column">
 					<h4 class="clients-form__title text-uppercase fonts-oswald">{{t('partnersFormTitle')}}</h4>
 					<div class="clients-form__info">
 						<p>{{t('partnersFormDescription')}}</p>
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="clients-form__content">
+				<div data-aos="fade-left" class="clients-form__content">
 					<q-form class="clients-form__form">
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">

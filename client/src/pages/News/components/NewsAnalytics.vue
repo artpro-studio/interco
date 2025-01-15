@@ -27,10 +27,10 @@
 	<div class="news-analytics pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="news-analytics__header row no-wrap justify-between items-center">
-				<div class="news-analytics__header__body row items-center no-wrap">
+				<div data-aos="fade-right" class="news-analytics__header__body row items-center no-wrap">
 					<h4 class="news-analytics__header__title headline-1 text-gradient text-uppercase">Статьи и аналитика</h4>
 				</div>
-				<div class="news-analytics__header__info">
+				<div data-aos="fade-left" class="news-analytics__header__info">
 					<p>Мы делимся своим опытом и экспертными знаниями, публикуя статьи и аналитические материалы по актуальным темам промышленности и технологий.</p>
 				</div>
 			</div>
@@ -39,6 +39,7 @@
 					v-for="(item, index) in analytics"
 					:key="index"
 					class="news-analytics__item"
+					data-aos="fade-up"
 				>
 					<div class="news-analytics__item__date">{{ item.date }}</div>
 					<h5 class="news-analytics__item__title">{{ item.title }}</h5>

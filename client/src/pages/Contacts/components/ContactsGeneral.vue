@@ -7,9 +7,9 @@
 <template>
 	<div class="contacts-general pt-8 pb-8 bg-white">
 		<div class="container">
-			<h4 class="contacts-general__title headline-1 text-gradient text-uppercase">{{ t('contactsCommonTitle') }}</h4>
+			<h4 data-aos="fade-right" class="contacts-general__title headline-1 text-gradient text-uppercase">{{ t('contactsCommonTitle') }}</h4>
 			<div class="contacts-general__body row no-wrap">
-				<div class="contacts-general__column">
+				<div data-aos="fade-right" class="contacts-general__column">
 					<div class="contacts-general__item">
 						<p class="contacts-general__label">{{ t('contactsCommonGeneral') }}</p>
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">info@inter-sa.com</a>
@@ -27,7 +27,7 @@
 						<a href="mailto:info@inter-sa.com" class="contacts-general__content">press@inter-sa.com</a>
 					</div>
 				</div>
-				<div class="contacts-general__column info row no-wrap">
+				<div data-aos="fade-left" class="contacts-general__column info row no-wrap">
 					<p class="contacts-general__label">{{ t('contactsCommonTime') }}</p>
 					<div class="contacts-general__info">
 						<p class="contacts-general__content">Понедельник – Пятница: 9:00 – 18:00</p>

@@ -34,15 +34,15 @@
 	<div class="about-principles pt-8 pb-8">
 		<div class="container">
 			<div class="about-principles__header row no-wrap justify-between items-center">
-				<div class="about-principles__header__body row items-center no-wrap">
+				<div data-aos="fade-right" class="about-principles__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="about-principles__header__arrow" width="40px" />
 					<h4 class="about-principles__header__title headline-1 text-uppercase">{{ t('aboutPrinciplesTitle') }}</h4>
 				</div>
-				<div class="about-principles__header__info">
+				<div data-aos="fade-left" class="about-principles__header__info">
 					<p>{{ t('aboutPrinciplesDescription') }}</p>
 				</div>
 			</div>
-			<div class="about-principles__body row q-gutter-lg">
+			<div data-aos="zoom-in" class="about-principles__body row q-gutter-lg">
 				<div
 					v-for="(item, index) in principles"
 					:key="index"

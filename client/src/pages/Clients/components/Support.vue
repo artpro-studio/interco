@@ -42,9 +42,9 @@
 	<div class="support pt-8">
 		<div class="container">
 			<section-title :title="t('clientsSupportTitle')" />
-			<p class="support__description headline-2">{{ t('clientsSupportDescription') }}</p>
+			<p data-aos="fade-up" class="support__description headline-2">{{ t('clientsSupportDescription') }}</p>
 
-			<div class="support__body">
+			<div data-aos="fade-up" class="support__body">
 				<swiper
 					ref="swiperRef"
 					class="swiper-container"

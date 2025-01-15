@@ -6,8 +6,8 @@
 <template>
 	<div class="clients-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 class="clients-contacts__title headline-1 text-gradient text-center text-uppercase">{{t('partnersContactsTitle')}}</h4>
-			<div class="clients-contacts__body row justify-between no-wrap">
+			<h4 data-aos="fade-up" class="clients-contacts__title headline-1 text-gradient text-center text-uppercase">{{t('partnersContactsTitle')}}</h4>
+			<div data-aos="fade-up" class="clients-contacts__body row justify-between no-wrap">
 				<div class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{t('partnersContactsSubTitle1')}}</h6>
 					<div class="clients-contacts__item__link">
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="clients-contacts__arrows row no-wrap">
+		<div data-aos="fade-left" class="clients-contacts__arrows row no-wrap">
 			<q-img class="clients-contacts__arrows__item" src="icons/arrow-red.svg" />
 			<q-img class="clients-contacts__arrows__item" src="icons/arrow-red.svg" />
 		</div>

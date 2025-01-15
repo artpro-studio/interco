@@ -8,11 +8,11 @@
 </script>
 <template>
 	<div class="policy-section_text row no-wrap items-start">
-		<div class="policy-section_text__info text-white">
+		<div data-aos="fade-right" class="policy-section_text__info text-white">
 			<slot name="text" />
 			<v-btn-gradient v-if="buttonText" class="policy-section_text__info__btn">{{ buttonText }}</v-btn-gradient>
 		</div>
-		<div class="policy-section_text__list text-white">
+		<div data-aos="fade-left" class="policy-section_text__list text-white">
 			<slot name="list" />
 		</div>
 	</div>

@@ -10,7 +10,7 @@
 <template>
 	<div class="banner-callback pt-8 pb-8 text-center">
 		<div class="container">
-			<div class="banner-callback__body">
+			<div data-aos="fade-up" class="banner-callback__body">
 				<h4 class="banner-callback__title headline-1 text-uppercase">{{ t('bannerCallbackTitle') }}</h4>
 				<p class="banner-callback__text fonts-oswald">{{ t('bannerCallbackDescription') }}</p>
 				<v-btn color="primary" class="banner-callback__btn" @on-click="isOpenDialog = true">

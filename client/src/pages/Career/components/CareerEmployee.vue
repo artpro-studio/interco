@@ -20,15 +20,15 @@
 	<div class="career-employee pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="career-employee__header row no-wrap justify-between items-center">
-				<div class="career-employee__header__body row items-center no-wrap">
+				<div data-aos="fade-right" class="career-employee__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="career-employee__header__arrow" width="40px" />
 					<h4 class="career-employee__header__title headline-1 text-uppercase">{{ t('careerEmployeeTitle') }}</h4>
 				</div>
-				<div class="career-employee__header__info">
+				<div data-aos="fade-left" class="career-employee__header__info">
 					<p>{{ t('careerEmployeeText') }}</p>
 				</div>
 			</div>
-			<div class="career-employee__body">
+			<div data-aos="fade-up" class="career-employee__body">
 				<swiper
 					class="swiper-container"
 					:slidesPerView="3"

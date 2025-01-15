@@ -37,7 +37,7 @@
 		</div>
 		<div class="job-openings__body">
 			<div class="container">
-				<div class="job-openings__body__wrapper" :style="{width: getStyleWidth}">
+				<div data-aos="fade-up" class="job-openings__body__wrapper" :style="{width: getStyleWidth}">
 					<swiper
 						class="swiper-container"
 						:slidesPerView="'auto'"

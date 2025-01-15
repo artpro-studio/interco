@@ -11,7 +11,7 @@
 	<div class="clients-contacts pt-8 pb-12">
 		<div class="container">
 			<section-title :title="t('clientsContactsTitle')" color="gold" class="clients-contacts__title" />
-			<div class="clients-contacts__body row justify-between no-wrap">
+			<div data-aos="fade-up" class="clients-contacts__body row justify-between no-wrap">
 				<div v-if="!slots['column1']" class="clients-contacts__item">
 					<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('clientsContactsSubTitle1') }}</h6>
 					<div class="clients-contacts__item__link">

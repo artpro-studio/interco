@@ -7,7 +7,7 @@
 <template>
 	<div class="about-culture pt-8 pb-8 bg-white text-center">
 		<div class="container">
-			<div class="about-culture__body fonts-oswald">
+			<div data-aos="fade-up" class="about-culture__body fonts-oswald">
 				<h4 class="about-culture__title headline-1 text-gradient text-uppercase">{{ t('aboutCultureTitle') }}</h4>
 				<p>{{ t('aboutCultureDescription') }}</p>
 			</div>

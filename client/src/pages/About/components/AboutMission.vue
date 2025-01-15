@@ -32,14 +32,14 @@ import { useI18n } from 'vue-i18n';
 	<div class="about-mission pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="about-mission__header">
-				<h3 class="about-mission__header__title headline-1 text-gradient text-uppercase">{{ t('aboutMissionTitle') }}</h3>
+				<h3 data-aos="fade-right" class="about-mission__header__title headline-1 text-gradient text-uppercase">{{ t('aboutMissionTitle') }}</h3>
 			</div>
 			<div class="about-mission__body row no-wrap">
-				<div class="about-mission__item info">
+				<div data-aos="fade-right" class="about-mission__item info">
 					<h5 class="fonts-oswald">{{ t('aboutMissionSubTitle1') }}</h5>
 					<p>{{ t('aboutMissionText') }}</p>
 				</div>
-				<div class="about-mission__item">
+				<div data-aos="fade-left" class="about-mission__item">
 					<h5 class="fonts-oswald">{{ t('aboutMissionSubTitle2') }}</h5>
 					<div
 						v-for="(item, index) in missionData"

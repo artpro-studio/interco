@@ -11,34 +11,34 @@
 			<div class="partners-programs__header row no-wrap justify-between items-center">
 				<section-title :title="t('partnersProgramTitle')" class="partners-programs__title" style="margin-bottom: 0;" />
 
-				<div class="partners-programs__header__info">
+				<div data-aos="fade-left" class="partners-programs__header__info">
 					<p>{{t('partnersProgramDescription')}}</p>
 				</div>
 			</div>
-			<h4 class="partners-programs__subtitle headline-2">{{t('partnersProgramSubTitle')}}</h4>
+			<h4 data-aos="fade-up" class="partners-programs__subtitle headline-2">{{t('partnersProgramSubTitle')}}</h4>
 			<div class="partners-programs__body row">
-				<div class="partners-programs__item">
+				<div data-aos="fade-right" class="partners-programs__item">
 					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem1Title')}}</h5>
 					<ul>
 						<li>{{t('partnersProgramItem1Text1')}}</li>
 						<li>{{t('partnersProgramItem1Text2')}}</li>
 					</ul>
 				</div>
-				<div class="partners-programs__item">
+				<div data-aos="fade-left" class="partners-programs__item">
 					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem2Title')}}</h5>
 					<ul>
 						<li>{{t('partnersProgramItem2Text1')}}</li>
 						<li>{{t('partnersProgramItem2Text2')}}</li>
 					</ul>
 				</div>
-				<div class="partners-programs__item">
+				<div data-aos="fade-right" class="partners-programs__item">
 					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem3Title')}}</h5>
 					<ul>
 						<li>{{t('partnersProgramItem3Text1')}}</li>
 						<li>{{t('partnersProgramItem3Text2')}}</li>
 					</ul>
 				</div>
-				<div class="partners-programs__item">
+				<div data-aos="fade-left" class="partners-programs__item">
 					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem4Title')}}</h5>
 					<ul>
 						<li>{{t('partnersProgramItem4Text1')}}</li>

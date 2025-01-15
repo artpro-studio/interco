@@ -8,7 +8,7 @@
 	<div class="section-social pt-8 pb-8">
 		<div class="container">
 			<div class="section-social__body row no-wrap">
-				<div class="section-social__links row no-wrap">
+				<div data-aos="fade-right" class="section-social__links row no-wrap">
 					<div class="section-social__links__item">
 						<a href="/">
 							<svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="section-social__content">
+				<div data-aos="fade-left" class="section-social__content">
 					<h4 class="section-social__title fonts-oswald text-uppercase">{{ t('socialTitle') }}</h4>
 					<p>{{ t('socialDescription') }}</p>
 				</div>

@@ -7,22 +7,22 @@
 <template>
 	<div class="career-advantages pt-8 pb-120">
 		<div class="container">
-			<div class="career-advantages__header">
+			<div data-aos="fade-right" class="career-advantages__header">
 				<h4 class="career-advantages__header__title headline-1 text-gradient text-uppercase">{{ t('careerAdvantagesTitle') }}</h4>
 			</div>
 			<div class="career-advantages__body">
 				<div class="career-advantages__body__section row no-wrap">
-					<div class="career-advantages__body__item images">
+					<div data-aos="fade-right" class="career-advantages__body__item images">
 						<q-img src="images/career-adv.png" height="230px" width="437px" fit="cover" class="career-advantages__body__item__img"/>
 					</div>
-					<div class="career-advantages__body__item" style="max-width: 326px;">
+					<div data-aos="fade-right" class="career-advantages__body__item" style="max-width: 326px;">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>1.</span>
 							<h5>{{ t('careerAdvantagesItem1Title') }}</h5>
 						</div>
 						<p>{{ t('careerAdvantagesItem1Text') }}</p>
 					</div>
-					<div class="career-advantages__body__item">
+					<div data-aos="fade-left" class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>2.</span>
 							<h5>{{ t('careerAdvantagesItem2Title') }}</h5>
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="career-advantages__body__section row no-wrap">
-					<div class="career-advantages__body__item">
+					<div data-aos="fade-right" class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>3.</span>
 							<h5>{{ t('careerAdvantagesItem3Title') }}</h5>
@@ -46,7 +46,7 @@
 							<li>{{ t('careerAdvantagesItem3List3') }}</li>
 						</ul>
 					</div>
-					<div class="career-advantages__body__item">
+					<div data-aos="fade-left" class="career-advantages__body__item">
 						<div class="career-advantages__body__item__header row no-wrap items-start">
 							<span>4.</span>
 							<h5>{{ t('careerAdvantagesItem4Title') }}</h5>

@@ -6,9 +6,9 @@
 <template>
 	<div class="partners-principles pt-8 pb-8 bg-white">
 		<div class="container">
-			<h3 class="partners-principles__title text-gradient headline-1 text-uppercase">{{t('partnersPrinciplesTitle')}}</h3>
+			<h3 data-aos="fade-right" class="partners-principles__title text-gradient headline-1 text-uppercase">{{t('partnersPrinciplesTitle')}}</h3>
 			<div class="partners-principles__body row">
-				<div class="partners-principles__item">
+				<div data-aos="fade-right" class="partners-principles__item">
 					<h5 class="text-red text-uppercase fonts-oswald text-bold">1. {{t('partnersPrinciplesItem1Title')}}</h5>
 					<div class="partners-principles__item__content">
 						<h6>{{t('partnersPrinciplesItem1SubTitle1')}}</h6>
@@ -19,7 +19,7 @@
 						<p>{{t('partnersPrinciplesItem1Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-principles__item">
+				<div data-aos="fade-left" class="partners-principles__item">
 					<h5 class="text-red text-uppercase fonts-oswald text-bold">2. {{t('partnersPrinciplesItem2Title')}}</h5>
 					<div class="partners-principles__item__content">
 						<h6>{{t('partnersPrinciplesItem2SubTitle1')}}</h6>
@@ -30,7 +30,7 @@
 						<p>{{t('partnersPrinciplesItem2Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-principles__item">
+				<div data-aos="fade-right" class="partners-principles__item">
 					<h5 class="text-red text-uppercase fonts-oswald text-bold">3. {{t('partnersPrinciplesItem3Title')}}</h5>
 					<div class="partners-principles__item__content">
 						<h6>{{t('partnersPrinciplesItem3SubTitle1')}}</h6>
@@ -41,7 +41,7 @@
 						<p>{{t('partnersPrinciplesItem3Text2')}}</p>
 					</div>
 				</div>
-				<div class="partners-principles__item">
+				<div data-aos="fade-left" class="partners-principles__item">
 					<h5 class="text-red text-uppercase fonts-oswald text-bold">4. {{t('partnersPrinciplesItem4Title')}}</h5>
 					<div class="partners-principles__item__content">
 						<h6>{{t('partnersPrinciplesItem4SubTitle1')}}</h6>

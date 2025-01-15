@@ -12,11 +12,11 @@
 				<section-title :title="t('aboutGroupTitle')" color-text="black" />
 			</div>
 			<div class="about-group__body row no-wrap">
-				<div class="about-group__content">
+				<div data-aos="fade-right" class="about-group__content">
 					<h5 class="fonts-oswald text-red text-uppercase">SIBC Group</h5>
 					<p> — это динамично развивающаяся группа компаний, основанная в 2017 году, специализирующаяся на консалтинговых услугах, подборе оборудования и внедрении современных технологий в промышленность. SA International играет ключевую роль в составе группы, отвечая за международное развитие, расширение продуктовой линейки и реализацию стратегических проектов.</p>
 				</div>
-				<div class="about-group__info">
+				<div data-aos="fade-left" class="about-group__info">
 					<p class="fonts-oswald">Наша интеграция в SIBC Group позволяет нам использовать обширный опыт и ресурсы группы для предоставления комплексных решений и укрепления позиций на глобальном рынке.</p>
 				</div>
 			</div>

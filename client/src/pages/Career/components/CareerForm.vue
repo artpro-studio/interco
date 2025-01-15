@@ -9,7 +9,7 @@
 </script>
 
 <template>
-	<div class="career-form">
+	<div data-aos="zoom-in" class="career-form">
 		<div class="container">
 			<div class="career-form__body row no-wrap">
 				<div class="career-form__info pt-8 pb-8">

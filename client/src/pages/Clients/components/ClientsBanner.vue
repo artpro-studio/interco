@@ -9,7 +9,7 @@
 	const isOpenDialog = ref(false);
 </script>
 <template>
-	<div class="clients-banner pb-8">
+	<div data-aos="zoom-in" class="clients-banner pb-8">
 		<div class="container">
 			<div class="clients-banner__body">
 				<div class="clients-banner__wrapper">

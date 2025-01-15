@@ -7,12 +7,12 @@
 <template>
 	<div class="clients-section-text pt-8 pb-12">
 		<div class="container">
-			<div class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">{{ t('clientsBannerTitle') }}</div>
-			<p class="clients-section-text__text fonts-oswald text-uppercase text-center">
+			<h5 data-aos="fade-up" class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">{{ t('clientsBannerTitle') }}</h5>
+			<p data-aos="fade-up" class="clients-section-text__text fonts-oswald text-uppercase text-center">
 				{{ t('clientsBannerText') }}
 			</p>
 		</div>
-		<div class="clients-section-text__arrows row no-wrap">
+		<div data-aos="fade-left" class="clients-section-text__arrows row no-wrap">
 			<q-img class="clients-section-text__arrows__item" src="icons/arrow-red.svg" />
 			<q-img class="clients-section-text__arrows__item" src="icons/arrow-red.svg" />
 		</div>

@@ -21,10 +21,10 @@
 	<div class="contacts-form pt-8 pb-8">
 		<div class="container">
 			<section-title :title="t('contactsFormTitle')" color-text="black" class="contacts-form__title" style="margin-bottom: 40px;" />
-			<div class="contacts-form__description">
+			<div data-aos="fade-up" class="contacts-form__description">
 				<p>{{ t('contactsFormDescription') }}</p>
 			</div>
-			<div class="contacts-form__body">
+			<div data-aos="fade-up" class="contacts-form__body">
 				<q-form class="contacts-form__form">
 					<div class="contacts-form__form__columns row no-wrap">
 						<div class="contacts-form__form__column">

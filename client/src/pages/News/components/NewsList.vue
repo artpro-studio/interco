@@ -76,7 +76,7 @@
 <template>
 	<div class="news-list pt-12 pb-8">
 		<div class="container">
-			<div class="news-list__header row no-wrap justify-between items-center">
+			<div data-aos="fade-right" class="news-list__header row no-wrap justify-between items-center">
 				<div class="news-list__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="news-list__header__arrow" width="40px" />
 					<h4 class="news-list__header__title headline-1 text-uppercase">Новости компании</h4>
@@ -85,7 +85,7 @@
 					<p>Будьте в курсе последних событий и новостей нашей компании.</p>
 				</div>
 			</div>
-			<div class="news-list__body" :style="{width: getStyleWidth}">
+			<div data-aos="fade-up" class="news-list__body" :style="{width: getStyleWidth}">
 				<swiper
 					class="swiper-container"
 					:slidesPerView="'auto'"

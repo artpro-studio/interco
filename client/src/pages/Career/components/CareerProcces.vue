@@ -7,10 +7,10 @@
 <template>
 	<div class="career-procces pt-8 pb-8 bg-white">
 		<div class="container">
-			<div class="career-procces__header">
+			<div data-aos="fade-right" class="career-procces__header">
 				<h4 class="career-procces__title headline-1 text-gradient text-uppercase">{{ t('careerProccesTitle') }}</h4>
 			</div>
-			<div class="career-procces__body">
+			<div data-aos="zoom-in" class="career-procces__body">
 				<div class="career-procces__section row justify-between no-wrap">
 					<div class="career-procces__item">
 						<h5 class="career-procces__item__title fonts-oswald text-uppercase">1. {{ t('careerProccesItem1Title') }}</h5>

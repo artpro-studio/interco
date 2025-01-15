@@ -16,13 +16,13 @@
 	<div class="clients-form pt-8 pb-8">
 		<div class="container">
 			<div class="clients-form__body row no-wrap">
-				<div class="clients-form__column">
+				<div data-aos="fade-right" class="clients-form__column">
 					<h4 class="clients-form__title text-uppercase fonts-oswald">{{ t('newsFormTitle') }}</h4>
 					<div class="clients-form__info">
 						<p>{{ t('newsFormDescription') }}</p>
 					</div>
 				</div>
-				<div class="clients-form__content">
+				<div data-aos="fade-left" class="clients-form__content">
 					<q-form class="clients-form__form">
 						<div class="clients-form__form__field">
 							<v-input v-model="form.firstName" color="white" :placeholder="t('newsFormFirstName')" />
