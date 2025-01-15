@@ -6,9 +6,11 @@
 		text: string;
 		images: string;
 		dense?:boolean;
+		minHeightText?: string
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		dense: true,
+		minHeightText: 'auto',
 	});
 </script>
 
@@ -17,7 +19,7 @@
 		<div class="container">
 			<div class="home-global__body">
 				<h3 class="home-global__title" :class="{dense: props.dense}" :style="{maxWidth: props.widthTitle}">{{ title }}</h3>
-				<div class="home-global__text" :style="{maxWidth: props.widthText}">
+				<div class="home-global__text" :style="{maxWidth: props.widthText, minHeight: props.minHeightText}">
 					<p>{{ text }}</p>
 				</div>
 				<q-img :src="images" class="home-global__bg" />
@@ -28,6 +30,15 @@
 <style lang="scss" scoped>
 	.home-global {
 		padding-top: 220px;
+		min-height: 870px;
+
+		@media (max-width: $breakpoint-md-min) {
+			min-height: 700px;
+		}
+
+		@media (max-width: $breakpoint-sm-min) {
+			min-height: 500px;
+		}
 
 		&__body {
 			position: relative;

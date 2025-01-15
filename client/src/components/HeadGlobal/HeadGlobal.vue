@@ -31,6 +31,15 @@
 <style lang="scss" scoped>
 	.home-global {
 		padding-top: 220px;
+		min-height: 870px;
+
+		@media (max-width: $breakpoint-md-min) {
+			min-height: 700px;
+		}
+
+		@media (max-width: $breakpoint-sm-min) {
+			min-height: 700px;
+		}
 
 		&__body {
 			position: relative;

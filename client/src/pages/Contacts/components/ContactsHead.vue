@@ -43,6 +43,7 @@
 			position: relative;
 			z-index: 2;
 			max-width: 653px;
+			min-height: 98px;
 			p {
 				font-size: 1.2em;
 				color: var(--dark-blue);

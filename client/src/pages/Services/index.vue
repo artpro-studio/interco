@@ -20,6 +20,7 @@
 		width-text="717px"
 		images="images/SA.svg"
 		:dense="false"
+		minHeightText="162px"
 	/>
 	<service-filter />
 	<service-item
