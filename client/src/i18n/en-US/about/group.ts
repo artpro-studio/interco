@@ -1,3 +1,3 @@
 export default {
-	aboutGroupTitle: 'Group of companies',
+	aboutGroupTitle: 'SIBC GROUP',
 }

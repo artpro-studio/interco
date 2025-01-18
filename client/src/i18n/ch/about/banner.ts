@@ -1,4 +1,4 @@
 export default {
-	aboutBannerTitle: 'SA国际 —',
-	aboutBannerDescription: '您在工业设备和技术领域的可靠合作伙伴',
+	aboutBannerTitle: '上海亚际机电有限公司 -',
+	aboutBannerDescription: '您可靠的工业设备与技术合作伙伴',
 }

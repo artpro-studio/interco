@@ -1,3 +1,3 @@
 export default {
-	aboutGroupTitle: '公司集团',
+	aboutGroupTitle: '集团公司',
 }
