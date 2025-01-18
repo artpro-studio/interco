@@ -1,5 +1,5 @@
 export default {
-	careerJobTitle: 'Current vacancies',
+	careerJobTitle: 'CURRENT VACANCIES',
 	careerJobLocation: 'Location',
 	careerJobRequirements: 'Requirements',
 	careerJobResponsibilities: 'Responsibilities',

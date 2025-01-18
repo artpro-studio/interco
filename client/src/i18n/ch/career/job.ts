@@ -1,5 +1,5 @@
 export default {
-	careerJobTitle: '目前空缺',
+	careerJobTitle: '最新职位',
 	careerJobLocation: '地点',
 	careerJobRequirements: '要求',
 	careerJobResponsibilities: '职责',

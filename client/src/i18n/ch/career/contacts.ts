@@ -1,3 +1,3 @@
 export default {
-	careerContactsTitle: '人力资源部的联络资料',
+	careerContactsTitle: '人力资源部联系信息',
 }
