@@ -1,4 +1,4 @@
 export default {
-    servicesHeadTitle: '產品與服務',
-    servicesHeadDescription: '我們提供廣泛的產品和服務，以滿足各行業企業的需求。我們的解決方案基於先進技術和多年工業設備供應和生產經驗。',
+    servicesHeadTitle: '产品与服务',
+    servicesHeadDescription: '我们提供广泛的产品和服务，旨在满足各行业企业的需求。我们的解决方案基于先进的技术和多年的工业设备供应与生产经验。',
 }
