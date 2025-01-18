@@ -1,4 +1,4 @@
 export default {
-	newsBannerTitle: 'SA国际',
-	newsBannerText: '—您在工业和技术领域的相关信息和专业知识的来源',
+	newsBannerTitle: '上海亚际机电有限公司',
+	newsBannerText: '—您获取工业与技术领域最新信息和专业知识的来源',
 }

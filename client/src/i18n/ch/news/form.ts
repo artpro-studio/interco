@@ -1,7 +1,7 @@
 export default {
-	newsFormTitle: '您想直接收到最新的新闻和文章到您的电子邮件?',
-	newsFormDescription: '订阅我们的通讯，我们将随时通知您所有重要的事件和更新。',
+	newsFormTitle: '想要通过电子邮件获得最新的新闻与文章吗？',
+	newsFormDescription: '请订阅我们的新闻通讯，我们将及时向您提供所有重要事件和更新信息。',
 	newsFormBtnText: '订阅',
-	newsFormFirstName: '你的名字',
-	newsFormEmail: '你的电子邮件',
+	newsFormFirstName: '您的姓名',
+	newsFormEmail: '您的电子邮件',
 }
