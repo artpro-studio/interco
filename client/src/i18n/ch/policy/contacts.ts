@@ -1,4 +1,4 @@
 export default {
-	policyContactsDescription: '-您对透明度和可靠性的信心',
-	policyContactsInfo: '上海市闵行区新俊环街115号1楼503-505办公室',
+	policyContactsDescription: '透明与可靠的保障',
+	policyContactsInfo: '中国上海市闵行区新骏环路115号1号楼503-505室',
 }

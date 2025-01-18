@@ -1,4 +1,4 @@
 export default {
-	policyContactsDescription: '— Your confidence in transparency and reliability',
-	policyContactsInfo: '115 Xinjunhuan Street, Building 1, offices 503-505, Shanghai, Minhang District, China',
+	policyContactsDescription: '— Confidence in Transparency and Reliability',
+	policyContactsInfo: 'China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505',
 }
