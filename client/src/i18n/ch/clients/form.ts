@@ -1,7 +1,7 @@
 export default {
-	clientsFormTitle: '我如何留下评论？',
-	clientsFormDescription: '填写反馈表或以任何方便的方式与我们联系.',
+	clientsFormTitle: '如何留下反馈？',
+	clientsFormDescription: '填写反馈表格或通过以下方式联系我们：',
 	clientsFormTitleForm: '反馈表格',
-	clientsFormTextForm: '你的意见对我们很重要。 我们一直在努力提高我们的产品和服务的质量，我们将感谢您的反馈和建议。',
-	clientsFormTextBtn: '发送',
+	clientsFormTextForm: '您的意见对我们非常重要。我们始终致力于提升产品和服务的质量，感谢您的反馈与建议。',
+	clientsFormTextBtn: '提交',
 }

@@ -1,7 +1,7 @@
 export default {
-	clientsContactsTitle:'联络资料',
-	clientsContactsSubTitle1:'支援服务',
-	clientsContactsSubTitle2:'备件部',
-	clientsContactsSubTitle3:'一般问题',
-	clientsContactsSubTitle4:'主要办事处地址',
+	clientsContactsTitle:'联系方式',
+	clientsContactsSubTitle1:'客户支持服务：',
+	clientsContactsSubTitle2:'备件部门：',
+	clientsContactsSubTitle3:'一般咨询：',
+	clientsContactsSubTitle4:'总部地址：',
 }
