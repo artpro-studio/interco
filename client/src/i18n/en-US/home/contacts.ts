@@ -1,3 +1,3 @@
 export default {
-	homeContactsText: '— Your guide in the world of innovative industrial solutions',
+	homeContactsText: '— Your Guide to Innovative Industrial Solutions',
 }

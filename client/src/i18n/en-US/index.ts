@@ -25,8 +25,8 @@ import AboutPages from './about'
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
-	menuService: 'Service',
-	menuCompany: 'About company',
+	menuService: 'Services',
+	menuCompany: 'About Us',
 	menuProduct: 'Products',
 	menuProject: 'Projects',
 	menuNews: 'News',

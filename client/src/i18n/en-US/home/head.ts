@@ -1,5 +1,5 @@
 export default {
-	production: 'Production',
+	production: 'Manufacturing',
 	construction: 'Construction',
-	technologies: 'Technologies',
+	technologies: 'Technology',
 }

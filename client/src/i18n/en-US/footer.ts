@@ -3,7 +3,7 @@ export default {
 	footerPolyce: 'Documents and Privacy Policy',
 	footerContact: 'Contacts',
 	footerFaq: 'FAQ',
-	footerStatus: 'Order status',
-	footerPartner: 'How to become a partner',
-	footerJobs: 'To work with us',
+	footerStatus: 'Order Status',
+	footerPartner: 'How to Become a Partner',
+	footerJobs: 'Careers',
 }

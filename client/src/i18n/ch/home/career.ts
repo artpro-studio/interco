@@ -1,4 +1,4 @@
 export default {
-	careerTitle: '职业生涯 SA International',
-	careerText: '加入我们的专业团队，成为引领行业走向未来的创新公司的一员。',
+	careerTitle: '在上海亚际机电有限公司的职业发展',
+	careerText: '加入我们的专业团队，成为引领工业未来的创新企业的一员。',
 }
