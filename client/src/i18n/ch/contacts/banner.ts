@@ -1,5 +1,5 @@
 export default {
 	contactsBannerTitle: 'SA国际',
-	contactsBannerSubTitle: '-永远与你保持联系',
-	contactsBannerDescription: '我们感谢您的时间，并准备在任何情况下帮助您。 无论您身处何地，我们的专家都将为您提供专业支持并回答您的所有问题。',
+	contactsBannerSubTitle: '-随时与您保持联系',
+	contactsBannerDescription: '我们珍惜您的时间，并随时为您提供帮助。无论您身处何地，我们的专家将提供专业的支持并回答您的所有问题。',
 }

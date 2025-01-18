@@ -1,8 +1,8 @@
 export default {
-	contactsCommonTitle: 'Common contacts',
-	contactsCommonGeneral: 'Email for general questions',
-	contactsCommonPartner: 'Email for partners',
-	contactsCommonClient: 'Email for clients',
-	contactsCommonPress: 'Email for the press',
+	contactsCommonTitle: 'General contacts',
+	contactsCommonGeneral: 'Email for General Inquiries',
+	contactsCommonPartner: 'Email for Partners',
+	contactsCommonClient: 'Email for Clients',
+	contactsCommonPress: 'Email for Press',
 	contactsCommonTime: 'Working hours',
 }
