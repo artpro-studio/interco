@@ -1,12 +1,12 @@
 export default {
-    partnersCooperationTitle: '合作條款',
+    partnersCooperationTitle: '合作条件',
 
     partnersCooperationItem1Title: '共同利益',
-    partnersCooperationItem1SubTitle: '雙方策略目標與利益契合',
+    partnersCooperationItem1SubTitle: '双方战略目标和利益一致。',
 
-    partnersCooperationItem2Title: '符合標準',
-    partnersCooperationItem2SubTitle: '願意遵守高標準的品質和道德標準',
+    partnersCooperationItem2Title: '遵守标准',
+    partnersCooperationItem2SubTitle: '愿意遵循高质量和道德标准。',
 
-    partnersCooperationItem3Title: '能力和可靠性',
-    partnersCooperationItem3SubTitle: '成功實施聯合專案的經驗和資源的可用性',
+    partnersCooperationItem3Title: '能力与可靠性',
+    partnersCooperationItem3SubTitle: '拥有成功实施共同项目的经验和资源。',
 }

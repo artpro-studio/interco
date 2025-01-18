@@ -1,4 +1,4 @@
 export default {
-    partnersHeadTitle: '歡迎來到我們目前和潛在合作夥伴的部分',
-    partnersHeadDescription: 'SA International 重視與世界各地的合作夥伴建立長期互利的關係。我們持開放合作態度，願為共同發展、實現共同目標提供靈活有效的解決方案。',
+    partnersHeadTitle: '欢迎来到我们的当前和潜在合作伙伴专区',
+    partnersHeadDescription: 'SA International珍视与全球合作伙伴的长期互利关系。我们始终保持开放的合作态度，致力于提供灵活高效的解决方案，共同实现发展和达成共同目标。',
 }

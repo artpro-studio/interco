@@ -1,4 +1,4 @@
 export default {
-    partnersBannerTitle: 'SA International — ',
-    partnersBannerDescription: '我們共同創造工業和技術的未來',
+    partnersBannerTitle: '上海亚际机电有限公司 — ',
+    partnersBannerDescription: '携手打造未来的工业与技术。',
 }

@@ -1,4 +1,4 @@
 export default {
     partnersBannerTitle: 'SA International — ',
-    partnersBannerDescription: 'Together we create the future of industry and technology',
+    partnersBannerDescription: 'BUILDING THE FUTURE OF INDUSTRY AND TECHNOLOGY TOGETHER',
 }

@@ -1,18 +1,18 @@
 export default {
-    partnersStepTitle: 'Steps to start cooperation',
+    partnersStepTitle: 'Steps to start collaboration',
 
     partnersStepItem1Title: 'Contact us',
-    partnersStepItem1Text: 'Fill out the feedback form or send us an email to partners@inter-sa.com with a brief description of your company and a proposal for cooperation',
+    partnersStepItem1Text: 'Fill out the feedback form or email us at partners@inter-sa.com with a brief description of your company and collaboration proposal.',
 
     partnersStepItem2Title: 'Initial discussion',
-    partnersStepItem2Text: 'Our specialists will contact you to clarify details and identify potential areas of cooperation.',
+    partnersStepItem2Text: 'Our specialists will contact you to clarify details and determine potential areas of collaboration.',
 
     partnersStepItem3Title: 'Meeting or online conference',
-    partnersStepItem3Text: 'We will organize a meeting or video conference for a more detailed discussion of the terms and possibilities of partnership',
+    partnersStepItem3Text: 'We will arrange a meeting or video conference for a more detailed discussion of partnership terms and opportunities.',
 
     partnersStepItem4Title: 'Preparing a proposal',
-    partnersStepItem4Text: 'We will jointly develop a commercial proposal or cooperation plan, taking into account the interests of both parties.',
+    partnersStepItem4Text: "Together, we will develop a commercial proposal or collaboration plan, considering both parties' interests.",
 
-    partnersStepItem5Title: 'Conclusion of the contract',
-    partnersStepItem5Text: 'We draw up a formal partnership agreement defining all terms and obligations',
+    partnersStepItem5Title: 'Contract signing',
+    partnersStepItem5Text: 'Formalize the partnership agreement detailing all terms and responsibilities.',
 }

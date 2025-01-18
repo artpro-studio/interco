@@ -1,12 +1,12 @@
 export default {
-    partnersCooperationTitle: 'Terms of cooperation',
+    partnersCooperationTitle: 'COLLABORATION TERMS',
 
-    partnersCooperationItem1Title: 'Mutual interest',
-    partnersCooperationItem1SubTitle: 'Coincidence of strategic goals and interests of both parties',
+    partnersCooperationItem1Title: 'Mutual Interest:',
+    partnersCooperationItem1SubTitle: 'Alignment of strategic goals and interests of both parties.',
 
-    partnersCooperationItem2Title: 'Compliance with standards',
-    partnersCooperationItem2SubTitle: 'Willingness to adhere to high standards of quality and ethics',
+    partnersCooperationItem2Title: 'Compliance with Standards:',
+    partnersCooperationItem2SubTitle: 'Commitment to high quality and ethical standards.',
 
-    partnersCooperationItem3Title: 'Competence and reliability',
-    partnersCooperationItem3SubTitle: 'Availability of experience and resources for successful implementation of joint projects',
+    partnersCooperationItem3Title: 'Competence and Reliability',
+    partnersCooperationItem3SubTitle: 'Experience and resources for the successful implementation of joint projects.',
 }

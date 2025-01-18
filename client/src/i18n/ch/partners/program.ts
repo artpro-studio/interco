@@ -1,22 +1,22 @@
 export default {
-    partnersProgramTitle: '聯盟計劃',
-    partnersProgramDescription: '我們提供各種形式的合作，根據您的需求和能力量身定制。',
+    partnersProgramTitle: '合作伙伴计划',
+    partnersProgramDescription: '我们提供多种合作形式，旨在满足您的需求和机会。',
 
     partnersProgramSubTitle: '可能的合作形式',
 
-    partnersProgramItem1Title: '交易和分銷',
-    partnersProgramItem1Text1: '成為我們產品在您所在地區的官方代表',
-    partnersProgramItem1Text2: '員工培訓和行銷支持',
+    partnersProgramItem1Title: '可能的合作形式',
+    partnersProgramItem1Text1: '成为我们在您的地区的官方代理商',
+    partnersProgramItem1Text2: '提供员工培训和营销支持。',
 
-    partnersProgramItem2Title: '聯合專案',
-    partnersProgramItem2Text1: '在生產、技術開發和創新領域實施聯合項目',
-    partnersProgramItem2Text2: '共同投資、風險共擔、利潤共擔',
+    partnersProgramItem2Title: '联合项目',
+    partnersProgramItem2Text1: '在生产、技术开发和创新领域实施共同项目。',
+    partnersProgramItem2Text2: '共同投资与风险及收益分配',
 
-    partnersProgramItem3Title: '技術合作夥伴',
-    partnersProgramItem3Text1: '交流經驗和技術以創造新產品和解決方案',
-    partnersProgramItem3Text2: '聯合研發',
+    partnersProgramItem3Title: '技术合作',
+    partnersProgramItem3Text1: '共同开发新产品和解决方案。',
+    partnersProgramItem3Text2: '共同研发与研究',
 
     partnersProgramItem4Title: '物流合作',
-    partnersProgramItem4Text1: '透過我們的 SA Logistics 部門在物流和供應鏈領域進行合作',
-    partnersProgramItem4Text2: '優化運輸和倉儲流程',
+    partnersProgramItem4Text1: '通过我们的上海亚际物流有限公司部门合作，',
+    partnersProgramItem4Text2: '共同优化运输和仓储流程。',
 }

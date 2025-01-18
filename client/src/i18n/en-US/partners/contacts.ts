@@ -1,6 +1,6 @@
 export default {
-    partnersContactsTitle: 'Contacts for communication',
+    partnersContactsTitle: 'Contacts information',
     partnersContactsSubTitle1: 'E-mail',
-    partnersContactsSubTitle3: 'Head office address',
+    partnersContactsSubTitle3: 'Main office address',
     partnersContactsSubTitle4: 'Contact person',
 }

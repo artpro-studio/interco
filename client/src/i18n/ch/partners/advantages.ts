@@ -1,28 +1,28 @@
 export default {
-    partnersAdvantagesTitle: '合作優勢',
-    
-    partnersAdvantagesItem1Title: '廣泛的可能性',
-    partnersAdvantagesItem1SubTitle1: '多學科專業知識',
-    partnersAdvantagesItem1Text1: '我們的業務涉及建築、冶金、採礦、化工和食品加工等多個行業',
-    partnersAdvantagesItem1SubTitle2: '全球影響力',
-    partnersAdvantagesItem1Text2: '我們在中國和俄羅斯的辦事處和代表處，以及計劃向其他地區的擴張，使我們能夠與國際層面的合作夥伴進行有效互動',
-   
-    partnersAdvantagesItem2Title: '個人方法',
-    partnersAdvantagesItem2SubTitle1: '合作靈活',
-    partnersAdvantagesItem2Text1: '我們適應每個合作夥伴的需求，提供個人化的解決方案和條件',
-    partnersAdvantagesItem2SubTitle2: '專案共同開發',
-    partnersAdvantagesItem2Text2: '我們願意考慮各種形式的合作，包括聯合投資、交鑰匙項目和技術合作夥伴關係',
+    partnersAdvantagesTitle: '合作优势',
 
-    partnersAdvantagesItem3Title: '可靠性和品質',
-    partnersAdvantagesItem3SubTitle1: '高標準',
-    partnersAdvantagesItem3Text1: '我們保證產品和服務的品質符合國際標準',
-    partnersAdvantagesItem3SubTitle2: '經驗和專業精神',
-    partnersAdvantagesItem3Text2: '我們的團隊由在各自領域擁有多年經驗的專家組成',
-    
-    partnersAdvantagesItem4Title: '創新與科技',
-    partnersAdvantagesItem4SubTitle1: '先進技術的融合',
-    partnersAdvantagesItem4Text1: '我們使用包括人工智慧在內的現代技術來提高效率和競爭力',
-    partnersAdvantagesItem4SubTitle2: '開發新的解決方案',
-    partnersAdvantagesItem4Text2: '創新項目合作以及將新技術推向市場'
+    partnersAdvantagesItem1Title: '广泛的机会领域',
+    partnersAdvantagesItem1SubTitle1: '跨行业专业知识',
+    partnersAdvantagesItem1Text1: '我们在多个行业领域拥有丰富的经验，包括建筑、冶金、矿业、化工和食品工业等。',
+    partnersAdvantagesItem1SubTitle2: '全球布局',
+    partnersAdvantagesItem1Text2: '我们在中国和俄罗斯设有办事处和分支机构，并计划扩展至其他地区，以便与国际合作伙伴进行有效的互动。',
+
+    partnersAdvantagesItem2Title: '个性化合作方式',
+    partnersAdvantagesItem2SubTitle1: '灵活的合作',
+    partnersAdvantagesItem2Text1: '我们根据每个合作伙伴的需求提供个性化的解决方案和合作条款。',
+    partnersAdvantagesItem2SubTitle2: '共同发展项目',
+    partnersAdvantagesItem2Text2: '我们愿意考虑多种合作形式，包括共同投资、"交钥匙"项目和技术合作伙伴关系。',
+
+    partnersAdvantagesItem3Title: '可靠性与质量',
+    partnersAdvantagesItem3SubTitle1: '高标准',
+    partnersAdvantagesItem3Text1: '我们保证产品和服务符合国际标准。',
+    partnersAdvantagesItem3SubTitle2: '经验与专业性',
+    partnersAdvantagesItem3Text2: '我们的团队由经验丰富的专家组成，具备在各自领域的专业知识。',
+
+    partnersAdvantagesItem4Title: '创新与技术',
+    partnersAdvantagesItem4SubTitle1: '前沿技术整合',
+    partnersAdvantagesItem4Text1: '我们采用包括人工智能在内的现代技术，提升效率和竞争力。',
+    partnersAdvantagesItem4SubTitle2: '新解决方案的开发',
+    partnersAdvantagesItem4Text2: '我们与合作伙伴共同开展创新项目，并将新技术引入市场。'
 
 }
