@@ -10,14 +10,6 @@ export const menuData = [
 		path: RouterName.About,
 	},
 	{
-		title: 'menuProduct',
-		path: RouterName.Services,
-	},
-	{
-		title: 'menuProject',
-		path: RouterName.Services,
-	},
-	{
 		title: 'menuNews',
 		path: RouterName.News,
 	},

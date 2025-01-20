@@ -23,7 +23,7 @@ import AboutPages from './about'
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
-	menuService: 'Услуги',
+	menuService: 'Продукты и Услуги',
 	menuCompany: 'О компании',
 	menuProduct: 'Продукция',
 	menuProject: 'Проекты',
