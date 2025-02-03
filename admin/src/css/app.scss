@@ -1,0 +1,338 @@
+// app global css in SCSS form
+@import url('swiper/css');
+@import url('vue-datepicker-next/index.css');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --q-gray: #989ba8;
+    --q-gray-light: #d5d6de;
+    --q-text: #181e38;
+    --q-white: #f7f7fa;
+    --q-blue-light: #e3e7f9;
+    --q-black-gray: #3a416f;
+    --q-greadient-black: linear-gradient(310deg, #141727, #3a416f);
+}
+
+.text-gray {
+    color: var(--q-gray);
+}
+
+.text-text {
+    color: var(--q-text);
+}
+
+.text-black-gray {
+    color: var(--q-black-gray);
+}
+.full {
+    width: 100%;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f7f7fa;
+    color: var(--q-text);
+    font-family: 'Open Sans', sans-serif !important;
+
+    @media (max-width: 996px) {
+        font-size: 12px;
+    }
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.q-layout__section--marginal {
+    color: var(--q-text);
+}
+
+.gradient-black {
+    background-image: var(--q-greadient-black);
+    color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+
+    @media (max-width: 1024px) {
+        padding: 0 10px;
+    }
+}
+.swiper-slide {
+    width: auto !important;
+}
+.container__wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.section-create-form {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: none !important;
+    margin-bottom: 50px;
+}
+.form-edit {
+    padding-bottom: 120px;
+    &__buttons {
+        position: fixed;
+        bottom: 0;
+        box-shadow: 0 0px 30px 0 rgb(0 0 0 / 7%);
+        right: 0;
+        z-index: 2000;
+        width: calc(100% - 90px);
+        background-color: #fff;
+        border-radius: 10px 10px 0 0;
+        padding: 20px 0;
+
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+    }
+}
+// Заголовки
+.text-h1 {
+    font-size: 2.5em;
+    line-height: 1;
+    font-weight: bold;
+}
+.text-h2 {
+    font-size: 2em;
+    line-height: 1;
+    font-weight: bold;
+}
+.text-h3 {
+    font-size: 1.6em;
+    line-height: 1;
+    font-weight: bold;
+}
+.text-h4 {
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: bold;
+}
+.text-h5 {
+    font-size: 1em;
+    line-height: 1;
+    font-weight: bold;
+}
+.text-h6 {
+    font-size: 0.8em;
+    line-height: 1;
+    font-weight: bold;
+}
+
+// Карточка
+.q-card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    border-radius: 12px;
+}
+
+.q-card__section--vert {
+    padding: 25px;
+}
+
+// Поля формы
+.q-field--outlined {
+    .q-field__control {
+        border-radius: 5px;
+
+        &:before {
+            border: 1px solid var(--q-blue-light);
+        }
+    }
+}
+
+// Кнопки
+@keyframes animationBtnCircle {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.7);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.q-btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-transform: none;
+
+    &.q-btn--round {
+        border-radius: 50%;
+        padding: 0;
+    }
+
+    &::before {
+        box-shadow: none;
+    }
+
+    &.circle {
+        border-radius: 50%;
+        min-width: auto;
+        padding: 12px;
+
+        &:before {
+            box-shadow: none;
+            width: 140%;
+            height: 140%;
+            background-color: var(--q-primary);
+            opacity: 0.3;
+            top: -20%;
+            left: -20%;
+            transform: scale(1);
+            animation: animationBtnCircle 1.4s;
+            animation-iteration-count: infinite;
+        }
+    }
+
+    &.fixed {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+
+        &.is-form {
+            bottom: 100px;
+        }
+    }
+
+    &.full {
+        width: 100%;
+    }
+}
+
+// Сайдбар
+.q-drawer--left.q-drawer--bordered {
+    border: none;
+}
+
+// Таблица
+.q-table__card {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: none;
+    border-radius: 7px;
+}
+.q-table--horizontal-separator {
+    thead {
+        th {
+            color: var(--q-text);
+            font-weight: 600;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    }
+
+    a {
+        color: $primary;
+        text-decoration: none;
+    }
+}
+// Модальное окно
+.main-modal {
+    border-radius: 10px !important;
+
+    &__top {
+        text-align: right;
+        padding: 0px;
+        position: relative;
+        margin-bottom: 10px;
+
+        &__btn {
+            width: 45px !important;
+            min-width: 45px !important;
+            max-width: 45px !important;
+            height: 45px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+        }
+    }
+
+    &__header {
+        &__desc {
+            font-size: 0.9em;
+        }
+    }
+
+    .q-table__card {
+        box-shadow: none;
+    }
+}
+
+.q-tooltip {
+    background-color: var(--q-primary);
+    z-index: 10001;
+}
+.q-field {
+    &--float {
+        .q-field__label {
+            transform: translateY(-125%) scale(0.75);
+            background-color: #f9f9fc;
+            z-index: 2;
+        }
+    }
+    &--labeled {
+        .q-field__native {
+            padding-top: 8px;
+        }
+    }
+    &--focused {
+        .q-field__prepend {
+            .q-icon {
+                color: var(--q-primary);
+            }
+        }
+    }
+    &--auto-height {
+        &.q-field--labeled {
+            .q-field__control-container {
+                padding-top: 8px;
+            }
+        }
+    }
+}
+.q-checkbox {
+    &__inner {
+        min-width: 36px;
+        width: 36px;
+        height: 36px;
+    }
+}
+.q-dialog {
+    &__backdrop {
+        background: #181e38;
+        opacity: 0.7;
+    }
+}
+
+.q-tab-panels {
+    background-color: transparent;
+}
+
+.tox-tinymce-aux {
+    z-index: 10000 !important;
+}
+
+.mx-datepicker {
+    width: 100%;
+}

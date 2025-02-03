@@ -23,6 +23,11 @@ node_modules
 /client/yarn-debug.log*
 /client/yarn-error.log*
 
+/server/dist
+/server/node_modules
+/admin/node_modules
+/admin/.vscode
+
 # Editor directories and files
 .idea
 *.suo
