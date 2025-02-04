@@ -66,6 +66,10 @@ export class PagesService {
 
     // Создание страницы
     async create(body: PagesDto): Promise<ResultPagesDto> {
+        const pagesForSlug = await this.pagesRepositoryService.getForSlug(body.slug);
+        if (pagesForSlug) {
+            return {isSuccess: false, entity: null, message: 'Страница с таким символьным кодом уже создана'}
+        }
         const entity = this.pagesRepository.create(body);
         const page = await this.pagesRepository.save(entity);
 
