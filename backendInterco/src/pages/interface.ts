@@ -19,3 +19,15 @@ export enum ITypePagesParams {
     IMAGE = 'image',
     GALLARY = 'gallary',
 }
+
+export enum IFieldTypeSeo {
+    TITLE = 'title',
+    DESCRIPTION = 'description',
+    KEYWORDS = 'keywords'
+}
+
+export enum ILangTypeSeo {
+    RU = 'ru',
+    EN = 'en',
+    CH = 'ch'
+}

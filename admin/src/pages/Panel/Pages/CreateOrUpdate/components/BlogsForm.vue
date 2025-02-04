@@ -10,6 +10,7 @@
     import FormButtons from 'src/components/UI/FormButtons.vue';
     import ModalsInfo from 'src/components/Modals/ModalsInfo.vue';
     import SelectPagesType from '../../components/Selects/SelectPagesType.vue';
+    import SeoParams from './SeoParams/SeoParams.vue';
     import { templatePages } from '@/template';
 
     interface IProps {
@@ -34,10 +35,8 @@
         description: '',
         slug: '',
         pagePath: '',
-        seoTitle: '',
-        seoDescription: '',
-        seoKeywords: '',
         type: null,
+        seo: null,
     });
 
     const isOpenModalInfo: Ref<boolean> = ref(false);
@@ -122,15 +121,11 @@
                     <editor :model-value="localForm.description" @update="localForm.description = $event" />
                 </div>
                 <h4 class="text-h5 q-mb-lg">SEO парамметры</h4>
-                <div class="section-create-form__field q-mb-md">
-                    <q-input color="primary" v-model="localForm.seoTitle" label="Заголовок" outlined lazy-rules />
-                </div>
-                <div class="section-create-form__field q-mb-md">
-                    <q-input color="primary" v-model="localForm.seoDescription" label="Описание" outlined />
-                </div>
-                <div class="section-create-form__field q-mb-md">
-                    <q-input color="primary" v-model="localForm.seoKeywords" label="Ключевые слова" outlined />
-                </div>
+                <seo-params
+                    :data="form?.seo?.params"
+                    @on-change="localForm.seo = {
+                        params: $event
+                    }" />
             </q-form>
             <form-buttons @success="onChange" />
         </q-card-section>

@@ -1,5 +1,5 @@
-const fs = require('fs');
+// const fs = require('fs');
 
-fs.cp('../client/src/template', './src/template', { recursive: true }, (err) => {
-    console.log(err);
-});
+// fs.cp('../client/src/template', './src/template', { recursive: true }, (err) => {
+//     console.log(err);
+// });

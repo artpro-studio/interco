@@ -15138,10 +15138,10 @@ export enum Role {
 }
 
 export interface UserDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Активный пользователь */
     isActive: boolean | null;
     /** Фамилия */
@@ -15252,10 +15252,10 @@ export interface RegisterDto {
 }
 
 export interface SettingsContactsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Контент */
     content: string;
     /** Описание */
@@ -15267,10 +15267,10 @@ export interface SettingsContactsDto {
 }
 
 export interface FullSettingsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название сайта */
     title: string;
     /** Описание сайта */
@@ -15362,10 +15362,10 @@ export interface ResultSettingsContactsListDto {
 }
 
 export interface SettingsMenuDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название меню */
     title: string;
     /** Hash */
@@ -15401,10 +15401,10 @@ export interface ResponseListSettingsMenuDto {
 }
 
 export interface SettingsMenuItemDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название меню */
     title: string;
     /** Hash */
@@ -15416,10 +15416,10 @@ export interface SettingsMenuItemDto {
 }
 
 export interface FullSettingsMenuDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название меню */
     title: string;
     /** Hash */
@@ -15467,14 +15467,47 @@ export interface ResultSettingsMenuItemDto {
     [key: string]: any;
 }
 
+export enum ILangTypeSeo {
+    Ru = "ru",
+    En = "en",
+    Ch = "ch",
+}
+
+export enum IFieldTypeSeo {
+    Title = "title",
+    Description = "description",
+    Keywords = "keywords",
+}
+
+export interface PagesSeoParamsDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    content: string | null;
+    lang: ILangTypeSeo | null;
+    fieldType: IFieldTypeSeo | null;
+    pagesSeo?: PagesSeoDto | null;
+
+    [key: string]: any;
+}
+
+export interface PagesSeoDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    page?: PagesDto | null;
+    params?: PagesSeoParamsDto[] | null;
+
+    [key: string]: any;
+}
+
 export interface PagesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
-    seoTitle: string | null;
-    seoDescription: string | null;
-    seoKeywords: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название */
     name: string | null;
     /** Описание */
@@ -15485,15 +15518,17 @@ export interface PagesDto {
     pagePath: string | null;
     /** Тип */
     type: PagesDtoType | null;
+    /** SEO */
+    seo?: PagesSeoDto | null;
 
     [key: string]: any;
 }
 
 export interface FullSettingsMenuItemDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название меню */
     title: string;
     /** Hash */
@@ -15524,10 +15559,10 @@ export interface ResponseSettingsMenuItemDto {
 }
 
 export interface CreateSettingsMenuItemDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название меню */
     title: string;
     /** Hash */
@@ -15545,10 +15580,10 @@ export interface CreateSettingsMenuItemDto {
 }
 
 export interface RecordsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     seoTitle: string | null;
     seoDescription: string | null;
     seoKeywords: string | null;
@@ -15563,13 +15598,10 @@ export interface RecordsDto {
 }
 
 export interface FullPagesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
-    seoTitle: string | null;
-    seoDescription: string | null;
-    seoKeywords: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название */
     name: string | null;
     /** Описание */
@@ -15580,6 +15612,8 @@ export interface FullPagesDto {
     pagePath: string | null;
     /** Тип */
     type: FullPagesDtoType | null;
+    /** SEO */
+    seo?: PagesSeoDto | null;
     /** Записи в блоге */
     records: RecordsDto[] | null;
 
@@ -15648,10 +15682,10 @@ export enum CommentStatus {
 }
 
 export interface PagesCommentsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Комментарий */
     content: string | null;
     /** Тип */
@@ -15681,10 +15715,10 @@ export enum ITypePagesParams {
 }
 
 export interface PagesParamsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название парамметра */
     name: string;
     /** Символьный код */
@@ -15698,10 +15732,10 @@ export interface PagesParamsDto {
 }
 
 export interface FullPagesParamsValueDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Значение */
     value: string;
     /** Json с данными */
@@ -15715,10 +15749,10 @@ export interface FullPagesParamsValueDto {
 }
 
 export interface FullRecordsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     seoTitle: string | null;
     seoDescription: string | null;
     seoKeywords: string | null;
@@ -15736,6 +15770,8 @@ export interface FullRecordsDto {
     author: UserDto | null;
     /** Запись(статья) */
     paramsValue: FullPagesParamsValueDto[];
+    /** Парамметры */
+    params: any | null;
 
     [key: string]: any;
 }
@@ -15756,10 +15792,10 @@ export interface ResultRecordsFullDto {
 }
 
 export interface CreateRecordsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     seoTitle: string | null;
     seoDescription: string | null;
     seoKeywords: string | null;
@@ -15798,7 +15834,7 @@ export interface RecordsOptionDto {
     /** Количество */
     limit: number;
     /** Ответ */
-    entity: RecordsDto[] | null;
+    entity: FullRecordsDto[] | null;
 
     [key: string]: any;
 }
@@ -15834,10 +15870,10 @@ export interface ResultPagesCommentsDto {
 }
 
 export interface CreatePagesCommentsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Комментарий */
     content: string | null;
     /** Запись */
@@ -15875,10 +15911,10 @@ export interface PagesCommentsListDto {
 }
 
 export interface PagesComponentsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Порядок */
     order: number;
     /** Название компонента */
@@ -15940,10 +15976,10 @@ export interface PagesComponentsListDto {
 }
 
 export interface CreateCommentsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Комментарий */
     content: string | null;
     /** Запись */
@@ -15955,10 +15991,10 @@ export interface CreateCommentsDto {
 }
 
 export interface FullPagesParamsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название парамметра */
     name: string;
     /** Символьный код */
@@ -16017,10 +16053,10 @@ export interface ResultPagesParamsDto {
 }
 
 export interface CreatePagesParamsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название парамметра */
     name: string;
     /** Символьный код */
@@ -16047,10 +16083,10 @@ export enum FileType {
 
 export interface CreateLibraryFilesDto {
     /** ID */
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Путь к файлу */
     path: string | null;
     /** Тип файла */
@@ -16126,10 +16162,10 @@ export interface ResponseLibraryFilesList {
 }
 
 export interface ReferenceBookAttributesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название атрибута */
     name: string;
     /** Символьный код */
@@ -16141,19 +16177,19 @@ export interface ReferenceBookAttributesDto {
 }
 
 export interface ReferenceBookInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
 
     [key: string]: any;
 }
 
 export interface FullReferenceBookDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название справочник */
     name: string;
     /** Символьный код */
@@ -16208,10 +16244,10 @@ export interface ResultReferenceBookDto {
 }
 
 export interface ReferenceBookDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название справочник */
     name: string;
     /** Символьный код */
@@ -16221,10 +16257,10 @@ export interface ReferenceBookDto {
 }
 
 export interface ReferenceBookInstancesValueDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Значение */
     value: string;
     /** Json с данными */
@@ -16234,10 +16270,10 @@ export interface ReferenceBookInstancesValueDto {
 }
 
 export interface FullReferenceBookAttributesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название атрибута */
     name: string;
     /** Символьный код */
@@ -16294,10 +16330,10 @@ export interface ResultReferenceBookAttributesDto {
 }
 
 export interface CreateReferenceBookAttributesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название атрибута */
     name: string;
     /** Символьный код */
@@ -16311,10 +16347,10 @@ export interface CreateReferenceBookAttributesDto {
 }
 
 export interface FullReferenceBookInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Справочник */
     referenceBook: ReferenceBookDto;
     /** Значения */
@@ -16365,19 +16401,19 @@ export interface ResultReferenceBookInstanceBaseDto {
 }
 
 export interface CreateReferenceBookInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
 
     [key: string]: any;
 }
 
 export interface CallbackDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название формы */
     name: string;
     /** Символьный код */
@@ -16459,10 +16495,10 @@ export enum ICallbackFiledAttribute {
 }
 
 export interface CallbackFieldDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название поля */
     name: string;
     /** Тип */
@@ -16517,10 +16553,10 @@ export interface ResultCallbackFieldDto {
 }
 
 export interface CreateCallbackFieldDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Название поля */
     name: string;
     /** Тип */
@@ -16536,10 +16572,10 @@ export interface CreateCallbackFieldDto {
 }
 
 export interface CallbackInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
 
     [key: string]: any;
 }
@@ -16560,10 +16596,10 @@ export interface ResultCallbackInstancesBaseDto {
 }
 
 export interface FullCallbackInstancesValueDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Значение */
     value: string;
     /** Запись */
@@ -16575,10 +16611,10 @@ export interface FullCallbackInstancesValueDto {
 }
 
 export interface FullCallbackInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** Справочник */
     callback: CallbackDto;
     /** Значения */
@@ -16614,19 +16650,19 @@ export interface CallbackInstancesListBaseDto {
 }
 
 export interface CreateCallbackInstancesDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
 
     [key: string]: any;
 }
 
 export interface AmoCustmoFieldsDto {
-    id: number | null;
-    createdAt: string | null;
-    updatedAt: string | null;
-    deletedAt: string | null;
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
     /** ID кастомного поля */
     amoID: number;
     /** Атрибут поля */

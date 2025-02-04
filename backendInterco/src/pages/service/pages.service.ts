@@ -7,11 +7,18 @@ import { PagesDto } from '../dto/pages/create-pages.dto';
 import { BaseQuery, ResultDto } from 'src/dto/reponse.dto';
 import { DropDownDto, ResultDropDownDto } from 'src/dto/response-drop-down.dto';
 import { PagesType } from '../interface';
+import { PagesSeoRepository } from '../repository/pages-seo.respository';
+import { PagesSeoParamsRepository } from '../repository/pages-seo-params.repository';
+import { PagesRepository } from '../repository/pages.repository';
+import e from 'express';
 
 @Injectable()
 export class PagesService {
     constructor(
         @InjectRepository(PagesEntity) private readonly pagesRepository: Repository<PagesEntity>,
+        private readonly pagesRepositoryService: PagesRepository,
+        private readonly pagesSeoRepository: PagesSeoRepository,
+        private readonly pagesSeoParamsRepository: PagesSeoParamsRepository,
     ){}
 
     async getPagesBlogs(): Promise<PagesListDto> {
@@ -52,12 +59,7 @@ export class PagesService {
 
     // Получение одной страницы
     async getOne(id: number): Promise<ResultPagesFullDto> {
-        const entity = await this.pagesRepository.findOne({
-            where: {
-                id,
-            },
-            relations: ['records']
-        })
+        const entity = await this.pagesRepositoryService.getOne(id);
 
         return {isSuccess: !!entity, entity, message: !entity ? 'Запись не найдна' : ''}
     }
@@ -65,23 +67,62 @@ export class PagesService {
     // Создание страницы
     async create(body: PagesDto): Promise<ResultPagesDto> {
         const entity = this.pagesRepository.create(body);
-        await this.pagesRepository.save(entity);
+        const page = await this.pagesRepository.save(entity);
+
+        if (body.seo.params.length) {
+            const pagesSeo = await this.pagesSeoRepository.create({
+                page
+            });
+
+            body.seo.params.forEach((el) => {
+                this.pagesSeoParamsRepository.create({
+                    ...el,
+                    pagesSeo
+                })
+            })
+
+            this.pagesRepositoryService.update({...entity, seo: pagesSeo})
+        }
 
         return {isSuccess: true, entity}
     }
 
     // Обновление страницы
     async update(body: PagesDto): Promise<ResultPagesDto> {
-        const page = await this.pagesRepository.findOne({
-            where: {
-                id: body.id,
-            },
-            relations: ['records']
-        })
+        const page = await this.pagesRepositoryService.getOne(body.id);
         const entity = {
             ...page,
             ...body,
         };
+        console.log('00');
+        let pagesSeo = page.seo;
+
+        if (!pagesSeo && body.seo.params.length) {
+            pagesSeo = await this.pagesSeoRepository.create({
+                page
+            })
+            entity.seo = pagesSeo;
+        }
+
+        for (let el of body.seo.params) {
+            if (el.id) {
+                const find = page.seo.params.find((item) => item.id === el.id);
+                if (find && find.content !== el.content) {
+                    this.pagesSeoParamsRepository.update({
+                        ...find,
+                        ...el,
+                    })
+                }
+            } else {
+                const param = await this.pagesSeoParamsRepository.getParamForPage(pagesSeo.id, el.lang, el.fieldType);
+                if (!param) {
+                    this.pagesSeoParamsRepository.create({
+                        ...el,
+                        pagesSeo
+                    })
+                }
+            }
+        }
         await this.pagesRepository.save(entity);
 
         return {isSuccess: true, entity}

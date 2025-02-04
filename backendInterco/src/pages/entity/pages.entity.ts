@@ -1,18 +1,18 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BaseSeoEntity } from "src/entity/base-seo.entity";
 import { DefaultBaseEntity } from "src/entity/base.entity";
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
 import { PagesType } from "../interface";
 import { RecordsEntity } from "./records.entity";
 import { PagesComponentsEntity } from "./pages-components.entity";
 import { SettingsMenuItemEntity } from "src/settings/entity/menu/settings-menu-item.entity";
 import { PagesParamsValueEntity } from "./pages-params-value.entity";
 import { PagesParamsEntity } from "./pages-params.entity";
+import { PagesSeoEntity } from "./pages-seo.entity";
 
 @Entity({
     name: 'pages'
 })
-export class PagesEntity extends BaseSeoEntity {
+export class PagesEntity extends DefaultBaseEntity {
     @ApiProperty({ example: 'Название', nullable: false, description: 'Название' })
     @Column({ nullable: false, length: 1024 })
     name: string;
@@ -48,4 +48,9 @@ export class PagesEntity extends BaseSeoEntity {
     @ApiProperty({ description: 'Парамметры' })
     @OneToMany(() => PagesParamsEntity, (paramsValue) => paramsValue.pages)
     params: PagesParamsEntity[];
+
+    @ApiProperty({ description: 'Сео парамметры' })
+    @OneToOne(() => PagesSeoEntity)
+    @JoinColumn()
+    seo: PagesSeoEntity;
 }

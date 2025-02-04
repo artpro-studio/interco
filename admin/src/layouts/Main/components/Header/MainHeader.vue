@@ -1,7 +1,6 @@
 <script lang="ts" setup>
     import { RouteLocationMatched, RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
     import { computed, onMounted, onUnmounted, reactive, ref, Ref, watch } from 'vue';
-    import HeaderSearch from 'layouts/Main/components/Header/HeaderSearch.vue';
 
     const route = useRoute();
 
@@ -14,7 +13,6 @@
     const head = reactive({
         title: '',
     });
-    const isOpenSearch: Ref<boolean> = ref(false);
     const isScroll: Ref<boolean> = ref(false);
 
     watch(route, (newRouter: RouteLocationNormalizedLoaded) => {
@@ -70,7 +68,6 @@
                     </div>
                     <div class="col-4">
                         <div class="main-header__mobile__right text-right">
-                            <q-btn flat round dense icon="search" class="main-header__settings" size="14px" @click="isOpenSearch = true" />
                             <q-btn flat round dense icon="settings" class="main-header__settings q-ml-sm" size="12px" />
                         </div>
                     </div>
@@ -90,20 +87,9 @@
                             <h1 class="text-dark">{{ head.title }}</h1>
                         </div>
                     </div>
-                    <div class="col col-lg-7 col-md-6 col-sm-7 hidden-mobile">
-                        <div class="main-header__right">
-                            <div class="main-header__right__body row items-center justify-end no-wrap">
-                                <header-search />
-                                <q-icon class="main-header__settings q-ml-md" name="settings" />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <q-dialog v-model="isOpenSearch">
-            <header-search />
-        </q-dialog>
     </q-header>
 </template>
 <style lang="scss">

@@ -5,7 +5,7 @@
         CreateSettingsDto,
         getApiClientInitialParams,
         SettingsControllerClient,
-        UserDtoRole,
+        Role,
     } from '../../../ApiClient/ApiClient';
     import useValidationRules from 'src/helpers/useValidationRules';
     import { useRouter } from 'vue-router';
@@ -41,7 +41,7 @@
             middleName: '',
             email: '',
             password: '',
-            role: UserDtoRole.Admin,
+            role: Role.Admin,
         },
     });
     const tab: Ref<string> = ref('settings');

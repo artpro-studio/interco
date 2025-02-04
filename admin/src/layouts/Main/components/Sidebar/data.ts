@@ -32,36 +32,6 @@ export const dataMenu: IMenuContent[] = [
         ],
     },
     {
-        name: 'Каталог',
-        content: [
-            {
-                name: 'Товары',
-                icon: 'shopping_cart',
-                path: RouterName.CatalogProducts,
-            },
-            {
-                name: 'Разделы',
-                icon: 'list',
-                path: RouterName.CatalogSection,
-            },
-            {
-                name: 'Заказы',
-                icon: 'store',
-                path: RouterName.Orders,
-            },
-            {
-                name: 'Оплата',
-                icon: 'add_card',
-                path: RouterName.Payments,
-            },
-            {
-                name: 'Настройки',
-                icon: 'settings',
-                path: RouterName.CatalogProperty,
-            },
-        ],
-    },
-    {
         name: 'Страницы',
         content: [
             {

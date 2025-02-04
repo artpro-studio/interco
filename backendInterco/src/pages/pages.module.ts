@@ -22,7 +22,13 @@ import { PagesParamsController } from './controller/pages-params.controller';
 import { PagesParamsValueRepository } from './repository/pages-params-value.repository';
 import { RecordsRepository } from './repository/records.repository';
 import { PagesRepository } from './repository/pages.repository';
+import { PagesSeoEntity } from './entity/pages-seo.entity';
+import { PagesSeoParamsEntity } from './entity/pages-seo-params.entity';
+import { PagesSeoRepository } from './repository/pages-seo.respository';
+import { PagesSeoParamsRepository } from './repository/pages-seo-params.repository';
 
+const services = [PagesService,  RecordsService, PagesCommentsService, PagesComponentsService, PagesParamsService];
+const respositorys = [PagesRepository, RecordsRepository, PagesParamsRepository, PagesParamsValueRepository, PagesSeoRepository, PagesSeoParamsRepository];
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -31,12 +37,14 @@ import { PagesRepository } from './repository/pages.repository';
         PagesCommentsEntity,
         PagesComponentsEntity,
         PagesParamsEntity,
-        PagesParamsValueEntity
+        PagesParamsValueEntity,
+        PagesSeoEntity,
+        PagesSeoParamsEntity,
     ]),
     forwardRef(() => UserModule)
   ],
   controllers: [PagesController, RecordsController, PagesCommentsController, PagesComponentsController, PagesPublicController, PagesParamsController],
-  providers: [PagesService, PagesRepository, RecordsService, RecordsRepository, PagesCommentsService, PagesComponentsService, PagesParamsService, PagesParamsRepository, PagesParamsValueRepository],
+  providers: [...services, ...respositorys],
   exports: [PagesService]
 })
 export class PagesModule {}

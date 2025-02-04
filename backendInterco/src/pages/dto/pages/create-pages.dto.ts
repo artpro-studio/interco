@@ -3,8 +3,12 @@ import { BaseSeoDto } from "src/dto/base-seo.dto";
 import { PagesType } from "src/pages/interface";
 import { RecordsDto } from "../records/create-records.dto";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { DefaultBaseDto } from "src/dto/base.dto";
+import { PagesSeoEntity } from "src/pages/entity/pages-seo.entity";
+import { JoinColumn, OneToOne } from "typeorm";
+import { PagesSeoDto } from "../seo/pages-seo.dto";
 
-export class PagesDto extends BaseSeoDto {
+export class PagesDto extends DefaultBaseDto {
     @ApiProperty({ example: 'Название', nullable: true, description: 'Название' })
     @IsNotEmpty({message: 'Название обьязательное поле'})
     @IsString({message: 'Название должен быть строкой'})
@@ -14,6 +18,8 @@ export class PagesDto extends BaseSeoDto {
     description: string;
 
     @ApiProperty({ example: 'test', nullable: true, description: 'Символьный код' })
+    @IsNotEmpty({message: 'Символьный код обьязательное поле'})
+    @IsString({message: 'Символьный код должен быть строкой'})
     slug: string;
 
     @ApiProperty({ example: '/pages/News/index.vue', nullable: true, description: 'Путь к странице компонента' })
@@ -23,6 +29,8 @@ export class PagesDto extends BaseSeoDto {
     @IsNotEmpty({message: 'Тип обьязательное поле'})
     type: PagesType;
 
+    @ApiProperty({ type: () => PagesSeoDto, required: false, nullable: true, description: 'SEO' })
+    seo?: PagesSeoDto;
 }
 
 export class FullPagesDto extends PagesDto {
