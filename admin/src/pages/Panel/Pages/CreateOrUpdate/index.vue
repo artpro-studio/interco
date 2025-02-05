@@ -10,6 +10,7 @@
     import CustomModals from '@/components/Modals/CustomModals.vue';
     import CommentsTable from '../components/Comments/CommentsTable.vue';
     import TablePagesParams from './components/PagesParams/TablePagesParams.vue';
+    import TableIblock from './components/Iblock/TableIblock.vue';
 
     const route = useRoute();
     const router = useRouter();
@@ -69,6 +70,7 @@
         <div class="product-create form-edit pages-edit-components" v-else>
             <q-tabs v-model="tab" color="primary" active-color="primary" dense swipeable inline-label @update:model-value="changeTab">
                 <q-tab name="form" icon="settings" label="Основные настройки" />
+                <q-tab v-if="route.name === RouterName.PagesEdit" name="iblock" icon="tune" label="Информационные блоки" />
                 <q-tab v-if="route.name === RouterName.PagesEdit && form?.type === PagesDtoType.Blog" name="params" icon="tune" label="Парамметры" />
                 <q-tab v-if="route.name === RouterName.PagesEdit && form?.type === PagesDtoType.Blog" name="records" icon="tune" label="Статьи" />
                 <q-tab v-if="route.name === RouterName.PagesEdit && form?.type === PagesDtoType.Blog" name="comments" icon="tune" label="Комментарии" />
@@ -79,6 +81,9 @@
                         <q-btn color="primary" @click="isEditLanding = !isEditLanding">Редактировать лендинг</q-btn>
                     </div>
                     <blogs-form :id="id" :form="form" />
+                </q-tab-panel>
+                <q-tab-panel name="iblock">
+                    <table-iblock :page="form" />
                 </q-tab-panel>
                 <q-tab-panel name="params">
                     <table-pages-params />

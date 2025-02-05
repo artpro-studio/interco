@@ -8,6 +8,7 @@ import { SettingsMenuItemEntity } from "src/settings/entity/menu/settings-menu-i
 import { PagesParamsValueEntity } from "./pages-params-value.entity";
 import { PagesParamsEntity } from "./pages-params.entity";
 import { PagesSeoEntity } from "./pages-seo.entity";
+import { PagesIblockEntity } from "./pages-iblock.entity";
 
 @Entity({
     name: 'pages'
@@ -48,6 +49,10 @@ export class PagesEntity extends DefaultBaseEntity {
     @ApiProperty({ description: 'Парамметры' })
     @OneToMany(() => PagesParamsEntity, (paramsValue) => paramsValue.pages)
     params: PagesParamsEntity[];
+
+    @ApiProperty({ description: 'Информационные блоки' })
+    @OneToMany(() => PagesIblockEntity, (iblock) => iblock.page)
+    iblocks: PagesIblockEntity[];
 
     @ApiProperty({ description: 'Сео парамметры' })
     @OneToOne(() => PagesSeoEntity)

@@ -20,6 +20,11 @@ export enum ITypePagesParams {
     GALLARY = 'gallary',
 }
 
+export enum IIblockField {
+    TEXT = 'text',
+    ARRAY = 'array',
+}
+
 export enum IFieldTypeSeo {
     TITLE = 'title',
     DESCRIPTION = 'description',
@@ -27,6 +32,13 @@ export enum IFieldTypeSeo {
 }
 
 export enum ILangTypeSeo {
+    RU = 'ru',
+    EN = 'en',
+    CH = 'ch'
+}
+
+
+export enum ILangPages {
     RU = 'ru',
     EN = 'en',
     CH = 'ch'

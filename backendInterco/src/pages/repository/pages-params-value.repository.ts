@@ -4,7 +4,9 @@ import { Repository } from "typeorm";
 import { PagesParamsDto } from "../dto/pages-params/pages-params.dto";
 import { RecordsDto } from "../dto/records/create-records.dto";
 import { PagesParamsValueDto } from "../dto/pages-params-value/pages-params-value.dto";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class PagesParamsValueRepository {
     constructor(
         @InjectRepository(PagesParamsValueEntity) private readonly pagesParamsValueRepository: Repository<PagesParamsValueEntity>
