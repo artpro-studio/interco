@@ -42,8 +42,18 @@ import { PagesIblockRecordsFieldRepository } from './repository/pages-iblock-rec
 import { PagesIblockRecordsFieldValueRepository } from './repository/pages-iblock-records-field-value.repository';
 import { PagesIblockRecordsController } from './controller/pages-iblock-recrods.controller';
 import { PagesIblockRecordsService } from './service/pages-iblock-records.service';
+import { PagesSeoService } from './service/pages-seo.service';
 
-const services = [PagesService,  RecordsService, PagesCommentsService, PagesComponentsService, PagesParamsService, PagesIblockService, PagesIblockRecordsService];
+const services = [
+    PagesService,
+    RecordsService,
+    PagesCommentsService,
+    PagesComponentsService,
+    PagesParamsService,
+    PagesIblockService,
+    PagesIblockRecordsService,
+    PagesSeoService
+];
 const respositorys = [
     PagesRepository,
     RecordsRepository,
@@ -59,27 +69,36 @@ const respositorys = [
     PagesIblockRecordsFieldValueRepository,
 ];
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-        PagesEntity,
-        RecordsEntity,
-        PagesCommentsEntity,
-        PagesComponentsEntity,
-        PagesParamsEntity,
-        PagesParamsValueEntity,
-        PagesSeoEntity,
-        PagesSeoParamsEntity,
-        PagesIblockEntity,
-        PagesIBlockFieldsEntity,
-        PagesIblockFieldsLabelEntity,
-        PagesIblockRecordsEntity,
-        PagesIblockRecordsFieldEntity,
-        PagesIblockRecordsFieldValueEntity,
-    ]),
-    forwardRef(() => UserModule)
-  ],
-  controllers: [PagesController, RecordsController, PagesCommentsController, PagesComponentsController, PagesPublicController, PagesParamsController, PagesIblockController, PagesIblockRecordsController],
-  providers: [...services, ...respositorys],
-  exports: [PagesService]
+    imports: [
+        TypeOrmModule.forFeature([
+            PagesEntity,
+            RecordsEntity,
+            PagesCommentsEntity,
+            PagesComponentsEntity,
+            PagesParamsEntity,
+            PagesParamsValueEntity,
+            PagesSeoEntity,
+            PagesSeoParamsEntity,
+            PagesIblockEntity,
+            PagesIBlockFieldsEntity,
+            PagesIblockFieldsLabelEntity,
+            PagesIblockRecordsEntity,
+            PagesIblockRecordsFieldEntity,
+            PagesIblockRecordsFieldValueEntity,
+        ]),
+        forwardRef(() => UserModule)
+    ],
+    controllers: [
+        PagesController,
+        RecordsController,
+        PagesCommentsController,
+        PagesComponentsController,
+        PagesPublicController,
+        PagesParamsController,
+        PagesIblockController,
+        PagesIblockRecordsController
+    ],
+    providers: [...services, ...respositorys],
+    exports: [PagesService]
 })
 export class PagesModule {}
