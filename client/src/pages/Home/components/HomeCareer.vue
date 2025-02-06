@@ -23,7 +23,7 @@
 				<q-btn :to="path" color="white" class="home-career__btn text-bold" flat>
 					<div class="row no-wrap">
 						<span>{{ t('moreDetailed') }}</span>
-						<q-img src="icons/arrow-yellow-full.svg" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
+						<q-img src="icons/arrow-yellow-full.svg" loading="lazy" class="q-ml-md" width="16px" :alt="t('moreDetailed')" />
 					</div>
 				</q-btn>
 			</div>

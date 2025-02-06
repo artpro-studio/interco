@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="home-project__body row no-wrap">
-				<q-img data-aos="fade-right" src="images/home-project.png" class="home-project__img" height="278px" width="422px" />
+				<q-img data-aos="fade-right" src="images/home-project.png" loading="lazy" class="home-project__img" height="278px" width="422px" />
 				<div data-aos="fade-left" class="home-project__content">
 					<div class="home-project__content__item">
 						<h4 class="home-project__content__item__title">{{ t('projectItem1Title') }}</h4>
@@ -46,7 +46,7 @@
 			</div>
 			<div class="home-project__contacts pt-8">
 				<div data-aos="fade-right" class="home-project__contacts__top row no-wrap items-center">
-					<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-project__contacts__top__img" />
+					<q-img src="icons/arrow-red.svg" loading="lazy" width="26px" fit="contain" class="home-project__contacts__top__img" />
 					<h3 class="home-project__contacts__top__title headline-1 text-dark">{{ t('projectContactTitle') }}</h3>
 				</div>
 				<div class="home-project__contacts__body row no-wrap items-center">

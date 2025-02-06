@@ -5,6 +5,7 @@ import { defineConfig } from '#q-app/wrappers';
 import { fileURLToPath } from 'node:url';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
+
 // eslint-disable-next-line max-lines-per-function
 export default defineConfig((ctx) => {
   return {
@@ -15,8 +16,12 @@ export default defineConfig((ctx) => {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
+	 'seo',
       'i18n',
-	  'global',
+	  {
+		path: 'global',
+		server: false
+	  },
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -128,7 +133,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Meta']
     },
 
     // animations: 'all', // --- includes all animations
@@ -154,7 +159,8 @@ export default defineConfig((ctx) => {
                       // (gets superseded if process.env.PORT is specified at runtime)
 
       middlewares: [
-        'render' // keep this as last one
+        'render',
+		// keep this as last one
       ],
 
       // extendPackageJson (json) {},
@@ -165,7 +171,7 @@ export default defineConfig((ctx) => {
       // manualStoreHydration: true,
       // manualPostHydrationTrigger: true,
 
-      pwa: false
+      pwa: true,
       // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
 
       // pwaExtendGenerateSWOptions (cfg) {},

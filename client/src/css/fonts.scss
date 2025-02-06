@@ -7,6 +7,7 @@
 		url('/fonts/play/Play-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -18,6 +19,7 @@
 		url('/fonts/play/Play.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -29,6 +31,7 @@
         url('/fonts/oswald/Oswald-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -40,6 +43,7 @@
         url('/fonts/oswald/Oswald-ExtraLight.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -51,6 +55,7 @@
         url('/fonts/oswald/Oswald-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -62,6 +67,7 @@
         url('/fonts/oswald/Oswald-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -73,6 +79,7 @@
         url('/fonts/oswald/Oswald-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
@@ -84,23 +91,5 @@
         url('/fonts/oswald/Oswald-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
-}
-
-@font-face {
-	font-family: 'Humane';
-	src: url('/fonts/humane/humane-regular.eot'); /* IE 9 Compatibility Mode */
-	src: url('/fonts/humane/humane-regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
-		url('/fonts/humane/humane-regular.woff2') format('woff2'), /* Super Modern Browsers */
-		url('/fonts/humane/humane-regular.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
-		url('/fonts/humane/humane-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-}
-
-@font-face {
-	font-family: 'Humane';
-	src: url('/fonts/humane/humane-bold.eot'); /* IE 9 Compatibility Mode */
-	src: url('/fonts/humane/humane-bold.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
-		url('/fonts/humane/humane-bold.woff2') format('woff2'), /* Super Modern Browsers */
-		url('/fonts/humane/humane-bold.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
-		url('/fonts/humane/humane-bold.ttf') format('truetype'); /* Safari, Android, iOS */
-	font-weight: bold;
+	font-display: swap;
 }

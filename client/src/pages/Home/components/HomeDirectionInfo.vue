@@ -31,19 +31,19 @@ import { computed } from 'vue';
 			<div data-aos="fade-up" class="home-direction-info__icons row no-wrap justify-between">
 				<div class="home-direction-info__icons__item row no-wrap items-center justify-between">
 					<div class="home-drection-info__icons__item__images">
-						<q-img src="images/icon-car.png" class="home-direction-info__icons__item__img" width="89px" />
+						<q-img src="images/icon-car.png" loading="lazy" class="home-direction-info__icons__item__img" width="89px" />
 					</div>
 					<p class="home-direction-info__icons__item__text text-uppercase text-black fonts-oswald">{{ t('directionIconText1') }}</p>
 				</div>
 				<div class="home-direction-info__icons__item row no-wrap items-center">
 					<div class="home-direction-info__icons__item__images">
-						<q-img src="images/icon-product.png" class="home-direction-info__icons__item__img" width="64px" />
+						<q-img src="images/icon-product.png" loading="lazy" class="home-direction-info__icons__item__img" width="64px" />
 					</div>
 					<p class="home-direction-info__icons__item__text text-uppercase text-black fonts-oswald">{{ t('directionIconText2') }}</p>
 				</div>
 				<div class="home-direction-info__icons__item row no-wrap items-center">
 					<div class="home-direction-info__icons__item__images">
-						<q-img src="images/icon-prodcut2.png" class="home-direction-info__icons__item__img" width="64px" />
+						<q-img src="images/icon-prodcut2.png" loading="lazy" class="home-direction-info__icons__item__img" width="64px" />
 					</div>
 					<p class="home-direction-info__icons__item__text text-uppercase text-black fonts-oswald">{{ t('directionIconText3') }}</p>
 				</div>
@@ -52,14 +52,14 @@ import { computed } from 'vue';
 				<div data-aos="fade-right" class="home-direction-info__lists__item">
 					<h5 class="home-direction-info__lists__item__title headline-3 text-uppercase text-red">{{ t('directionSubTitle3') }}</h5>
 					<div class="home-direction-info__lists__item__content row no-wrap items-center">
-						<q-img src="icons/arrow-black.svg" class="home-direction-info__lists__item__img" width="16px" />
+						<q-img src="icons/arrow-black.svg" loading="lazy" class="home-direction-info__lists__item__img" width="16px" />
 						<p>{{ t('directionText1') }}</p>
 					</div>
 				</div>
 				<div data-aos="fade-left" class="home-direction-info__lists__item">
 					<h5 class="home-direction-info__lists__item__title headline-3 text-uppercase text-red">{{ t('directionSubTitle4') }}</h5>
 					<div class="home-direction-info__lists__item__content row no-wrap items-center">
-						<q-img src="icons/arrow-black.svg" class="home-direction-info__lists__item__img" width="16px" />
+						<q-img src="icons/arrow-black.svg" loading="lazy" class="home-direction-info__lists__item__img" width="16px" />
 						<p>{{ t('directionText2') }}</p>
 					</div>
 				</div>

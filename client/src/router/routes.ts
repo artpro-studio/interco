@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
 			{
 				name: RouterName.Home,
 				path: '',
-				component: () => import('src/pages/Home/index.vue')
+				component: () => import('src/pages/Home/index.vue'),
 			},
 			{
 				name: RouterName.Policy,

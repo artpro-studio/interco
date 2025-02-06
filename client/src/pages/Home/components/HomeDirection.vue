@@ -51,7 +51,7 @@
 	<div class="home-direction pt-8">
 		<div class="container">
 			<div data-aos="fade-right" class="home-direction__top row no-wrap items-center">
-				<q-img src="icons/arrow-red.svg" width="26px" fit="contain" class="home-direction__top__img" />
+				<q-img src="icons/arrow-red.svg" loading="lazy" width="26px" fit="contain" class="home-direction__top__img" />
 				<h3 class="home-direction__top__title headline-1 text-white">{{ t('directionTitle') }}</h3>
 			</div>
 			<h4 data-aos="fade-up" class="headline-3 text-white text-uppercase">{{ t('directionSubTitle') }}</h4>
@@ -61,10 +61,10 @@
 				<div class="home-direction__slider__wrap">
 					<div class="home-direction__slider__arrows row no-wrap">
 						<div class="home-direction__slider__arrow prev" @click="onPrev">
-							<q-img src="icons/arrow-white-outline.svg" width="26px" />
+							<q-img src="icons/arrow-white-outline.svg" loading="lazy" width="26px" />
 						</div>
 						<div class="home-direction__slider__arrow next" @click="onNext">
-							<q-img src="icons/arrow-white-outline.svg" width="26px" />
+							<q-img src="icons/arrow-white-outline.svg" loading="lazy" width="26px" />
 						</div>
 					</div>
 					<q-carousel
@@ -94,7 +94,7 @@
 									<v-btn-red color="white" class="home-direction__slide__btn text-bold" :text="t('moreDetailed')" flat></v-btn-red>
 								</div>
 								<div class="home-direction__slide__images">
-									<q-img :src="item.images" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
+									<q-img :src="item.images" loading="lazy" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
 								</div>
 							</div>
       					</q-carousel-slide>

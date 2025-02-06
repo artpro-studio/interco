@@ -11,17 +11,6 @@ export class PagesSeoRepository {
         @InjectRepository(PagesSeoEntity) private readonly pagesSeoRepository: Repository<PagesSeoEntity>,
     ) {}
 
-    async getForPageSlug(pageSlug: string): Promise<PagesSeoDto> {
-        const fieldsSeoParams = getFieldsSeoParams('params')
-        const query = this.pagesSeoRepository.createQueryBuilder('seo')
-            .leftJoin('seo.page', 'page')
-            .leftJoin('seo.params', 'params')
-            .addSelect(fieldsSeoParams)
-            .where('page.slug = :pageSlug', {pageSlug})
-
-        return await query.getOne();
-    }
-
     // Создание
     async create(body: PagesSeoDto): Promise<PagesSeoDto> {
         const entity = this.pagesSeoRepository.create(body);

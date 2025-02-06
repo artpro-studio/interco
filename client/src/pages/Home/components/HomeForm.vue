@@ -23,8 +23,8 @@
 					<div class="home-form__left__header row no-wrap items-center">
 						<h4 class="home-form__left__header__title headline-1 text-white text-uppercase">{{ t('homeFormTitle') }}</h4>
 						<div class="home-form__left__header__arrows row no-wrap items-center">
-							<q-img src="icons/arrow-white.svg" class="home-form__left__header__arrows__item" width="26px" />
-							<q-img src="icons/arrow-white.svg" class="home-form__left__header__arrows__item" width="26px" />
+							<q-img src="icons/arrow-white.svg" loading="lazy" class="home-form__left__header__arrows__item" width="26px" />
+							<q-img src="icons/arrow-white.svg" loading="lazy" class="home-form__left__header__arrows__item" width="26px" />
 						</div>
 					</div>
 					<div class="home-form__left__fields">
@@ -37,13 +37,13 @@
 						<h5 class="home-form__social__title fonts-oswald text-white">{{ t('homeFormSocial') }}</h5>
 						<div class="home-form__social__body">
 							<a href="/" class="home-form__social__item">
-								<q-img src="icons/whatsapp.svg" class="home-form__social__item__img" width="40px" />
+								<q-img src="icons/whatsapp.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
 							<a href="/" class="home-form__social__item">
-								<q-img src="icons/discord.svg" class="home-form__social__item__img" width="40px" />
+								<q-img src="icons/discord.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
 							<a href="/" class="home-form__social__item">
-								<q-img src="icons/telegram.svg" class="home-form__social__item__img" width="40px" />
+								<q-img src="icons/telegram.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 						<v-btn color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('submitApplication') }}</span>
-								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
+								<q-img src="icons/arrow-red.svg" loading="lazy" width="16px" class="q-ml-md" />
 							</div>
 						</v-btn>
 					</q-form>

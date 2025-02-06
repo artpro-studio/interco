@@ -27,7 +27,7 @@
 				class="head__body row items-end no-wrap"
 			>
 				<h1 class="head__body__title fonts-oswald fonts-humane ">SA<br>International</h1>
-				<q-img class="head__body__text" src="images/text-SA-International.svg" title="SAInternational " fit="contain" />
+				<q-img class="head__body__text" src="images/text-SA-International.svg" loading="lazy" title="SAInternational " fit="contain" />
 				<!-- <q-img class="head__body__img" src="icons/arrow-head.svg" fit="contain" alt="Стрелки" /> -->
 				<home-head-arrow class="head__body__img" />
 			</div>

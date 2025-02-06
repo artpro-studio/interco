@@ -14,6 +14,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CommentStatus } from '../interface';
 import { BaseQuery, ResultDto } from 'src/dto/reponse.dto';
 import { ResultPagesSeoPublicDto } from '../dto/seo/response-seo';
+import { PagesSeoService } from '../service/pages-seo.service';
 
 @ApiTags('Публичные запросы для страниц')
 @ApiExceptionDecorators()
@@ -24,6 +25,7 @@ export class PagesPublicController {
         private readonly recordsService: RecordsService,
         private readonly pagesComponentsService: PagesComponentsService,
         private readonly pagesCommentsService: PagesCommentsService,
+        private readonly pagesSeoService: PagesSeoService,
     ) {}
 
     @ApiOperation({ summary: 'Получение сео параметров у страницы' })
@@ -31,7 +33,7 @@ export class PagesPublicController {
     @ApiQuery({ name: 'slug', type: String, description: 'Slug страницы' })
     @Get('get-seo-for-page')
     getSeoPage(@Query() query: {slug: string}): Promise<ResultPagesSeoPublicDto> {
-        return this.pagesService.getOneForSlug(query.slug);
+        return this.pagesSeoService.getPageSeoParamsPublic(query.slug);
     }
 
     @ApiOperation({ summary: 'Получение страницы' })
