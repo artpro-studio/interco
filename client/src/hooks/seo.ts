@@ -11,11 +11,11 @@ export function useSeo(seoData: { title: string, description?: string, keywords?
 
   // Устанавливаем мета-данные
   useMeta({
-    title: seoData.title || 'Default Title',
+    title: seoData.title || 'SA International — ведущая международная компания, специализирующаяся на поставке, производстве и разработке промышленного оборудования и технологий.',
 	titleTemplate: title => `${title} - SA International`,
 	meta: {
-		description:  { name: 'description', content: seoData.description || '' },
-		keywords:  { name: 'keywords', content: seoData.keywords || '' },
+		description:  { name: 'description', content: seoData.description || 'SA International — ведущая международная компания, специализирующаяся на поставке, производстве и разработке промышленного оборудования и технологий.' },
+		keywords:  { name: 'keywords', content: seoData.keywords || 'SA International,ведущая,международная,компания,производство,разработка,промышленное,оборудование,технологий' },
 		equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
 		ogTitle:  {
 			property: 'og:title',

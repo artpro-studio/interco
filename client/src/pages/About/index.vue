@@ -10,8 +10,14 @@
 	import BannerCallback from 'src/components/BannerCallback/BannerCallback.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
 	import { useI18n } from 'vue-i18n';
+	import { onMounted } from 'vue';
+	import { useGetMeta } from 'src/hooks/useGetMeta';
 
 	const { t } = useI18n();
+
+	onMounted(() => {
+		useGetMeta('about')
+	})
 </script>
 
 <template>

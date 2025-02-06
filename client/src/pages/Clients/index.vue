@@ -7,8 +7,14 @@
 	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import ClientsSectionText from './components/ClientsSectionText.vue';
 	import { useI18n } from 'vue-i18n';
+	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { onMounted } from 'vue';
 
 	const {t} = useI18n();
+
+	onMounted(() => {
+		useGetMeta('client')
+	})
 </script>
 
 <template>

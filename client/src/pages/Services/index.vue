@@ -5,10 +5,16 @@
 	import ServiceItem from './components/ServiceItem.vue';
 	import { serviceData } from './data';
 	import { useI18n } from 'vue-i18n';
+	import { onMounted } from 'vue';
+	import { useGetMeta } from 'src/hooks/useGetMeta';
 
 	const { t } = useI18n();
 
 	const ServiceData = serviceData;
+
+	onMounted(() => {
+		useGetMeta('service')
+	})
 
 </script>
 

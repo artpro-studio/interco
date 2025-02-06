@@ -10,6 +10,12 @@
 	import HomeCareer from './components/HomeCareer.vue';
 	import HomeContacts from './components/HomeContacts.vue';
 	import HomeForm from './components/HomeForm.vue';
+	import { onMounted } from 'vue';
+	import { useGetMeta } from 'src/hooks/useGetMeta';
+
+	onMounted(() => {
+		useGetMeta('home')
+	})
 </script>
 <template>
 	<q-page>

@@ -5,6 +5,12 @@
 	import SectionSocial from 'src/components/SectionSocial/SectionSocial.vue';
 	import ContactsGeneral from './components/ContactsGeneral.vue';
 	import ContactsBanner from './components/ContactsBanner.vue';
+	import { onMounted } from 'vue';
+	import { useGetMeta } from 'src/hooks/useGetMeta';
+
+	onMounted(() => {
+		useGetMeta('contacts')
+	})
 </script>
 <template>
 	<contacts-head />

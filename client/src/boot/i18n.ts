@@ -3,6 +3,19 @@ import { createI18n } from 'vue-i18n';
 
 import messages from 'src/i18n';
 
+// Функция определения языка пользователя
+function getUserLocale() {
+	const langs: any = {
+		'ru-RU': 'ru-RU',
+		'en-US': 'en-US',
+		'zh-CN': 'zh-CN',
+	}
+	const locale = navigator.language!.toString(); // 'ru-RU', 'zh-CN', 'en-US'
+	const shortLocale = langs[locale] || 'en-US';
+	console.log('locale', locale, shortLocale)
+	return shortLocale; // Если нет в списке, ставим английский
+}
+
 export type MessageLanguages = keyof typeof messages;
 // Type-define 'en-US' as the master schema for the resource
 export type MessageSchema = typeof messages['en-US'];
@@ -23,7 +36,7 @@ declare module 'vue-i18n' {
 
 export default defineBoot(({ app }) => {
   const i18n = createI18n<{ message: MessageSchema }, MessageLanguages>({
-    locale: 'ru',
+	locale: getUserLocale(),
     legacy: false,
     messages,
   });

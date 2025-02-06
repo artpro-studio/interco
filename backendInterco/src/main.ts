@@ -14,7 +14,8 @@ async function bootstrap() {
   app.enableCors({
     origin: [
         'http://localhost:9002',
-        'http://localhost:9003'
+        'http://localhost:9003',
+        'http://localhost:9150'
       ],
   });
   app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));

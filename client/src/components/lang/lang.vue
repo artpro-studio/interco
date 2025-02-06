@@ -1,14 +1,16 @@
 <script lang="ts" setup>
-	import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
+	import { computed, nextTick, onMounted, ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
 	import { useRoute } from 'vue-router';
 
 	const route = useRoute();
 	const { locale } = useI18n({ useScope: 'global' })
+
+	const isLoading = ref(true);
 	const localeOptions = [
-        { value: 'ru', label: 'RU' },
+        { value: 'ru-RU', label: 'RU' },
         { value: 'en-US', label: 'EN' },
-        { value: 'ch', label: 'CH' }
+        { value: 'zh-CN', label: 'CH' }
     ];
 
 	const isWhite = computed(() => {
@@ -18,9 +20,16 @@ import { useI18n } from 'vue-i18n';
 	const onChange = (lang: string) => {
 		locale.value = lang;
 	}
+
+	onMounted(() => {
+		console.log(locale.value);
+		nextTick(() => {
+			isLoading.value = false;
+		})
+	})
 </script>
 <template>
-	<div class="lang row no-wrap" :class="{white: isWhite}">
+	<div v-if="!isLoading" class="lang row no-wrap" :class="{white: isWhite}">
 		<div v-for="item in localeOptions" :key="item.value" @click="onChange(item.value)" class="lang__item" :class="{'active': locale === item.value}">
 			{{ item.label }}
 		</div>
