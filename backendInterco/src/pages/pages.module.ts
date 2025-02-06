@@ -35,8 +35,15 @@ import { PagesIblockFieldsRepository } from './repository/pages-iblock-fields.re
 import { PagesIblockFieldsLabelRepository } from './repository/pages-iblock-fields-label.repository';
 import { PagesIblockController } from './controller/pages-iblock.controller';
 import { PagesIblockService } from './service/pages-iblock.service';
+import { PagesIblockRecordsFieldEntity } from './entity/pages-iblock-records-field.entity';
+import { PagesIblockRecordsFieldValueEntity } from './entity/pages-iblock-records-field-value.entity';
+import { PagesIblockRecordsRepository } from './repository/pages-iblock-records.repository';
+import { PagesIblockRecordsFieldRepository } from './repository/pages-iblock-records-field.repository';
+import { PagesIblockRecordsFieldValueRepository } from './repository/pages-iblock-records-field-value.repository';
+import { PagesIblockRecordsController } from './controller/pages-iblock-recrods.controller';
+import { PagesIblockRecordsService } from './service/pages-iblock-records.service';
 
-const services = [PagesService,  RecordsService, PagesCommentsService, PagesComponentsService, PagesParamsService, PagesIblockService];
+const services = [PagesService,  RecordsService, PagesCommentsService, PagesComponentsService, PagesParamsService, PagesIblockService, PagesIblockRecordsService];
 const respositorys = [
     PagesRepository,
     RecordsRepository,
@@ -46,7 +53,10 @@ const respositorys = [
     PagesSeoParamsRepository,
     PagesIblockRepository,
     PagesIblockFieldsRepository,
-    PagesIblockFieldsLabelRepository
+    PagesIblockFieldsLabelRepository,
+    PagesIblockRecordsRepository,
+    PagesIblockRecordsFieldRepository,
+    PagesIblockRecordsFieldValueRepository,
 ];
 @Module({
   imports: [
@@ -62,11 +72,13 @@ const respositorys = [
         PagesIblockEntity,
         PagesIBlockFieldsEntity,
         PagesIblockFieldsLabelEntity,
-        PagesIblockRecordsEntity
+        PagesIblockRecordsEntity,
+        PagesIblockRecordsFieldEntity,
+        PagesIblockRecordsFieldValueEntity,
     ]),
     forwardRef(() => UserModule)
   ],
-  controllers: [PagesController, RecordsController, PagesCommentsController, PagesComponentsController, PagesPublicController, PagesParamsController, PagesIblockController],
+  controllers: [PagesController, RecordsController, PagesCommentsController, PagesComponentsController, PagesPublicController, PagesParamsController, PagesIblockController, PagesIblockRecordsController],
   providers: [...services, ...respositorys],
   exports: [PagesService]
 })

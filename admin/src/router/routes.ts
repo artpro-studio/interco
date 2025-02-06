@@ -297,6 +297,14 @@ const routes: RouteRecordRaw[] = [
                 ],
             },
             {
+                path: 'iblock/:id',
+                meta: {
+                    title: 'Информационный блок'
+                },
+                name: RouterName.Iblock,
+                component: () => import('pages/Panel/Pages/Iblock/index.vue')
+            },
+            {
                 path: 'library/',
                 meta: { title: 'Библиотека' },
                 children: [

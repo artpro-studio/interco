@@ -72,7 +72,7 @@
 </script>
 <template>
     <q-checkbox color="primary" v-model="currentValue" @update:model-value="emit('on-checked')" />
-    <q-btn icon="menu" class="table-actions-components__btn" round>
+    <q-btn icon="menu" class="table-actions-components__btn" round @click.prevent.stop>
         <q-menu anchor="top right" self="top left" class="table-actions-components__menu" :offset="[10, -2]">
             <q-list class="table-actions-components__menu__list" style="min-width: 100px">
                 <template v-for="(item, index) in localMenu" :key="index">

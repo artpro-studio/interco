@@ -7,6 +7,8 @@ import { BaseQuery, ResultDto } from "src/dto/reponse.dto";
 import { PagesIblockDto } from "../dto/iblock/pages-iblock.dto";
 import { PagesIblockListDto, PagesIblockQuery, ResultPagesIblockDto } from "../dto/iblock/response-iblock.dto";
 import { PagesIblockService } from '../service/pages-iblock.service';
+import { PagesIblockFieldsRepository } from "../repository/pages-iblock-fields.repository";
+import { PagesIblockFieldsListDto, PagesIblockFieldsQuery } from "../dto/iblock/fields/response-pages-iblock-fields.dto";
 
 @ApiTags('Информационные блоки страницы')
 @Controller('pages-iblock')
@@ -16,8 +18,23 @@ import { PagesIblockService } from '../service/pages-iblock.service';
 export class PagesIblockController {
     constructor(
         private readonly pagesIblockRepository: PagesIblockRepository,
+        private readonly pagesIblockFieldsRepository: PagesIblockFieldsRepository,
         private readonly pagesIblockService: PagesIblockService,
     ) {}
+
+    @ApiOperation({ summary: 'Список полей у iblock' })
+    @ApiResponse({ status: 200, type: PagesIblockFieldsListDto })
+    @ApiQuery({ name: 'search', type: String, required: true, description: 'Поиск' })
+    @ApiQuery({name: 'page', type: Number, required: true, description: 'Страница' })
+    @ApiQuery({ name: 'limit', type: Number, required: true, description: 'Количество'})
+    @ApiQuery({ name: 'iblockID', type: Number, required: true, description: 'ID iblock'})
+    @Get('fields')
+    async getFields(@Query() query: PagesIblockFieldsQuery): Promise<PagesIblockFieldsListDto> {
+        return {
+            isSuccess: true,
+            entity: await this.pagesIblockFieldsRepository.get(query)
+        };
+    }
 
     @ApiOperation({ summary: 'Список' })
     @ApiResponse({ status: 200, type: ResultPagesIblockDto })

@@ -43,6 +43,7 @@ export enum RouterName {
     PagesBlogsRecordsCreate = 'pages-blogs-records-create',
     PagesBlogsRecordsEdit = 'pages-blogs-records-edit',
     Records = 'records',
+    Iblock = 'iblock',
     ReferenceBook = 'reference-book',
     ReferenceBookCreate = 'reference-book-create',
     ReferenceBookEdit = 'reference-book-edit',

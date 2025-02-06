@@ -4,6 +4,8 @@ import { BaseQuery } from "src/dto/reponse.dto";
 import { PagesIBlockFieldsEntity } from "../entity/pages-iblock-fields.entity";
 import { PagesIBlockFieldsDto } from "../dto/iblock/fields/pages-iblock-fields.dto";
 import { Injectable } from "@nestjs/common";
+import { PagesIblockFieldsQuery } from "../dto/iblock/fields/response-pages-iblock-fields.dto";
+import { getFieldsIblockFieldsLabel } from "../helpers";
 
 @Injectable()
 export class PagesIblockFieldsRepository {
@@ -25,10 +27,22 @@ export class PagesIblockFieldsRepository {
         return await query.getOne()
     }
 
-    async get(body: BaseQuery): Promise<{count: number, limit: number, entity: PagesIBlockFieldsDto[]}> {
+    async get(body: PagesIblockFieldsQuery): Promise<{count: number, limit: number, entity: PagesIBlockFieldsDto[]}> {
+        const fieldsIblockFieldsLabel = getFieldsIblockFieldsLabel('label');
+
         const take = Number(body.limit);
         const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
-        const query = this.pagesIBlockFieldsRepository.createQueryBuilder('fields').take(take).skip(skip).orderBy('fields.id', 'ASC');
+        const query = this.pagesIBlockFieldsRepository.createQueryBuilder('fields')
+            .take(take)
+            .skip(skip)
+            .orderBy('fields.id', 'ASC')
+            .leftJoin('fields.iblock', 'iblock')
+            .leftJoin('fields.label', 'label')
+            .addSelect(fieldsIblockFieldsLabel);
+
+        if (body.iblockID) {
+            query.andWhere('iblock.id = :iblockID', {iblockID: body.iblockID});
+        }
 
         if (body.search) {
             query.orWhere({

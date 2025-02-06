@@ -23,6 +23,13 @@ export const getFieldsIblockFieldsLabel = (nameField: string): any => {
     return fields.map((el) => `${nameField}.${el}`);
 }
 
+export const getFieldsPagesIblockRecordsFieldValue = (nameField: string): any => {
+    const fields = ['id', 'value', 'lang'];
+
+    return fields.map((el) => `${nameField}.${el}`);
+}
+
+// Сравнение обьектов
 export function compareValuesByCommonKeys(obj1, obj2) {
     const commonKeys = Object.keys(obj1).filter(key => key in obj2);
 

@@ -6,24 +6,21 @@
     import ModalsInfo from '@/components/Modals/ModalsInfo.vue';
     import { useQuasar } from 'quasar';
     import useDateUntil from 'src/helpers/useDateUntil';
-    import { getApiClientInitialParams, PagesDto, PagesIblockControllerClient } from '@/ApiClient/ApiClient';
+    import { getApiClientInitialParams, PagesIblockControllerClient, PagesIblockRecordsControllerClient } from '@/ApiClient/ApiClient';
     import useResultException from '@/helpers/useResultException';
-    import { IPagesIblockDto, PagesIblockColumnsTable } from './interface';
-    import CreatePagesIblock from './CreatePagesIblock.vue';
-    import { useRouter } from 'vue-router';
+    import { IPagesIblockRecordsDto, PagesIblockRecordsColumnsTable } from './interface';
+    import CreateOrUpdateRecords from './components/CreateOrUpdateRecords.vue';
+    import { useRoute, useRouter } from 'vue-router';
     import { RouterName } from '@/router/routerName';
 
-    interface IProps {
-        page: PagesDto;
-    }
-    const props = defineProps<IProps>();
-
     const $q = useQuasar();
+    const route = useRoute();
     const router = useRouter();
     const { getDateDayMonthYear } = useDateUntil();
     const { resultError } = useResultException();
 
-    const api = new PagesIblockControllerClient(getApiClientInitialParams());
+    const api = new PagesIblockRecordsControllerClient(getApiClientInitialParams());
+    const apiIblock = new PagesIblockControllerClient(getApiClientInitialParams());
     const isLoading = ref(true);
     const filters = ref({
         search: '',
@@ -31,8 +28,8 @@
         limit: 10,
         count: 0,
     });
-    const rows = ref<IPagesIblockDto[]>([]);
-    const columns = PagesIblockColumnsTable;
+    const rows = ref<IPagesIblockRecordsDto[]>([]);
+    const columns = ref(PagesIblockRecordsColumnsTable);
     const tableHeaderActionRef = ref(null);
     const modalDelete: Ref<{
         isOpen: boolean;
@@ -79,7 +76,7 @@
 
     const onChecked = (status: boolean) => {
         rows.value =
-            rows?.value.map((el: IPagesIblockDto) => {
+            rows?.value.map((el: IPagesIblockRecordsDto) => {
                 el.isChecked = status;
                 return el;
             }) || [];
@@ -132,11 +129,11 @@
     };
 
     const onDeleteIds = () => {
-        const checked = rows.value.filter((el: IPagesIblockDto) => el.isChecked);
+        const checked = rows.value.filter((el: IPagesIblockRecordsDto) => el.isChecked);
         if (checked) {
             modalDeleteIds.value = {
                 isOpen: true,
-                ids: checked.map((el: IPagesIblockDto) => el.id!),
+                ids: checked.map((el: IPagesIblockRecordsDto) => el.id!),
             };
         } else {
             $q.notify({
@@ -148,6 +145,7 @@
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onPush = (id: number) => {
         router.push({
             name: RouterName.Iblock,
@@ -162,7 +160,7 @@
 
     const getInfo = async () => {
         isLoading.value = true;
-        const result = await api.get(filters.value.search, filters.value.page, filters.value.limit, props.page.id!);
+        const result = await api.get(filters.value.search, filters.value.page, filters.value.limit, Number(route.params.id));
         if (!result.isSuccess) {
             resultError(result, null);
         } else {
@@ -178,7 +176,35 @@
         isLoading.value = false;
     };
 
-    onMounted(() => {
+    const getFields = async () => {
+        const result = await apiIblock.getFields('', 1, 200, Number(route.params.id));
+        if (!result.isSuccess) {
+            resultError(result, null);
+        } else {
+            const arrayColumns = [...columns.value].splice(0,3);
+            const arrayEndColumns = [...columns.value].splice(3, columns.value.length - 1);
+            result.entity?.entity?.forEach((el) => [
+                arrayColumns.push({
+                    name: el.slug,
+                    label: el.name,
+                    align: 'left',
+                    field: (row: any) => {
+                        let value = '';
+                        for (let key in row.fields[el.slug]) {
+                            value += `${key}: ${row.fields[el.slug][key].value}; `;
+                        }
+                        return value.length > 50 ? value.slice(0, 50) + '...' : '';
+                    },
+                })
+            ]);
+
+            arrayColumns.push(...arrayEndColumns);
+            columns.value = arrayColumns;
+        }
+    };
+
+    onMounted(async () => {
+        await getFields();
         getInfo();
     });
 </script>
@@ -191,29 +217,22 @@
         <template v-slot:header-cell-actions>
             <table-header-actions ref="tableHeaderActionRef" @on-delete="onDeleteIds" @on-checked="onChecked" />
         </template>
-        <template v-slot:body="props">
-            <tr @click="onPush(props.row.id)" class="cursor-pointer">
-                <td class="text-left">
-                    <table-body-actions
-                        :value="props.row.isChecked"
-                        :row="props.row"
-                        isEdit
-                        @input="props.row.isChecked = !props.row.isChecked"
-                        @on-delete="onDelete(props.row.id)"
-                        @on-edit="onOpenCreateOrUpdate(props.row.id)"
-                    />
-                </td>
-                <td class="text-left">{{ props.row.id }}</td>
-                <td class="text-left">
-                    {{ props.row.name }}
-                </td>
-                <td class="text-left">
-                    {{ props.row.slug }}
-                </td>
-                <td class="text-left">
-                    {{ getDateDayMonthYear(props.row.createdAt) }}
-                </td>
-            </tr>
+        <template v-slot:body-cell-actions="props">
+            <q-td class="text-left">
+                <table-body-actions
+                    :value="props.row.isChecked"
+                    :row="props.row"
+                    isEdit
+                    @input="props.row.isChecked = !props.row.isChecked"
+                    @on-delete="onDelete(props.row.id)"
+                    @on-edit="onOpenCreateOrUpdate(props.row.id)"
+                />
+            </q-td>
+        </template>
+        <template v-slot:body-cell-createAt="props">
+            <q-td class="text-left">
+                {{ getDateDayMonthYear(props.row.createdAt) }}
+            </q-td>
         </template>
         <template v-slot:bottom v-if="lengthPages">
             <pagination :page="filters.page" :count="filters.count" :max="lengthPages" @update="onUpdatePage" />
@@ -226,7 +245,7 @@
         <modals-info title="Вы точно хотите удалить?" text="Удаленные записи нельзя будет восстановить" @on-success="onDeleteIdsRequest" />
     </q-dialog>
     <q-dialog v-model="modalCreateOrUpdate.isOpen" @hide="onCloseCreateOrUpdate">
-        <CreatePagesIblock :id="modalCreateOrUpdate.id" :page="props.page" @on-close="modalCreateOrUpdate.isOpen = false" />
+        <create-or-update-records :id="modalCreateOrUpdate.id" :iblockID="Number(route.params.id)" @on-close="modalCreateOrUpdate.isOpen = false" />
     </q-dialog>
     <q-btn color="primary" class="circle fixed" @click="() => onOpenCreateOrUpdate()">
         <q-icon name="add"></q-icon>
