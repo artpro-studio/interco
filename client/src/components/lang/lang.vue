@@ -22,7 +22,6 @@
 	}
 
 	onMounted(() => {
-		console.log(locale.value);
 		nextTick(() => {
 			isLoading.value = false;
 		})

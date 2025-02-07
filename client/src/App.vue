@@ -6,11 +6,13 @@
 	const ssrContext = useSSRContext();
 	const seoData = ssrContext?.seoData;
 	if (ssrContext) {
-		const availableLocales = ['en', 'ru', 'ch'];
+		const langs: any = {
+			'ru-RU': 'ru-RU',
+			'en-US': 'en-US',
+			'zh-CN': 'zh-CN',
+		}
 		const locale = navigator.language!; // 'ru-RU', 'zh-CN', 'en-US'
-		let shortLocale = locale.split('-')[0]!; // 'ru', 'zh', 'en'
-		shortLocale = shortLocale === 'zh' ? 'ch' : shortLocale;
-		shortLocale = availableLocales.includes(shortLocale) ? shortLocale : 'en'
+		const shortLocale = langs[locale] || 'en-US';
 		useSeo({
 			title: seoData?.title[shortLocale] || '',
 			description: seoData?.description[shortLocale] || '',

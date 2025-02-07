@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-    import { IIblockField, ILangPages, PagesIBlockFieldsDto } from '@/ApiClient/ApiClient';
+    import { IIblockField, ILangPages, PagesIBlockFieldsDto, PagesIblockFieldsLabelDto } from '@/ApiClient/ApiClient';
     import useValidationRules from '@/helpers/useValidationRules';
-    import { onMounted, ref } from 'vue';
+    import { onBeforeMount, ref } from 'vue';
 
     interface IProps {
         field?: PagesIBlockFieldsDto;
@@ -18,15 +18,15 @@
         label: [
             {
                 value: '',
-                lang: ILangPages.Ru,
+                lang: ILangPages.RuRU,
             },
             {
                 value: '',
-                lang: ILangPages.En,
+                lang: ILangPages.EnUS,
             },
             {
                 value: '',
-                lang: ILangPages.Ch,
+                lang: ILangPages.ZhCN,
             }
         ]
     });
@@ -38,6 +38,10 @@
         {
             value: IIblockField.Array,
             label: 'Список',
+        },
+        {
+            value: IIblockField.Image,
+            label: 'Изоображение',
         }
     ];
 
@@ -45,11 +49,15 @@
         emit('on-change', form.value);
     };
 
-    onMounted(() => {
+    onBeforeMount(() => {
         if (props.field) {
+            const fields = props.field;
+            fields.label = fields.label?.sort((a: PagesIblockFieldsLabelDto, b: PagesIblockFieldsLabelDto) => a.id! - b.id!);
             form.value = {
+                // Сперва то что пришлоа по пропсам чтобы не сломать форму
                 ...form.value,
-                ...props.field
+                ...fields,
+                label: fields.label?.length ? fields.label : form.value.label
             };
         }
 

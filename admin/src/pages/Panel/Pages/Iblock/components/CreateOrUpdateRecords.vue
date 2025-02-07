@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-    import { getApiClientInitialParams, PagesIblockControllerClient, PagesIBlockFieldsDto, PagesIblockRecordsControllerClient } from '@/ApiClient/ApiClient';
+    import { getApiClientInitialParams, IIblockField, PagesIblockControllerClient, PagesIBlockFieldsDto, PagesIblockRecordsControllerClient } from '@/ApiClient/ApiClient';
     import useResultException from '@/helpers/useResultException';
     import useValidationRules from '@/helpers/useValidationRules';
     import { QForm, useQuasar } from 'quasar';
     import { onMounted, ref } from 'vue';
+    import RecordsFieldArray from './records-fields/RecordsFieldArray.vue';
+    import RecordsFieldImage from './records-fields/RecordsFieldImage.vue';
 
     interface IProps {
         id?: number | null;
@@ -36,6 +38,11 @@
     const getNameField = (key: string): string => {
         const find = fields.value.find((el) => el.slug === key);
         return find?.name || '';
+    };
+
+    const getTypeField = (key: string): IIblockField | null => {
+        const find = fields.value.find((el) => el.slug === key);
+        return find?.type ? find.type : null;
     };
 
     const onUpdate = async () => {
@@ -91,7 +98,15 @@
         if (!result.isSuccess) {
             resultError(result, null);
         } else {
-            form.value = result.entity;
+            form.value = {
+                ...result.entity,
+                fields: {
+                    ...form.value.fields,
+                    ...result.entity.fields
+                }
+            };
+
+            console.log(form.value);
         }
         isLoading.value = false;
     };
@@ -148,20 +163,32 @@
                     outlined
                 />
                 <div v-for="(item, key) in form.fields" :key="key" class="section-create-form__field q-mb-lg">
-                    <div class="text-h5 q-mb-md">{{ getNameField(key) }}</div>
+                    <div class="text-h5 q-mb-md">{{ getNameField(key.toString()) }}</div>
                     <div class="row no-wrap q-gutter-md records__fields">
-                        <q-input
-                            v-for="(field, fieldKey) in item"
-                            :key="fieldKey"
-                            v-model="form.fields[key][fieldKey].value"
-                            color="primary"
-                            :label="fieldKey"
-                            :rules="[isRequired]"
-                            :error="!!formErrors.name"
-                            :error-message="formErrors.name"
-                            class="records__fields__item"
-                            outlined
-                        />
+                        <template v-if="getTypeField(key.toString()) === IIblockField.Text">
+                            <div
+                                v-for="(field, fieldKey) in item"
+                                :key="fieldKey"
+                                class="records__fields__item"
+                            >
+                                <q-input
+                                    v-model="form.fields[key][fieldKey].value"
+                                    color="primary"
+                                    :label="fieldKey.toString()"
+                                    :rules="[isRequired]"
+                                    :error="!!formErrors.name"
+                                    :error-message="formErrors.name"
+                                    outlined
+                                />
+                            </div>
+                        </template>
+                        <template  v-if="getTypeField(key.toString()) === IIblockField.Array">
+                            <records-field-array :field="item" @on-change="form.fields[key] = $event"/>
+                        </template>
+                        <template  v-if="getTypeField(key.toString()) === IIblockField.Image">
+                            <records-field-image :field="item" />
+                        </template>
+
                     </div>
 
                 </div>

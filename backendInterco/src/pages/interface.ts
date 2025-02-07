@@ -23,6 +23,7 @@ export enum ITypePagesParams {
 export enum IIblockField {
     TEXT = 'text',
     ARRAY = 'array',
+    IMAGE = 'image',
 }
 
 export enum IFieldTypeSeo {
@@ -32,14 +33,14 @@ export enum IFieldTypeSeo {
 }
 
 export enum ILangTypeSeo {
-    RU = 'ru',
-    EN = 'en',
-    CH = 'ch'
+    RU = 'ru-RU',
+    EN = 'en-US',
+    CH = 'zh-CN'
 }
 
 
 export enum ILangPages {
-    RU = 'ru',
-    EN = 'en',
-    CH = 'ch'
+    RU = 'ru-RU',
+    EN = 'en-US',
+    CH = 'zh-CN'
 }

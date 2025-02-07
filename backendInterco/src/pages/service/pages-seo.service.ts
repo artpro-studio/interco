@@ -10,8 +10,10 @@ export class PagesSeoService {
     ) {}
 
     async getPageSeoParamsPublic(pageSlug: string): Promise<ResultPagesSeoPublicDto> {
-        console.log(pageSlug);
         const page = await this.pagesRepository.getForSlug(pageSlug);
+        if (!page) {
+            return {isSuccess: false, message:'Страница не найдена', entity: null}
+        }
         const result = {};
         page.seo.params.forEach((el) => {
             if (!result[el.fieldType]) {

@@ -12,20 +12,20 @@
     const form = ref<PagesSeoParamsDto>({
         content: '',
         fieldType: IFieldTypeSeo.Title,
-        lang: ILangTypeSeo.Ru,
+        lang: ILangTypeSeo.RuRU,
     });
 
     const optionsLang = [
         {
-            value: ILangTypeSeo.Ru,
+            value: ILangTypeSeo.RuRU,
             label: 'Русский',
         },
         {
-            value: ILangTypeSeo.En,
+            value: ILangTypeSeo.EnUS,
             label: 'Английский',
         },
         {
-            value: ILangTypeSeo.Ch,
+            value: ILangTypeSeo.ZhCN,
             label: 'Китайский',
         },
     ];

@@ -21,11 +21,11 @@
     const isLoading = ref(true);
     const form = ref<IData[]>([]);
     const fields = [IFieldTypeSeo.Title, IFieldTypeSeo.Description, IFieldTypeSeo.Keywords];
-    const langs = [ILangTypeSeo.Ru, ILangTypeSeo.En, ILangTypeSeo.Ch];
+    const langs = [ILangTypeSeo.RuRU, ILangTypeSeo.EnUS, ILangTypeSeo.ZhCN];
     const parseLang = {
-        [ILangTypeSeo.Ru]: 'Русский',
-        [ILangTypeSeo.En]: 'Английский',
-        [ILangTypeSeo.Ch]: 'Китайский',
+        [ILangTypeSeo.RuRU]: 'Русский',
+        [ILangTypeSeo.EnUS]: 'Английский',
+        [ILangTypeSeo.ZhCN]: 'Китайский',
     };
 
     const getDataField = (lang: ILangTypeSeo):PagesSeoParamsDto[]  => {

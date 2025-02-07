@@ -17138,9 +17138,9 @@ export interface ResultSettingsMenuItemDto {
 }
 
 export enum ILangTypeSeo {
-    Ru = "ru",
-    En = "en",
-    Ch = "ch",
+    RuRU = "ru-RU",
+    EnUS = "en-US",
+    ZhCN = "zh-CN",
 }
 
 export enum IFieldTypeSeo {
@@ -17762,9 +17762,9 @@ export enum IIblockField {
 }
 
 export enum ILangPages {
-    Ru = "ru",
-    En = "en",
-    Ch = "ch",
+    RuRU = "ru-RU",
+    EnUS = "en-US",
+    ZhCN = "zh-CN",
 }
 
 export interface PagesIblockFieldsLabelDto {

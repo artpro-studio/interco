@@ -12,7 +12,6 @@ function getUserLocale() {
 	}
 	const locale = navigator.language!.toString(); // 'ru-RU', 'zh-CN', 'en-US'
 	const shortLocale = langs[locale] || 'en-US';
-	console.log('locale', locale, shortLocale)
 	return shortLocale; // Если нет в списке, ставим английский
 }
 

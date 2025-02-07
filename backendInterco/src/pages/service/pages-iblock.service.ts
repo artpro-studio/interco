@@ -80,14 +80,13 @@ export class PagesIblockService {
                         })
                     })
                 } else {
-                    const getFields = getIblock.fields.find((el) => el.id === el.id);
+                    const getFields = getIblock.fields.find((el) => el.id === elField.id);
                     if (!compareValuesByCommonKeys(getFields, elField)) {
                         await this.pagesIblockFieldsRepository.update({
                             ...elField,
                             iblock
                         });
                     }
-
                     elField.label.forEach((el) => {
                         if (!el.id) {
                             this.pagesIblockFieldsLabelRepository.create({
@@ -103,6 +102,7 @@ export class PagesIblockService {
                             }
                         }
                     })
+
                 }
             }
         }

@@ -193,7 +193,7 @@
                         for (let key in row.fields[el.slug]) {
                             value += `${key}: ${row.fields[el.slug][key].value}; `;
                         }
-                        return value.length > 50 ? value.slice(0, 50) + '...' : '';
+                        return value.length > 50 ? value.slice(0, 50) + '...' : value;
                     },
                 })
             ]);
