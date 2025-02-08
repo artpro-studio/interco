@@ -1,7 +1,7 @@
 export default {
 	policySectionTitle: '隐私政策',
 	policySectionText1: '隐私政策描述了我们收集哪些数据、如何使用、存储以及保护这些数据。',
-	ppolicySectionoText2: '我们致力于确保您的个人信息安全，并遵守所有适用的数据保护法律和法规。',
+	policySectionText2: '我们致力于确保您的个人信息安全，并遵守所有适用的数据保护法律和法规。',
 	policySectionTextLink: '阅读私隐政策',
 	policySectionListTitle: '主要部分:',
 	policySectionListItem1: '信息收集和使用：我们在您访问网站或使用服务时收集哪些数据及其用途。',

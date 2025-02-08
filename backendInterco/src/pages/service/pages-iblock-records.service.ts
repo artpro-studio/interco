@@ -100,7 +100,7 @@ export class PagesIblockRecordsService {
                     ...itemValue,
                     recordField
                 });
-                valueResult.push(itemValue);
+                valueResult.push(entityValue);
             }
 
             resultRecors['fields'].push({
@@ -142,15 +142,55 @@ export class PagesIblockRecordsService {
         for (let key in body.data.fields) {
             const thisFields = body.data.fields[key];
             const recordsFields = formtterRecords.fields[key];
-            for (let keyLang in thisFields) {
-                const valueField = thisFields[keyLang]
-                const valueRecordField = recordsFields[keyLang]
 
-                // Усли значения обьекта не совпадают отправляем на обновление
-                if (!compareValuesByCommonKeys(valueField, valueRecordField)) {
-                    await this.pagesIblockRecordsFieldValueRepository.update(valueField);
+            if (recordsFields) {
+                for (let keyLang in thisFields) {
+                    const valueField = thisFields[keyLang]
+                    const valueRecordField = recordsFields[keyLang]
+
+                    // Усли значения обьекта не совпадают отправляем на обновление
+                    if (!compareValuesByCommonKeys(valueField, valueRecordField)) {
+                        await this.pagesIblockRecordsFieldValueRepository.update(valueField);
+                    }
+                }
+            } else {
+                /// Значит новое поле нужно его создать
+                const getFields = await this.pagesIblockFieldsRepository.get({
+                    search: '',
+                    page: 1,
+                    limit: 200,
+                    iblockID: body.iblockID
+                })
+                // Находим поле по ключу и перобразовываем данные для сохранения
+                let recordsFieldsParse: PagesIblockRecordsFieldDto = {};
+                const findField = getFields.entity.find((el) => el.slug === key);
+                if (findField) {
+                    const item = body.data.fields[key]
+                    const values: PagesIblockRecordsFieldValueDto[] = [];
+                    for(let valueKey in item) {
+                        const value = item[valueKey];
+                        values.push(value);
+                    }
+
+                    recordsFieldsParse = {
+                        field: findField,
+                        value: values
+                    }
+                    // Создаем field у записи
+                    const recordField = await this.pagesIblockRecordsFieldRepository.create({
+                        ...recordsFieldsParse,
+                        record: getRecords
+                    });
+
+                    for (const itemValue of recordsFieldsParse.value) {
+                        const entityValue = await this.pagesIblockRecordsFieldValueRepository.create({
+                            ...itemValue,
+                            recordField
+                        });
+                    }
                 }
             }
+
         }
 
         const result = {

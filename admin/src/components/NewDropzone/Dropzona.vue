@@ -114,7 +114,7 @@
 
     onMounted(() => {
         if (!props.isMultiple) {
-            localFiles.value = [props.files] || [];
+            localFiles.value = [props.files];
         } else {
             localFiles.value = props.files || [];
         }
@@ -138,7 +138,7 @@
         <q-tab name="dropzona" icon="file_download" label="Загрузка" />
         <q-tab name="library" icon="collections" label="Выбрать из библиотеки" />
     </q-tabs>
-    <q-tab-panels v-model="tab">
+    <q-tab-panels v-model="tab" class="full">
         <q-tab-panel class="dropzona__q-tab-panel" name="dropzona">
             <div
                 v-if="!isLoading"
@@ -150,7 +150,7 @@
                 @dragleave="isDrag = false"
             >
                 <input ref="dropZonaInputRef" class="dropzona__input" type="file" :multiple="isMultiple" @input="onInput" />
-                <div class="dropzona__body" :class="{ 'no-flex': files.length }">
+                <div class="dropzona__body" :class="{ 'no-flex': localFiles.length }">
                     <div class="dropzona__wrap">
                         <div v-if="localFiles.length" class="dropzona__preview">
                             <DropzonaPreview

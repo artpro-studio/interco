@@ -1,5 +1,6 @@
 
 import { PagesIblockRecordsDto } from '../dto/iblock/records/pages-iblock-records.dto';
+import { IIblockField } from '../interface';
 
 export function publicFormatterOne(data: PagesIblockRecordsDto): Record<string, any> {
     const {fields, ...itemEl} = data;
@@ -7,7 +8,14 @@ export function publicFormatterOne(data: PagesIblockRecordsDto): Record<string, 
     fields.forEach((field) => {
         resultFields[field.field.slug] = {}
         field.value.forEach((valItem) => {
-            resultFields[field.field.slug][valItem.lang] = valItem;
+            if (field.field.type === IIblockField.IMAGE) {
+                const value = valItem;
+                value.value = valItem.value.length ? JSON.parse(valItem.value) : null;
+                resultFields[field.field.slug][valItem.lang] = value;
+            } else {
+                resultFields[field.field.slug][valItem.lang] = valItem;
+            }
+
         })
     })
     return {

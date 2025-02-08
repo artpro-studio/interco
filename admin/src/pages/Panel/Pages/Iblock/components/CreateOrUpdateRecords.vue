@@ -175,9 +175,6 @@
                                     v-model="form.fields[key][fieldKey].value"
                                     color="primary"
                                     :label="fieldKey.toString()"
-                                    :rules="[isRequired]"
-                                    :error="!!formErrors.name"
-                                    :error-message="formErrors.name"
                                     outlined
                                 />
                             </div>
@@ -186,7 +183,7 @@
                             <records-field-array :field="item" @on-change="form.fields[key] = $event"/>
                         </template>
                         <template  v-if="getTypeField(key.toString()) === IIblockField.Image">
-                            <records-field-image :field="item" />
+                            <records-field-image :field="item" @on-change="form.fields[key] = $event" />
                         </template>
 
                     </div>

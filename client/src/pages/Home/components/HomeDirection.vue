@@ -1,16 +1,30 @@
 
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { computed, nextTick, onMounted, ref, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 
 	const sliderRef = ref<any>();
 	const slide = ref('slide1');
 
-	const sliderData = ref(
-		[
+
+	const sliderData: any = ref([])
+	const isLoading = ref(true);
+
+	watch(() => locale.value, () => {
+		isLoading.value = true;
+		sliderData.value = [];
+		nextTick(() => {
+			sliderData.value = getData.value;
+			isLoading.value = false;
+		})
+		console.log('watch')
+	})
+
+	const getData = computed(() => {
+		return [
 			{
 				title: t('directionSlide1Title'),
 				list: [t('directionSlide1Text1'), t('directionSlide1Text2'), t('directionSlide1Text3')],
@@ -37,7 +51,7 @@
 				images: 'images/direction-sllide5.png',
 			},
 		]
-	)
+	})
 
 	const onPrev = () => {
 		sliderRef.value?.previous();
@@ -46,6 +60,11 @@
 	const onNext = () => {
 		sliderRef.value?.next();
 	}
+
+	onMounted(() => {
+		sliderData.value = getData.value;
+		isLoading.value = false;
+	})
 </script>
 <template>
 	<div class="home-direction pt-8">
@@ -56,7 +75,7 @@
 			</div>
 			<h4 data-aos="fade-up" class="headline-3 text-white text-uppercase">{{ t('directionSubTitle') }}</h4>
 		</div>
-		<div class="home-direction__slider">
+		<div v-if="!isLoading" class="home-direction__slider">
 			<div class="container">
 				<div class="home-direction__slider__wrap">
 					<div class="home-direction__slider__arrows row no-wrap">

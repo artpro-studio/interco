@@ -1,7 +1,7 @@
 export default {
 	policySectionTitle: 'Privacy Policy',
 	policySectionText1: '<strong>Our Privacy Policy</strong> explains what data we collect, how we use, store, and protect it.',
-	ppolicySectionoText2: 'We are committed to safeguarding your personal information and adhering to all applicable data protection laws and regulations.',
+	policySectionText2: 'We are committed to safeguarding your personal information and adhering to all applicable data protection laws and regulations.',
 	policySectionTextLink: 'Read the Privacy Policy',
 	policySectionListTitle: 'Key Sections:',
 	policySectionListItem1: 'Information Collection and Use: Details on the data we collect when you visit our website or use our services, and the purposes for which it is collected.',
