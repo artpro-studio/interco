@@ -10,6 +10,9 @@ export class PagesIblockDto extends DefaultBaseDto {
     @ApiProperty({ example: 'Символьный код', nullable: false, description: 'Символьный код' })
     slug: string;
 
+    @ApiProperty({ type: () => 'object', nullable: true, required: false, description: 'Атрибуты' })
+    attributes?: any;
+
     @ApiProperty({ type: () => PagesDto, nullable: true, required: false, description: 'Страница' })
     page?: PagesDto;
 

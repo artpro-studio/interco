@@ -6,7 +6,7 @@ export const getFieldsSeoParams = (nameField: string): any => {
 
 
 export const getFieldsIblock = (nameField: string): any => {
-    const fields = ['id', 'name', 'slug'];
+    const fields = ['id', 'name', 'attributes', 'slug'];
 
     return fields.map((el) => `${nameField}.${el}`);
 }

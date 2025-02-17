@@ -18,6 +18,10 @@ export class PagesIblockEntity extends DefaultBaseEntity {
     @Column({ nullable: false, length: 1024 })
     slug: string;
 
+    @ApiProperty({ type: () => 'object', nullable: true, description: 'Атрибуты' })
+    @Column({ type: 'json', nullable: true})
+    attributes: string;
+
     @ApiProperty({ type: () => PagesDto, description: 'Страница' })
     @ManyToOne(() => PagesEntity, (pages) => pages.iblocks)
     page: PagesEntity;

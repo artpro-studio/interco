@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-    import { getApiClientInitialParams, IIblockField, PagesIblockControllerClient, PagesIBlockFieldsDto, PagesIblockRecordsControllerClient } from '@/ApiClient/ApiClient';
+    import {
+        getApiClientInitialParams,
+        IIblockField,
+        PagesIblockControllerClient,
+        PagesIBlockFieldsDto,
+        PagesIblockRecordsControllerClient,
+    } from '@/ApiClient/ApiClient';
     import useResultException from '@/helpers/useResultException';
     import useValidationRules from '@/helpers/useValidationRules';
     import { QForm, useQuasar } from 'quasar';
@@ -48,7 +54,7 @@
     const onUpdate = async () => {
         const result = await api.update({
             iblockID: props.iblockID,
-            data: form.value
+            data: form.value,
         });
         if (!result.isSuccess) {
             resultError(result, formErrors.value);
@@ -60,7 +66,7 @@
     const onCreate = async () => {
         const result = await api.create({
             iblockID: props.iblockID,
-            data: form.value
+            data: form.value,
         });
         if (!result.isSuccess) {
             resultError(result, formErrors.value);
@@ -102,8 +108,8 @@
                 ...result.entity,
                 fields: {
                     ...form.value.fields,
-                    ...result.entity.fields
-                }
+                    ...result.entity.fields,
+                },
             };
 
             console.log(form.value);
@@ -127,7 +133,7 @@
                 labels.forEach((label) => {
                     form.value.fields[el.slug][label.lang!] = {
                         lang: label.lang,
-                        value: ''
+                        value: '',
                     };
                 });
             });
@@ -155,39 +161,22 @@
                 <h4 class="text-h4">{{ props.id ? 'Редактирование' : 'Создание' }}</h4>
             </div>
             <q-form ref="formRef" @submit="onChange">
-                <q-input
-                    v-model="form.sort"
-                    color="primary"
-                    label="Порядок"
-                    class="q-mb-lg full"
-                    outlined
-                />
+                <q-input v-model="form.sort" color="primary" label="Порядок" class="q-mb-lg full" outlined />
                 <div v-for="(item, key) in form.fields" :key="key" class="section-create-form__field q-mb-lg">
                     <div class="text-h5 q-mb-md">{{ getNameField(key.toString()) }}</div>
                     <div class="row no-wrap q-gutter-md records__fields">
                         <template v-if="getTypeField(key.toString()) === IIblockField.Text">
-                            <div
-                                v-for="(field, fieldKey) in item"
-                                :key="fieldKey"
-                                class="records__fields__item"
-                            >
-                                <q-input
-                                    v-model="form.fields[key][fieldKey].value"
-                                    color="primary"
-                                    :label="fieldKey.toString()"
-                                    outlined
-                                />
+                            <div v-for="(field, fieldKey) in item" :key="fieldKey" class="records__fields__item">
+                                <q-input v-model="form.fields[key][fieldKey].value" color="primary" :label="fieldKey.toString()" outlined />
                             </div>
                         </template>
-                        <template  v-if="getTypeField(key.toString()) === IIblockField.Array">
-                            <records-field-array :field="item" @on-change="form.fields[key] = $event"/>
+                        <template v-if="getTypeField(key.toString()) === IIblockField.Array">
+                            <records-field-array :field="item" @on-change="form.fields[key] = $event" />
                         </template>
-                        <template  v-if="getTypeField(key.toString()) === IIblockField.Image">
+                        <template v-if="getTypeField(key.toString()) === IIblockField.Image">
                             <records-field-image :field="item" @on-change="form.fields[key] = $event" />
                         </template>
-
                     </div>
-
                 </div>
                 <div class="create-update-pages-params__buttons">
                     <q-btn type="submit" color="primary" class="full">{{ props.id ? 'Сохранить' : 'Создать' }}</q-btn>

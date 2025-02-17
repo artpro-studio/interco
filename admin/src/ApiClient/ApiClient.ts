@@ -17793,6 +17793,8 @@ export interface PagesIblockDto {
     name: string;
     /** Символьный код */
     slug: string;
+    /** Атрибуты */
+    attributes?: any | null;
     /** Страница */
     page?: PagesDto | null;
     /** Поля */

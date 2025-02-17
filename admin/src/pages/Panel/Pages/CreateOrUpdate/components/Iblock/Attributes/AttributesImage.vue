@@ -3,7 +3,7 @@
     import { computed, onBeforeMount, ref} from 'vue';
 
     interface IProps {
-        field: Record<string, any>
+        data: Record<string, any>
     }
     const props = defineProps<IProps>();
     const emit = defineEmits(['on-change']);
@@ -14,24 +14,24 @@
     });
 
     const onAddFile = (file: any) => {
-        const result: any = {...props.field};
+        const result: any = {...props.data};
         for (let key in result) {
-            result[key].value = JSON.stringify(file);
+            result[key] = file;
         }
         emit('on-change', result);
     };
 
     const onRemoveFile = () => {
-        const result: any = {...props.field};
+        const result: any = {...props.data};
         for (let key in result) {
-            result[key].value = '';
+            result[key] = '';
         }
         emit('on-change', result);
     };
 
     onBeforeMount(() => {
-        const key = Object.keys(props.field)[0];
-        file.value = props.field[key]?.value ? props.field[key].value : null;
+        const key = Object.keys(props.data)[0];
+        file.value = props.data[key] ? props.data[key] : null;
     });
 </script>
 <template>

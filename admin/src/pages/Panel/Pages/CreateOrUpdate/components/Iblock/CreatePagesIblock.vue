@@ -5,6 +5,7 @@
     import { QForm, useQuasar } from 'quasar';
     import { onMounted, ref } from 'vue';
     import IblockFields from './Fields/IblockFields.vue';
+    import Attributes from './Attributes/Attributes.vue';
 
     interface IProps {
         id?: number | null;
@@ -85,7 +86,7 @@
         } else {
             form.value = {
                 ...result.entity!,
-                page: props.page
+                page: props.page,
             };
         }
         isLoading.value = false;
@@ -130,6 +131,9 @@
                         :error-message="formErrors.slug"
                         outlined
                     />
+                </div>
+                <div class="section-create-form__field q-mb-md">
+                    <attributes :attributes="form.attributes" @on-change="form.attributes = $event" />
                 </div>
                 <div class="section-create-form__field q-mb-md">
                     <IblockFields :fields="form.fields" @on-change="form.fields = $event" />
