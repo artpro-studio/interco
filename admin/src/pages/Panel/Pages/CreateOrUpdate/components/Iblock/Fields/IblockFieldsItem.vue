@@ -42,6 +42,10 @@
         {
             value: IIblockField.Image,
             label: 'Изоображение',
+        },
+        {
+            value: IIblockField.Editor,
+            label: 'Редактор',
         }
     ];
 

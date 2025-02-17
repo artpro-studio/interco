@@ -17876,6 +17876,7 @@ export enum IIblockField {
     Text = "text",
     Array = "array",
     Image = "image",
+    Editor = "editor",
 }
 
 export enum ILangPages {

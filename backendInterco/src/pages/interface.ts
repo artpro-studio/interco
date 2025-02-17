@@ -24,6 +24,7 @@ export enum IIblockField {
     TEXT = 'text',
     ARRAY = 'array',
     IMAGE = 'image',
+    EDITOR = 'editor',
 }
 
 export enum IFieldTypeSeo {

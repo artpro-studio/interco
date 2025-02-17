@@ -210,6 +210,24 @@
                         <template v-if="getTypeField(key.toString()) === IIblockField.Image">
                             <records-field-image :field="item" @on-change="form.fields[key] = $event" />
                         </template>
+                        <div v-if="getTypeField(key.toString()) === IIblockField.Editor" class="full">
+                            <div v-for="(field, fieldKey) in item" :key="fieldKey" class="q-mb-md full">
+                                <div class="text-bold q-mb-sm text-h6">{{ fieldKey.toString() }}:</div>
+                                <q-editor
+                                    class="full"
+                                    v-model="form.fields[key][fieldKey].value"
+                                    :toolbar="[
+                                        ['bold', 'italic', 'underline'],
+                                        [{
+                                            label: $q.lang.editor.formatting,
+                                            icon: $q.iconSet.editor.formatting,
+                                            list: 'no-icons',
+                                            options: ['p', 'code']
+                                        }]
+                                    ]"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="create-update-pages-params__buttons">
