@@ -5,6 +5,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PagesDto } from "../dto/pages/create-pages.dto";
 import { PagesEntity } from "./pages.entity";
 import { PagesIblockRecordsEntity } from "./pages-iblock-records.entity";
+import { PagesIblockSectionEntity } from "./pages-iblock-section.entity";
 
 @Entity({
     name: 'pages_iblock'
@@ -33,4 +34,8 @@ export class PagesIblockEntity extends DefaultBaseEntity {
     @ApiProperty({ description: 'Записи' })
     @OneToMany(() => PagesIblockRecordsEntity, (records) => records.iblock)
     records: PagesIblockRecordsEntity[]
+
+    @ApiProperty({ description: 'Разделы' })
+    @OneToMany(() => PagesIblockSectionEntity, (section) => section.iblock)
+    sections: PagesIblockSectionEntity[]
 }

@@ -43,6 +43,10 @@ import { PagesIblockRecordsFieldValueRepository } from './repository/pages-ibloc
 import { PagesIblockRecordsController } from './controller/pages-iblock-recrods.controller';
 import { PagesIblockRecordsService } from './service/pages-iblock-records.service';
 import { PagesSeoService } from './service/pages-seo.service';
+import { PagesIblockSectionRepository } from './repository/pages-iblock-section.repository';
+import { PagesIblockSectionValueRepository } from './repository/pages-iblock-section-value.repository';
+import { PagesIblockSectionEntity } from './entity/pages-iblock-section.entity';
+import { PagesIblockSectionValueEntity } from './entity/pages-iblock-section-value.entity';
 
 const services = [
     PagesService,
@@ -67,6 +71,8 @@ const respositorys = [
     PagesIblockRecordsRepository,
     PagesIblockRecordsFieldRepository,
     PagesIblockRecordsFieldValueRepository,
+    PagesIblockSectionRepository,
+    PagesIblockSectionValueRepository
 ];
 @Module({
     imports: [
@@ -85,6 +91,8 @@ const respositorys = [
             PagesIblockRecordsEntity,
             PagesIblockRecordsFieldEntity,
             PagesIblockRecordsFieldValueEntity,
+            PagesIblockSectionEntity,
+            PagesIblockSectionValueEntity,
         ]),
         forwardRef(() => UserModule)
     ],

@@ -5,7 +5,7 @@ import { PagesIblockDto } from "../dto/iblock/pages-iblock.dto";
 import { BaseQuery } from "src/dto/reponse.dto";
 import { PagesIblockQuery } from "../dto/iblock/response-iblock.dto";
 import { Injectable } from "@nestjs/common";
-import { getFieldsIblockFields, getFieldsIblockFieldsLabel } from "../helpers";
+import { getFieldsIblockFields, getFieldsIblockFieldsLabel, getFieldsIblockSectionValue } from "../helpers";
 
 @Injectable()
 export class PagesIblockRepository {
@@ -16,10 +16,15 @@ export class PagesIblockRepository {
     async getOneForSlug(slug: string): Promise<PagesIblockDto> {
         const fieldsFields = getFieldsIblockFields('fields');
         const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
+        const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
 
         const query = this.pagesIblockRepository.createQueryBuilder('iblock')
             .leftJoin('iblock.fields', 'fields')
             .leftJoin('fields.label', 'label')
+            .leftJoin('iblock.sections', 'sections')
+            .leftJoin('sections.value', 'sectionsValue')
+            .addSelect(['sections.id'])
+            .addSelect(fieldsSectionValue)
             .addSelect(fieldsFields)
             .addSelect(fieldsFieldsLabel)
             .where('iblock.slug = :slug', {slug});
@@ -30,10 +35,15 @@ export class PagesIblockRepository {
     async getOne(id: number): Promise<PagesIblockDto> {
         const fieldsFields = getFieldsIblockFields('fields');
         const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
+        const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
 
         const query = this.pagesIblockRepository.createQueryBuilder('iblock')
             .leftJoin('iblock.fields', 'fields')
             .leftJoin('fields.label', 'label')
+            .leftJoin('iblock.sections', 'sections')
+            .leftJoin('sections.value', 'sectionsValue')
+            .addSelect(['sections.id'])
+            .addSelect(fieldsSectionValue)
             .addSelect(fieldsFields)
             .addSelect(fieldsFieldsLabel)
             .where('iblock.id = :id', {id});

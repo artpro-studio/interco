@@ -23,6 +23,12 @@ export const getFieldsIblockFieldsLabel = (nameField: string): any => {
     return fields.map((el) => `${nameField}.${el}`);
 }
 
+export const getFieldsIblockSectionValue = (nameField: string): any => {
+    const fields = ['id', 'value', 'lang'];
+
+    return fields.map((el) => `${nameField}.${el}`);
+}
+
 export const getFieldsPagesIblockRecordsFieldValue = (nameField: string): any => {
     const fields = ['id', 'value', 'lang'];
 

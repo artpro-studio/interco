@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PagesIblockRecordsEntity } from "../entity/pages-iblock-records.entity";
 import { Repository } from "typeorm";
 import { PagesIblockRecordsDto } from "../dto/iblock/records/pages-iblock-records.dto";
-import { getFieldsIblockFields, getFieldsPagesIblockRecordsFieldValue } from "../helpers";
+import { getFieldsIblockFields, getFieldsIblockSectionValue, getFieldsPagesIblockRecordsFieldValue } from "../helpers";
 import { PagesIblockRecordsQuery } from "../dto/iblock/records/response-iblock-records.dto";
 
 @Injectable()
@@ -16,6 +16,7 @@ export class PagesIblockRecordsRepository {
         try {
             const fieldsFields = getFieldsIblockFields('field');
             const fieldsPagesIblockRecordsFieldValue = getFieldsPagesIblockRecordsFieldValue('value');
+            const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
 
             const take = Number(body.limit);
             const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
@@ -27,6 +28,10 @@ export class PagesIblockRecordsRepository {
                 .leftJoin('records.iblock', 'iblock')
                 .leftJoin('fields.field', 'field')
                 .leftJoin('fields.value', 'value')
+                .leftJoin('records.sections', 'sections')
+                .leftJoin('sections.value', 'sectionsValue')
+                .addSelect(['section.id'])
+                .addSelect(fieldsSectionValue)
                 .addSelect(['fields.id'])
                 .addSelect(fieldsFields)
                 .addSelect(fieldsPagesIblockRecordsFieldValue)
@@ -48,11 +53,16 @@ export class PagesIblockRecordsRepository {
     async getOne(id: number): Promise<PagesIblockRecordsDto> {
         const fieldsFields = getFieldsIblockFields('field');
         const fieldsPagesIblockRecordsFieldValue = getFieldsPagesIblockRecordsFieldValue('value');
+        const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
 
         const query = this.pagesIblockRecordsRepository.createQueryBuilder('records')
             .leftJoin('records.fields', 'fields')
             .leftJoin('fields.field', 'field')
             .leftJoin('fields.value', 'value')
+            .leftJoin('records.sections', 'sections')
+            .leftJoin('sections.value', 'sectionsValue')
+            .addSelect(['section.id'])
+            .addSelect(fieldsSectionValue)
             .addSelect(['fields.id'])
             .addSelect(fieldsFields)
             .addSelect(fieldsPagesIblockRecordsFieldValue)

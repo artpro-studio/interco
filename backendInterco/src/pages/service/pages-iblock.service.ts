@@ -6,6 +6,8 @@ import { PagesIblockDto } from "../dto/iblock/pages-iblock.dto";
 import { ResultPagesIblockDto } from "../dto/iblock/response-iblock.dto";
 import e from "express";
 import { compareValuesByCommonKeys } from "../helpers";
+import { PagesIblockSectionRepository } from '../repository/pages-iblock-section.repository';
+import { PagesIblockSectionValueRepository } from "../repository/pages-iblock-section-value.repository";
 
 @Injectable()
 export class PagesIblockService {
@@ -13,6 +15,8 @@ export class PagesIblockService {
         private readonly pagesIblockRepository: PagesIblockRepository,
         private readonly pagesIblockFieldsRepository: PagesIblockFieldsRepository,
         private readonly pagesIblockFieldsLabelRepository: PagesIblockFieldsLabelRepository,
+        private readonly pagesIblockSectionRepository: PagesIblockSectionRepository,
+        private readonly pagesIblockSectionValueRepository: PagesIblockSectionValueRepository,
     ) {}
 
     async create(body: PagesIblockDto): Promise<ResultPagesIblockDto> {
@@ -40,6 +44,24 @@ export class PagesIblockService {
                         field
                     })
                 })
+            }
+        }
+
+        if (body.sections?.length) {
+            // Создаем разделы
+            for (let section of body.sections) {
+                const entitySection = await this.pagesIblockSectionRepository.create({
+                    iblock
+                });
+                // Создаем значения у раздела
+                if (section.value?.length) {
+                    for (let value of section.value) {
+                        await this.pagesIblockSectionValueRepository.create({
+                            ...value,
+                            section: entitySection
+                        })
+                    }
+                }
             }
         }
 
@@ -105,6 +127,56 @@ export class PagesIblockService {
 
                 }
             }
+        }
+
+        // Обновление разделов
+        const idsIblockSection = iblock.sections.map((el) => el.id);
+        const newSection = body.sections?.filter((el) => !el.id);
+        const idsDeleteSection = body.sections?.filter((el) => !idsIblockSection.includes(el.id)).map((el) => el.id);
+        const updateSection = body.sections?.filter((el) => idsIblockSection.includes(el.id));
+
+        // Создание разделов
+        for (let section of newSection) {
+            const entitySection = await this.pagesIblockSectionRepository.create({
+                iblock
+            });
+            // Создаем значения у раздела
+            if (section.value?.length) {
+                for (let value of section.value) {
+                    await this.pagesIblockSectionValueRepository.create({
+                        ...value,
+                        section: entitySection
+                    })
+                }
+            }
+        }
+
+        // Удаление разделов
+        if (idsDeleteSection.length) {
+            await this.pagesIblockSectionRepository.deleteIds(idsDeleteSection);
+        }
+
+        // Обновление разделов
+        if (updateSection.length) {
+            updateSection.forEach((section) => {
+                const getSection = iblock.sections.find((el) => el.id === section.id)
+                section.value.forEach((el) => {
+                    const getValue = getSection.value.find((value) => value.id === el.id);
+                    if (getValue) {
+                        if (!compareValuesByCommonKeys(getValue, el)) {
+                            this.pagesIblockSectionValueRepository.update({
+                                ...el,
+                                section: getSection
+                            })
+                        }
+                    } else {
+                        this.pagesIblockSectionValueRepository.create({
+                            ...el,
+                            section: getSection
+                        })
+                    }
+                })
+            })
         }
 
         return {

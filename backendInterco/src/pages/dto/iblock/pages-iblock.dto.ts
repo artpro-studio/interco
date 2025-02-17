@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { DefaultBaseDto } from "src/dto/base.dto";
 import { PagesDto } from "../pages/create-pages.dto";
 import { PagesIBlockFieldsDto } from "./fields/pages-iblock-fields.dto";
+import { PagesIblockSectionDto } from "./section/pages-iblock-section.dto";
 
 export class PagesIblockDto extends DefaultBaseDto {
     @ApiProperty({ example: 'Название', nullable: false, description: 'Название' })
@@ -18,4 +19,7 @@ export class PagesIblockDto extends DefaultBaseDto {
 
     @ApiProperty({ type: () => [PagesIBlockFieldsDto], required: false, nullable: true, description: 'Поля' })
     fields?: PagesIBlockFieldsDto[];
+
+    @ApiProperty({ type: () => [PagesIblockSectionDto], required: false, nullable: true, description: 'Разделы' })
+    sections?: PagesIblockSectionDto[];
 }
