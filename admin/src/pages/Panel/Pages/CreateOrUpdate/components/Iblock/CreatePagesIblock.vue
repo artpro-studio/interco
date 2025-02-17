@@ -6,6 +6,7 @@
     import { onMounted, ref } from 'vue';
     import IblockFields from './Fields/IblockFields.vue';
     import Attributes from './Attributes/Attributes.vue';
+    import IblockSection from './IblockSection/IblockSection.vue';
 
     interface IProps {
         id?: number | null;
@@ -131,6 +132,9 @@
                         :error-message="formErrors.slug"
                         outlined
                     />
+                </div>
+                <div class="section-create-form__field q-mb-md">
+                    <iblock-section :sections="form.sections" @on-change="form.sections = $event"/>
                 </div>
                 <div class="section-create-form__field q-mb-md">
                     <attributes :attributes="form.attributes" @on-change="form.attributes = $event" />

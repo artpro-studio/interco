@@ -4,7 +4,7 @@
     import IblockFieldsItem from './IblockFieldsItem.vue';
 
     interface IProps {
-        fields?: PagesIBlockFieldsDto[];
+        fields?: PagesIBlockFieldsDto[] | null;
     }
     const props = defineProps<IProps>();
     const emit = defineEmits(['on-change']);

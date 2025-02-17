@@ -6,6 +6,7 @@ import { BaseQuery } from "src/dto/reponse.dto";
 import { PagesIblockQuery } from "../dto/iblock/response-iblock.dto";
 import { Injectable } from "@nestjs/common";
 import { getFieldsIblockFields, getFieldsIblockFieldsLabel, getFieldsIblockSectionValue } from "../helpers";
+import { PagesIblockSectionValueDto } from '../dto/iblock/section/pages-iblock-section-value.dto';
 
 @Injectable()
 export class PagesIblockRepository {
@@ -48,7 +49,14 @@ export class PagesIblockRepository {
             .addSelect(fieldsFieldsLabel)
             .where('iblock.id = :id', {id});
 
-        return await query.getOne()
+        const entity = await query.getOne();
+        // Добавим сортировку для разделов чтобы языки были по порядку создания
+        entity.sections = entity.sections.map((el) => {
+            el.value = el.value.sort((a: PagesIblockSectionValueDto, b: PagesIblockSectionValueDto) => a.id - b.id)
+            return el;
+        })
+
+        return entity;
     }
 
     async get(body: PagesIblockQuery): Promise<{count: number, limit: number, entity: PagesIblockDto[]}> {

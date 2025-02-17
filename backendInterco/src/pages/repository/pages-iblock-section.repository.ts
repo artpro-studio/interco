@@ -3,12 +3,26 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PagesIblockSectionEntity } from "../entity/pages-iblock-section.entity";
 import { Repository } from "typeorm";
 import { PagesIblockSectionDto } from "../dto/iblock/section/pages-iblock-section.dto";
+import { getFieldsIblockSectionValue } from "../helpers";
 
 @Injectable()
 export class PagesIblockSectionRepository {
     constructor(
         @InjectRepository(PagesIblockSectionEntity) private readonly pagesIblockSectionRepository: Repository<PagesIblockSectionEntity>
     ) {}
+
+    async getForIblock(iblockID: number): Promise<PagesIblockSectionDto[]> {
+        const fieldsSectionValue = getFieldsIblockSectionValue('value');
+
+        const query = await this.pagesIblockSectionRepository
+            .createQueryBuilder('section')
+            .leftJoin('section.value', 'value')
+            .leftJoin('section.iblock', 'iblock')
+            .addSelect(fieldsSectionValue)
+            .where('iblock.id = :iblockID', {iblockID})
+
+        return await query.getMany();
+    }
 
     async create(body: PagesIblockSectionDto): Promise<PagesIblockSectionDto> {
         const entity = this.pagesIblockSectionRepository.create(body);

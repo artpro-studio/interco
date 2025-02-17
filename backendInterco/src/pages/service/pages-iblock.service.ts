@@ -130,7 +130,7 @@ export class PagesIblockService {
         }
 
         // Обновление разделов
-        const idsIblockSection = iblock.sections.map((el) => el.id);
+        const idsIblockSection = getIblock.sections.map((el) => el.id);
         const newSection = body.sections?.filter((el) => !el.id);
         const idsDeleteSection = body.sections?.filter((el) => !idsIblockSection.includes(el.id)).map((el) => el.id);
         const updateSection = body.sections?.filter((el) => idsIblockSection.includes(el.id));
@@ -159,10 +159,12 @@ export class PagesIblockService {
         // Обновление разделов
         if (updateSection.length) {
             updateSection.forEach((section) => {
-                const getSection = iblock.sections.find((el) => el.id === section.id)
+                const getSection = getIblock.sections.find((el) => el.id === section.id)
                 section.value.forEach((el) => {
                     const getValue = getSection.value.find((value) => value.id === el.id);
                     if (getValue) {
+                        console.log(getValue, el);
+                        console.log(compareValuesByCommonKeys(getValue, el));
                         if (!compareValuesByCommonKeys(getValue, el)) {
                             this.pagesIblockSectionValueRepository.update({
                                 ...el,

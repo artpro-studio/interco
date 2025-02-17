@@ -85,7 +85,8 @@ export class PagesIblockRecordsService {
         // Сохраням данные
         const record = await this.pagesIblockRecordsRepository.create({
             sort: Number(body.data.sort) || 0,
-            iblock: iblock
+            iblock: iblock,
+            sections: body.data.sections,
         });
         const resultRecors = {...record, fields: []};
 
@@ -129,12 +130,11 @@ export class PagesIblockRecordsService {
             return {isSuccess: false, message: 'Нет полей для изменения', entity: null}
         }
 
-        if (getRecords.sort !== body.data.sort) {
-            await this.pagesIblockRecordsRepository.update({
-                ...getRecords,
-                sort: body.data.sort || 0,
-            })
-        }
+        await this.pagesIblockRecordsRepository.update({
+            ...getRecords,
+            sort: body.data.sort || 0,
+            sections: body.data.sections
+        })
 
         const formtterRecords = publicFormatterOne(getRecords);
 

@@ -5,6 +5,7 @@
         PagesIblockControllerClient,
         PagesIBlockFieldsDto,
         PagesIblockRecordsControllerClient,
+        PagesIblockSectionDto,
     } from '@/ApiClient/ApiClient';
     import useResultException from '@/helpers/useResultException';
     import useValidationRules from '@/helpers/useValidationRules';
@@ -33,6 +34,7 @@
     const fields = ref<PagesIBlockFieldsDto[]>([]);
     const form = ref<Record<string, any>>({
         sort: 0,
+        sections: [],
     });
     const formErrors = ref<Record<string, string>>({
         name: '',
@@ -40,6 +42,7 @@
         type: '',
         isFilter: '',
     });
+    const optionsSections = ref<PagesIblockSectionDto[]>([]);
 
     const getNameField = (key: string): string => {
         const find = fields.value.find((el) => el.slug === key);
@@ -110,9 +113,13 @@
                     ...form.value.fields,
                     ...result.entity.fields,
                 },
+                sections: result.entity.sections?.map((el: any) => {
+                    return {
+                        ...el,
+                        field: el.value?.map((item: any) => `${item.lang}: ${item.value}`).join(',')
+                    };
+                }) || []
             };
-
-            console.log(form.value);
         }
         isLoading.value = false;
     };
@@ -140,8 +147,23 @@
         }
     };
 
+    const getSections = async () => {
+        const result = await apiIblock.getSections(props.iblockID);
+        if (!result.isSuccess) {
+            resultError(result, null);
+        } else {
+            optionsSections.value = result.entity?.map((el) => {
+                return {
+                    ...el,
+                    field: el.value?.map((item) => `${item.lang}: ${item.value}`).join(',')
+                };
+            }) || [];
+        }
+    };
+
     onMounted(async () => {
         await getFileds();
+        await getSections();
         if (props.id) {
             getInfo();
         } else {
@@ -162,6 +184,18 @@
             </div>
             <q-form ref="formRef" @submit="onChange">
                 <q-input v-model="form.sort" color="primary" label="Порядок" class="q-mb-lg full" outlined />
+                <q-select
+                    v-model="form.sections"
+                    label="Разделы"
+                    :options="optionsSections"
+                    option-value="id"
+                    option-label="field"
+                    class="q-mb-md"
+                    use-chips
+                    map-options
+                    multiple
+                    outlined
+                />
                 <div v-for="(item, key) in form.fields" :key="key" class="section-create-form__field q-mb-lg">
                     <div class="text-h5 q-mb-md">{{ getNameField(key.toString()) }}</div>
                     <div class="row no-wrap q-gutter-md records__fields">

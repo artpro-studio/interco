@@ -9,6 +9,8 @@ import { PagesIblockListDto, PagesIblockQuery, ResultPagesIblockDto } from "../d
 import { PagesIblockService } from '../service/pages-iblock.service';
 import { PagesIblockFieldsRepository } from "../repository/pages-iblock-fields.repository";
 import { PagesIblockFieldsListDto, PagesIblockFieldsQuery } from "../dto/iblock/fields/response-pages-iblock-fields.dto";
+import { PagesIblockSectionRepository } from '../repository/pages-iblock-section.repository';
+import { ResultPagesIblockSectionDto } from "../dto/iblock/section/response-iblock-section.dto";
 
 @ApiTags('Информационные блоки страницы')
 @Controller('pages-iblock')
@@ -20,7 +22,19 @@ export class PagesIblockController {
         private readonly pagesIblockRepository: PagesIblockRepository,
         private readonly pagesIblockFieldsRepository: PagesIblockFieldsRepository,
         private readonly pagesIblockService: PagesIblockService,
+        private readonly pagesIblockSectionRepository: PagesIblockSectionRepository,
     ) {}
+
+    @ApiOperation({ summary: 'Разделы у iblock' })
+    @ApiResponse({ status: 200, type: ResultPagesIblockSectionDto })
+    @ApiQuery({ name: 'iblockID', type: Number, required: true, description: 'ID iblock'})
+    @Get('sections')
+    async getSections(@Query() query: {iblockID: number}): Promise<ResultPagesIblockSectionDto> {
+        return {
+            isSuccess: true,
+            entity: await this.pagesIblockSectionRepository.getForIblock(query.iblockID)
+        };
+    }
 
     @ApiOperation({ summary: 'Список полей у iblock' })
     @ApiResponse({ status: 200, type: PagesIblockFieldsListDto })
