@@ -14,6 +14,25 @@ export class PagesIblockRepository {
         @InjectRepository(PagesIblockEntity) private readonly pagesIblockRepository: Repository<PagesIblockEntity>
     ) {}
 
+    async getOneForSlugsArray(slugs: string[]): Promise<PagesIblockDto[]> {
+        const fieldsFields = getFieldsIblockFields('fields');
+        const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
+        const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
+
+        const query = this.pagesIblockRepository.createQueryBuilder('iblock')
+            .leftJoin('iblock.fields', 'fields')
+            .leftJoin('fields.label', 'label')
+            .leftJoin('iblock.sections', 'sections')
+            .leftJoin('sections.value', 'sectionsValue')
+            .addSelect(['sections.id'])
+            .addSelect(fieldsSectionValue)
+            .addSelect(fieldsFields)
+            .addSelect(fieldsFieldsLabel)
+            .where('iblock.slug IN (:...slugs)', {slugs});
+
+        return await query.getMany()
+    }
+
     async getOneForSlug(slug: string): Promise<PagesIblockDto> {
         const fieldsFields = getFieldsIblockFields('fields');
         const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');

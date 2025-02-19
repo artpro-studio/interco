@@ -1,30 +1,12 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
 
-	const years = [
-		{
-			date: '2020',
-			text: 'Основание SA International в составе SIBC Group в Шанхае. Открытие первого зарубежного офиса в Благовещенске, Россия, что позволило нам укрепить позиции на рынке СНГ.',
-		},
-		{
-			date: '2021',
-			text: 'Запуск собственного производства вилочных погрузчиков и конвейерных лент, расширение продуктовой линейки.',
-		},
-		{
-			date: '2022',
-			text: 'Начало внедрения инновационных технологий с использованием искусственного интеллекта в производственные процессы.',
-		},
-		{
-			date: '2023',
-			text: 'Участие в Восточном Экономическом Форуме. Подписание договоров с правительством Российской Федерации о строительстве завода по производству портового оборудования.',
-		},
-		{
-			date: '2024',
-			text: 'Создание бартерной биржи совместно с партнерами, инвестиции в размере 5 млн юаней для развития проекта. Подготовка к строительству завода по производству роботизированных рук в России с целью полной локализации производства к 2028 году. Расширение международного присутствия, планирование открытия офисов в Москве и Крыму, увеличение штата сотрудников до 50 человек. Открытие офисов в Гонконге и Иу. ',
-		},
-	]
+	const { t, locale } = useI18n();
 </script>
 
 <template>
@@ -35,14 +17,14 @@
 			</div>
 			<div class="about-years__body">
 				<div
-					v-for="(item, index) in years"
+					v-for="(item, index) in data"
 					:key="index"
 					class="about-years__item row no-wrap"
 					data-aos="fade-up"
 				>
-					<div class="about-years__item__column headline-2">{{ item.date }}</div>
+					<div class="about-years__item__column headline-2">{{ item.fields?.year?.[locale]?.value }}</div>
 					<div class="about-years__item__info">
-						<p>{{ item.text }}</p>
+						<p>{{ item.fields?.description?.[locale]?.value }}</p>
 					</div>
 				</div>
 			</div>

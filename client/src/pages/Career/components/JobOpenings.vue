@@ -6,6 +6,11 @@
 	import { computed, inject, onMounted, ref, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
+	interface IProps {
+		data: any;
+	}
+	defineProps<IProps>();
+
 	const { t } = useI18n();
 
 	const widthScreen = inject<any>('widthScreen', 0);
@@ -45,21 +50,10 @@
 						:centeredSlides="false"
 						:auto-height="true"
 					>
-						<swiper-slide>
-							<job-openings-slide />
+						<swiper-slide v-for="(item, index) in data" :key="index">
+							<job-openings-slide :data="item" />
 						</swiper-slide>
-						<swiper-slide>
-							<job-openings-slide />
-						</swiper-slide>
-						<swiper-slide>
-							<job-openings-slide />
-						</swiper-slide>
-						<swiper-slide>
-							<job-openings-slide />
-						</swiper-slide>
-						<swiper-slide>
-							<job-openings-slide />
-						</swiper-slide>
+
 					</swiper>
 				</div>
 			</div>

@@ -12,13 +12,31 @@
 	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+
+	const SLUG_CONTACTS = 'partners-contact';
+
+	const pagePublic = ref<PagesPublicDto | null>(null);
+
+	const getContacts = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_CONTACTS)?.records
+		return data;
+	})
+
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('partners')
+		.then((data) => {
+			pagePublic.value = data.entity;
+		})
+	}
 
 	onMounted(() => {
-		useGetMeta('partners')
+		useGetMeta('partners');
+		getInfo();
 	})
 </script>
 <template>
@@ -41,36 +59,26 @@
 	<partners-info />
 	<partners-form />
 	<clients-contacts>
-		<template v-slot:column1>
-			<div class="clients-contacts__item">
-				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">E-mail</h6>
-				<div class="clients-contacts__item__link">
-					<a href="mailto:partners@inter-sa.com">partners@inter-sa.com</a>
+		<template
+			v-slot:default
+		>
+			<div
+				v-for="(item, index) in getContacts"
+				:key="index"
+				class="clients-contacts__item"
+			>
+				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ item.fields.title[locale].value }}</h6>
+				<div v-if="item.fields.phone[locale].value" class="clients-contacts__item__link">
+					<a :href="'tel:' + item.fields.phone[locale].value">{{ item.fields.phone[locale].value }}</a>
 				</div>
-			</div>
-		</template>
-		<template v-slot:column2>
-			<div class="clients-contacts__item">
-				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Телефон</h6>
-				<div class="clients-contacts__item__link">
-					<a href="tel:+8654322755">+86-5432-2755 (ext. 818)</a>
+				<div v-if="item.fields.email[locale].value" class="clients-contacts__item__link">
+					<a :href="'mailto:' + item.fields.email[locale].value">{{ item.fields.email[locale].value }}</a>
 				</div>
-			</div>
-		</template>
-		<template v-slot:column3>
-			<div class="clients-contacts__item">
-				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Адрес главного офиса</h6>
-				<div class="clients-contacts__item__link">
-					<p>Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505</p>
+				<div v-if="item.fields.address[locale].value" class="clients-contacts__item__link">
+					<p>{{ item.fields.address[locale].value }}</p>
 				</div>
-			</div>
-		</template>
-		<template v-slot:column4>
-			<div class="clients-contacts__item">
-				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">Адрес главного офиса</h6>
-				<div class="clients-contacts__item__link">
-					<p>Дмитрий Александрович Гаврилов,
-						Директор по развитию бизнеса</p>
+				<div v-if="item.fields.user[locale].value" class="clients-contacts__item__link">
+					<p>{{ item.fields.user[locale].value }}</p>
 				</div>
 			</div>
 		</template>

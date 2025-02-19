@@ -1,10 +1,46 @@
 <script lang="ts" setup>
-	import { reactive, ref } from 'vue';
+	import { computed, reactive, ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	const props = defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 
 	const tab = ref('contact1');
+
+	const getData = computed((): any => {
+		const result: any = [];
+		props.data?.forEach((el: any, index: number) => {
+			result.push({
+				key: 'contact' + (index + 1),
+				name: el.fields?.title[locale.value]?.value,
+				data: {
+					address: {
+						text: el.fields?.address[locale.value]?.value,
+						link: {
+							text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
+							src: el.fields?.link[locale.value]?.value,
+						},
+					},
+					phone: {
+						common: el.fields['general-phone'][locale.value]?.value,
+						salesDepartment: el.fields['department-phone'][locale.value]?.value,
+						support: el.fields['technical-phone'][locale.value]?.value,
+					},
+					email: {
+						common:el.fields['general-email'][locale.value]?.value,
+						salesDepartment: el.fields['general-email'][locale.value]?.value,
+						support: el.fields['general-email'][locale.value]?.value,
+					},
+					time: el.fields['time-job'][locale.value]?.value
+				}
+			})
+		})
+		return result;
+	})
 
 	const dataTabs = reactive([
 		{
@@ -116,7 +152,7 @@
 					class="contacts-tabs__tabs"
 				>
 					<q-tab
-						v-for="(item, index) in dataTabs"
+						v-for="(item, index) in getData"
 						:key="index"
 						class="contacts-tabs__tabs__item"
 						:name="item.key"
@@ -129,7 +165,7 @@
 					animated
 				>
 					<q-tab-panel
-						v-for="(item, index) in dataTabs"
+						v-for="(item, index) in getData"
 						:key="index"
 						:name="item.key"
 						class="contacts-tabs__panel"
@@ -148,30 +184,30 @@
 							<div class="contacts-tabs__item">
 								<h5 class="contacts-tabs__item__title">{{ t('phone') }}</h5>
 								<div class="contacts-tabs__item__contact row">
-									<span>Общий:</span>
+									<span>{{ t('contactsGeneral') }}:</span>
 									<a :href="'tel:' + item.data.phone.common">{{ item.data.phone.common }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
-									<span>Отдел продаж:</span>
+									<span>{{ t('contactsTotalSales') }}:</span>
 									<a :href="'tel:' + item.data.phone.salesDepartment">{{ item.data.phone.salesDepartment }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
-									<span>Техническая поддержка:</span>
+									<span>{{ t('contactsSupportText') }}:</span>
 									<a :href="'tel:' + item.data.phone.support">{{ item.data.phone.support }}</a>
 								</div>
 							</div>
 							<div class="contacts-tabs__item">
 								<h5 class="contacts-tabs__item__title">{{ t('email') }}</h5>
 								<div class="contacts-tabs__item__contact row">
-									<span>Общий:</span>
+									<span>{{ t('contactsGeneral') }}:</span>
 									<a :href="'mailto:' + item.data.email.common">{{ item.data.email.common }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
-									<span>Отдел продаж:</span>
+									<span>{{ t('contactsTotalSales') }}:</span>
 									<a :href="'mailto:' + item.data.email.salesDepartment">{{ item.data.email.salesDepartment }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
-									<span>Техническая поддержка:</span>
+									<span>{{ t('contactsSupportText') }}:</span>
 									<a :href="'mailto:' + item.data.email.support">{{ item.data.email.support }}</a>
 								</div>
 							</div>

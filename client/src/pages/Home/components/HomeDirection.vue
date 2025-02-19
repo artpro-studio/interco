@@ -3,8 +3,15 @@
 	import { computed, nextTick, onMounted, ref, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
+import { useRouter } from 'vue-router';
+
+	interface IProps {
+		data: any;
+	}
+	const props = defineProps<IProps>();
 
 	const { t, locale } = useI18n();
+	const router = useRouter();
 
 	const sliderRef = ref<any>();
 	const slide = ref('slide1');
@@ -13,44 +20,19 @@
 	const sliderData: any = ref([])
 	const isLoading = ref(true);
 
+	watch(() => props.data, () => {
+		isLoading.value = true;
+		sliderData.value = props.data;
+		isLoading.value = false;
+	})
+
 	watch(() => locale.value, () => {
 		isLoading.value = true;
 		sliderData.value = [];
 		nextTick(() => {
-			sliderData.value = getData.value;
+			sliderData.value = props.data;
 			isLoading.value = false;
 		})
-		console.log('watch')
-	})
-
-	const getData = computed(() => {
-		return [
-			{
-				title: t('directionSlide1Title'),
-				list: [t('directionSlide1Text1'), t('directionSlide1Text2'), t('directionSlide1Text3')],
-				images: 'images/direction-sllide1.png',
-			},
-			{
-				title: t('directionSlide2Title'),
-				list: [t('directionSlide2Text1'), t('directionSlide2Text2'), t('directionSlide2Text3')],
-				images: 'images/direction-sllide2.png',
-			},
-			{
-				title: t('directionSlide3Title'),
-				list: [t('directionSlide3Text1'), t('directionSlide3Text2'), t('directionSlide3Text3')],
-				images: 'images/direction-sllide3.png',
-			},
-			{
-				title: t('directionSlide4Title'),
-				list: [t('directionSlide4Text1'), t('directionSlide4Text2'), t('directionSlide4Text3')],
-				images: 'images/direction-sllide4.png',
-			},
-			{
-				title: t('directionSlide5Title'),
-				list: [t('directionSlide5Text1'), t('directionSlide5Text2')],
-				images: 'images/direction-sllide5.png',
-			},
-		]
 	})
 
 	const onPrev = () => {
@@ -60,11 +42,6 @@
 	const onNext = () => {
 		sliderRef.value?.next();
 	}
-
-	onMounted(() => {
-		sliderData.value = getData.value;
-		isLoading.value = false;
-	})
 </script>
 <template>
 	<div class="home-direction pt-8">
@@ -105,15 +82,15 @@
 						>
 							<div class="home-direction__slide row no-wrap">
 								<div class="home-direction__slide__info">
-									<h5 class="home-direction__slide__info__title headline-4 text-white text-uppercase">{{ item.title }}</h5>
+									<h5 class="home-direction__slide__info__title headline-4 text-white text-uppercase">{{ item.fields.title[locale].value }}</h5>
 									<ul>
-										<li v-for="(el, indx) in item.list" :key="indx">{{ el }}</li>
+										<li v-for="(el, indx) in item.fields.list[locale].value" :key="indx">{{ el }}</li>
 									</ul>
 
-									<v-btn-red color="white" class="home-direction__slide__btn text-bold" :text="t('moreDetailed')" flat></v-btn-red>
+									<v-btn-red color="white" class="home-direction__slide__btn text-bold" :text="t('moreDetailed')" flat @on-click="router.push(item.fields.link[locale].value)" />
 								</div>
 								<div class="home-direction__slide__images">
-									<q-img :src="item.images" loading="lazy" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
+									<q-img :src="item.fields.image[locale].value.path" loading="lazy" width="516px" height="516px" fit="cover" class="home-direction__slide__img" />
 								</div>
 							</div>
       					</q-carousel-slide>
@@ -320,7 +297,7 @@
 
 			&__btn {
 				margin-top: 32px;
-				max-width: 140px;
+				max-width: 175px;
 				@media (max-width: $breakpoint-sm-min) {
 					margin-top: 24px;
 				}

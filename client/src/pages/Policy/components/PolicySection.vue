@@ -4,7 +4,12 @@
 	import { useI18n } from 'vue-i18n';
 	import { ref } from 'vue';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any;
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 	const listData = ref([
 		'policySectionListItem1',
 		'policySectionListItem2',
@@ -19,16 +24,16 @@
 <template>
 	<div class="policy-section pb-8">
 		<div class="container">
-			<section-title class="policy-section__title" :title="t('policySectionTitle')" />
-			<policy-section-text :button-text="t('policySectionTextLink')">
+			<section-title class="policy-section__title" :title="data?.title[locale]?.value" />
+			<policy-section-text :button-text="t('policySectionTextLink')" :href="data?.file[locale]?.value?.path">
 				<template v-slot:text>
-					<p v-html="t('policySectionText1')"></p>
-					<p v-html="t('policySectionText2')"></p>
+					<p v-html="data?.description1[locale]?.value"></p>
+					<p v-html="data?.description2[locale]?.value"></p>
 				</template>
 				<template v-slot:list>
 					<h5>{{ t('policySectionListTitle') }}</h5>
 					<ul>
-						<li v-for="(item, index) in listData" :key="index">{{ t(item) }}</li>
+						<li v-for="(item, index) in data?.list[locale]?.value" :key="index">{{ t(item) }}</li>
 					</ul>
 				</template>
 			</policy-section-text>

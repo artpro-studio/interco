@@ -15,18 +15,48 @@ import { CommentStatus } from '../interface';
 import { BaseQuery, ResultDto } from 'src/dto/reponse.dto';
 import { ResultPagesSeoPublicDto } from '../dto/seo/response-seo';
 import { PagesSeoService } from '../service/pages-seo.service';
+import { PagesIblockRepository } from '../repository/pages-iblock.repository';
+import { ResultPagesIblockDto, ResultPagesIblocksDto } from '../dto/iblock/response-iblock.dto';
+import { PagesRepository } from '../repository/pages.repository';
+import { PagesPublicService } from '../service/page-public.service';
+import { ResultPagesPublicDto } from '../dto/pages/pages-public.dto';
 
 @ApiTags('Публичные запросы для страниц')
 @ApiExceptionDecorators()
 @Controller('pages-public')
 export class PagesPublicController {
     constructor(
+        private readonly pagesRepository: PagesRepository,
         private readonly pagesService: PagesService,
+        private readonly pagesPublicService: PagesPublicService,
         private readonly recordsService: RecordsService,
         private readonly pagesComponentsService: PagesComponentsService,
         private readonly pagesCommentsService: PagesCommentsService,
         private readonly pagesSeoService: PagesSeoService,
+        private readonly pagesIblockRepository: PagesIblockRepository,
     ) {}
+
+    @ApiOperation({ summary: 'Получение iblock по символьнуму коду' })
+    @ApiResponse({ status: 200, type: ResultPagesIblockDto })
+    @ApiQuery({ name: 'slug', type: String, description: 'Slug iblock' })
+    @Get('get-iblock-for-slug')
+    async getIblockForSlug(@Query() query: {slug: string}): Promise<ResultPagesIblockDto> {
+        return {
+            isSuccess: true,
+            entity: await this.pagesIblockRepository.getOneForSlug(query.slug)
+        };
+    }
+
+    @ApiOperation({ summary: 'Получение iblock по символьнуму коду' })
+    @ApiResponse({ status: 200, type: ResultPagesIblocksDto })
+    @ApiQuery({ name: 'slug', type: String, description: 'Slug iblock' })
+    @Get('get-iblock-for-slugs-array')
+    async getIblockForSlugsArray(@Query() query: {slug: string[]}): Promise<ResultPagesIblocksDto> {
+        return {
+            isSuccess: true,
+            entity: await this.pagesIblockRepository.getOneForSlugsArray(query.slug)
+        };
+    }
 
     @ApiOperation({ summary: 'Получение сео параметров у страницы' })
     @ApiResponse({ status: 200, type: ResultPagesSeoPublicDto })
@@ -37,11 +67,11 @@ export class PagesPublicController {
     }
 
     @ApiOperation({ summary: 'Получение страницы' })
-    @ApiResponse({ status: 200, type: ResultPagesFullDto })
-    @ApiQuery({ name: 'slug', type: String, description: 'Slug страницы' })
+    @ApiResponse({ status: 200, type: ResultPagesPublicDto })
+    @ApiQuery({ name: 'slug', type: String, required: true, description: 'Slug страницы' })
     @Get('')
-    getOneForSlug(@Query() query: {slug: string}): Promise<ResultPagesFullDto> {
-        return this.pagesService.getOneForSlug(query.slug);
+    async getOneForSlug(@Query() query: {slug: string}): Promise<ResultPagesPublicDto> {
+        return this.pagesPublicService.getForSlugPublic(query.slug);
     }
 
     @ApiOperation({ summary: 'Получение компонентов страницы' })

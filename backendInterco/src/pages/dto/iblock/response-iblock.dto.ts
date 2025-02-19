@@ -21,3 +21,8 @@ export class ResultPagesIblockDto extends ResultDto {
     @ApiProperty({ type: () => PagesIblockDto, nullable: true, description: 'Ответ'})
     entity: PagesIblockDto;
 }
+
+export class ResultPagesIblocksDto extends ResultDto {
+    @ApiProperty({ type: () => [PagesIblockDto], nullable: true, description: 'Ответ'})
+    entity: PagesIblockDto[];
+}

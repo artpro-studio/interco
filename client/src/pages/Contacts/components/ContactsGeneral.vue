@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 </script>
 
 <template>
@@ -12,27 +17,25 @@
 				<div data-aos="fade-right" class="contacts-general__column">
 					<div class="contacts-general__item">
 						<p class="contacts-general__label">{{ t('contactsCommonGeneral') }}</p>
-						<a href="mailto:info@inter-sa.com" class="contacts-general__content">info@inter-sa.com</a>
+						<a href="mailto:info@inter-sa.com" class="contacts-general__content">{{ data?.fields['general-email'][locale]?.value }}</a>
 					</div>
 					<div class="contacts-general__item">
 						<p class="contacts-general__label">{{ t('contactsCommonPartner') }}</p>
-						<a href="mailto:info@inter-sa.com" class="contacts-general__content">partners@inter-sa.com</a>
+						<a href="mailto:info@inter-sa.com" class="contacts-general__content">{{ data?.fields['partners-email'][locale]?.value  }}</a>
 					</div>
 					<div class="contacts-general__item">
 						<p class="contacts-general__label">{{ t('contactsCommonClient') }}</p>
-						<a href="mailto:info@inter-sa.com" class="contacts-general__content">support@inter-sa.com</a>
+						<a href="mailto:info@inter-sa.com" class="contacts-general__content">{{ data?.fields['clients-email'][locale]?.value  }}</a>
 					</div>
 					<div class="contacts-general__item">
 						<p class="contacts-general__label">{{ t('contactsCommonPress') }}</p>
-						<a href="mailto:info@inter-sa.com" class="contacts-general__content">press@inter-sa.com</a>
+						<a href="mailto:info@inter-sa.com" class="contacts-general__content">{{ data?.fields['press-emal'][locale]?.value  }}</a>
 					</div>
 				</div>
 				<div data-aos="fade-left" class="contacts-general__column info row no-wrap">
 					<p class="contacts-general__label">{{ t('contactsCommonTime') }}</p>
 					<div class="contacts-general__info">
-						<p class="contacts-general__content">Понедельник – Пятница: 9:00 – 18:00</p>
-						<p class="contacts-general__content">Суббота: 10:00 – 16:00 (только главный офис)</p>
-						<p class="contacts-general__content">Воскресенье: выходной</p>
+						<p class="contacts-general__content" v-html="data?.fields?.workin[locale]?.value"></p>
 					</div>
 				</div>
 			</div>
@@ -56,11 +59,13 @@
 		}
 		&__content {
 			font-size: 1.35em;
+			line-height: 2.7;
 			color: var(--dark-blue);
 			text-transform: uppercase;
 			text-decoration: none;
 			font-family: 'Oswald', sans-serif;
 			font-weight: 500;
+			margin-top: -17px;
 
 		}
 		&__item {

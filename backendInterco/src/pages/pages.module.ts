@@ -47,6 +47,7 @@ import { PagesIblockSectionRepository } from './repository/pages-iblock-section.
 import { PagesIblockSectionValueRepository } from './repository/pages-iblock-section-value.repository';
 import { PagesIblockSectionEntity } from './entity/pages-iblock-section.entity';
 import { PagesIblockSectionValueEntity } from './entity/pages-iblock-section-value.entity';
+import { PagesPublicService } from './service/page-public.service';
 
 const services = [
     PagesService,
@@ -56,7 +57,8 @@ const services = [
     PagesParamsService,
     PagesIblockService,
     PagesIblockRecordsService,
-    PagesSeoService
+    PagesSeoService,
+    PagesPublicService
 ];
 const respositorys = [
     PagesRepository,

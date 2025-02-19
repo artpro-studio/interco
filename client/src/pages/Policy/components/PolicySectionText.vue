@@ -2,6 +2,7 @@
 	import VBtnGradient from 'src/components/UI/VBtnGradient/VBtnGradient.vue';
 	interface IProps {
 		buttonText?: string;
+		href?: string;
 	}
 	defineProps<IProps>();
 
@@ -10,7 +11,7 @@
 	<div class="policy-section_text row no-wrap items-start">
 		<div data-aos="fade-right" class="policy-section_text__info text-white">
 			<slot name="text" />
-			<v-btn-gradient v-if="buttonText" class="policy-section_text__info__btn">{{ buttonText }}</v-btn-gradient>
+			<v-btn-gradient v-if="buttonText" :href="href" class="policy-section_text__info__btn" download>{{ buttonText }}</v-btn-gradient>
 		</div>
 		<div data-aos="fade-left" class="policy-section_text__list text-white">
 			<slot name="list" />

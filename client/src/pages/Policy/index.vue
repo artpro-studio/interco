@@ -6,13 +6,31 @@
 	import BannerContacts from 'src/components/BannerContacts/BannerContacts.vue';
 
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
 
 	const { t } = useI18n();
 
+	const SLUG_DOCUMENTS = 'documents';
+
+	const pagePublic = ref<PagesPublicDto | null>(null);
+
+	const getDocuments = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_DOCUMENTS)?.records
+		return data;
+	})
+
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('policy')
+		.then((data) => {
+			pagePublic.value = data.entity;
+		})
+	}
+
 	onMounted(() => {
 		useGetMeta('policy')
+		getInfo();
 	})
 </script>
 
@@ -24,8 +42,11 @@
 		:text="t('policyHeaddescription')"
 		images="images/our-policy-documents.svg"
 	/>
-	<policy-section />
-	<policy-user />
+	<policy-section
+		v-for="(item, index) in getDocuments"
+		:key="index"
+		:data="item.fields"
+	/>
 	<policy-warning />
 	<banner-contacts
 		title="SA International"

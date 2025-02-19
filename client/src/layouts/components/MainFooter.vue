@@ -22,6 +22,11 @@
 
 		return path.fullPath;
 	}
+
+	const getPath = (name: RouterName, hash?: string) => {
+		const path = router.resolve({name, hash: hash ? `#${hash}` : undefined})
+		return path.fullPath;
+	}
 </script>
 
 <template>
@@ -52,7 +57,7 @@
 					<nav>
 						<ul>
 							<li v-for="(el, indx) in item" :key="indx">
-								<router-link :to="el.link">{{ t(el.title) }}</router-link>
+								<router-link :to="getPath(el.link, el.hash)">{{ t(el.title) }}</router-link>
 							</li>
 						</ul>
 					</nav>

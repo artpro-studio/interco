@@ -7,13 +7,42 @@
 	import CareerForm from './components/CareerForm.vue';
 	import BannerContacts from 'src/components/BannerContacts/BannerContacts.vue';
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+	const SLUG_JOB = 'job-openings';
+	const SLUG_EMPLOYEE = 'career-employee';
+	const SLUG_CONTACTS = 'career-contcats';
+
+	const pagePublic = ref<PagesPublicDto | null>(null);
+
+	const getJobs = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_JOB)?.records
+		return data;
+	})
+
+	const getEmployee = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_EMPLOYEE)?.records
+		return data;
+	})
+
+	const getContacts = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_CONTACTS)?.records
+		return data?.length ? data[0] : null;
+	})
+
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('career')
+		.then((data) => {
+			pagePublic.value = data.entity;
+		})
+	}
 
 	onMounted(() => {
-		useGetMeta('career')
+		useGetMeta('career');
+		getInfo();
 	})
 </script>
 
@@ -26,15 +55,15 @@
 		images="images/career-head.svg"
 		:dense="false"
 	/>
-	<job-openings />
+	<job-openings :data="getJobs" />
 	<career-advantages />
 	<career-procces />
-	<career-employee />
+	<career-employee :data="getEmployee" />
 	<career-form />
 	<banner-contacts
-		:title="t('careerContactsTitle')"
-		phone="+86-21-5432-2755 (ext. 812)"
-		email="hr@inter-sa.com"
-		text="Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505"
+		:title="getContacts?.fields.title[locale].value"
+		:phone="getContacts?.fields.phone[locale].value + ' (ext. ' + getContacts?.fields['code-phone'][locale].value  + ')'"
+		:email="getContacts?.fields.email[locale].value"
+		:text="getContacts?.fields.description[locale].value"
 	/>
 </template>

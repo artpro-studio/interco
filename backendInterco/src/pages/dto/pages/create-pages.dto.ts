@@ -7,6 +7,7 @@ import { DefaultBaseDto } from "src/dto/base.dto";
 import { PagesSeoEntity } from "src/pages/entity/pages-seo.entity";
 import { JoinColumn, OneToOne } from "typeorm";
 import { PagesSeoDto } from "../seo/pages-seo.dto";
+import { PagesIblockDto } from "../iblock/pages-iblock.dto";
 
 export class PagesDto extends DefaultBaseDto {
     @ApiProperty({ example: 'Название', nullable: true, description: 'Название' })
@@ -36,4 +37,7 @@ export class PagesDto extends DefaultBaseDto {
 export class FullPagesDto extends PagesDto {
     @ApiProperty({ type: () => [RecordsDto], nullable: true, description: 'Записи в блоге' })
     records: RecordsDto[];
+
+    @ApiProperty({ type: () => [PagesIblockDto], nullable: true, required: false, description: 'Iblock' })
+    iblocks?: PagesIblockDto[];
 }

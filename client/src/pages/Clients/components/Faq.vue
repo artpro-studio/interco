@@ -1,81 +1,41 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 </script>
 
 <template>
-	<div class="faq pt-8 pb-8 bg-white">
+	<div class="faq pt-8 pb-8 bg-white" id="faq">
 		<div class="container">
 			<div data-aos="fade-right" class="faq__header">
 				<h3 class="faq__header__title headline-1 text-gradient text-uppercase">{{ t('clientsFaqTitle') }}</h3>
 			</div>
 			<div class="faq__body row items-lg-start justify-between">
-				<div data-aos="fade-right" class="faq__body__columns">
-					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle1') }}</h6>
+				<div
+					v-for="(item, index) in data"
+					:key="index"
+					data-aos="fade-up"
+					class="faq__body__columns"
+				>
+					<h6 class="faq__body__title text-red text-uppercase">{{ item.value[locale] }}</h6>
 					<q-expansion-item
+						v-for="(el, indx) in item.data"
+						:key="indx"
 						class="faq__body__item"
-						label="Как сделать заказ?"
+						:label="el.fields.question[locale].value"
 						expand-icon="add"
 						expanded-icon="close"
 						>
 						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
+							<p>{{ el.fields.description[locale].value }}</p>
 						</div>
    					 </q-expansion-item>
-					<q-expansion-item
-						class="faq__body__item"
-						label="Какие способы оплаты доступны?"
-						expand-icon="add"
-						expanded-icon="close"
-						>
-						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
-						</div>
-   					 </q-expansion-item>
-					<q-expansion-item
-						class="faq__body__item"
-						label="Какова средняя продолжительность доставки?"
-						expand-icon="add"
-						expanded-icon="close"
-						>
-						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
-						</div>
-   					 </q-expansion-item>
-				</div>
-				<div data-aos="fade-left" class="faq__body__columns">
-					<h6 class="faq__body__title text-red text-uppercase">{{ t('clientsFaqSubTitle2') }}</h6>
-					<q-expansion-item
-						class="faq__body__item"
-						label="Что делать, если оборудование не работает корректно?"
-						expand-icon="add"
-						expanded-icon="close"
-						>
-						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
-						</div>
-   					 </q-expansion-item>
-					<q-expansion-item
-						class="faq__body__item"
-						label="Как заказать запасные части?"
-						expand-icon="add"
-						expanded-icon="close"
-						>
-						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
-						</div>
-   					 </q-expansion-item>
-					<q-expansion-item
-						class="faq__body__item"
-						label="Предоставляете ли вы услуги по установке и наладке оборудования?"
-						expand-icon="add"
-						expanded-icon="close"
-						>
-						<div class="faq__body__item__body">
-							<p>Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com</p>
-						</div>
-   					 </q-expansion-item>
+
 				</div>
 			</div>
 		</div>

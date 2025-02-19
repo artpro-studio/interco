@@ -4,7 +4,12 @@
 	import { useI18n } from 'vue-i18n';
 	import { useRouter } from 'vue-router';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any;
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 	const router = useRouter();
 
 	const path = computed(() => {
@@ -18,7 +23,7 @@
 	<div class="home-project pt-12 pb-12">
 		<div class="container">
 			<div data-aos="zoom-in" class="home-project__header row no-wrap items-center">
-				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">{{ t('projectTitle') }}</h4>
+				<h4 class="home-project__header__title headline-1 text-uppercase text-gradient">{{ data?.attributes?.title[locale]}}</h4>
 				<div class="home-project__header__right row items-center no-wrap">
 					<div class="line"></div>
 					<q-btn :to="path" color="black" class="home-project__header__btn text-bold" flat>
@@ -32,15 +37,15 @@
 				</div>
 			</div>
 			<div class="home-project__body row no-wrap">
-				<q-img data-aos="fade-right" src="images/home-project.png" loading="lazy" class="home-project__img" height="278px" width="422px" />
+				<q-img data-aos="fade-right" :src="data?.attributes?.image[locale]?.path" loading="lazy" class="home-project__img" height="278px" width="422px" />
 				<div data-aos="fade-left" class="home-project__content">
-					<div class="home-project__content__item">
-						<h4 class="home-project__content__item__title">{{ t('projectItem1Title') }}</h4>
-						<p>{{ t('projectItem1Text') }}</p>
-					</div>
-					<div class="home-project__content__item">
-						<h4 class="home-project__content__item__title">{{ t('projectItem2Title') }}</h4>
-						<p>{{ t('projectItem2Text') }}</p>
+					<div
+						v-for="(item, index) in data?.records"
+						:key="index"
+						class="home-project__content__item"
+					>
+						<h4 class="home-project__content__item__title">{{ item.fields?.title[locale].value }}</h4>
+						<p>{{ item.fields?.description[locale].value}}</p>
 					</div>
 				</div>
 			</div>

@@ -4,39 +4,41 @@
 	import { useI18n } from 'vue-i18n';
 	import { ref } from 'vue';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any;
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 	const isOpenDialog = ref(false);
 </script>
 <template>
 	<div class="job-openings__slide">
 		<div class="job-openings__slide__header row items-center no-wrap">
 			<q-img src="icons/user.svg" class="job-openings__slide__header__icon" width="64px" />
-			<h4 class="job-openings__slide__header__title text-gradient">Директор по продажам</h4>
+			<h4 class="job-openings__slide__header__title text-gradient">{{ data?.fields?.title[locale]?.value }}</h4>
 		</div>
 		<div class="job-openings__slide__body">
 			<h5>{{ t('careerJobLocation') }}</h5>
-			<p>Шанхай, Китай</p>
-			<h5>{{ t('careerJobRequirements') }}</h5>
-			<ul>
-				<li> - Навыки стратегического мышления и лидерства</li>
-				<li> - Опыт работы на руководящей позиции в продажах не менее 5 лет</li>
-				<li> - Высшее образование в области маркетинга, экономики или управления</li>
-				<li> - Знание английского и/или китайского языков на высоком уровне</li>
-			</ul>
-			<h5>{{ t('careerJobResponsibilities') }}</h5>
-			<ul>
-				<li> - Разработка и реализация стратегии продаж</li>
-				<li> - Управление командой менеджеров по продажам</li>
-				<li> - Установление и поддержание отношений с ключевыми клиентами</li>
-				<li> - Анализ рынка и поиск новых возможностей для развития бизнеса</li>
-			</ul>
-			<h5>{{ t('careerJobTerm') }}</h5>
-			<ul>
-				<li> - Конкурентоспособная заработная плата</li>
-				<li> - Бонусы по результатам работы</li>
-				<li> - Социальный пакет и медицинская страховка</li>
-				<li> - Возможности для профессионального роста</li>
-			</ul>
+			<p>{{ data?.fields?.location[locale]?.value }}</p>
+			<template v-if="data?.fields?.requirements[locale]?.value">
+				<h5>{{ t('careerJobRequirements') }}</h5>
+				<ul>
+					<li v-for="(item, index) in data?.fields?.requirements[locale]?.value" :key="index">{{ item }}</li>
+				</ul>
+			</template>
+			<template v-if="data?.fields?.responsibilities[locale]?.value">
+				<h5>{{ t('careerJobResponsibilities') }}</h5>
+				<ul>
+					<li v-for="(item, index) in data?.fields?.responsibilities[locale]?.value" :key="index">{{ item }}</li>
+				</ul>
+			</template>
+			<template v-if="data?.fields?.conditions[locale]?.value">
+				<h5>{{ t('careerJobTerm') }}</h5>
+				<ul>
+					<li v-for="(item, index) in data?.fields?.conditions[locale]?.value" :key="index">{{ item }}</li>
+				</ul>
+			</template>
 			<v-btn-gradient class="job-openings__slide__btn" :height="44" @on-click="isOpenDialog = true">{{ t('careerJobTextButton') }}</v-btn-gradient>
 		</div>
 		<q-dialog v-model="isOpenDialog">

@@ -55,7 +55,7 @@
         const parseField: any = {};
         for (let key in props.field) {
             arrayKey.push(key);
-            parseField[key] = props.field[key].value.split(';');
+            parseField[key] = props.field[key].value;
         }
 
         defoultField = arrayKey.map((el) => {

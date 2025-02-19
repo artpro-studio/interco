@@ -1,21 +1,26 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const {locale} = useI18n();
 </script>
 
 <template>
 	<div class="home-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 data-aos="fade-right" class="home-contacts__title fonts-oswald headline-1 text-gradient">SA International</h4>
+			<h4 data-aos="fade-right" class="home-contacts__title fonts-oswald headline-1 text-gradient">{{ data?.fields?.title[locale]?.value }}</h4>
 			<div data-aos="fade-left" class="home-contacts__body row no-wrap justify-between items-center">
-				<p class="fonts-oswald">{{ t('homeContactsText') }}</p>
+				<p class="fonts-oswald">{{ data?.fields?.description[locale]?.value }}</p>
 				<div class="home-contacts__info">
 					<div class="home-contacts__info__item">
-						<a href="tel:+862154322755" class="fonts-oswald">+86-21-5432-2755</a>
+						<a :href="'tel:' + data?.fields?.phone[locale]?.value" class="fonts-oswald">{{ data?.fields?.phone[locale]?.value }}</a>
 					</div>
 					<div class="home-contacts__info__item">
-						<a href="mailto:info@inter-sa.com" class="fonts-oswald">info@inter-sa.com</a>
+						<a :href="'mailto:' + data?.fields?.email[locale]?.value" class="fonts-oswald">{{ data?.fields?.email[locale]?.value }}</a>
 					</div>
 				</div>
 			</div>

@@ -10,31 +10,61 @@
 	import BannerCallback from 'src/components/BannerCallback/BannerCallback.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+
+	const SLUG_COMPANY = 'about-company';
+	const SLUG_KEY_MILESTONES = 'key-milestones';
+	const SLUG_COMMAND = 'command';
+
+	const pagePublic = ref<PagesPublicDto | null>(null);
+
+	const getCompany = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMPANY)?.records
+		return data?.length ? data[0] : null;
+	})
+
+	const getKeyMilestones= computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_KEY_MILESTONES)?.records
+		return data;
+	})
+
+	const getCommand= computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMMAND)?.records
+		return data;
+	})
+
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('about')
+		.then((data) => {
+			pagePublic.value = data.entity;
+		})
+	}
 
 	onMounted(() => {
-		useGetMeta('about')
+		useGetMeta('about');
+		getInfo();
 	})
 </script>
 
 <template>
 	<head-global
 		:title="t('aboutHeadTitle')"
-		:sub-title="t('aboutHeadSubTitle')"
-		:text="t('aboutHeadSubText')"
+		:sub-title="getCompany?.fields?.title[locale].value"
+		:text="getCompany?.fields?.description[locale].value"
 		images="images/head-about-bg.png"
 		width-text="653px"
 		width-title="957px"
 		:dense="false"
 	/>
-	<about-years />
+	<about-years :data="getKeyMilestones"/>
 	<about-mission />
 	<about-group />
 	<about-maps />
-	<about-team />
+	<about-team :data="getCommand" />
 	<about-culture />
 	<about-principles />
 	<banner-callback />

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-	import { useSSRContext } from 'vue';
+	import { onMounted, ref, useSSRContext } from 'vue';
 	import { useSeo } from './hooks/seo';
 
+	const isLoading = ref(true);
 	// Пример использования useSeo
 	const ssrContext = useSSRContext();
 	const seoData = ssrContext?.seoData;
@@ -30,7 +31,12 @@
 		});
 	}
 
+	onMounted(() => {
+		isLoading.value = false;
+	})
+
 </script>
 <template>
-  	<router-view />
+	<div v-if="isLoading" class="preloader"></div>
+	<router-view v-else />
 </template>

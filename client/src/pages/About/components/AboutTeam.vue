@@ -4,7 +4,12 @@
 	import { computed, inject, onMounted, ref, watch } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 
 	const widthScreen = inject<any>('widthScreen', 0);
 	const widthSlider = ref(0);
@@ -99,15 +104,15 @@
 					:breakpoints="breakpoints"
 				>
 					<swiper-slide
-						v-for="(item, index) in aboutTeam"
+						v-for="(item, index) in data"
 						:key="index"
 					>
 						<div class="about-team__item">
-							<q-img :src="item.image" height="510px" fit="cover" class="about-team__item__img" />
-							<h5 class="about-team__item__title text-red fonts-oswald text-uppercase">{{ item.name }}</h5>
-							<p class="about-team__item__info">{{ item.job }}</p>
+							<q-img :src="item.fields?.image[locale]?.value?.path || ''" height="510px" fit="cover" class="about-team__item__img" />
+							<h5 class="about-team__item__title text-red fonts-oswald text-uppercase">{{ item.fields?.fio[locale]?.value }}</h5>
+							<p class="about-team__item__info">{{ item.fields?.post[locale]?.value }}</p>
 							<div class="about-team__item__text">
-								<p>{{ item.text }}</p>
+								<p>{{ item.fields?.description[locale]?.value }}</p>
 							</div>
 						</div>
 					</swiper-slide>

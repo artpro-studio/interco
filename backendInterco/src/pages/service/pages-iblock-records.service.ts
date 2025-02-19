@@ -147,10 +147,15 @@ export class PagesIblockRecordsService {
                 for (let keyLang in thisFields) {
                     const valueField = thisFields[keyLang]
                     const valueRecordField = recordsFields[keyLang]
-
+                    console.log(valueField, valueRecordField);
+                    console.log(!compareValuesByCommonKeys(valueField, valueRecordField))
+                    console.log('------');
                     // Усли значения обьекта не совпадают отправляем на обновление
                     if (!compareValuesByCommonKeys(valueField, valueRecordField)) {
-                        await this.pagesIblockRecordsFieldValueRepository.update(valueField);
+                        await this.pagesIblockRecordsFieldValueRepository.update({
+                            ...valueRecordField,
+                            ...valueField,
+                        });
                     }
                 }
             } else {

@@ -32,11 +32,12 @@ export const menuFooter = [
 		{
 			link: RouterName.Clients,
 			title: 'footerFaq',
+			hash: 'faq'
 		},
 	],
 	[
 		{
-			link: '/',
+			link: RouterName.Home,
 			title: 'footerStatus'
 		},
 		{

@@ -3,6 +3,7 @@ import { DefaultBaseDto } from "src/dto/base.dto";
 import { PagesDto } from "../pages/create-pages.dto";
 import { PagesIBlockFieldsDto } from "./fields/pages-iblock-fields.dto";
 import { PagesIblockSectionDto } from "./section/pages-iblock-section.dto";
+import { PagesIblockRecordsDto } from "./records/pages-iblock-records.dto";
 
 export class PagesIblockDto extends DefaultBaseDto {
     @ApiProperty({ example: 'Название', nullable: false, description: 'Название' })
@@ -22,4 +23,7 @@ export class PagesIblockDto extends DefaultBaseDto {
 
     @ApiProperty({ type: () => [PagesIblockSectionDto], required: false, nullable: true, description: 'Разделы' })
     sections?: PagesIblockSectionDto[];
+
+    @ApiProperty({ type: () => [PagesIblockRecordsDto], required: false, nullable: true, description: 'Записи' })
+    records?: PagesIblockRecordsDto[];
 }

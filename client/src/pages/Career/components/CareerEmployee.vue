@@ -3,7 +3,12 @@
 	import 'swiper/css';
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 
 	const breakpoints: any = {
 		'901': {
@@ -37,33 +42,18 @@
 					:auto-height="true"
 					:breakpoints="breakpoints"
 				>
-					<swiper-slide>
+					<swiper-slide v-for="(item, index) in data" :key="index">
 						<div class="career-employee__item">
-							<q-img src="images/employee1.png" height="510px" fit="cover" class="career-employee__item__img" />
-							<h5 class="career-employee__item__title text-red fonts-oswald text-uppercase">Марина Смирнова </h5>
-							<p class="career-employee__item__info">Менеджер по работе с клиентами</p>
+							<q-img
+								:src="item.fields?.image[locale]?.value?.path"
+								height="510px"
+								fit="cover"
+								class="career-employee__item__img"
+							/>
+							<h5 class="career-employee__item__title text-red fonts-oswald text-uppercase">{{ item.fields?.fio[locale]?.value }}</h5>
+							<p class="career-employee__item__info">{{ item.fields?.post[locale]?.value }}</p>
 							<div class="career-employee__item__text">
-								<p>"Когда я присоединилась к SA International два года назад, я и не предполагала, насколько быстро смогу вырасти профессионально. Компания предоставляет все возможности для обучения и развития. Я работаю с клиентами из разных стран, что позволяет постоянно расширять свой кругозор и приобретать новый опыт."</p>
-							</div>
-						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="career-employee__item">
-							<q-img src="images/employee2.png" height="510px" fit="cover" class="career-employee__item__img" />
-							<h5 class="career-employee__item__title text-red fonts-oswald text-uppercase">Иван Ковалев</h5>
-							<p class="career-employee__item__info">Инженер по автоматизации</p>
-							<div class="career-employee__item__text">
-								<p>"Работа в SA International — это постоянный вызов и возможность участвовать в передовых проектах. Особенно интересно было работать над проектом по внедрению искусственного интеллекта в производственные процессы. Команда профессионалов и поддержка руководства делают работу здесь по-настоящему увлекательной."</p>
-							</div>
-						</div>
-					</swiper-slide>
-					<swiper-slide>
-						<div class="career-employee__item">
-							<q-img src="images/employee3.png" height="510px" fit="cover" class="career-employee__item__img" />
-							<h5 class="career-employee__item__title text-red fonts-oswald text-uppercase">Лю Чэнь</h5>
-							<p class="career-employee__item__info">Специалист по логистике</p>
-							<div class="career-employee__item__text">
-								<p>"SA International дала мне возможность реализовать себя в международной логистике. Здесь ценят инициативу и стремление к совершенству. Я горжусь тем, что являюсь частью компании, которая активно развивается и покоряет новые рынки."</p>
+								<p>{{ item.fields?.description[locale]?.value }}</p>
 							</div>
 						</div>
 					</swiper-slide>
