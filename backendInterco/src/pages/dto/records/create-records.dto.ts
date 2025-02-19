@@ -6,15 +6,17 @@ import { PagesCommentsDto } from "../pages-comments/create-pages-comments.dto";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { DropDownDto } from "src/dto/response-drop-down.dto";
 import { FullPagesParamsValueDto } from "../pages-params-value/pages-params-value.dto";
+import { RecordsTitleDto } from "./records-title/records-title.dto";
+import { DefaultBaseDto } from "src/dto/base.dto";
+import { RecordsDescriptionDto } from "./records-description/records-description.dto";
 
-export class RecordsDto extends BaseSeoDto {
-    @ApiProperty({ example: 'Заголовок', nullable: true, description: 'Заголовок' })
+export class RecordsDto extends DefaultBaseDto {
+    @ApiProperty({ type: () => RecordsTitleDto, nullable: true, required: false, description: 'Заголовок' })
     @IsNotEmpty({message: 'Заголовок обьязательное поле'})
-    @IsString({message: 'Заголовок должен быть строкой'})
-    title: string;
+    title?: RecordsTitleDto;
 
-    @ApiProperty({ example: 'Описание', nullable: true, description: 'Описание' })
-    description: string;
+    @ApiProperty({ type: () => RecordsDescriptionDto, nullable: true, required: false, description: 'Описание' })
+    description?: RecordsDescriptionDto;
 
     @ApiProperty({ example: 0, nullable: true, description: 'Счетчик просмотров' })
     countView: number;

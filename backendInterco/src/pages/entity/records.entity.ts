@@ -1,22 +1,28 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { BaseSeoEntity } from "src/entity/base-seo.entity";
 import { UserEntity } from "src/user/entity/user.entity";
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { PagesEntity } from "./pages.entity";
 import { PagesCommentsEntity } from "./pages-comments.entity";
 import { PagesParamsValueEntity } from "./pages-params-value.entity";
+import { RecordsTitleEntity } from "./records-title.entity";
+import { DefaultBaseEntity } from "src/entity/base.entity";
+import { RecordsSeoEntity } from "./records-seo.entity";
+import { RecordsDescriptionEntity } from "./records-description.entity";
 
  @Entity({
     name: 'records'
  })
-export class RecordsEntity extends BaseSeoEntity {
-    @ApiProperty({ example: 'Заголовок', nullable: false, description: 'Заголовок' })
-    @Column({ nullable: false, length: 1024 })
-    title: string;
+export class RecordsEntity extends DefaultBaseEntity {
+    @ApiProperty({ description: 'Заголовок' })
+    @OneToOne(() => RecordsTitleEntity)
+    @JoinColumn()
+    title: RecordsTitleEntity;
 
-    @ApiProperty({ example: 'Описание', nullable: true, description: 'Описание' })
-    @Column({ nullable: true,})
-    description: string;
+    @ApiProperty({ nullable: true, description: 'Описание' })
+    @OneToOne(() => RecordsDescriptionEntity)
+    @JoinColumn()
+    description: RecordsDescriptionEntity;
 
     @ApiProperty({ example: 0, nullable: true, description: 'Счетчик просмотров' })
     @Column({ type: 'int', default: 0, nullable: false})
@@ -37,4 +43,9 @@ export class RecordsEntity extends BaseSeoEntity {
     @ApiProperty({ description: 'Запись(статья)' })
     @OneToMany(() => PagesParamsValueEntity, (paramsValue) => paramsValue.record)
     paramsValue: PagesParamsValueEntity[];
+
+    @ApiProperty({ description: 'Сео парамметры' })
+    @OneToOne(() => RecordsSeoEntity)
+    @JoinColumn()
+    seo: RecordsSeoEntity;
 }
