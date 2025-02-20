@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="header-login__logo">
                     <router-link to="/">
-                        ArtPro Studio
+                        APS
                     </router-link>
                 </div>
             </div>

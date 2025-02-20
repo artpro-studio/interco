@@ -1,10 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BaseSeoEntity } from "src/entity/base-seo.entity";
 import { UserEntity } from "src/user/entity/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { PagesEntity } from "./pages.entity";
 import { PagesCommentsEntity } from "./pages-comments.entity";
-import { PagesParamsValueEntity } from "./pages-params-value.entity";
+import { PagesParamsFieldEntity } from "./pages-params-field.entity";
 import { RecordsTitleEntity } from "./records-title.entity";
 import { DefaultBaseEntity } from "src/entity/base.entity";
 import { RecordsSeoEntity } from "./records-seo.entity";
@@ -41,8 +40,8 @@ export class RecordsEntity extends DefaultBaseEntity {
     author: UserEntity;
 
     @ApiProperty({ description: 'Запись(статья)' })
-    @OneToMany(() => PagesParamsValueEntity, (paramsValue) => paramsValue.record)
-    paramsValue: PagesParamsValueEntity[];
+    @OneToMany(() => PagesParamsFieldEntity, (paramsValue) => paramsValue.record)
+    paramsValue: PagesParamsFieldEntity[];
 
     @ApiProperty({ description: 'Сео парамметры' })
     @OneToOne(() => RecordsSeoEntity)

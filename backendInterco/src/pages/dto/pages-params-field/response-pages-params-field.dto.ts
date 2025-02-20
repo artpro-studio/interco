@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { FullPagesParamsValueDto } from './pages-params-value.dto';
+import { FullPagesParamsFieldDto } from './pages-params-field.dto';
 import { ResultDto, ResultPaginationOptionDto } from 'src/dto/reponse.dto';
 
 export class PagesParamsValueOptionDto extends ResultPaginationOptionDto {
-    @ApiProperty({ type: () => [FullPagesParamsValueDto], nullable: true, description: 'Ответ' })
-    entity: FullPagesParamsValueDto[];
+    @ApiProperty({ type: () => [FullPagesParamsFieldDto], nullable: true, description: 'Ответ' })
+    entity: FullPagesParamsFieldDto[];
 }
 
 export class PagesParamsValueListDto extends ResultDto {
@@ -13,6 +13,6 @@ export class PagesParamsValueListDto extends ResultDto {
 }
 
 export class ResultPagesParamsValueDto extends ResultDto {
-    @ApiProperty({ type: () => FullPagesParamsValueDto, nullable: true, description: 'Ответ'})
-    entity: FullPagesParamsValueDto;
+    @ApiProperty({ type: () => FullPagesParamsFieldDto, nullable: true, description: 'Ответ'})
+    entity: FullPagesParamsFieldDto;
 }

@@ -10,11 +10,18 @@ import { CreateRecordsDto, FullRecordsDto } from '../dto/records/create-records.
 import { DropDownDto, ResultDropDownDto } from 'src/dto/response-drop-down.dto';
 import { CommentStatus, ITypePagesParams } from '../interface';
 import { PagesParamsRepository } from '../repository/pages-params.repository';
-import { PagesParamsValueRepository } from '../repository/pages-params-value.repository';
-import { FullPagesParamsValueDto } from '../dto/pages-params-value/pages-params-value.dto';
+import { PagesParamsFieldRepository } from '../repository/pages-params-field.repository';
+import { FullPagesParamsFieldDto } from '../dto/pages-params-field/pages-params-field.dto';
 import { FullPagesParamsDto } from '../dto/pages-params/pages-params.dto';
 import { RecordsRepository } from '../repository/records.repository';
 import { PagesRepository } from '../repository/pages.repository';
+import { RecordsSeoRepository } from '../repository/recrods-seo.repository';
+import { RecordsSeoParamsRepository } from '../repository/records-seo-params.repository';
+import { RecordsTitleRepository } from '../repository/records-title.repository';
+import { RecordsTitleValueRepository } from '../repository/records-title-value.repository';
+import { RecordsDescriptionRepository } from '../repository/records-description.repository';
+import { RecordsDescriptionValueRepository } from '../repository/records-description-value.repository';
+import { compareValuesByCommonKeys } from '../helpers';
 
 const jsonArray = [ITypePagesParams.FILE, ITypePagesParams.GALLARY, ITypePagesParams.IMAGE]
 
@@ -24,15 +31,21 @@ export class RecordsService {
         private readonly recordsRepository: RecordsRepository,
         private readonly pagesRepository: PagesRepository,
         private readonly pagesParamsRepository: PagesParamsRepository,
-        private readonly pagesParamsValueRepository: PagesParamsValueRepository
+        private readonly pagesParamsFieldRepository: PagesParamsFieldRepository,
+        private readonly recordsSeoRepository: RecordsSeoRepository,
+        private readonly recordsSeoParamsRepository: RecordsSeoParamsRepository,
+        private readonly recordsTitleRepository: RecordsTitleRepository,
+        private readonly recordsTitleValueRepository: RecordsTitleValueRepository,
+        private readonly recordsDescriptionRepository: RecordsDescriptionRepository,
+        private readonly recordsDescriptionValueRepository: RecordsDescriptionValueRepository,
     ){}
 
     parserParamsForResult(body: FullRecordsDto) {
         const {paramsValue, ...entity} = body;
         const params: any = {};
-        paramsValue.forEach((valueItem: FullPagesParamsValueDto) => {
+        paramsValue.forEach((valueItem: FullPagesParamsFieldDto) => {
             if (jsonArray.includes(valueItem.params.type)) {
-                params[valueItem.params.slug] = valueItem.valueJson;
+                params[valueItem.params.slug] = valueItem.value;
             } else {
                 params[valueItem.params.slug] = valueItem.value
             }
@@ -74,31 +87,59 @@ export class RecordsService {
             limit: 100,
         })).entity
 
+        // Созданем SEO настройки
+        const recordSeo = await this.recordsSeoRepository.create({...body.seo});
+        if (body.seo?.params?.length) {
+            body.seo?.params.forEach((el) => {
+                this.recordsSeoParamsRepository.create({...el, recordSeo});
+            })
+        }
+
+        // Созданем заголовка
+        const title = await this.recordsTitleRepository.create({...body.title})
+        if (body.title?.value?.length) {
+
+            body.title.value.forEach((el) => {
+                this.recordsTitleValueRepository.create({...el, recordTitle: title})
+            })
+        }
+        // Создание описание
+        const description = await this.recordsDescriptionRepository.create({...body.description})
+        if (body.description?.value?.length) {
+            body.description.value.forEach((el) => {
+                this.recordsDescriptionValueRepository.create({...el, recordDescription: description})
+            })
+        }
+
+        // Создание самой записи
         const record =  await this.recordsRepository.create({
             ...entityCreate,
+            title,
+            description,
+            seo: recordSeo,
             countView: !entityCreate.countView ? 0 : entityCreate.countView,
             pages
         });
 
-        for (let i = 0; i < paramsEntity.length; i++) {
-            if (jsonArray.includes(paramsEntity[i].type)) {
-                const valueJson = body[paramsEntity[i].slug]
-                await this.pagesParamsValueRepository.create({
-                    params: paramsEntity[i],
-                    record,
-                    value: '',
-                    valueJson
-                })
-            }  else {
-                const value = body[paramsEntity[i].slug]
-                await this.pagesParamsValueRepository.create({
-                    params: paramsEntity[i],
-                    record,
-                    value,
-                    valueJson: undefined,
-                })
-            }
-        }
+        // for (let i = 0; i < paramsEntity.length; i++) {
+        //     if (jsonArray.includes(paramsEntity[i].type)) {
+        //         const valueJson = body[paramsEntity[i].slug]
+        //         await this.pagesParamsValueRepository.create({
+        //             params: paramsEntity[i],
+        //             record,
+        //             value: '',
+        //             valueJson
+        //         })
+        //     }  else {
+        //         const value = body[paramsEntity[i].slug]
+        //         await this.pagesParamsValueRepository.create({
+        //             params: paramsEntity[i],
+        //             record,
+        //             value,
+        //             valueJson: undefined,
+        //         })
+        //     }
+        // }
 
         return {
             isSuccess: true,
@@ -129,46 +170,108 @@ export class RecordsService {
             };
             await this.recordsRepository.update(entity);
 
-            for(let i = 0; i < paramsEntity.length; i++) {
-                if (body.params[paramsEntity[i].slug]) {
-                    const find = entity.paramsValue.find((item) => item.params.slug === paramsEntity[i].slug)
-                    if (jsonArray.includes(paramsEntity[i].type)) {
-                        if (find) {
-                            find.valueJson = body.params[paramsEntity[i].slug]
-                            this.pagesParamsValueRepository.update({
-                                ...find,
-                                value: ''
-                            })
-                        } else {
-                            const valueJson = body.params[paramsEntity[i].slug]
-                            this.pagesParamsValueRepository.create({
-                                params: paramsEntity[i],
-                                record,
-                                value: '',
-                                valueJson
-                            })
+            // Обновляем seo
+            if (body.seo?.params?.length) {
+                for (let key in body.seo.params) {
+                    const param = record.seo?.params?.find((el) => el.id === body.seo.params[key].id);
+                    if (param) {
+                        if (!compareValuesByCommonKeys(body.seo.params[key], param)) {
+                            this.recordsSeoParamsRepository.update({
+                                ...param,
+                                ...body.seo.params[key]
+                            });
                         }
-                        entity.paramsValue[i].valueJson = body.params[paramsEntity[i].slug]
-                        this.pagesParamsValueRepository.update(entity.paramsValue[i])
                     } else {
-                        if (find) {
-                            find.value = body.params[paramsEntity[i].slug]
-                            const entity = JSON.parse(JSON.stringify(find))
-                            this.pagesParamsValueRepository.update({
-                                ...entity,
-                                valueJson: undefined
-                            })
+                        this.recordsSeoParamsRepository.create({
+                            ...body.seo.params[key],
+                            recordSeo: record.seo
+                        });
+                    }
+
+                }
+            }
+            // Обновляем title
+            if (body.title?.value?.length) {
+                for (let key in body.title.value) {
+                    const title = record.title?.value?.find((el) => el.id === body.title.value[key].id);
+                    if (title) {
+                        if (!compareValuesByCommonKeys(body.title.value[key], title)) {
+                            this.recordsTitleValueRepository.update({
+                                ...title,
+                                ...body.title.value[key]
+                            });
                         } else {
-                            this.pagesParamsValueRepository.create({
-                                params: paramsEntity[i],
-                                record,
-                                value: body.params[paramsEntity[i].slug],
-                                valueJson: undefined,
+                            this.recordsTitleValueRepository.create({
+                                ...body.title.value[key],
+                                recordTitle: record.title
                             })
                         }
                     }
+
                 }
             }
+
+            // Обновляем description
+            if (body.description?.value?.length) {
+                for (let key in body.description.value) {
+                    const description = record.description?.value?.find((el) => el.id === body.description.value[key].id);
+                    if (description) {
+                        if (!compareValuesByCommonKeys(body.description.value[key], description)) {
+                            this.recordsDescriptionValueRepository.update({
+                                ...description,
+                                ...body.description.value[key]
+                            });
+                        } else {
+                            this.recordsDescriptionValueRepository.create({
+                                ...body.description.value[key],
+                                recordDescription: record.description
+                            })
+                        }
+                    }
+
+                }
+            }
+
+            // for(let i = 0; i < paramsEntity.length; i++) {
+            //     if (body.params[paramsEntity[i].slug]) {
+            //         const find = entity.paramsValue.find((item) => item.params.slug === paramsEntity[i].slug)
+            //         if (jsonArray.includes(paramsEntity[i].type)) {
+            //             if (find) {
+            //                 find.valueJson = body.params[paramsEntity[i].slug]
+            //                 this.pagesParamsValueRepository.update({
+            //                     ...find,
+            //                     value: ''
+            //                 })
+            //             } else {
+            //                 const valueJson = body.params[paramsEntity[i].slug]
+            //                 this.pagesParamsValueRepository.create({
+            //                     params: paramsEntity[i],
+            //                     record,
+            //                     value: '',
+            //                     valueJson
+            //                 })
+            //             }
+            //             entity.paramsValue[i].valueJson = body.params[paramsEntity[i].slug]
+            //             this.pagesParamsValueRepository.update(entity.paramsValue[i])
+            //         } else {
+            //             if (find) {
+            //                 find.value = body.params[paramsEntity[i].slug]
+            //                 const entity = JSON.parse(JSON.stringify(find))
+            //                 this.pagesParamsValueRepository.update({
+            //                     ...entity,
+            //                     valueJson: undefined
+            //                 })
+            //             } else {
+            //                 this.pagesParamsValueRepository.create({
+            //                     params: paramsEntity[i],
+            //                     record,
+            //                     value: body.params[paramsEntity[i].slug],
+            //                     valueJson: undefined,
+            //                 })
+            //             }
+            //         }
+            //     }
+            // }
 
             return {
                 isSuccess: true,

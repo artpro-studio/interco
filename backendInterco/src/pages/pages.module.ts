@@ -15,11 +15,11 @@ import { PagesComponentsController } from './controller/pages-components.control
 import { PagesComponentsService } from './service/pages-components.service';
 import { PagesPublicController } from './controller/pages-public.controller';
 import { PagesParamsEntity } from './entity/pages-params.entity';
-import { PagesParamsValueEntity } from './entity/pages-params-value.entity';
+import { PagesParamsFieldEntity } from './entity/pages-params-field.entity';
 import { PagesParamsService } from './service/pages-params.service';
 import { PagesParamsRepository } from './repository/pages-params.repository';
 import { PagesParamsController } from './controller/pages-params.controller';
-import { PagesParamsValueRepository } from './repository/pages-params-value.repository';
+import { PagesParamsFieldRepository } from './repository/pages-params-field.repository';
 import { RecordsRepository } from './repository/records.repository';
 import { PagesRepository } from './repository/pages.repository';
 import { PagesSeoEntity } from './entity/pages-seo.entity';
@@ -48,6 +48,18 @@ import { PagesIblockSectionValueRepository } from './repository/pages-iblock-sec
 import { PagesIblockSectionEntity } from './entity/pages-iblock-section.entity';
 import { PagesIblockSectionValueEntity } from './entity/pages-iblock-section-value.entity';
 import { PagesPublicService } from './service/page-public.service';
+import { RecordsSeoRepository } from './repository/recrods-seo.repository';
+import { RecordsSeoParamsRepository } from './repository/records-seo-params.repository';
+import { RecordsTitleRepository } from './repository/records-title.repository';
+import { RecordsTitleValueRepository } from './repository/records-title-value.repository';
+import { RecordsDescriptionRepository } from './repository/records-description.repository';
+import { RecordsDescriptionValueRepository } from './repository/records-description-value.repository';
+import { RecordsSeoEntity } from './entity/records-seo.entity';
+import { RecordsSeoParamsEntity } from './entity/records-seo-params.entity';
+import { RecordsTitleEntity } from './entity/records-title.entity';
+import { RecordsTitleValueEntity } from './entity/records-title-value.entity';
+import { RecordsDescriptionEntity } from './entity/records-description.entity';
+import { RecordsDescriptionValueEntity } from './entity/records-description-value.entity';
 
 const services = [
     PagesService,
@@ -64,7 +76,7 @@ const respositorys = [
     PagesRepository,
     RecordsRepository,
     PagesParamsRepository,
-    PagesParamsValueRepository,
+    PagesParamsFieldRepository,
     PagesSeoRepository,
     PagesSeoParamsRepository,
     PagesIblockRepository,
@@ -74,7 +86,13 @@ const respositorys = [
     PagesIblockRecordsFieldRepository,
     PagesIblockRecordsFieldValueRepository,
     PagesIblockSectionRepository,
-    PagesIblockSectionValueRepository
+    PagesIblockSectionValueRepository,
+    RecordsSeoRepository,
+    RecordsSeoParamsRepository,
+    RecordsTitleRepository,
+    RecordsTitleValueRepository,
+    RecordsDescriptionRepository,
+    RecordsDescriptionValueRepository,
 ];
 @Module({
     imports: [
@@ -84,7 +102,7 @@ const respositorys = [
             PagesCommentsEntity,
             PagesComponentsEntity,
             PagesParamsEntity,
-            PagesParamsValueEntity,
+            PagesParamsFieldEntity,
             PagesSeoEntity,
             PagesSeoParamsEntity,
             PagesIblockEntity,
@@ -95,6 +113,12 @@ const respositorys = [
             PagesIblockRecordsFieldValueEntity,
             PagesIblockSectionEntity,
             PagesIblockSectionValueEntity,
+            RecordsSeoEntity,
+            RecordsSeoParamsEntity,
+            RecordsTitleEntity,
+            RecordsTitleValueEntity,
+            RecordsDescriptionEntity,
+            RecordsDescriptionValueEntity,
         ]),
         forwardRef(() => UserModule)
     ],

@@ -4,16 +4,14 @@ import { PagesDto } from "../pages/create-pages.dto";
 import { PagesParamsDto } from "../pages-params/pages-params.dto";
 import { IsNotEmpty } from "class-validator";
 import { RecordsDto } from "../records/create-records.dto";
+import { PagesParamsFieldValueDto } from "./pages-params-field-value.dto";
 
-export class PagesParamsValueDto extends DefaultBaseDto {
-    @ApiProperty({ example: 'Значение', nullable: false, description: 'Значение' })
-    value: string;
-
-    @ApiProperty({ example: {title: 'Заголовок', description: 'Описание'}, nullable: true, description: 'Json с данными' })
-    valueJson: string;
+export class PagesParamsFieldDto extends DefaultBaseDto {
+    @ApiProperty({type: () => [PagesParamsFieldValueDto], nullable: true, required: false, description: 'Значение' })
+    value?: PagesParamsFieldValueDto[];
 }
 
-export class FullPagesParamsValueDto extends PagesParamsValueDto {
+export class FullPagesParamsFieldDto extends PagesParamsFieldDto {
     @ApiProperty({ type: () => PagesParamsDto, description: 'Парамметр' })
     params?: PagesParamsDto;
 
@@ -21,7 +19,7 @@ export class FullPagesParamsValueDto extends PagesParamsValueDto {
     record: RecordsDto;
 }
 
-export class CreatePagesParamsValueDto extends PagesParamsValueDto {
+export class CreatePagesParamsFieldDto extends PagesParamsFieldDto {
     @ApiProperty({ description: 'Парамметр' })
     @IsNotEmpty({message: 'Парамметр обьязательное поле'})
     params: number;

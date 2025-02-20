@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { DefaultBaseDto } from 'src/dto/base.dto';
 import { ITypePagesParams } from 'src/pages/interface';
-import { FullPagesParamsValueDto } from '../pages-params-value/pages-params-value.dto';
+import { FullPagesParamsFieldDto } from '../pages-params-field/pages-params-field.dto';
 import { IsNotEmpty } from 'class-validator';
 import { PagesDto } from '../pages/create-pages.dto';
 
@@ -22,8 +22,8 @@ export class PagesParamsDto extends DefaultBaseDto {
 }
 
 export class FullPagesParamsDto extends PagesParamsDto {
-    @ApiProperty({ type: () => [FullPagesParamsValueDto], description: 'Значение параметров' })
-    paramsValue?: FullPagesParamsValueDto[];
+    @ApiProperty({ type: () => [FullPagesParamsFieldDto], description: 'Значение параметров' })
+    paramsValue?: FullPagesParamsFieldDto[];
 
     @ApiProperty({ type: () => PagesDto, description: 'Страница' })
     pages?: PagesDto;

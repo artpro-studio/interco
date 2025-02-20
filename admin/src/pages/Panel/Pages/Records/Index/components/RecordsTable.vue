@@ -72,6 +72,7 @@
     };
 
     const getRouterDetail = (id: number): string => {
+        console.log('tset');
         const path = router.resolve({
             name: RouterName.PagesBlogsRecordsEdit,
             params: { id: id.toString() },
@@ -162,9 +163,11 @@
             <tr>
                 <td class="text-left">
                     <table-body-actions
+                        isEdit
                         :value="props.row.isChecked"
                         @input="props.row.isChecked = !props.row.isChecked"
                         @on-delete="onDelete(props.row.id)"
+                        @on-edit="() => router.push(getRouterDetail(props.row.id))"
                     />
                 </td>
                 <td class="text-left">{{ props.row.id }}</td>

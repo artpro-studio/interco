@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { DefaultBaseEntity } from 'src/entity/base.entity';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ITypePagesParams } from '../interface';
-import { PagesParamsValueEntity } from './pages-params-value.entity';
+import { PagesParamsFieldEntity } from './pages-params-field.entity';
 import { PagesEntity } from './pages.entity';
 
 @Entity({
@@ -26,8 +26,8 @@ export class PagesParamsEntity extends DefaultBaseEntity {
     isFilter: boolean;
 
     @ApiProperty({ description: 'Значение параметров' })
-    @OneToMany(() => PagesParamsValueEntity, (paramsValue) => paramsValue.params)
-    paramsValue: PagesParamsValueEntity[];
+    @OneToMany(() => PagesParamsFieldEntity, (paramsValue) => paramsValue.params)
+    paramsValue: PagesParamsFieldEntity[];
 
     @ApiProperty({ description: 'Страница' })
     @ManyToOne(() => PagesEntity, (pages) => pages.params)

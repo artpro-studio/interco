@@ -6,6 +6,7 @@ import { BaseQuery } from "src/dto/reponse.dto";
 import { DropDownDto } from "src/dto/response-drop-down.dto";
 import { CreateRecordsDto, FullRecordsDto, RecordsDto } from "../dto/records/create-records.dto";
 import { RecordsQuery, RecordsQuerySlug } from "../dto/records/response-records.dto";
+import { getFieldsRecordsDescriptionValue, getFieldsRecordsTitleValue, getFieldsSeoParams } from "../helpers";
 
 
 @Injectable()
@@ -100,30 +101,65 @@ export class RecordsRepository {
     }
 
     async getOne(id: number): Promise<FullRecordsDto> {
+        const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
+        const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
+        const fieldsSeoParams = getFieldsSeoParams('seoParms');
+
         const query = this.recordsRepository.createQueryBuilder('records')
-        .andWhere({
-            id,
-        })
-        .leftJoinAndSelect('records.pages', 'pages')
-        .leftJoin('records.paramsValue', 'paramsValue')
-        .leftJoin('paramsValue.params', 'params')
-        .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
-        .addSelect(['params.id', 'params.name', 'params.slug', 'params.type']);
+            .leftJoinAndSelect('records.pages', 'pages')
+
+            .leftJoin('records.seo', 'seo')
+            .addSelect(['seo.id'])
+            .leftJoin('seo.params', 'seoParms')
+            .addSelect(fieldsSeoParams)
+
+            .leftJoin('records.title', 'title')
+            .addSelect(['title.id'])
+            .leftJoin('title.value', 'titleValue')
+            .addSelect(fieldsRecordsTitleValue)
+
+            .leftJoin('records.description', 'description')
+            .addSelect(['description.id'])
+            .leftJoin('description.value', 'descriptionValue')
+            .addSelect(fieldsRecordsDescriptionValue)
+
+            .leftJoin('records.paramsValue', 'paramsValue')
+            .leftJoin('paramsValue.params', 'params')
+            .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
+            .addSelect(['params.id', 'params.name', 'params.slug', 'params.type'])
+
 
         return await query.getOne();
     }
 
     async getCreateOrUpdate(id: number): Promise<CreateRecordsDto> {
+        const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
+        const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
+        const fieldsSeoParams = getFieldsSeoParams('seoParms');
+
         const query = this.recordsRepository.createQueryBuilder('records')
-        .andWhere({
-            id,
-        })
-        .leftJoin('records.pages', 'pages')
-        .addSelect(['pages.id', 'pages.name'])
-        .leftJoin('records.paramsValue', 'paramsValue')
-        .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
-        .leftJoin('paramsValue.params', 'params')
-        .addSelect(['params.id', 'params.name', 'params.slug', 'params.type']);
+            .leftJoin('records.seo', 'seo')
+            .addSelect(['seo.id'])
+            .leftJoin('seo.params', 'seoParms')
+            .addSelect(fieldsSeoParams)
+
+            .leftJoin('records.title', 'title')
+            .addSelect(['title.id'])
+            .leftJoin('title.value', 'titleValue')
+            .addSelect(fieldsRecordsTitleValue)
+
+            .leftJoin('records.description', 'description')
+            .addSelect(['description.id'])
+            .leftJoin('description.value', 'descriptionValue')
+            .addSelect(fieldsRecordsDescriptionValue)
+
+            .leftJoin('records.pages', 'pages')
+            .addSelect(['pages.id', 'pages.name'])
+            .leftJoin('records.paramsValue', 'paramsValue')
+            .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
+            .leftJoin('paramsValue.params', 'params')
+            .addSelect(['params.id', 'params.name', 'params.slug', 'params.type'])
+            .andWhere('records.id = :id', {id});
 
         const record = await query.getOne();
 

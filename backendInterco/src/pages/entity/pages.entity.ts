@@ -5,7 +5,7 @@ import { PagesType } from "../interface";
 import { RecordsEntity } from "./records.entity";
 import { PagesComponentsEntity } from "./pages-components.entity";
 import { SettingsMenuItemEntity } from "src/settings/entity/menu/settings-menu-item.entity";
-import { PagesParamsValueEntity } from "./pages-params-value.entity";
+import { PagesParamsFieldEntity } from "./pages-params-field.entity";
 import { PagesParamsEntity } from "./pages-params.entity";
 import { PagesSeoEntity } from "./pages-seo.entity";
 import { PagesIblockEntity } from "./pages-iblock.entity";

@@ -1,35 +1,33 @@
 import { InjectRepository } from "@nestjs/typeorm";
-import { PagesParamsValueEntity } from "../entity/pages-params-value.entity";
+import { PagesParamsFieldEntity } from "../entity/pages-params-field.entity";
 import { Repository } from "typeorm";
 import { PagesParamsDto } from "../dto/pages-params/pages-params.dto";
 import { RecordsDto } from "../dto/records/create-records.dto";
-import { PagesParamsValueDto } from "../dto/pages-params-value/pages-params-value.dto";
+import { PagesParamsFieldDto } from "../dto/pages-params-field/pages-params-field.dto";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class PagesParamsValueRepository {
+export class PagesParamsFieldRepository {
     constructor(
-        @InjectRepository(PagesParamsValueEntity) private readonly pagesParamsValueRepository: Repository<PagesParamsValueEntity>
+        @InjectRepository(PagesParamsFieldEntity) private readonly pagesParamsFieldRepository: Repository<PagesParamsFieldEntity>
     ) {}
 
     async create(body: {
         params: PagesParamsDto,
         record: RecordsDto,
-        value: string
-        valueJson: any
     }) {
-        const entity = this.pagesParamsValueRepository.create(body);
-        await this.pagesParamsValueRepository.save(entity)
+        const entity = this.pagesParamsFieldRepository.create(body);
+        await this.pagesParamsFieldRepository.save(entity)
 
         return entity;
     }
 
-    async update(body: PagesParamsValueDto) {
-        return await this.pagesParamsValueRepository.save(body)
+    async update(body: PagesParamsFieldDto) {
+        return await this.pagesParamsFieldRepository.save(body)
     }
 
     async delete(id: number) {
-        const query = await this.pagesParamsValueRepository
+        const query = await this.pagesParamsFieldRepository
         .createQueryBuilder('value')
         .where('value.id = :id AND deletedAt is NULL', {
             id,
@@ -41,7 +39,7 @@ export class PagesParamsValueRepository {
     }
 
     async deleteIds(ids: number[]) {
-        const query = await this.pagesParamsValueRepository
+        const query = await this.pagesParamsFieldRepository
          .createQueryBuilder('value')
          .where('id IN (:...ids) AND deletedAt is NULL', {
            ids,

@@ -1,14 +1,12 @@
-import { RecordsListDto, RecordsQuery, ResultRecordsCreateDto, ResultRecordsDto } from './../dto/records/response-records.dto';
+import { RecordsListDto, RecordsQuery, ResultRecordsCreateDto } from './../dto/records/response-records.dto';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
-import { PagesService } from '../service/pages.service';
 import { ApiExceptionDecorators } from 'src/decorators/exception-decorators';
 import { ApiBearerAuth, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuardAdmin } from 'src/auth/jwt-auth-admin.guard';
-import { PagesDto } from '../dto/pages/create-pages.dto';
 import { BaseQuery, ResultDto } from 'src/dto/reponse.dto';
 import { RecordsService } from '../service/records.service';
 import { ResultRecordsFullDto } from '../dto/records/response-records.dto';
-import { CreateRecordsDto, FullRecordsDto, RecordsDto } from '../dto/records/create-records.dto';
+import { CreateRecordsDto} from '../dto/records/create-records.dto';
 import { ResultDropDownDto } from 'src/dto/response-drop-down.dto';
 import { RecordsRepository } from '../repository/records.repository';
 
@@ -86,6 +84,7 @@ export class RecordsController {
     @ApiResponse({ status: 201, type: ResultRecordsCreateDto })
     @Post()
     create(@Body() body: CreateRecordsDto): Promise<ResultRecordsCreateDto> {
+        console.log('111');
         return this.recordsService.create(body);
     }
 

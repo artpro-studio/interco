@@ -5,10 +5,11 @@ import { PagesDto } from "../pages/create-pages.dto";
 import { PagesCommentsDto } from "../pages-comments/create-pages-comments.dto";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { DropDownDto } from "src/dto/response-drop-down.dto";
-import { FullPagesParamsValueDto } from "../pages-params-value/pages-params-value.dto";
+import { FullPagesParamsFieldDto } from "../pages-params-field/pages-params-field.dto";
 import { RecordsTitleDto } from "./records-title/records-title.dto";
 import { DefaultBaseDto } from "src/dto/base.dto";
 import { RecordsDescriptionDto } from "./records-description/records-description.dto";
+import { RecordsSeoDto } from "./records-seo/records-seo.dto";
 
 export class RecordsDto extends DefaultBaseDto {
     @ApiProperty({ type: () => RecordsTitleDto, nullable: true, required: false, description: 'Заголовок' })
@@ -20,6 +21,9 @@ export class RecordsDto extends DefaultBaseDto {
 
     @ApiProperty({ example: 0, nullable: true, description: 'Счетчик просмотров' })
     countView: number;
+
+    @ApiProperty({ type: () => RecordsSeoDto, required: false, nullable: true, description: 'Сео парамметры' })
+    seo?: RecordsSeoDto;
 }
 
 export class FullRecordsDto extends RecordsDto {
@@ -32,8 +36,8 @@ export class FullRecordsDto extends RecordsDto {
     @ApiProperty({ type: () => UserDto, nullable: true, description: 'Пользователь' })
     author?: UserDto;
 
-    @ApiProperty({ type: () => [FullPagesParamsValueDto], description: 'Запись(статья)' })
-    paramsValue?: FullPagesParamsValueDto[];
+    @ApiProperty({ type: () => [FullPagesParamsFieldDto], description: 'Запись(статья)' })
+    paramsValue?: FullPagesParamsFieldDto[];
 
     @ApiProperty({nullable: true, description: 'Парамметры' })
     params?: Record<string, any>;
