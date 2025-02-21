@@ -9,22 +9,10 @@ import { PagesParamsFieldValueDto } from "./pages-params-field-value.dto";
 export class PagesParamsFieldDto extends DefaultBaseDto {
     @ApiProperty({type: () => [PagesParamsFieldValueDto], nullable: true, required: false, description: 'Значение' })
     value?: PagesParamsFieldValueDto[];
-}
 
-export class FullPagesParamsFieldDto extends PagesParamsFieldDto {
-    @ApiProperty({ type: () => PagesParamsDto, description: 'Парамметр' })
+    @ApiProperty({ type: () => PagesParamsDto, required: false, nullable: true, description: 'Парамметр' })
     params?: PagesParamsDto;
 
-    @ApiProperty({ type: () => RecordsDto, description: 'Запись(статья)' })
+    @ApiProperty({ type: () => RecordsDto, required: false, nullable: true, description: 'Запись(статья)' })
     record: RecordsDto;
-}
-
-export class CreatePagesParamsFieldDto extends PagesParamsFieldDto {
-    @ApiProperty({ description: 'Парамметр' })
-    @IsNotEmpty({message: 'Парамметр обьязательное поле'})
-    params: number;
-
-    @ApiProperty({ type: () => RecordsDto, description: 'Запись(статья)' })
-    @IsNotEmpty({message: 'ID записи обьязательное поле'})
-    record: number;
 }

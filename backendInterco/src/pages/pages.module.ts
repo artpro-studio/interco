@@ -60,6 +60,8 @@ import { RecordsTitleEntity } from './entity/records-title.entity';
 import { RecordsTitleValueEntity } from './entity/records-title-value.entity';
 import { RecordsDescriptionEntity } from './entity/records-description.entity';
 import { RecordsDescriptionValueEntity } from './entity/records-description-value.entity';
+import { PagesParamsFieldValueEntity } from './entity/pages-params-field-value.entity';
+import { PagesParamsFieldValueRepository } from './repository/pages-params-field-value.repository';
 
 const services = [
     PagesService,
@@ -77,6 +79,7 @@ const respositorys = [
     RecordsRepository,
     PagesParamsRepository,
     PagesParamsFieldRepository,
+    PagesParamsFieldValueRepository,
     PagesSeoRepository,
     PagesSeoParamsRepository,
     PagesIblockRepository,
@@ -103,6 +106,7 @@ const respositorys = [
             PagesComponentsEntity,
             PagesParamsEntity,
             PagesParamsFieldEntity,
+            PagesParamsFieldValueEntity,
             PagesSeoEntity,
             PagesSeoParamsEntity,
             PagesIblockEntity,

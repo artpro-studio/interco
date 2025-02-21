@@ -1,9 +1,11 @@
 
 import { PagesIblockRecordsDto } from '../dto/iblock/records/pages-iblock-records.dto';
-import { IIblockField, ILangPages } from '../interface';
+import { CreateRecordsDto, FullRecordsDto, RecordsDto } from '../dto/records/create-records.dto';
+import { IIblockField, ILangPages, ITypePagesParams } from '../interface';
+
+const sortLang = [ILangPages.RU, ILangPages.EN, ILangPages.CH];
 
 export function publicFormatterOne(data: PagesIblockRecordsDto): Record<string, any> {
-    const sortLang = [ILangPages.RU, ILangPages.EN, ILangPages.CH];
     const {fields, sections, ...itemEl} = data;
     const resultFields = {};
     fields.forEach((field) => {
@@ -72,4 +74,74 @@ export function publicFormatterSections(data: any): any {
         return entity;
     }
     return null;
+}
+
+export function SortLangCreateOrUpdateRecord(data: FullRecordsDto | CreateRecordsDto): FullRecordsDto | CreateRecordsDto {
+    const sortMapTitleValue = new Map(sortLang.map(key => [key, data.title.value.find((el) => el.lang === key)]));
+    const sortMapDescriptionValue = new Map(sortLang.map(key => [key, data.description.value.find((el) => el.lang === key)]));
+
+    const paramsField = [];
+    data.paramsField.forEach((el) => {
+        const sortMapParasFieldValue = new Map(sortLang.map(key => [key, el.value.find((el) => el.lang === key)]));
+        paramsField.push({
+            ...el,
+            value: Array.from(sortMapParasFieldValue.values()).filter((item) => item !== undefined)
+        })
+    })
+    return {
+        ...data,
+        title: {
+            ...data.title,
+            value: Array.from(sortMapTitleValue.values()),
+        },
+        description: {
+            ...data.description,
+            value: Array.from(sortMapDescriptionValue.values()),
+        },
+        paramsField,
+    }
+}
+
+export function parseForPublicRecords(body: FullRecordsDto[]) {
+    return body.map((item) => {
+        const title: Record<string, any> = {};
+        item.title?.value?.forEach((el) => {
+            title[el.lang] = el.value;
+        })
+
+        const description: Record<string, any> = {};
+        item.description?.value?.forEach((el) => {
+            description[el.lang] = el.value;
+        })
+
+        const seo = {}
+        item.seo?.params?.forEach((el) => {
+            if (!seo[el.fieldType]) {
+                seo[el.fieldType] = {}
+            }
+
+            seo[el.fieldType][el.lang] = el.content;
+        });
+        const paramsField = {};
+        item.paramsField?.forEach((el) => {
+            if (el.params) {
+                paramsField[el.params.slug] = {}
+                el.value?.forEach((elValue) => {
+                    if (el.params.type === ITypePagesParams.IMAGE || el.params.type === ITypePagesParams.GALLARY || el.params.type === ITypePagesParams.FILE) {
+                        paramsField[el.params.slug][elValue.lang] = JSON.parse(elValue.value)
+                    } else {
+                        paramsField[el.params.slug][elValue.lang] = elValue.value
+                    }
+                })
+            }
+        })
+
+        return {
+            ...item,
+            title,
+            description,
+            seo,
+            paramsField
+        }
+    })
 }

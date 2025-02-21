@@ -1,86 +1,170 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script lang="ts" setup>
+    import { FullPagesParamsDto, ILangPages, ITypePagesParams, PagesParamsFieldDto } from '@/ApiClient/ApiClient';
     import { computed, onBeforeMount, ref } from 'vue';
-    import { ITypePagesParams } from '@/ApiClient/ApiClient';
-    import Editor from '@/components/Editor/Editor.vue';
-    import Dropzone from '@/components/NewDropzone/Dropzona.vue';
     import DatePicker from '@/components/UI/DatePicker/DatePicker.vue';
+    import Dropzona from '@/components/NewDropzone/Dropzona.vue';
 
     interface IProps {
-        value: any;
-        type: ITypePagesParams;
+        data: PagesParamsFieldDto;
+        param: FullPagesParamsDto;
         label: string;
     }
     const props = defineProps<IProps>();
-    const emit = defineEmits(['update:value']);
-    const localValue = ref<any>('');
-
-    const getFilesImages = computed(() => {
-        if (localValue.value && Array.isArray(localValue.value)) {
-            return localValue.value;
-        }
-        return localValue.value ? [localValue.value] : [];
+    const emit = defineEmits(['on-change']);
+    const localValue = ref<PagesParamsFieldDto>({
+        value: [
+            {
+                lang: ILangPages.RuRU,
+                value: '',
+            },
+            {
+                lang: ILangPages.EnUS,
+                value: '',
+            },
+            {
+                lang: ILangPages.ZhCN,
+                value: '',
+            },
+        ],
+        params: props.param
     });
 
-    const updateEditor = (event: any) => {
-        localValue.value = event;
-        emit('update:value', localValue.value);
+    const onUpdate = () => {
+        emit('on-change', localValue.value);
     };
 
+    const getFilesImages = computed(() => {
+        const thisValue = localValue.value?.value?.length && !!localValue.value.value[0].value ? JSON.parse(localValue.value.value[0].value as any) : null;
+        if (thisValue) {
+            if (Array.isArray(thisValue)) {
+                return thisValue;
+            }
+            return [thisValue];
+        }
+        return [];
+    });
+
     const onAddImage = (event: any) => {
-        localValue.value = event;
-        emit('update:value', localValue.value);
+        localValue.value.value = localValue.value.value?.map((el) => {
+            el.value = JSON.stringify(event);
+            return el;
+        });
+        onUpdate();
     };
 
     const onRemoveImage = (event: any) => {
-        if (localValue.value && Array.isArray(localValue.value)) {
-            localValue.value = localValue.value.filter((el) => el.id !== event.id);
-        } else {
-            localValue.value = null;
+        let thisValue = localValue.value?.value?.length && !!localValue.value.value[0].value ? JSON.parse(localValue.value.value[0].value as any) : null;
+        if (thisValue) {
+            if (Array.isArray(thisValue)) {
+                thisValue = thisValue.filter((el) => el.id !== event.id);
+            } else {
+                thisValue = '';
+            }
+
+            localValue.value.value = localValue.value.value?.map((el) => {
+                el.value = !!thisValue ? JSON.stringify(thisValue) : '';
+                return el;
+            });
         }
 
-        emit('update:value', localValue.value);
+        onUpdate();
     };
 
     onBeforeMount(() => {
-        localValue.value = props.value;
+        localValue.value = {
+            ...localValue.value,
+            ...props.data,
+            value: props.data?.value?.length ? props.data.value : localValue.value.value
+        };
     });
 </script>
 <template>
+
     <div class="section-create-form__field q-mb-lg">
-        <q-input v-if="type === ITypePagesParams.Text" v-model="localValue" :label="label" @update:model-value="emit('update:value', localValue)" outlined />
-        <q-input
-            v-if="type === ITypePagesParams.Number"
-            v-model="localValue"
-            type="number"
-            :label="label"
-            @update:model-value="emit('update:value', localValue)"
-            outlined
-        />
-        <date-picker
-            v-if="type === ITypePagesParams.Date || type === ITypePagesParams.Datetime"
-            v-model:model-value="localValue"
-            :type="type === ITypePagesParams.Datetime ? 'datetime' : undefined"
-            :label="label"
-            @update:model-value="emit('update:value', localValue)"
-            outlined
-        />
-        <q-input
-            v-if="type === ITypePagesParams.Textarea"
-            v-model="localValue"
-            type="textarea"
-            :label="label"
-            @update:model-value="emit('update:value', localValue)"
-            outlined
-        />
-        <editor
-            v-if="type === ITypePagesParams.Editor"
-            class="property-editor-components__item__editor"
-            v-model="localValue"
-            :is-live-save="true"
-            @update="updateEditor"
-        />
-        <div v-if="type === ITypePagesParams.Image || type === ITypePagesParams.Gallary">
-            <Dropzone :title="label" :files="getFilesImages" :is-multiple="type === ITypePagesParams.Gallary" @on-add-file="onAddImage" @on-delete-file="onRemoveImage" />
-        </div>
+        <div class="text-h5 q-mb-md">{{ label }}</div>
+        <temaplte v-if="param.type === ITypePagesParams.Text">
+            <div class="row no-wrap q-gutter-md">
+                <div v-for="(item, index) in localValue.value" :key="item.lang! + index" class="full">
+                    <q-input
+                        v-model="item.value"
+                        :label="item.lang?.toString()"
+                        class="full"
+                        @update:model-value="onUpdate"
+                        outlined
+                    />
+                </div>
+            </div>
+        </temaplte>
+        <temaplte v-if="param.type === ITypePagesParams.Number">
+            <div class="row no-wrap q-gutter-md">
+                <div v-for="(item, index) in localValue.value" :key="item.lang! + index" class="full">
+                    <q-input
+                        type="number"
+                        v-model="item.value"
+                        :label="item.lang?.toString()"
+                        class="full"
+                        @update:model-value="onUpdate"
+                        outlined
+                    />
+                </div>
+            </div>
+        </temaplte>
+        <temaplte v-if="param.type === ITypePagesParams.Textarea">
+            <div class="row no-wrap q-gutter-md">
+                <div v-for="(item, index) in localValue.value" :key="item.lang! + index" class="full">
+                    <q-input
+                        type="textarea"
+                        v-model="item.value"
+                        :label="item.lang?.toString()"
+                        class="full"
+                        @update:model-value="onUpdate"
+                        outlined
+                    />
+                </div>
+            </div>
+        </temaplte>
+        <temaplte v-if="param.type === ITypePagesParams.Editor">
+            <div class="row no-wrap q-gutter-md">
+                <div v-for="(item, index) in localValue.value" :key="item.lang! + index" class="full">
+                    <q-editor
+                        type="textarea"
+                        v-model="item.value"
+                        :label="item.lang?.toString()"
+                        class="full"
+                        :toolbar="[
+                            ['bold', 'italic', 'underline'],
+                            [{
+                                label: $q.lang.editor.formatting,
+                                icon: $q.iconSet.editor.formatting,
+                                list: 'no-icons',
+                                options: ['p', 'code']
+                            }]
+                        ]"
+                        @update:model-value="onUpdate"
+                        outlined
+                    />
+                </div>
+            </div>
+        </temaplte>
+        <temaplte  v-if="param.type === ITypePagesParams.Date || param.type === ITypePagesParams.Datetime">
+            <div class="row no-wrap q-gutter-md">
+                <div v-for="(item, index) in localValue.value" :key="item.lang! + index" class="full">
+                    <date-picker
+                        v-model:model-value="item.value"
+                        :type="param.type === ITypePagesParams.Datetime ? 'datetime' : undefined"
+                        :label="label"
+                        @update:model-value="(event) => {
+                            item.value = event;
+                            onUpdate();
+                        }"
+                        outlined
+                    />
+                </div>
+            </div>
+        </temaplte>
+        <template v-if="param.type === ITypePagesParams.Image || param.type === ITypePagesParams.Gallary">
+            <Dropzona :title="label" :files="getFilesImages" :is-multiple="param.type === ITypePagesParams.Gallary" @on-add-file="onAddImage" @on-delete-file="onRemoveImage" />
+        </template>
     </div>
 </template>

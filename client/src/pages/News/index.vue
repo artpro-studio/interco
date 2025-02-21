@@ -8,13 +8,32 @@
 	import BannerCallback from 'src/components/BannerCallback/BannerCallback.vue';
 	import NewsBanner from './components/NewsBanner.vue';
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesIblockPublicDto, PagesPublicControllerClient } from 'src/ApiClient/ApiClient';
 
 	const { t } = useI18n();
 
+	const iblocks = ref<PagesIblockPublicDto[]>([]);
+
+	const SLUG_HEADER_NEWS = 'header-news';
+
+	const getNewsHeader = computed(() => {
+		const data = iblocks.value?.find((el) => el.slug === SLUG_HEADER_NEWS);
+
+		return data && data.records?.length ? data.records[0] : null;
+	})
+
+	const getIblocks = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlugsArray([SLUG_HEADER_NEWS])
+			.then((res) => {
+				iblocks.value = res.entity || []
+			})
+	}
+
 	onMounted(() => {
 		useGetMeta('news')
+		getIblocks();
 	})
 </script>
 
@@ -27,7 +46,7 @@
 		images="images/news-bg.svg"
 		:dense="false"
 	/>
-	<news-list />
+	<news-list :header="getNewsHeader" />
 	<news-analytics />
 	<news-release />
 	<news-form />

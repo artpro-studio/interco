@@ -41,7 +41,7 @@ export class RecordsEntity extends DefaultBaseEntity {
 
     @ApiProperty({ description: 'Запись(статья)' })
     @OneToMany(() => PagesParamsFieldEntity, (paramsValue) => paramsValue.record)
-    paramsValue: PagesParamsFieldEntity[];
+    paramsField: PagesParamsFieldEntity[];
 
     @ApiProperty({ description: 'Сео парамметры' })
     @OneToOne(() => RecordsSeoEntity)

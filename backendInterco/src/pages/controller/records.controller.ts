@@ -84,7 +84,6 @@ export class RecordsController {
     @ApiResponse({ status: 201, type: ResultRecordsCreateDto })
     @Post()
     create(@Body() body: CreateRecordsDto): Promise<ResultRecordsCreateDto> {
-        console.log('111');
         return this.recordsService.create(body);
     }
 

@@ -35,18 +35,39 @@ export class RecordsRepository {
         entity: FullRecordsDto[],
         count: number
     }> {
+        const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
+        const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
+        const fieldsSeoParams = getFieldsSeoParams('seoParms');
+
         const take = Number(body.limit);
         const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
         const query = this.recordsRepository.createQueryBuilder('records').take(take).skip(skip)
-        .orderBy('records.id', 'ASC')
-        .leftJoinAndSelect('records.pages', 'pages')
-        .leftJoin('records.paramsValue', 'paramsValue')
-        .leftJoin('paramsValue.params', 'params')
-        .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
-        .addSelect(['params.id', 'params.name', 'params.slug']);
+            .orderBy('records.id', 'ASC')
+            .leftJoinAndSelect('records.pages', 'pages')
+            .leftJoin('records.seo', 'seo')
+            .addSelect(['seo.id'])
+            .leftJoin('seo.params', 'seoParms')
+            .addSelect(fieldsSeoParams)
+
+            .leftJoin('records.title', 'title')
+            .addSelect(['title.id'])
+            .leftJoin('title.value', 'titleValue')
+            .addSelect(fieldsRecordsTitleValue)
+
+            .leftJoin('records.description', 'description')
+            .addSelect(['description.id'])
+            .leftJoin('description.value', 'descriptionValue')
+            .addSelect(fieldsRecordsDescriptionValue)
+
+            .leftJoin('records.paramsField', 'paramsField')
+            .leftJoin('paramsField.value', 'paramsFieldValue')
+            .leftJoin('paramsField.params', 'params')
+            .addSelect(['paramsField.id'])
+            .addSelect(['paramsFieldValue.id', 'paramsFieldValue.lang', 'paramsFieldValue.value'])
+            .addSelect(['params.id', 'params.name', 'params.slug', 'params.type']);
 
         if (body.slug) {
-            query.orWhere('pages.slug = :slug', {
+            query.andWhere('pages.slug = :slug', {
                 slug: body.slug,
             })
         }
@@ -70,16 +91,36 @@ export class RecordsRepository {
         entity: FullRecordsDto[],
         count: number
     }> {
+        const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
+        const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
+        const fieldsSeoParams = getFieldsSeoParams('seoParms');
+
         const take = Number(body.limit);
         const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
         const query = this.recordsRepository.createQueryBuilder('records').take(take).skip(skip)
         .orderBy('records.id', 'ASC')
         .leftJoinAndSelect('records.pages', 'pages')
-        .leftJoin('records.paramsValue', 'paramsValue')
-        .leftJoin('paramsValue.params', 'params')
-        .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
-        .addSelect(['params.id', 'params.name', 'params.slug']);
+        .leftJoin('records.seo', 'seo')
+        .addSelect(['seo.id'])
+        .leftJoin('seo.params', 'seoParms')
+        .addSelect(fieldsSeoParams)
 
+        .leftJoin('records.title', 'title')
+        .addSelect(['title.id'])
+        .leftJoin('title.value', 'titleValue')
+        .addSelect(fieldsRecordsTitleValue)
+
+        .leftJoin('records.description', 'description')
+        .addSelect(['description.id'])
+        .leftJoin('description.value', 'descriptionValue')
+        .addSelect(fieldsRecordsDescriptionValue)
+
+        .leftJoin('records.paramsField', 'paramsField')
+        .leftJoin('paramsField.value', 'paramsFieldValue')
+        .leftJoin('paramsField.params', 'params')
+        .addSelect(['paramsField.id'])
+        .addSelect(['paramsFieldValue.id', 'paramsFieldValue.lang', 'paramsFieldValue.value'])
+        .addSelect(['params.id', 'params.name', 'params.slug', 'params.type']);
         if (body.id) {
             query.andWhere({
                 pages: body.id
@@ -123,11 +164,13 @@ export class RecordsRepository {
             .leftJoin('description.value', 'descriptionValue')
             .addSelect(fieldsRecordsDescriptionValue)
 
-            .leftJoin('records.paramsValue', 'paramsValue')
-            .leftJoin('paramsValue.params', 'params')
-            .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
+            .leftJoin('records.paramsField', 'paramsField')
+            .leftJoin('paramsField.value', 'paramsFieldValue')
+            .leftJoin('paramsField.params', 'params')
+            .addSelect(['paramsField.id'])
+            .addSelect(['paramsFieldValue.id', 'paramsFieldValue.lang', 'paramsFieldValue.value'])
             .addSelect(['params.id', 'params.name', 'params.slug', 'params.type'])
-
+            .andWhere('records.id = :id', {id})
 
         return await query.getOne();
     }
@@ -155,9 +198,12 @@ export class RecordsRepository {
 
             .leftJoin('records.pages', 'pages')
             .addSelect(['pages.id', 'pages.name'])
-            .leftJoin('records.paramsValue', 'paramsValue')
-            .addSelect(['paramsValue.id', 'paramsValue.value', 'paramsValue.valueJson'])
-            .leftJoin('paramsValue.params', 'params')
+
+             .leftJoin('records.paramsField', 'paramsField')
+            .leftJoin('paramsField.value', 'paramsFieldValue')
+            .leftJoin('paramsField.params', 'params')
+            .addSelect(['paramsField.id'])
+            .addSelect(['paramsFieldValue.id', 'paramsFieldValue.lang', 'paramsFieldValue.value'])
             .addSelect(['params.id', 'params.name', 'params.slug', 'params.type'])
             .andWhere('records.id = :id', {id});
 

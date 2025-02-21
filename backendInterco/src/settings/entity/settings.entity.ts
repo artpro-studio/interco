@@ -35,6 +35,18 @@ export class SettingsEntity extends DefaultBaseEntity {
     @Column({ nullable: true, length: 1024 })
     telegram: string;
 
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на discrod' })
+    @Column({ nullable: true, length: 1024 })
+    discord: string;
+
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на linkedIn' })
+    @Column({ nullable: true, length: 1024 })
+    linkedIn: string;
+
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на instagram' })
+    @Column({ nullable: true, length: 1024 })
+    instagram: string;
+
     @ApiProperty({ example: '8 996 949 08 98', nullable: true, description: 'Телефон' })
     @Column({ nullable: true, length: 1024 })
     phone: string;

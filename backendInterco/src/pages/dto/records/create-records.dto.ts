@@ -5,7 +5,7 @@ import { PagesDto } from "../pages/create-pages.dto";
 import { PagesCommentsDto } from "../pages-comments/create-pages-comments.dto";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { DropDownDto } from "src/dto/response-drop-down.dto";
-import { FullPagesParamsFieldDto } from "../pages-params-field/pages-params-field.dto";
+import { PagesParamsFieldDto } from "../pages-params-field/pages-params-field.dto";
 import { RecordsTitleDto } from "./records-title/records-title.dto";
 import { DefaultBaseDto } from "src/dto/base.dto";
 import { RecordsDescriptionDto } from "./records-description/records-description.dto";
@@ -36,11 +36,8 @@ export class FullRecordsDto extends RecordsDto {
     @ApiProperty({ type: () => UserDto, nullable: true, description: 'Пользователь' })
     author?: UserDto;
 
-    @ApiProperty({ type: () => [FullPagesParamsFieldDto], description: 'Запись(статья)' })
-    paramsValue?: FullPagesParamsFieldDto[];
-
-    @ApiProperty({nullable: true, description: 'Парамметры' })
-    params?: Record<string, any>;
+    @ApiProperty({ type: () => [PagesParamsFieldDto], description: 'Парамметры' })
+    paramsField?: PagesParamsFieldDto[];
 }
 
 export class CreateRecordsDto extends RecordsDto {
@@ -48,6 +45,6 @@ export class CreateRecordsDto extends RecordsDto {
     @IsNotEmpty({message: 'ID страницы обьязательное поле'})
     pages: DropDownDto;
 
-    @ApiProperty({nullable: true, description: 'Парамметры' })
-    params?: Record<string, any>;
+    @ApiProperty({type:() => [PagesParamsFieldDto], required: false, nullable: true, description: 'Парамметры' })
+    paramsField?: PagesParamsFieldDto[];
 }

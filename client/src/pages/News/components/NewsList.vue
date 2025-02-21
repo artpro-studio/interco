@@ -1,49 +1,29 @@
 <script lang="ts" setup>
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
-	import { computed, inject, onMounted, ref, watch } from 'vue';
+	import { computed, inject, nextTick, onMounted, ref, watch } from 'vue';
+	import { getApiClientInitialParams, PagesPublicControllerClient, RecordsPublicDto } from 'src/ApiClient/ApiClient';
+	import { useI18n } from 'vue-i18n';
+import { getMonthWithYear } from 'src/helpers/formaterDate';
+
+	interface IProps {
+		header: any
+	}
+	defineProps<IProps>();
+
+	const { locale } = useI18n();
 
 	const widthScreen = inject<any>('widthScreen', 0);
 	const widthSlider = ref(0);
+	const isLoading = ref(true);
+	const news = ref<RecordsPublicDto[]>([]);
 
-	const aboutTeam = [
-		{
-			date: '09/23',
-			name: 'Участие SA International на Восточном экономическом форуме (ВЭФ)',
-			text: 'В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.',
-			image: 'images/employee1.png',
-		},
-		{
-			date: '03/24',
-			name: 'Проблемы с платежами из России в Китай и альтернативные подходы',
-			text: 'В связи с возникающими трудностями в международных платежах между Россией и Китаем, SA International провела серию семинаров и встреч с представителями банков и финансовых организаций. Мы представили альтернативные решения и механизмы для обеспечения бесперебойных финансовых операций и поддержки наших клиентов в текущих условиях.',
-			image: 'images/employee2.png',
-		},
-		{
-			date: '06/24',
-			name: 'Запуск SA Logistics — нового подразделения SIBC Group',
-			text: 'SA International объявляет о создании SA Logistics, специализированного подразделения в составе SIBC Group, которое будет отвечать за все аспекты логистики. Новая компания предоставит полный спектр логистических услуг, включая транспортировку, складирование, таможенное оформление и управление цепочками поставок, что позволит нашим клиентам получить комплексное обслуживание "под ключ".',
-			image: '',
-		},
-		{
-			date: '08/24',
-			name: 'Начало проекта по строительству завода роботов-манипуляторов в России',
-			text: 'Мы с гордостью объявляем о запуске проекта по строительству завода по производству роботов-манипуляторов в России. Этот завод станет одним из первых в своем роде в регионе и позволит локализовать производство высокотехнологичного оборудования, способствуя развитию робототехники и автоматизации в промышленности.',
-			image: 'images/employee2.png',
-		},
-		{
-			date: '09/23',
-			name: 'Участие SA International на Восточном экономическом форуме (ВЭФ)',
-			text: 'В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.',
-			image: 'images/employee1.png',
-		},
-		{
-			date: '03/24',
-			name: 'Проблемы с платежами из России в Китай и альтернативные подходы',
-			text: 'В связи с возникающими трудностями в международных платежах между Россией и Китаем, SA International провела серию семинаров и встреч с представителями банков и финансовых организаций. Мы представили альтернативные решения и механизмы для обеспечения бесперебойных финансовых операций и поддержки наших клиентов в текущих условиях.',
-			image: 'images/employee2.png',
-		},
-	]
+	watch(() => locale.value, () => {
+		isLoading.value = true;
+		nextTick(() => {
+			isLoading.value = false;
+		})
+	})
 
 	const breakpoints: any = {
 		'901': {
@@ -68,21 +48,38 @@
 		}
 	}
 
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getRecordsBlogs('', 1, 20, 'news')
+			.then((res) => {
+				news.value = res.entity?.entity || [];
+				isLoading.value = false;
+				getSilderWidth();
+			})
+	}
+
 	onMounted(() => {
-		getSilderWidth();
+		getInfo();
 	})
 </script>
 
 <template>
 	<div class="news-list pt-12 pb-8">
-		<div class="container">
+		<div v-if="isLoading" class="q-pa-md flex flex-center">
+			<q-circular-progress
+				indeterminate
+				rounded
+				color="orange"
+				 size="30px"
+			/>
+		</div>
+		<div v-else class="container">
 			<div data-aos="fade-right" class="news-list__header row no-wrap justify-between items-center">
 				<div class="news-list__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="news-list__header__arrow" width="40px" />
-					<h4 class="news-list__header__title headline-1 text-uppercase">Новости компании</h4>
+					<h4 class="news-list__header__title headline-1 text-uppercase">{{ header?.fields?.title[locale]?.value }}</h4>
 				</div>
 				<div class="news-list__header__info">
-					<p>Будьте в курсе последних событий и новостей нашей компании.</p>
+					<p>{{ header?.fields?.description[locale]?.value }}</p>
 				</div>
 			</div>
 			<div data-aos="fade-up" class="news-list__body" :style="{width: getStyleWidth}">
@@ -95,15 +92,15 @@
 					:breakpoints="breakpoints"
 				>
 					<swiper-slide
-						v-for="(item, index) in aboutTeam"
+						v-for="(item, index) in news"
 						:key="index"
 					>
 						<div class="news-list__item">
-							<q-img :src="item.image" height="400px" fit="cover" class="news-list__item__img" />
-							<p class="news-list__item__date">{{ item.date }}</p>
-							<h5 class="news-list__item__title text-red fonts-oswald text-uppercase">{{ item.name }}</h5>
+							<q-img :src="item.paramsField?.image[locale]?.path || ''" height="400px" fit="cover" class="news-list__item__img" />
+							<p class="news-list__item__date">{{ getMonthWithYear(item.createdAt!) }}</p>
+							<h5 class="news-list__item__title text-red fonts-oswald text-uppercase">{{ item.title[locale] }}</h5>
 							<div class="news-list__item__text">
-								<p>{{ item.text }}</p>
+								<p>{{ item.description[locale] }}</p>
 							</div>
 						</div>
 					</swiper-slide>

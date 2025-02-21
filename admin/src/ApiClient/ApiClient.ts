@@ -7871,7 +7871,7 @@ export class PagesPublicControllerClient extends BaseApiClient {
      * Получение iblock по символьнуму коду
      * @param slug Slug iblock
      */
-    getIblockForSlug(slug: string): Promise<ResultPagesIblockDto> {
+    getIblockForSlug(slug: string): Promise<ResultPageIblockPublicDto> {
         let url_ = this.baseUrl + "/api/pages-public/get-iblock-for-slug?";
         if (slug === undefined || slug === null)
             throw new Error("The parameter 'slug' must be defined and cannot be null.");
@@ -7893,13 +7893,13 @@ export class PagesPublicControllerClient extends BaseApiClient {
         });
     }
 
-    protected processGetIblockForSlug(response: Response): Promise<ResultPagesIblockDto> {
+    protected processGetIblockForSlug(response: Response): Promise<ResultPageIblockPublicDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultPagesIblockDto;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultPageIblockPublicDto;
             return result200;
             });
         } else if (status === 204) {
@@ -7979,19 +7979,19 @@ export class PagesPublicControllerClient extends BaseApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<ResultPagesIblockDto>(null as any);
+        return Promise.resolve<ResultPageIblockPublicDto>(null as any);
     }
 
     /**
      * Получение iblock по символьнуму коду
      * @param slug Slug iblock
      */
-    getIblockForSlugsArray(slug: string): Promise<ResultPagesIblocksDto> {
+    getIblockForSlugsArray(slug: string[]): Promise<ResultPageIblockPublicListDto> {
         let url_ = this.baseUrl + "/api/pages-public/get-iblock-for-slugs-array?";
         if (slug === undefined || slug === null)
             throw new Error("The parameter 'slug' must be defined and cannot be null.");
         else
-            url_ += "slug=" + encodeURIComponent("" + slug) + "&";
+            slug && slug.forEach(item => { url_ += "slug=" + encodeURIComponent("" + item) + "&"; });
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -8008,13 +8008,13 @@ export class PagesPublicControllerClient extends BaseApiClient {
         });
     }
 
-    protected processGetIblockForSlugsArray(response: Response): Promise<ResultPagesIblocksDto> {
+    protected processGetIblockForSlugsArray(response: Response): Promise<ResultPageIblockPublicListDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultPagesIblocksDto;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultPageIblockPublicListDto;
             return result200;
             });
         } else if (status === 204) {
@@ -8094,7 +8094,7 @@ export class PagesPublicControllerClient extends BaseApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<ResultPagesIblocksDto>(null as any);
+        return Promise.resolve<ResultPageIblockPublicListDto>(null as any);
     }
 
     /**
@@ -8559,7 +8559,7 @@ export class PagesPublicControllerClient extends BaseApiClient {
      * @param limit Количество
      * @param slug Символьный код страницы
      */
-    getRecordsBlogs(search: string, page: number, limit: number, slug: string): Promise<RecordsListDto> {
+    getRecordsBlogs(search: string, page: number, limit: number, slug: string): Promise<ResultRecordsPublicListDto> {
         let url_ = this.baseUrl + "/api/pages-public/records-blog?";
         if (search === undefined || search === null)
             throw new Error("The parameter 'search' must be defined and cannot be null.");
@@ -8593,13 +8593,13 @@ export class PagesPublicControllerClient extends BaseApiClient {
         });
     }
 
-    protected processGetRecordsBlogs(response: Response): Promise<RecordsListDto> {
+    protected processGetRecordsBlogs(response: Response): Promise<ResultRecordsPublicListDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as RecordsListDto;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultRecordsPublicListDto;
             return result200;
             });
         } else if (status === 204) {
@@ -8679,7 +8679,7 @@ export class PagesPublicControllerClient extends BaseApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<RecordsListDto>(null as any);
+        return Promise.resolve<ResultRecordsPublicListDto>(null as any);
     }
 
     /**
@@ -17301,6 +17301,12 @@ export interface FullSettingsDto {
     whatsapp: string | null;
     /** Ссылка на telegram */
     telegram: string | null;
+    /** Ссылка на discrod */
+    discord: string | null;
+    /** Ссылка на linkedIn */
+    linkedIn: string | null;
+    /** Ссылка на instagram */
+    instagram: string | null;
     /** Телефон */
     phone: string | null;
     /** Email */
@@ -17941,6 +17947,21 @@ export interface PagesCommentsDto {
     [key: string]: any;
 }
 
+export interface PagesParamsFieldValueDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    /** Значение */
+    value: string;
+    /** Язык */
+    lang: ILangPages | null;
+    /** Запись */
+    pagesParamsField?: PagesParamsFieldDto | null;
+
+    [key: string]: any;
+}
+
 export enum ITypePagesParams {
     Text = "text",
     Number = "number",
@@ -17970,19 +17991,17 @@ export interface PagesParamsDto {
     [key: string]: any;
 }
 
-export interface FullPagesParamsValueDto {
+export interface PagesParamsFieldDto {
     id?: number | null;
     createdAt?: string | null;
     updatedAt?: string | null;
     deletedAt?: string | null;
     /** Значение */
-    value: string;
-    /** Json с данными */
-    valueJson: string | null;
+    value?: PagesParamsFieldValueDto[] | null;
     /** Парамметр */
-    params: PagesParamsDto;
+    params?: PagesParamsDto | null;
     /** Запись(статья) */
-    record: RecordsDto;
+    record?: RecordsDto | null;
 
     [key: string]: any;
 }
@@ -18006,10 +18025,8 @@ export interface FullRecordsDto {
     pages: PagesDto | null;
     /** Пользователь */
     author: UserDto | null;
-    /** Запись(статья) */
-    paramsValue: FullPagesParamsValueDto[];
     /** Парамметры */
-    params: any | null;
+    paramsField: PagesParamsFieldDto[];
 
     [key: string]: any;
 }
@@ -18045,7 +18062,7 @@ export interface CreateRecordsDto {
     /** ID страницы */
     pages: DropDownDto | null;
     /** Парамметры */
-    params: any | null;
+    paramsField?: PagesParamsFieldDto[] | null;
 
     [key: string]: any;
 }
@@ -18212,22 +18229,26 @@ export interface PagesComponentsListDto {
     [key: string]: any;
 }
 
-export interface ResultPagesIblockDto {
-    /** Статус */
-    isSuccess: boolean;
-    /** Статус код */
-    statusCode: number;
-    /** Сообщение */
-    message: string;
-    /** Ошибки */
-    errors: any;
-    /** Ответ */
-    entity: PagesIblockDto | null;
+export interface PagesIblockPublicDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    /** Название */
+    name: string;
+    /** Символьный код */
+    slug: string;
+    /** Атрибуты */
+    attributes?: any | null;
+    /** Записи */
+    records: any[];
+    /** Разделы */
+    sections?: any[] | null;
 
     [key: string]: any;
 }
 
-export interface ResultPagesIblocksDto {
+export interface ResultPageIblockPublicDto {
     /** Статус */
     isSuccess: boolean;
     /** Статус код */
@@ -18237,7 +18258,22 @@ export interface ResultPagesIblocksDto {
     /** Ошибки */
     errors: any;
     /** Ответ */
-    entity: PagesIblockDto[] | null;
+    entity: PagesIblockPublicDto | null;
+
+    [key: string]: any;
+}
+
+export interface ResultPageIblockPublicListDto {
+    /** Статус */
+    isSuccess: boolean;
+    /** Статус код */
+    statusCode: number;
+    /** Сообщение */
+    message: string;
+    /** Ошибки */
+    errors: any;
+    /** Ответ */
+    entity: PagesIblockPublicDto[] | null;
 
     [key: string]: any;
 }
@@ -18331,6 +18367,53 @@ export interface ResultPagesPublicDto {
     [key: string]: any;
 }
 
+export interface RecordsPublicDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    /** Заголовок */
+    title?: any | null;
+    /** Описание */
+    description?: any | null;
+    /** Счетчик просмотров */
+    countView: number | null;
+    /** Сео парамметры */
+    seo?: any | null;
+    /** Парамметры */
+    paramsField: any;
+    /** Страница */
+    pages: PagesDto | null;
+
+    [key: string]: any;
+}
+
+export interface RecordsPublicOptionDto {
+    /** Количество записей */
+    count: number;
+    /** Количество */
+    limit: number;
+    /** Ответ */
+    entity: RecordsPublicDto[] | null;
+
+    [key: string]: any;
+}
+
+export interface ResultRecordsPublicListDto {
+    /** Статус */
+    isSuccess: boolean;
+    /** Статус код */
+    statusCode: number;
+    /** Сообщение */
+    message: string;
+    /** Ошибки */
+    errors: any;
+    /** Ответ */
+    entity: RecordsPublicOptionDto | null;
+
+    [key: string]: any;
+}
+
 export interface CreateCommentsDto {
     id?: number | null;
     createdAt?: string | null;
@@ -18360,7 +18443,7 @@ export interface FullPagesParamsDto {
     /** Тип */
     isFilter: boolean;
     /** Значение параметров */
-    paramsValue: FullPagesParamsValueDto[];
+    paramsValue: PagesParamsFieldDto[];
     /** Страница */
     pages: PagesDto;
 
@@ -18464,6 +18547,21 @@ export interface PagesIblockFieldsListDto {
     errors: any;
     /** Ответ */
     entity: PagesIblockFieldsOptionDto | null;
+
+    [key: string]: any;
+}
+
+export interface ResultPagesIblockDto {
+    /** Статус */
+    isSuccess: boolean;
+    /** Статус код */
+    statusCode: number;
+    /** Сообщение */
+    message: string;
+    /** Ошибки */
+    errors: any;
+    /** Ответ */
+    entity: PagesIblockDto | null;
 
     [key: string]: any;
 }

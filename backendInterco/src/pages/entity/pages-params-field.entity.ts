@@ -18,6 +18,6 @@ export class PagesParamsFieldEntity extends DefaultBaseEntity {
     params: PagesParamsEntity;
 
     @ApiProperty({ description: 'Запись(статья)' })
-    @ManyToOne(() => RecordsEntity, (record) => record.paramsValue)
+    @ManyToOne(() => RecordsEntity, (record) => record.paramsField)
     record: RecordsEntity;
 }

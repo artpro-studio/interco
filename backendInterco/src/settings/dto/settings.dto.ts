@@ -25,6 +25,15 @@ export class SettingsDto extends DefaultBaseDto {
     @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на telegram' })
     telegram: string;
 
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на discrod' })
+    discord: string;
+
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на linkedIn' })
+    linkedIn: string;
+
+    @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Ссылка на instagram' })
+    instagram: string;
+
     @ApiProperty({ example: 'https://telegram.com', nullable: true, description: 'Телефон' })
     phone: string;
 

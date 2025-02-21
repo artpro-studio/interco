@@ -5,7 +5,7 @@ import { PagesIblockDto } from "../dto/iblock/pages-iblock.dto";
 import { BaseQuery } from "src/dto/reponse.dto";
 import { PagesIblockQuery } from "../dto/iblock/response-iblock.dto";
 import { Injectable } from "@nestjs/common";
-import { getFieldsIblockFields, getFieldsIblockFieldsLabel, getFieldsIblockSectionValue } from "../helpers";
+import { getFieldsIblockFields, getFieldsIblockFieldsLabel, getFieldsIblockSectionValue, getFieldsPagesIblockRecordsFieldValue } from "../helpers";
 import { PagesIblockSectionValueDto } from '../dto/iblock/section/pages-iblock-section-value.dto';
 
 @Injectable()
@@ -15,28 +15,46 @@ export class PagesIblockRepository {
     ) {}
 
     async getOneForSlugsArray(slugs: string[]): Promise<PagesIblockDto[]> {
-        const fieldsFields = getFieldsIblockFields('fields');
-        const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
-        const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
+        try {
+            const fieldsFields = getFieldsIblockFields('fields');
+            const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
+            const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
+            const fieldIblockRecordsField = getFieldsIblockFields('recordsField');
+            const fieldIblockRecordsFieldValue = getFieldsPagesIblockRecordsFieldValue('recordsValue')
 
-        const query = this.pagesIblockRepository.createQueryBuilder('iblock')
-            .leftJoin('iblock.fields', 'fields')
-            .leftJoin('fields.label', 'label')
-            .leftJoin('iblock.sections', 'sections')
-            .leftJoin('sections.value', 'sectionsValue')
-            .addSelect(['sections.id'])
-            .addSelect(fieldsSectionValue)
-            .addSelect(fieldsFields)
-            .addSelect(fieldsFieldsLabel)
-            .where('iblock.slug IN (:...slugs)', {slugs});
+            const query = this.pagesIblockRepository.createQueryBuilder('iblock')
+                .leftJoin('iblock.fields', 'fields')
+                .leftJoin('fields.label', 'label')
+                .leftJoin('iblock.sections', 'sections')
+                .leftJoin('sections.value', 'sectionsValue')
+                .addSelect(['sections.id'])
+                .addSelect(fieldsSectionValue)
+                .addSelect(fieldsFields)
+                .addSelect(fieldsFieldsLabel)
 
-        return await query.getMany()
+                .leftJoin('iblock.records', 'records')
+                .leftJoin('records.fields', 'recordsFields')
+                .leftJoin('recordsFields.field', 'recordsField')
+                .leftJoin('recordsFields.value', 'recordsValue')
+                .addSelect(['records.id'])
+                .addSelect(['recordsFields.id'])
+                .addSelect(fieldIblockRecordsField)
+                .addSelect(fieldIblockRecordsFieldValue)
+
+                .andWhere('iblock.slug IN (:...slugs)', {slugs});
+
+            return await query.getMany()
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     async getOneForSlug(slug: string): Promise<PagesIblockDto> {
         const fieldsFields = getFieldsIblockFields('fields');
         const fieldsFieldsLabel = getFieldsIblockFieldsLabel('label');
         const fieldsSectionValue = getFieldsIblockSectionValue('sectionsValue')
+        const fieldIblockRecordsField = getFieldsIblockFields('recordsField');
+        const fieldIblockRecordsFieldValue = getFieldsPagesIblockRecordsFieldValue('recordsValue')
 
         const query = this.pagesIblockRepository.createQueryBuilder('iblock')
             .leftJoin('iblock.fields', 'fields')
@@ -47,6 +65,15 @@ export class PagesIblockRepository {
             .addSelect(fieldsSectionValue)
             .addSelect(fieldsFields)
             .addSelect(fieldsFieldsLabel)
+
+            .leftJoin('iblock.records', 'records')
+            .leftJoin('records.fields', 'recordsFields')
+            .leftJoin('recordsFields.field', 'recordsField')
+            .leftJoin('recordsFields.value', 'recordsValue')
+            .addSelect(['records.id'])
+            .addSelect(['recordsFields.id'])
+            .addSelect(fieldIblockRecordsField)
+            .addSelect(fieldIblockRecordsFieldValue)
             .where('iblock.slug = :slug', {slug});
 
         return await query.getOne()

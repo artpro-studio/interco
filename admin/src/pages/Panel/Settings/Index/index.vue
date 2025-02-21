@@ -115,6 +115,15 @@
                                 <div class="section-create-form__field q-mb-md">
                                     <q-input color="primary" v-model="form!.facebook" label="Facebook" outlined />
                                 </div>
+                                <div class="section-create-form__field q-mb-md">
+                                    <q-input color="primary" v-model="form!.linkedIn" label="LinkedIn" outlined />
+                                </div>
+                                <div class="section-create-form__field q-mb-md">
+                                    <q-input color="primary" v-model="form!.discord" label="Discord" outlined />
+                                </div>
+                                <div class="section-create-form__field q-mb-md">
+                                    <q-input color="primary" v-model="form!.instagram" label="Instagram" outlined />
+                                </div>
                             </q-tab-panel>
                             <q-tab-panel name="callback">
                                 <h4 class="text-h5 q-mb-lg">Битрикс 24</h4>

@@ -11,7 +11,7 @@ import { DropDownDto, ResultDropDownDto } from 'src/dto/response-drop-down.dto';
 import { CommentStatus, ITypePagesParams } from '../interface';
 import { PagesParamsRepository } from '../repository/pages-params.repository';
 import { PagesParamsFieldRepository } from '../repository/pages-params-field.repository';
-import { FullPagesParamsFieldDto } from '../dto/pages-params-field/pages-params-field.dto';
+import { PagesParamsFieldDto } from '../dto/pages-params-field/pages-params-field.dto';
 import { FullPagesParamsDto } from '../dto/pages-params/pages-params.dto';
 import { RecordsRepository } from '../repository/records.repository';
 import { PagesRepository } from '../repository/pages.repository';
@@ -22,6 +22,10 @@ import { RecordsTitleValueRepository } from '../repository/records-title-value.r
 import { RecordsDescriptionRepository } from '../repository/records-description.repository';
 import { RecordsDescriptionValueRepository } from '../repository/records-description-value.repository';
 import { compareValuesByCommonKeys } from '../helpers';
+import { PagesParamsFieldValueRepository } from '../repository/pages-params-field-value.repository';
+import e from 'express';
+import { parseForPublicRecords, SortLangCreateOrUpdateRecord } from '../helpers/parseRecord';
+import { ResultRecordsPublicListDto } from '../dto/records/records-public.dto';
 
 const jsonArray = [ITypePagesParams.FILE, ITypePagesParams.GALLARY, ITypePagesParams.IMAGE]
 
@@ -32,6 +36,7 @@ export class RecordsService {
         private readonly pagesRepository: PagesRepository,
         private readonly pagesParamsRepository: PagesParamsRepository,
         private readonly pagesParamsFieldRepository: PagesParamsFieldRepository,
+        private readonly pagesParamsFieldValueRepository: PagesParamsFieldValueRepository,
         private readonly recordsSeoRepository: RecordsSeoRepository,
         private readonly recordsSeoParamsRepository: RecordsSeoParamsRepository,
         private readonly recordsTitleRepository: RecordsTitleRepository,
@@ -41,18 +46,20 @@ export class RecordsService {
     ){}
 
     parserParamsForResult(body: FullRecordsDto) {
-        const {paramsValue, ...entity} = body;
-        const params: any = {};
-        paramsValue.forEach((valueItem: FullPagesParamsFieldDto) => {
-            if (jsonArray.includes(valueItem.params.type)) {
-                params[valueItem.params.slug] = valueItem.value;
-            } else {
-                params[valueItem.params.slug] = valueItem.value
+        try {
+            const {paramsField, ...entity} = body;
+            const params: any = {};
+            paramsField.forEach((valueItem: PagesParamsFieldDto) => {
+                if (valueItem.params?.slug) {
+                    params[valueItem.params!.slug!] = valueItem.value;
+                }
+            })
+            return {
+                ...entity,
+                params
             }
-        })
-        return {
-            ...entity,
-            params
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -66,11 +73,9 @@ export class RecordsService {
 
     // Получение одной записи для создания и редактирования
     async getCreateOrUpdate(id: number): Promise<ResultRecordsCreateDto> {
-        const query = await this.recordsRepository.getCreateOrUpdate(id);
+        const entity = await this.recordsRepository.getCreateOrUpdate(id);
 
-        const entity: any = this.parserParamsForResult(query as any);
-
-        return {isSuccess: true, entity}
+        return {isSuccess: true, entity: SortLangCreateOrUpdateRecord(entity) as CreateRecordsDto}
     }
 
     // Создание записи
@@ -80,7 +85,7 @@ export class RecordsService {
             return {isSuccess: false, message: 'Старница не найдена'}
         }
 
-        const {params, ...entityCreate} = body
+        const {paramsField, ...entityCreate} = body
         const paramsEntity = (await this.pagesParamsRepository.get(pages.id, {
             search: '',
             page: 1,
@@ -121,25 +126,23 @@ export class RecordsService {
             pages
         });
 
-        // for (let i = 0; i < paramsEntity.length; i++) {
-        //     if (jsonArray.includes(paramsEntity[i].type)) {
-        //         const valueJson = body[paramsEntity[i].slug]
-        //         await this.pagesParamsValueRepository.create({
-        //             params: paramsEntity[i],
-        //             record,
-        //             value: '',
-        //             valueJson
-        //         })
-        //     }  else {
-        //         const value = body[paramsEntity[i].slug]
-        //         await this.pagesParamsValueRepository.create({
-        //             params: paramsEntity[i],
-        //             record,
-        //             value,
-        //             valueJson: undefined,
-        //         })
-        //     }
-        // }
+        // Сохарянем парамметры
+        for (let i = 0; i < paramsEntity.length; i++) {
+            const pagesParamsField = await this.pagesParamsFieldRepository.create({
+                record,
+                params: paramsEntity[i]
+            });
+
+            const findField = paramsField.find((el) => el.params.slug === paramsEntity[i].slug);
+            if (findField) {
+                findField.value.forEach((el) => {
+                    this.pagesParamsFieldValueRepository.create({
+                        ...el,
+                        pagesParamsField
+                    })
+                })
+            }
+        }
 
         return {
             isSuccess: true,
@@ -200,14 +203,13 @@ export class RecordsService {
                                 ...title,
                                 ...body.title.value[key]
                             });
-                        } else {
-                            this.recordsTitleValueRepository.create({
-                                ...body.title.value[key],
-                                recordTitle: record.title
-                            })
                         }
+                    } else {
+                        this.recordsTitleValueRepository.create({
+                            ...body.title.value[key],
+                            recordTitle: record.title
+                        })
                     }
-
                 }
             }
 
@@ -216,62 +218,65 @@ export class RecordsService {
                 for (let key in body.description.value) {
                     const description = record.description?.value?.find((el) => el.id === body.description.value[key].id);
                     if (description) {
+
                         if (!compareValuesByCommonKeys(body.description.value[key], description)) {
                             this.recordsDescriptionValueRepository.update({
                                 ...description,
                                 ...body.description.value[key]
                             });
-                        } else {
-                            this.recordsDescriptionValueRepository.create({
-                                ...body.description.value[key],
-                                recordDescription: record.description
-                            })
                         }
+                    } else {
+                        this.recordsDescriptionValueRepository.create({
+                            ...body.description.value[key],
+                            recordDescription: record.description
+                        })
                     }
 
                 }
             }
 
-            // for(let i = 0; i < paramsEntity.length; i++) {
-            //     if (body.params[paramsEntity[i].slug]) {
-            //         const find = entity.paramsValue.find((item) => item.params.slug === paramsEntity[i].slug)
-            //         if (jsonArray.includes(paramsEntity[i].type)) {
-            //             if (find) {
-            //                 find.valueJson = body.params[paramsEntity[i].slug]
-            //                 this.pagesParamsValueRepository.update({
-            //                     ...find,
-            //                     value: ''
-            //                 })
-            //             } else {
-            //                 const valueJson = body.params[paramsEntity[i].slug]
-            //                 this.pagesParamsValueRepository.create({
-            //                     params: paramsEntity[i],
-            //                     record,
-            //                     value: '',
-            //                     valueJson
-            //                 })
-            //             }
-            //             entity.paramsValue[i].valueJson = body.params[paramsEntity[i].slug]
-            //             this.pagesParamsValueRepository.update(entity.paramsValue[i])
-            //         } else {
-            //             if (find) {
-            //                 find.value = body.params[paramsEntity[i].slug]
-            //                 const entity = JSON.parse(JSON.stringify(find))
-            //                 this.pagesParamsValueRepository.update({
-            //                     ...entity,
-            //                     valueJson: undefined
-            //                 })
-            //             } else {
-            //                 this.pagesParamsValueRepository.create({
-            //                     params: paramsEntity[i],
-            //                     record,
-            //                     value: body.params[paramsEntity[i].slug],
-            //                     valueJson: undefined,
-            //                 })
-            //             }
-            //         }
-            //     }
-            // }
+            // Сохарянем парамметры
+            for (let i = 0; i < paramsEntity.length; i++) {
+                // Проверка на существование парамметра
+                const paramsField = record.paramsField.find((el) => el.params.slug === paramsEntity[i].slug);
+                if (paramsField) {
+                    const newParamsField = body.paramsField.find((el) => el.params.slug === paramsEntity[i].slug);
+                    if (newParamsField) {
+                        newParamsField.value.forEach((el) => {
+                            const findOldValue = paramsField.value.find((elValue) => elValue.id === el.id);
+                            if (findOldValue) {
+                                if (!compareValuesByCommonKeys(findOldValue, el)) {
+                                    this.pagesParamsFieldValueRepository.update({
+                                        ...findOldValue,
+                                        ...el
+                                    })
+                                }
+                            } else {
+                                this.pagesParamsFieldValueRepository.create({
+                                    ...el,
+                                    pagesParamsField: paramsField
+                                })
+                            }
+                        });
+                    }
+
+                } else {
+                    // Парамметр новый так что сразу идем на создание
+                    const pagesParamsField = await this.pagesParamsFieldRepository.create({
+                        record,
+                        params: paramsEntity[i]
+                    });
+                    const findField = body.paramsField.find((el) => el.params.slug === paramsEntity[i].slug);
+                    if (findField) {
+                        findField.value.forEach((el) => {
+                            this.pagesParamsFieldValueRepository.create({
+                                ...el,
+                                pagesParamsField
+                            })
+                        })
+                    }
+                }
+            }
 
             return {
                 isSuccess: true,
@@ -288,18 +293,14 @@ export class RecordsService {
     }
 
      // Список записей
-     async getForSlug(body: RecordsQuerySlug): Promise<RecordsListDto> {
+     async getForSlug(body: RecordsQuerySlug): Promise<ResultRecordsPublicListDto> {
         const result = await this.recordsRepository.getForSlug(body)
-        const entity: any = [];
-        result.entity.forEach((el) => {
-            entity.push(this.parserParamsForResult(el))
-        });
 
         return {
             isSuccess: true,
             entity: {
                 count: result.count,
-                entity: entity
+                entity: parseForPublicRecords(result.entity)
             }
         }
     }
@@ -308,6 +309,7 @@ export class RecordsService {
     async get(body: RecordsQuery): Promise<RecordsListDto> {
         const result = await this.recordsRepository.get(body)
         const entity: any = [];
+
         result.entity.forEach((el) => {
             entity.push(this.parserParamsForResult(el))
         });

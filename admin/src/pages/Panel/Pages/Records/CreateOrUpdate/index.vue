@@ -12,11 +12,14 @@
     import RecordsSeoParams from './components/RecordsSeoParams/RecordsSeoParams.vue';
     import {
         CreateRecordsDto,
+        DropDownDto,
         FullPagesParamsDto,
         getApiClientInitialParams,
         ILangPages,
         PagesControllerClient,
         PagesParamsControllerClient,
+        PagesParamsDto,
+        PagesParamsFieldDto,
         RecordsControllerClient,
     } from 'src/ApiClient/ApiClient';
 
@@ -68,9 +71,7 @@
         pages: null,
         countView: null,
         comments: null,
-        params: {
-            'more-desc': null,
-        },
+        paramsField: [],
         seo: {
             params: []
         }
@@ -79,10 +80,24 @@
 
     const pagesParams = ref<FullPagesParamsDto[]>([]);
 
+    const getFieldParams = (id: number) => {
+        const find = form.value?.paramsField?.find((el) => el.params?.id === id);
+        return find;
+    };
+
+    const onUpdateField = (event: PagesParamsFieldDto, params: PagesParamsDto) => {
+        const findIndex = form.value?.paramsField?.findIndex((el) => el.params?.slug === params.slug);
+        if (findIndex !== undefined && findIndex > -1) {
+            form.value.paramsField![findIndex] = event;
+        } else {
+            form.value.paramsField?.push(event);
+        }
+    };
+
     const onRedirect = () => {
         if (route.query.page) {
             router.push({
-                name: RouterName.Records,
+                name: RouterName.PagesEdit,
                 params: { id: Number(route.query.page) },
                 query: { tab: 'records' },
             });
@@ -127,6 +142,13 @@
         });
     };
 
+    const onChangePage = (page: DropDownDto) => {
+        if (page?.value) {
+            getParams(Number(page?.value));
+            getPagesDropDown(Number(page?.value));
+        }
+    };
+
     const getInfo = async () => {
         const result = await new RecordsControllerClient(getApiClientInitialParams()).getCreateOrUpdate(Number(route.params.id));
         if (!result.isSuccess) {
@@ -142,8 +164,8 @@
         });
     };
 
-    const getPagesDropDown = async () => {
-        const result = await new PagesControllerClient(getApiClientInitialParams()).getSelectIds([Number(route.query.page)]);
+    const getPagesDropDown = async (pageId?: number) => {
+        const result = await new PagesControllerClient(getApiClientInitialParams()).getSelectIds([Number(route.query.page || pageId)]);
         if (!result.isSuccess) {
             resultError(result, null);
         } else {
@@ -168,7 +190,9 @@
             if (route.name === RouterName.PagesBlogsRecordsEdit) {
                 getInfo();
             } else {
-                getParams(Number(route.query.page));
+                if (route.query.page) {
+                    getParams(Number(route.query.page));
+                }
                 isLoading.value = false;
             }
         });
@@ -190,7 +214,7 @@
                     <q-card-section class="blogs-form-components__section">
                         <q-form ref="formRef" class="blogs-form-components__form" @submit="onChange">
                             <div class="section-create-form__field q-mb-md" v-if="!route.query.page">
-                                <selects-pages v-model="form.pages" :multiple="false" />
+                                <selects-pages v-model="form.pages" :multiple="false" @change="onChangePage" />
                             </div>
                             <div class="section-create-form__field q-mb-md">
                                 <h4 class="text-h5 q-mb-lg">Название</h4>
@@ -243,9 +267,17 @@
                     </q-card-section>
                 </q-card>
             </q-tab-panel>
-            <q-tab-panel name="params">
+            <q-tab-panel name="params" style="padding-bottom: 70px;">
+                <pre>
+                    {{ form.paramsField }}
+                </pre>
                 <div class="section-create-form__field q-mb-md" v-for="item in pagesParams" :key="item.id!">
-                    <params-field :value="form.params[item.slug]" :label="item.name" :type="item.type" @update:value="form.params[item.slug] = $event" />
+                    <params-field
+                        :data="getFieldParams(item.id!)"
+                        :label="item.name"
+                        :param="item"
+                        @on-change="onUpdateField($event, item)"
+                    />
                 </div>
             </q-tab-panel>
             <q-tab-panel v-if="route.name === RouterName.PagesBlogsRecordsEdit" name="comments">

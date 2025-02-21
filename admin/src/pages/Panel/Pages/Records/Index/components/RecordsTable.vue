@@ -8,7 +8,7 @@
     import { useRoute, useRouter } from 'vue-router';
     import useDateUntil from 'src/helpers/useDateUntil';
     import { RouterName } from 'src/router/routerName';
-    import { getApiClientInitialParams, RecordsControllerClient } from 'src/ApiClient/ApiClient';
+    import { getApiClientInitialParams, RecordsControllerClient, RecordsTitleDto } from 'src/ApiClient/ApiClient';
     import { IRecords, IRecordsFilter, RecordsColumnsTable } from '../../interface';
 
     const $q = useQuasar();
@@ -62,6 +62,10 @@
     const lengthPages = computed(() => {
         return Math.ceil(props.count / props.limit);
     });
+
+    const getRecordsTitle = (title: RecordsTitleDto) => {
+        return title.value?.map((el) => el.lang + ':' + el.value).join(', ');
+    };
 
     const onChecked = (status: boolean) => {
         rows.value =
@@ -173,7 +177,7 @@
                 <td class="text-left">{{ props.row.id }}</td>
                 <td class="text-left">
                     <router-link :to="getRouterDetail(props.row.id)">
-                        {{ props.row.title }}
+                        {{ getRecordsTitle(props.row.title) }}
                     </router-link>
                 </td>
                 <td class="text-left">

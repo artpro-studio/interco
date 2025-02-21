@@ -86,7 +86,7 @@
         :clearable="!multiple"
         :use-chips="multiple"
         :loading="isLoading"
-        @update:model-value="emit('change')"
+        @update:model-value="emit('change', $event)"
         @virtual-scroll="onScroll"
         outlined
     >
