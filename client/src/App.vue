@@ -2,7 +2,7 @@
 	import { onMounted, ref, useSSRContext } from 'vue';
 	import { useSeo } from './hooks/seo';
 	import { getApiClientInitialParams, SettingsPublicControllerClient } from './ApiClient/ApiClient';
-	import { useStore } from './store';
+	import { useStore } from 'src/store';
 
 	const ssrContext = useSSRContext();
 	const store = useStore();
@@ -39,7 +39,7 @@
 		new SettingsPublicControllerClient(getApiClientInitialParams()).getSettings()
 			.then((res) => {
 				console.log(store);
-				store.commit('settings/setSettings', res.entity)
+				store.commit('settingsModule/setSettings', res.entity)
 			})
 	}
 

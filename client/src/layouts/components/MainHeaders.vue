@@ -6,16 +6,22 @@
 	import { useRoute, useRouter } from 'vue-router';
 	import lang from 'src/components/lang/lang.vue';
 	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
+	import { useStore } from 'src/store';
 
 	const emit = defineEmits(['on-click'])
 	const { t } = useI18n();
 	const router = useRouter();
 	const route = useRoute();
+	const store = useStore();
 
 	const scrollTop = inject<number>('scrollTop', 0)
 
 	const isOpenDialog = ref(false);
 	const menuDataItems = ref(menuData)
+
+	const getPhone = computed(() => {
+		return store.getters['settingsModule/getSettings']?.phone || ''
+	})
 
 	const isWhite = computed(() => {
 		return route.meta.background === 'white';
@@ -58,7 +64,7 @@
 							<path d="M4 1L2.28238 1L3.13037 2.4937L6.25633 8L3.13037 13.5063L2.28238 15L4 15L8.59376 15L9.17596 15L9.46339 14.4937L12.8696 8.4937L13.1499 8L12.8696 7.5063L9.46339 1.5063L9.17596 1L8.59376 1L4 1Z" stroke="#DFB453" stroke-width="2"/>
 						</svg>
 					</div>
-					<a href="tel:88000000000" class="headers__actions__phone row items-center">8 800 000 00 00</a>
+					<a :href="'tel:' + getPhone" class="headers__actions__phone row items-center">{{ getPhone }}</a>
 					<q-btn
 						class="headers__btn-menu"
 						flat

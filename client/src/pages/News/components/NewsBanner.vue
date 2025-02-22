@@ -1,25 +1,30 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data: any
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 </script>
 
 <template>
 	<div class="news-banner pt-8 pb-8">
 		<div class="container">
-			<h4 data-aos="fade-right" class="news-banner__title headline-1 text-gradient text-uppercase">{{ t('newsBannerTitle') }}</h4>
+			<h4 data-aos="fade-right" class="news-banner__title headline-1 text-gradient text-uppercase">{{ data?.fields?.title[locale].value }}</h4>
 			<div data-aos="fade-left" class="news-banner__body row no-wrap justify-between">
 				<div class="news-banner__info fonts-oswald">
-					<p>{{ t('newsBannerText') }}</p>
+					<p>{{ data?.fields?.description[locale].value }}</p>
 				</div>
 				<div class="news-banner__contacts">
-					<div class="news-banner__link">
-						<a href="tel:+862154322755" class="headline-2">+86-21-5432-2755</a>
+					<div class="news-banner__link" v-if="data?.fields?.phone">
+						<a :href="'tel:' + data?.fields?.phone[locale].value" class="headline-2">{{ data?.fields?.phone[locale].value }}</a>
 					</div>
-					<div class="news-banner__link">
-						<a href="mailto:info@inter-sa.com" class="headline-2">info@inter-sa.com</a>
+					<div class="news-banner__link" v-if="data?.fields?.email">
+						<a :href="'mailto:' + data?.fields?.email[locale].value" class="headline-2">{{ data?.fields?.email[locale].value }}</a>
 					</div>
-					<p>Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505</p>
+					<p v-if="data?.fields?.address">{{ data?.fields?.address[locale].value }}</p>
 				</div>
 			</div>
 		</div>

@@ -4,12 +4,19 @@
 	import { menuFooter } from '../data';
 	import { RouterName } from 'src/router/routerName';
 	import { useRoute, useRouter } from 'vue-router';
+	import { useStore } from 'src/store';
+import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 
 	const route = useRoute();
 	const router = useRouter();
 	const { t } = useI18n();
+	const store = useStore();
 
 	const footerMenu = ref(menuFooter);
+
+	const getSettings = computed((): FullSettingsDto | undefined => {
+		return store.getters['settingsModule/getSettings']
+	})
 
 	const isWhite = computed(() => {
 		return route.meta.background === 'white';
@@ -41,13 +48,13 @@
 						</router-link>
 					</div>
 					<div class="footer__social row no-wrap items-center">
-						<a href="/" class="footer__social__item">
+						<a v-if="getSettings?.whatsapp" :href="getSettings?.whatsapp" class="footer__social__item">
 							<q-img src="icons/whatsapp.svg" width="24px" />
 						</a>
-						<a href="/" class="footer__social__item">
+						<a v-if="getSettings?.discord" :href="getSettings?.discord" class="footer__social__item">
 							<q-img src="icons/discord.svg" width="24px" />
 						</a>
-						<a  href="/" class="footer__social__item">
+						<a v-if="getSettings?.telegram" :href="getSettings?.telegram" class="footer__social__item">
 							<q-img src="icons/telegram.svg" width="24px" />
 						</a>
 					</div>
