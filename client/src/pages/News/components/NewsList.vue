@@ -4,7 +4,7 @@
 	import { computed, inject, nextTick, onMounted, ref, watch } from 'vue';
 	import { getApiClientInitialParams, PagesPublicControllerClient, RecordsPublicDto } from 'src/ApiClient/ApiClient';
 	import { useI18n } from 'vue-i18n';
-import { getMonthWithYear } from 'src/helpers/formaterDate';
+	import { getMonthWithYear } from 'src/helpers/formaterDate';
 
 	interface IProps {
 		header: any

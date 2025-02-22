@@ -1,7 +1,6 @@
 import { defineBoot } from '@quasar/app-vite/wrappers';
 
 export default defineBoot(async ({ssrContext, urlPath }: any) => {
-	console.log('test');
 	// SSR: получаем SEO перед рендерингом
 	if (ssrContext) {
 		try {

@@ -17,6 +17,10 @@
 	const iblocks = ref<PagesIblockPublicDto[]>([]);
 
 	const SLUG_HEADER_NEWS = 'header-news';
+	const SLUG_HEADER_ATRICLES = 'header-articles-analytics';
+	const SLUG_HEADER_PRESS = 'header-press-release';
+	const SLUG_NEWS_SOCILA = 'news-socail';
+	const SLUG_NEWS_CONTACTS = 'news-contacts';
 
 	const getNewsHeader = computed(() => {
 		const data = iblocks.value?.find((el) => el.slug === SLUG_HEADER_NEWS);
@@ -24,8 +28,32 @@
 		return data && data.records?.length ? data.records[0] : null;
 	})
 
+	const getHeaderArticles = computed(() => {
+		const data = iblocks.value?.find((el) => el.slug === SLUG_HEADER_ATRICLES);
+
+		return data && data.records?.length ? data.records[0] : null;
+	})
+
+	const getHeaderPress = computed(() => {
+		const data = iblocks.value?.find((el) => el.slug === SLUG_HEADER_PRESS);
+
+		return data && data.records?.length ? data.records[0] : null;
+	})
+
+	const getSocial = computed(() => {
+		const data = iblocks.value?.find((el) => el.slug === SLUG_NEWS_SOCILA);
+
+		return data && data.records?.length ? data.records[0] : null;
+	})
+
+	const getContacts = computed(() => {
+		const data = iblocks.value?.find((el) => el.slug === SLUG_NEWS_CONTACTS);
+
+		return data && data.records?.length ? data.records[0] : null;
+	})
+
 	const getIblocks = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlugsArray([SLUG_HEADER_NEWS])
+		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlugsArray([SLUG_HEADER_NEWS, SLUG_HEADER_ATRICLES, SLUG_HEADER_PRESS, SLUG_NEWS_SOCILA, SLUG_NEWS_CONTACTS])
 			.then((res) => {
 				iblocks.value = res.entity || []
 			})
@@ -47,10 +75,10 @@
 		:dense="false"
 	/>
 	<news-list :header="getNewsHeader" />
-	<news-analytics />
-	<news-release />
+	<news-analytics :header="getHeaderArticles" />
+	<news-release :header="getHeaderPress" />
 	<news-form />
-	<section-social />
+	<section-social :data="getSocial" />
 	<banner-callback />
-	<news-banner />
+	<news-banner :data="getContacts" />
 </template>

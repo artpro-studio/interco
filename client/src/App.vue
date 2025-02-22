@@ -1,10 +1,14 @@
 <script lang="ts" setup>
 	import { onMounted, ref, useSSRContext } from 'vue';
 	import { useSeo } from './hooks/seo';
+	import { getApiClientInitialParams, SettingsPublicControllerClient } from './ApiClient/ApiClient';
+	import { useStore } from './store';
+
+	const ssrContext = useSSRContext();
+	const store = useStore();
 
 	const isLoading = ref(true);
 	// Пример использования useSeo
-	const ssrContext = useSSRContext();
 	const seoData = ssrContext?.seoData;
 	if (ssrContext) {
 		const langs: any = {
@@ -31,8 +35,20 @@
 		});
 	}
 
+	const getSettings = () => {
+		new SettingsPublicControllerClient(getApiClientInitialParams()).getSettings()
+			.then((res) => {
+				console.log(store);
+				store.commit('settings/setSettings', res.entity)
+			})
+	}
+
 	onMounted(() => {
 		isLoading.value = false;
+
+		if (!ssrContext) {
+			getSettings();
+		}
 	})
 
 </script>

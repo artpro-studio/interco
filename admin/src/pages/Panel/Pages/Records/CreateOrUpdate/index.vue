@@ -268,9 +268,6 @@
                 </q-card>
             </q-tab-panel>
             <q-tab-panel name="params" style="padding-bottom: 70px;">
-                <pre>
-                    {{ form.paramsField }}
-                </pre>
                 <div class="section-create-form__field q-mb-md" v-for="item in pagesParams" :key="item.id!">
                     <params-field
                         :data="getFieldParams(item.id!)"

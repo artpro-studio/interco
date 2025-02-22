@@ -1,6 +1,27 @@
 <script lang="ts" setup>
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
+	import { useI18n } from 'vue-i18n';
+	import { getMonthWithYear } from 'src/helpers/formaterDate';
+	import { nextTick, onMounted, ref, watch } from 'vue';
+	import { getApiClientInitialParams, PagesPublicControllerClient, RecordsPublicDto } from 'src/ApiClient/ApiClient';
+
+	interface IProps {
+		header: any
+	}
+	defineProps<IProps>();
+
+	const { locale } = useI18n();
+
+	const isLoading = ref(true);
+	const rows = ref<RecordsPublicDto[]>([]);
+
+	watch(() => locale.value, () => {
+		isLoading.value = true;
+		nextTick(() => {
+			isLoading.value = false;
+		})
+	})
 
 	const breakpoints: any = {
 		'901': {
@@ -12,38 +33,37 @@
         },
 	}
 
-	const release = [
-		{
-			date: '09/23',
-			title: 'SA International подписывает соглашение с правительством РФ на ВЭФ',
-			image: 'images/employee1.png',
-			text: 'Официальное заявление о подписании соглашения о строительстве завода по производству портового оборудования в России.',
-		},
-		{
-			date: '06/24',
-			title: 'Официальный запуск SA Logistics',
-			image: '',
-			text: 'SA International объявляет о создании нового логистического подразделения, призванного улучшить качество и эффективность логистических услуг для наших клиентов.',
-		},
-		{
-			date: '06/24',
-			title: 'Старт проекта по производству роботов-манипуляторов в России',
-			image: 'images/employee3.png',
-			text: 'Официальный анонс начала строительства завода по производству роботизированных манипуляторов, направленного на развитие промышленной автоматизации в регионе',
-		},
-	];
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getRecordsBlogs('', 1, 20, 'press-release')
+			.then((res) => {
+				rows.value = res.entity?.entity || [];
+				isLoading.value = false;
+			})
+	}
+
+	onMounted(() => {
+		getInfo();
+	})
 </script>
 
 <template>
 	<div class="news-release pt-8 pb-8">
-		<div class="container">
+		<div v-if="isLoading" class="q-pa-md flex flex-center">
+			<q-circular-progress
+				indeterminate
+				rounded
+				color="orange"
+				 size="30px"
+			/>
+		</div>
+		<div v-else class="container">
 			<div class="news-release__header row no-wrap justify-between items-center">
 				<div data-aos="fade-right" class="news-release__header__body row items-center no-wrap">
 					<q-img src="icons/arrow-red.svg" class="news-release__header__arrow" width="40px" />
-					<h4 class="news-release__header__title headline-1 text-uppercase">Пресс-релизы</h4>
+					<h4 class="news-release__header__title headline-1 text-uppercase">{{ header?.fields?.title[locale]?.value }}</h4>
 				</div>
 				<div data-aos="fade-left" class="news-release__header__info">
-					<p>Официальные заявления и анонсы компании SA International</p>
+					<p>{{ header?.fields?.description[locale]?.value }}</p>
 				</div>
 			</div>
 			<div data-aos="fade-up" class="news-release__body">
@@ -56,15 +76,15 @@
 					:breakpoints="breakpoints"
 				>
 					<swiper-slide
-						v-for="(item, index) in release"
+						v-for="(item, index) in rows"
 						:key="index"
 					>
 						<div class="news-release__item">
-							<q-img :src="item.image" height="400px" fit="cover" class="news-release__item__img" />
-							<div class="news-release__item__date">{{ item.date }}</div>
-							<h5 class="news-release__item__title text-red fonts-oswald text-uppercase">{{ item.title }}</h5>
+							<q-img :src="item.paramsField?.image[locale]?.path || ''" height="400px" fit="cover" class="news-release__item__img" />
+							<div class="news-release__item__date">{{ getMonthWithYear(item.createdAt!) }}</div>
+							<h5 class="news-release__item__title text-red fonts-oswald text-uppercase">{{ item.title[locale] }}</h5>
 							<div class="news-release__item__text">
-								<p>{{ item.text }}</p>
+								<p>{{ item.description[locale] }}</p>
 							</div>
 						</div>
 					</swiper-slide>
