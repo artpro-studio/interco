@@ -73,7 +73,7 @@ export class PagesService {
         const entity = this.pagesRepository.create(body);
         const page = await this.pagesRepository.save(entity);
 
-        if (body.seo.params.length) {
+        if (body.seo?.params.length) {
             const pagesSeo = await this.pagesSeoRepository.create({
                 page
             });

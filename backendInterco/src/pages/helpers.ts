@@ -1,9 +1,14 @@
+export const getFieldsPages = (nameField: string): any => {
+    const fields = ['id', 'name', 'description', 'slug', 'type', 'pagePath'];
+
+    return fields.map((el) => `${nameField}.${el}`);
+}
+
 export const getFieldsSeoParams = (nameField: string): any => {
     const fields = ['id', 'content', 'lang', 'fieldType'];
 
     return fields.map((el) => `${nameField}.${el}`);
 }
-
 
 export const getFieldsIblock = (nameField: string): any => {
     const fields = ['id', 'name', 'attributes', 'slug'];
@@ -42,6 +47,12 @@ export const getFieldsRecordsTitleValue = (nameField: string) => {
 }
 
 export const getFieldsRecordsDescriptionValue = (nameField: string) => {
+    const fields = ['id', 'value', 'lang'];
+
+    return fields.map((el) => `${nameField}.${el}`);
+}
+
+export const getFieldsSectionsValue = (nameField: string): any => {
     const fields = ['id', 'value', 'lang'];
 
     return fields.map((el) => `${nameField}.${el}`);

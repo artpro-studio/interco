@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { UserEntity } from "src/user/entity/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { PagesEntity } from "./pages.entity";
 import { PagesCommentsEntity } from "./pages-comments.entity";
 import { PagesParamsFieldEntity } from "./pages-params-field.entity";
@@ -8,6 +8,7 @@ import { RecordsTitleEntity } from "./records-title.entity";
 import { DefaultBaseEntity } from "src/entity/base.entity";
 import { RecordsSeoEntity } from "./records-seo.entity";
 import { RecordsDescriptionEntity } from "./records-description.entity";
+import { PagesSectionsEntity } from "./pages-sections.entity";
 
  @Entity({
     name: 'records'
@@ -47,4 +48,9 @@ export class RecordsEntity extends DefaultBaseEntity {
     @OneToOne(() => RecordsSeoEntity)
     @JoinColumn()
     seo: RecordsSeoEntity;
+
+    @ApiProperty({ description: 'Разделы' })
+    @ManyToMany(() => PagesSectionsEntity, (section) => section.records)
+    @JoinColumn()
+    sections: PagesSectionsEntity[]
 }

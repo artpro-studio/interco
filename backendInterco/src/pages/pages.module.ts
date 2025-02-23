@@ -62,6 +62,12 @@ import { RecordsDescriptionEntity } from './entity/records-description.entity';
 import { RecordsDescriptionValueEntity } from './entity/records-description-value.entity';
 import { PagesParamsFieldValueEntity } from './entity/pages-params-field-value.entity';
 import { PagesParamsFieldValueRepository } from './repository/pages-params-field-value.repository';
+import { PagesSectionsRepository } from './repository/pages-sections.repository';
+import { PagesSectionsValueRepository } from './repository/pages-sections-value.repository';
+import { PagesSectionsEntity } from './entity/pages-sections.entity';
+import { PagesSectionsValueEntity } from './entity/pages-sections-value.entity';
+import { PagesSectionsController } from './controller/pages-sections.controller';
+import { PagesSectionsService } from './service/pages-sections.service';
 
 const services = [
     PagesService,
@@ -72,7 +78,8 @@ const services = [
     PagesIblockService,
     PagesIblockRecordsService,
     PagesSeoService,
-    PagesPublicService
+    PagesPublicService,
+    PagesSectionsService,
 ];
 const respositorys = [
     PagesRepository,
@@ -96,6 +103,8 @@ const respositorys = [
     RecordsTitleValueRepository,
     RecordsDescriptionRepository,
     RecordsDescriptionValueRepository,
+    PagesSectionsRepository,
+    PagesSectionsValueRepository
 ];
 @Module({
     imports: [
@@ -123,6 +132,8 @@ const respositorys = [
             RecordsTitleValueEntity,
             RecordsDescriptionEntity,
             RecordsDescriptionValueEntity,
+            PagesSectionsEntity,
+            PagesSectionsValueEntity,
         ]),
         forwardRef(() => UserModule)
     ],
@@ -134,7 +145,8 @@ const respositorys = [
         PagesPublicController,
         PagesParamsController,
         PagesIblockController,
-        PagesIblockRecordsController
+        PagesIblockRecordsController,
+        PagesSectionsController,
     ],
     providers: [...services, ...respositorys],
     exports: [PagesService]

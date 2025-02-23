@@ -9,6 +9,7 @@ import { PagesParamsFieldEntity } from "./pages-params-field.entity";
 import { PagesParamsEntity } from "./pages-params.entity";
 import { PagesSeoEntity } from "./pages-seo.entity";
 import { PagesIblockEntity } from "./pages-iblock.entity";
+import { PagesSectionsEntity } from "./pages-sections.entity";
 
 @Entity({
     name: 'pages'
@@ -33,6 +34,10 @@ export class PagesEntity extends DefaultBaseEntity {
     @ApiProperty({ example: '/pages/News/index.vue', nullable: true,  description: 'Путь к странице компонента' })
     @Column({ type: 'json', nullable: true})
     pagePath: string;
+
+    @ApiProperty({ description: 'Разделы' })
+    @OneToMany(() => PagesSectionsEntity, (section) => section.pages)
+    sections: PagesSectionsEntity[]
 
     @ApiProperty({ description: 'Записи в блоге' })
     @OneToMany(() => RecordsEntity, (records) => records.pages)
