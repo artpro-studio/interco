@@ -35,6 +35,14 @@ const routes: RouteRecordRaw[] = [
 				}
 			},
 			{
+				name: RouterName.Products,
+				path: 'products',
+				component: () => import('src/pages/Products/index.vue'),
+				meta: {
+					background: 'white',
+				}
+			},
+			{
 				name: RouterName.Partners,
 				path: 'partners',
 				component: () => import('src/pages/Partners/index.vue')

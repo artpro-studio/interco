@@ -2,13 +2,14 @@
 	interface IProps {
 		title: string;
 		description: string;
+		isBlack?: boolean
 	}
 
 	defineProps<IProps>()
 </script>
 
 <template>
-	<div class="clients-section-text pt-8 pb-12">
+	<div class="clients-section-text pt-8 pb-12" :class="{black: isBlack}">
 		<div data-aos="fade-up" class="container">
 			<div class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">{{ title }}</div>
 			<p class="clients-section-text__text fonts-oswald text-uppercase text-center">{{ description }}</p>
@@ -23,6 +24,10 @@
 	.clients-section-text {
 		position: relative;
 		overflow: hidden;
+
+		&.black {
+			background-color: var(--dark-blue);
+		}
 
 		&__title {
 			margin-bottom: 40px;

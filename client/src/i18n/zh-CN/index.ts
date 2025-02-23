@@ -24,7 +24,8 @@ import AboutPages from './about'
 export default {
 	failed: 'Action failed',
 	success: 'Action was successful',
-	menuService: '产品及服务',
+	menuProducts: '产品中心',
+	menuService: '服务',
 	menuCompany: '关于我们',
 	menuProduct: '产品',
 	menuProject: '项目',

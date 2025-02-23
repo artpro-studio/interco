@@ -4,6 +4,7 @@ export enum RouterName {
 	Career = 'career',
 	Clients = 'clients',
 	Services = 'services',
+	Products = 'products',
 	Partners = 'partners',
 	News = 'news',
 	About = 'about',

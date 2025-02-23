@@ -2,6 +2,10 @@ import { RouterName } from "src/router/routerName";
 
 export const menuData = [
 	{
+		title: 'menuProducts',
+		path: RouterName.Products,
+	},
+	{
 		title: 'menuService',
 		path: RouterName.Services,
 	},

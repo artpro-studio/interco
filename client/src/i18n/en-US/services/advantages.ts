@@ -1,0 +1,21 @@
+export default {
+	advantagesProductsTitle: 'OUR ADVANTAGES',
+	advantagesProductsItem1Title: 'Quality and Reliability',
+	advantagesProductsItem1Text: 'Our products undergo multi-stage quality control.',
+	advantagesProductsItem2Title: 'Innovation',
+	advantagesProductsItem2Text: 'Use of advanced technologies to meet customer needs.',
+	advantagesProductsItem3Title: 'Cost Efficiency',
+	advantagesProductsItem3Text: 'Solutions that help optimize costs and increase productivity.',
+	advantagesProductsItem4Title: 'We take pride in the fact that each of our products is the result of meticulous development and years of industry experience.',
+	advantagesProductsItem4Text: 'Browse our catalog and choose what suits your business perfectly',
+
+	advantagesServicesTitle: 'OUR SERVICES INCLUDE',
+	advantagesServicesItem1Title: 'Consultations and Technical Support',
+	advantagesServicesItem1Text: 'Analysis of current processes and recommendations for their optimization',
+	advantagesServicesItem2Title: 'Maintenance and Repair',
+	advantagesServicesItem2Text: 'Regular service and prompt troubleshooting to ensure uninterrupted equipment operation',
+	advantagesServicesItem3Title: 'Design and Implementation',
+	advantagesServicesItem3Text: 'Development of custom projects tailored to the specifics of your production',
+	advantagesServicesItem4Title: 'We strive to provide maximum support at every stage of cooperation, helping you reach new heights in your business.',
+	advantagesServicesItem4Text: 'Looking for an individual approach? Leave a request and we will promptly process your request!',
+}

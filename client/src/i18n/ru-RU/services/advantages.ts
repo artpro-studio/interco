@@ -1,0 +1,21 @@
+export default {
+	advantagesProductsTitle: 'НАШИ ПРЕИМУЩЕСТВА',
+	advantagesProductsItem1Title: 'Качество и надежность',
+	advantagesProductsItem1Text: 'Продукция проходит многоступенчатый контроль качества',
+	advantagesProductsItem2Title: 'Инновации',
+	advantagesProductsItem2Text: 'Использование передовых технологий для удовлетворения потребностей клиентов',
+	advantagesProductsItem3Title: 'Экономия',
+	advantagesProductsItem3Text: 'Решения, позволяющие оптимизировать затраты и увеличить производительность',
+	advantagesProductsItem4Title: 'Мы гордимся тем, что каждый наш продукт — это результат тщательной разработки и многолетнего опыта в отрасли. ',
+	advantagesProductsItem4Text: 'Ознакомьтесь с нашим каталогом и выберите то, что идеально подходит для вашего бизнеса.',
+
+	advantagesServicesTitle: 'НАШИ УСЛУГИ ВКЛЮЧАЮТ',
+	advantagesServicesItem1Title: 'Консультации и техническое сопровождение',
+	advantagesServicesItem1Text: 'Анализ текущих процессов и рекомендации по их оптимизации',
+	advantagesServicesItem2Title: 'Техническое обслуживание и ремонт',
+	advantagesServicesItem2Text: 'Регулярный сервис и оперативное устранение неполадок для обеспечения бесперебойной работы оборудования',
+	advantagesServicesItem3Title: 'Проектирование и внедрение',
+	advantagesServicesItem3Text: 'Разработка индивидуальных проектов с учетом специфики вашего производства',
+	advantagesServicesItem4Title: 'Мы стремимся обеспечить максимальную поддержку на каждом этапе сотрудничества, помогая вам достигать новых высот в бизнесе.',
+	advantagesServicesItem4Text: 'Ищете индивидуальный подход? Оставьте заявку, и мы оперативно обработаем ваш запрос!',
+}

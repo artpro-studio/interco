@@ -4,10 +4,24 @@
 			<div class="service-filter__category row">
 				<div class="service-filter__category__column">
 					<div class="service-filter__category__item">
-						<a href="/" class="active">Производственные линии под ключ</a>
+						<a href="/" class="active">Строительное оборудование</a>
 					</div>
 					<div class="service-filter__category__item">
-						<a href="/">Консалтинг и разработка технологий</a>
+						<a href="/">Дорожное оборудование</a>
+					</div>
+					<div class="service-filter__category__item">
+						<a href="/">Металлургическое оборудование</a>
+					</div>
+				</div>
+				<div class="service-filter__category__column">
+					<div class="service-filter__category__item">
+						<a href="/">Горнодобывающее оборудование</a>
+					</div>
+					<div class="service-filter__category__item">
+						<a href="/">Химическое оборудование</a>
+					</div>
+					<div class="service-filter__category__item">
+						<a href="/">Пищевое оборудование</a>
 					</div>
 				</div>
 			</div>

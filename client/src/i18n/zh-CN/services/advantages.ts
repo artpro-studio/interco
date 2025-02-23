@@ -1,0 +1,21 @@
+export default {
+	advantagesProductsTitle: '我们的优势',
+	advantagesProductsItem1Title: '质量与可靠性',
+	advantagesProductsItem1Text: '产品经过多阶段的质量控制',
+	advantagesProductsItem2Title: '创新',
+	advantagesProductsItem2Text: '使用先进技术满足客户需求',
+	advantagesProductsItem3Title: '节约',
+	advantagesProductsItem3Text: '优化成本并提高生产效率的解决方案',
+	advantagesProductsItem4Title: '我们为每个产品都是经过精心研发并结合行业多年经验的结果而感到自豪。',
+	advantagesProductsItem4Text: '浏览我们的目录，选择最适合您业务的产品',
+
+	advantagesServicesTitle: '我们的服务包括',
+	advantagesServicesItem1Title: '咨询与技术支持',
+	advantagesServicesItem1Text: '分析现有流程并提供优化建议',
+	advantagesServicesItem2Title: '维护与修理',
+	advantagesServicesItem2Text: '定期维护和快速故障排除以确保设备的不间断运行',
+	advantagesServicesItem3Title: '设计与实施',
+	advantagesServicesItem3Text: '根据您的生产特点开发定制化项目',
+	advantagesServicesItem4Title: '我们致力于在合作的每个阶段提供最大程度的支持，帮助您在业务中达到新的高度。',
+	advantagesServicesItem4Text: '寻找个人方法？ 留下一个请求,我们将立即处理您的请求!',
+}
