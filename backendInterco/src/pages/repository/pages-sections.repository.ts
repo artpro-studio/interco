@@ -5,6 +5,7 @@ import { Repository } from "typeorm";
 import { PagesSectionsDto } from "../dto/pages-sections/pages-sections.dto";
 import { getFieldsPages, getFieldsSectionsValue } from "../helpers";
 import { PagesSectionsQuery } from "../dto/pages-sections/response-pages-sections.dto";
+import { sortPagesSectionValue } from "../helpers/parseRecord";
 
 @Injectable()
 export class PagesSectionsRepository {
@@ -13,15 +14,18 @@ export class PagesSectionsRepository {
     ) {}
 
     async get(body: PagesSectionsQuery): Promise<{count: number, limit: number, entity: PagesSectionsDto[]}> {
-        const fieldsValue = getFieldsSectionsValue('value')
+        const fieldsTitle = getFieldsSectionsValue('title')
+        const fieldsDescription = getFieldsSectionsValue('description')
 
         const take = Number(body.limit);
         const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
         const query = this.pagesSectionsRepository.createQueryBuilder('sections').take(take).skip(skip)
-            .leftJoin('sections.value', 'value')
-            .leftJoin('sections.value', 'pages')
-            .addSelect(fieldsValue)
-            .where('pages.id = :pagesId', {pagesId: body.pages});
+            .leftJoin('sections.title', 'title')
+            .leftJoin('sections.description', 'description')
+            .leftJoin('sections.pages', 'pages')
+            .addSelect(fieldsTitle)
+            .addSelect(fieldsDescription)
+            .andWhere('pages.id = :pagesId', {pagesId: body.pages});
 
         return {
             count: await query.getCount(),
@@ -30,18 +34,41 @@ export class PagesSectionsRepository {
         }
     }
 
-    async getOne(id: number): Promise<PagesSectionsDto> {
-        const fieldsValue = getFieldsSectionsValue('value')
+    async getSlugForPages(slugPage: string): Promise<PagesSectionsDto[]> {
+        const fieldsTitle = getFieldsSectionsValue('title')
+        const fieldsDescription = getFieldsSectionsValue('description')
         const fieldsPages = getFieldsPages('pages')
 
         const query = this.pagesSectionsRepository.createQueryBuilder('sections')
-            .leftJoin('sections.value', 'value')
-            .leftJoin('sections.value', 'pages')
-            .addSelect(fieldsValue)
+            .leftJoin('sections.title', 'title')
+            .leftJoin('sections.description', 'description')
+            .leftJoin('sections.pages', 'pages')
+            .addSelect(fieldsTitle)
+            .addSelect(fieldsDescription)
             .addSelect(fieldsPages)
-            .where('sections.id = :id', {id})
+            .where('pages.slug = :slugPage', {slugPage});
 
-        return await query.getOne();
+
+        return await query.getMany();
+    }
+
+    async getOne(id: number): Promise<PagesSectionsDto> {
+        const fieldsTitle = getFieldsSectionsValue('title')
+        const fieldsDescription = getFieldsSectionsValue('description')
+        const fieldsPages = getFieldsPages('pages')
+
+        const query = this.pagesSectionsRepository.createQueryBuilder('sections')
+            .leftJoin('sections.title', 'title')
+            .leftJoin('sections.description', 'description')
+            .leftJoin('sections.pages', 'pages')
+            .addSelect(fieldsTitle)
+            .addSelect(fieldsDescription)
+            .addSelect(fieldsPages)
+            .where('sections.id = :id', {id});
+
+        const result = await query.getOne();
+
+        return sortPagesSectionValue(result);
     }
 
     // Создание

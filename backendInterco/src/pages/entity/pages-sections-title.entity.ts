@@ -5,9 +5,9 @@ import { ILangPages } from "../interface";
 import { PagesSectionsEntity } from "./pages-sections.entity";
 
 @Entity({
-    name: 'pages_sections_value'
+    name: 'pages_sections_title_value'
 })
-export class PagesSectionsValueEntity extends DefaultBaseEntity {
+export class PagesSectionsTitleValueEntity extends DefaultBaseEntity {
     @ApiProperty({ example: 'Значение', nullable: false, description: 'Значение' })
     @Column({ nullable: false})
     value: string;
@@ -17,6 +17,6 @@ export class PagesSectionsValueEntity extends DefaultBaseEntity {
     lang: ILangPages;
 
     @ApiProperty({ description: 'Раздел' })
-    @ManyToOne(() => PagesSectionsEntity, (section) => section.value)
+    @ManyToOne(() => PagesSectionsEntity, (section) => section.title)
     section: PagesSectionsEntity;
 }

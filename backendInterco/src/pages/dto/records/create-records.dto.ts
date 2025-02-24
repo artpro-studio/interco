@@ -10,6 +10,7 @@ import { RecordsTitleDto } from "./records-title/records-title.dto";
 import { DefaultBaseDto } from "src/dto/base.dto";
 import { RecordsDescriptionDto } from "./records-description/records-description.dto";
 import { RecordsSeoDto } from "./records-seo/records-seo.dto";
+import { PagesSectionsDto } from "../pages-sections/pages-sections.dto";
 
 export class RecordsDto extends DefaultBaseDto {
     @ApiProperty({ type: () => RecordsTitleDto, nullable: true, required: false, description: 'Заголовок' })
@@ -24,6 +25,9 @@ export class RecordsDto extends DefaultBaseDto {
 
     @ApiProperty({ type: () => RecordsSeoDto, required: false, nullable: true, description: 'Сео парамметры' })
     seo?: RecordsSeoDto;
+
+    @ApiProperty({ type: () => [PagesSectionsDto], required: false, nullable: true, description: 'Разделы' })
+    sections?: PagesSectionsDto[];
 }
 
 export class FullRecordsDto extends RecordsDto {

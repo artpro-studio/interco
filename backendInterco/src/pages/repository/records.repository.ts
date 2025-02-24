@@ -6,7 +6,7 @@ import { BaseQuery } from "src/dto/reponse.dto";
 import { DropDownDto } from "src/dto/response-drop-down.dto";
 import { CreateRecordsDto, FullRecordsDto, RecordsDto } from "../dto/records/create-records.dto";
 import { RecordsQuery, RecordsQuerySlug } from "../dto/records/response-records.dto";
-import { getFieldsRecordsDescriptionValue, getFieldsRecordsTitleValue, getFieldsSeoParams } from "../helpers";
+import { getFieldsRecordsDescriptionValue, getFieldsRecordsTitleValue, getFieldsSectionsValue, getFieldsSeoParams } from "../helpers";
 
 
 @Injectable()
@@ -38,6 +38,8 @@ export class RecordsRepository {
         const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
         const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
         const fieldsSeoParams = getFieldsSeoParams('seoParms');
+        const fieldsSectionsTitleValue = getFieldsSectionsValue('sectionsTitleValue')
+        const fieldsSectionsDescriptionValue = getFieldsSectionsValue('sectionsDescriptionValue')
 
         const take = Number(body.limit);
         const skip = body.page === 1 ? 0 : (Number(body.page) - 1) * take;
@@ -48,6 +50,13 @@ export class RecordsRepository {
             .addSelect(['seo.id'])
             .leftJoin('seo.params', 'seoParms')
             .addSelect(fieldsSeoParams)
+
+            .leftJoin('records.sections', 'sections')
+            .leftJoin('sections.title', 'sectionsTitleValue')
+            .leftJoin('sections.description', 'sectionsDescriptionValue')
+            .addSelect(['sections.id'])
+            .addSelect(fieldsSectionsTitleValue)
+            .addSelect(fieldsSectionsDescriptionValue)
 
             .leftJoin('records.title', 'title')
             .addSelect(['title.id'])
@@ -179,12 +188,21 @@ export class RecordsRepository {
         const fieldsRecordsTitleValue = getFieldsRecordsTitleValue('titleValue');
         const fieldsRecordsDescriptionValue = getFieldsRecordsDescriptionValue('descriptionValue');
         const fieldsSeoParams = getFieldsSeoParams('seoParms');
+        const fieldsSectionsTitleValue = getFieldsSectionsValue('sectionsTitleValue')
+        const fieldsSectionsDescriptionValue = getFieldsSectionsValue('sectionsDescriptionValue')
 
         const query = this.recordsRepository.createQueryBuilder('records')
             .leftJoin('records.seo', 'seo')
             .addSelect(['seo.id'])
             .leftJoin('seo.params', 'seoParms')
             .addSelect(fieldsSeoParams)
+
+            .leftJoin('records.sections', 'sections')
+            .leftJoin('sections.title', 'sectionsTitleValue')
+            .leftJoin('sections.description', 'sectionsDescriptionValue')
+            .addSelect(['sections.id'])
+            .addSelect(fieldsSectionsTitleValue)
+            .addSelect(fieldsSectionsDescriptionValue)
 
             .leftJoin('records.title', 'title')
             .addSelect(['title.id'])
@@ -199,12 +217,13 @@ export class RecordsRepository {
             .leftJoin('records.pages', 'pages')
             .addSelect(['pages.id', 'pages.name'])
 
-             .leftJoin('records.paramsField', 'paramsField')
+            .leftJoin('records.paramsField', 'paramsField')
             .leftJoin('paramsField.value', 'paramsFieldValue')
             .leftJoin('paramsField.params', 'params')
             .addSelect(['paramsField.id'])
             .addSelect(['paramsFieldValue.id', 'paramsFieldValue.lang', 'paramsFieldValue.value'])
             .addSelect(['params.id', 'params.name', 'params.slug', 'params.type'])
+
             .andWhere('records.id = :id', {id});
 
         const record = await query.getOne();

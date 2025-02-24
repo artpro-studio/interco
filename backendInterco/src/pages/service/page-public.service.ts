@@ -1,16 +1,28 @@
 import { Injectable } from "@nestjs/common";
 import { PagesRepository } from '../repository/pages.repository';
-import { publicFormatterAttribute, publicFormatterList, publicFormatterSections } from "../helpers/parseRecord";
+import { publicFormatterAttribute, publicFormatterList, publicFormatterPagesSections, publicFormatterSections } from "../helpers/parseRecord";
 import { ResultPagesPublicDto } from "../dto/pages/pages-public.dto";
 import { PagesIblockRepository } from '../repository/pages-iblock.repository';
 import { PagesIblockPublicDto, ResultPageIblockPublicDto, ResultPageIblockPublicListDto } from "../dto/iblock/pages-iblock-public.dto";
+import { PagesSectionsRepository } from '../repository/pages-sections.repository';
+import { PublicPagesSectionsListDto } from "../dto/pages-sections/pages-sections-public.dto";
 
 @Injectable()
 export class PagesPublicService {
     constructor(
         private readonly pagesRepository: PagesRepository,
-        private readonly pagesIblockRepository: PagesIblockRepository
+        private readonly pagesIblockRepository: PagesIblockRepository,
+        private readonly pagesSectionsRepository: PagesSectionsRepository
     ){}
+
+    async getPagesSections(slug: string): Promise<PublicPagesSectionsListDto> {
+        const result = await this.pagesSectionsRepository.getSlugForPages(slug);
+
+        return {
+            isSuccess: true,
+            entity: publicFormatterPagesSections(result),
+        }
+    }
 
     async getIblcokForSlugPublic(slug: string): Promise<ResultPageIblockPublicDto> {
         const result = await this.pagesIblockRepository.getOneForSlug(slug);

@@ -1,5 +1,6 @@
 
 import { PagesIblockRecordsDto } from '../dto/iblock/records/pages-iblock-records.dto';
+import { PagesSectionsDto } from '../dto/pages-sections/pages-sections.dto';
 import { CreateRecordsDto, FullRecordsDto, RecordsDto } from '../dto/records/create-records.dto';
 import { IIblockField, ILangPages, ITypePagesParams } from '../interface';
 
@@ -134,14 +135,45 @@ export function parseForPublicRecords(body: FullRecordsDto[]) {
                     }
                 })
             }
-        })
+        });
+
+        const sections = publicFormatterPagesSections(item.sections);
 
         return {
             ...item,
             title,
             description,
             seo,
+            sections,
             paramsField
         }
+    })
+}
+
+export function sortPagesSectionValue(data: PagesSectionsDto): PagesSectionsDto {
+    const sortMapTitle = new Map(sortLang.map(key => [key, data.title.find((el) => el.lang === key)]));
+    const sortMapDescription = new Map(sortLang.map(key => [key, data.description.find((el) => el.lang === key)]));
+    data.title = Array.from(sortMapTitle.values());
+    data.description = Array.from(sortMapDescription.values());
+    return data;
+}
+
+export function publicFormatterPagesSections(body: PagesSectionsDto[]): any {
+    const sections: any[] = [];
+    body.forEach((el: PagesSectionsDto) => {
+        const title = {};
+        el.title.forEach((item) => {
+            title[item.lang] = item.value;
+        })
+
+        const description = {};
+        el.description.forEach((item) => {
+            description[item.lang] = item.value;
+        })
+        sections.push({
+            ...el,
+            title,
+            description
+        })
     })
 }

@@ -22,6 +22,7 @@ import { PagesPublicService } from '../service/page-public.service';
 import { ResultPagesPublicDto } from '../dto/pages/pages-public.dto';
 import { ResultRecordsPublicListDto } from '../dto/records/records-public.dto';
 import { ResultPageIblockPublicDto, ResultPageIblockPublicListDto } from '../dto/iblock/pages-iblock-public.dto';
+import { PublicPagesSectionsListDto } from '../dto/pages-sections/pages-sections-public.dto';
 
 @ApiTags('Публичные запросы для страниц')
 @ApiExceptionDecorators()
@@ -37,6 +38,14 @@ export class PagesPublicController {
         private readonly pagesSeoService: PagesSeoService,
         private readonly pagesIblockRepository: PagesIblockRepository,
     ) {}
+
+    @ApiOperation({ summary: 'Получение разделов у страницы' })
+    @ApiResponse({ status: 200, type: PublicPagesSectionsListDto })
+    @ApiQuery({ name: 'slug', type: String, description: 'Slug страницы' })
+    @Get('get-pages-sections')
+    async getPagesSections(@Query() query: {slug: string}): Promise<PublicPagesSectionsListDto> {
+        return this.pagesPublicService.getPagesSections(query.slug)
+    }
 
     @ApiOperation({ summary: 'Получение iblock по символьнуму коду' })
     @ApiResponse({ status: 200, type: ResultPageIblockPublicDto })

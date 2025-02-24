@@ -20,6 +20,8 @@
         PagesParamsControllerClient,
         PagesParamsDto,
         PagesParamsFieldDto,
+        PagesSectionsControllerClient,
+        PagesSectionsDto,
         RecordsControllerClient,
     } from 'src/ApiClient/ApiClient';
 
@@ -77,6 +79,7 @@
         }
 
     });
+    const optionsPagesSections = ref<PagesSectionsDto[]>([]);
 
     const pagesParams = ref<FullPagesParamsDto[]>([]);
 
@@ -146,6 +149,7 @@
         if (page?.value) {
             getParams(Number(page?.value));
             getPagesDropDown(Number(page?.value));
+            getPagesSections(page?.value);
         }
     };
 
@@ -162,6 +166,16 @@
         nextTick(() => {
             isLoading.value = false;
         });
+    };
+
+    const getPagesSections = async (page?: number) => {
+        const result = await new PagesSectionsControllerClient(getApiClientInitialParams()).get('', 1, 100, page || Number(route.query.page));
+        if (!result.isSuccess) {
+            resultError(result, null);
+        } else {
+            optionsPagesSections.value =
+                result.entity?.entity || [];
+        }
     };
 
     const getPagesDropDown = async (pageId?: number) => {
@@ -182,10 +196,15 @@
         }
     };
 
+    const getNameOptions = (event: any) => {
+        return event.title.map((el: any) => `${el.lang}: ${el.value}`).join(',');
+    };
+
     onMounted(() => {
         nextTick(() => {
             if (route.query.page) {
                 getPagesDropDown();
+                getPagesSections();
             }
             if (route.name === RouterName.PagesBlogsRecordsEdit) {
                 getInfo();
@@ -232,7 +251,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="section-create-form__field q-mb-lg">
+                            <div class="section-create-form__field q-mb-md">
                                 <h4 class="text-h5 q-mb-lg">Описание</h4>
                                 <div
                                     v-for="(item, index) in form.description?.value"
@@ -254,7 +273,17 @@
                                         ]"
                                     />
                                 </div>
-
+                            </div>
+                            <div class="section-create-form__field q-mb-lg">
+                                <q-select
+                                    v-model="form.sections"
+                                    label="Разделы"
+                                    :options="optionsPagesSections"
+                                    :option-label="getNameOptions"
+                                    multiple
+                                    outlined
+                                    use-chips
+                                />
                             </div>
                             <h4 class="text-h5 q-mb-lg">SEO парамметры</h4>
                             <records-seo-params

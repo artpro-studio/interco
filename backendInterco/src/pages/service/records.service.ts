@@ -80,7 +80,8 @@ export class RecordsService {
 
     // Создание записи
     async create(body: CreateRecordsDto): Promise<ResultRecordsCreateDto> {
-        const pages = await this.pagesRepository.getOne(body.pages.value);
+        try {
+            const pages = await this.pagesRepository.getOne(body.pages.value);
         if (!pages) {
             return {isSuccess: false, message: 'Старница не найдена'}
         }
@@ -151,6 +152,9 @@ export class RecordsService {
                // TODO костыль посмотреть как преобразовать в DropDown
                 pages: {value: record.pages.id, label: record.pages.name }
             }
+        }
+        } catch (error) {
+            console.log(error)
         }
     }
 

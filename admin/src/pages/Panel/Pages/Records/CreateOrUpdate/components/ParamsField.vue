@@ -134,6 +134,7 @@
                         class="full"
                         :toolbar="[
                             ['bold', 'italic', 'underline'],
+                            ['unordered', 'ordered'],
                             [{
                                 label: $q.lang.editor.formatting,
                                 icon: $q.iconSet.editor.formatting,

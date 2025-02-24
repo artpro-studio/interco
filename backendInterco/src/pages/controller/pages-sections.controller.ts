@@ -58,7 +58,7 @@ export class PagesSectionsController {
     @ApiOperation({ summary: 'Список разделов' })
     @ApiResponse({ status: 200, type: PagesSectionsListDto })
     @ApiQuery({ name: 'search', type: String, required: true, description: 'Поиск' })
-    @ApiQuery({name: 'page', type: Number, required: true, description: 'ID страницы' })
+    @ApiQuery({name: 'pages', type: Number, required: true, description: 'ID страницы' })
     @ApiQuery({ name: 'limit', type: Number, required: true, description: 'Количество'})
     @Get()
     async get(@Query() query: PagesSectionsQuery): Promise<PagesSectionsListDto> {
