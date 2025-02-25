@@ -7906,6 +7906,121 @@ export class PagesPublicControllerClient extends BaseApiClient {
     }
 
     /**
+     * Получение разделов у страницы
+     * @param slug Slug страницы
+     */
+    getPagesSections(slug: string): Promise<PublicPagesSectionsListDto> {
+        let url_ = this.baseUrl + "/api/pages-public/get-pages-sections?";
+        if (slug === undefined || slug === null)
+            throw new Error("The parameter 'slug' must be defined and cannot be null.");
+        else
+            url_ += "slug=" + encodeURIComponent("" + slug) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processGetPagesSections(_response));
+        });
+    }
+
+    protected processGetPagesSections(response: Response): Promise<PublicPagesSectionsListDto> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as PublicPagesSectionsListDto;
+            return result200;
+            });
+        } else if (status === 204) {
+            return response.text().then((_responseText) => {
+            let result204: any = null;
+            result204 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u041d\u0435\u0442 \u0434\u0430\u043d\u043d\u044b\u0445", status, _responseText, _headers, result204);
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            result400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0417\u0430\u043f\u0440\u043e\u0441 \u043d\u0435 \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d, \u043f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430", status, _responseText, _headers, result400);
+            });
+        } else if (status === 401) {
+            return response.text().then((_responseText) => {
+            let result401: any = null;
+            result401 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0412\u044b \u043d\u0435 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u043e\u0432\u0430\u043d\u044b", status, _responseText, _headers, result401);
+            });
+        } else if (status === 403) {
+            return response.text().then((_responseText) => {
+            let result403: any = null;
+            result403 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u041d\u0435\u0442 \u0434\u043e\u0441\u0442\u0443\u043f\u0430", status, _responseText, _headers, result403);
+            });
+        } else if (status === 404) {
+            return response.text().then((_responseText) => {
+            let result404: any = null;
+            result404 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e \u043f\u043e \u0432\u0430\u0448\u0435\u043c\u0443 \u0437\u0430\u043f\u0440\u043e\u0441\u0443", status, _responseText, _headers, result404);
+            });
+        } else if (status === 405) {
+            return response.text().then((_responseText) => {
+            let result405: any = null;
+            result405 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0417\u0430\u043f\u0440\u043e\u0441 \u043d\u0435 \u0440\u0430\u0437\u0440\u0435\u0449\u0435\u043d, \u0443 \u0432\u0430\u0441 \u043d\u0435\u0442 \u0434\u043e\u0441\u0442\u0443\u043f\u0430", status, _responseText, _headers, result405);
+            });
+        } else if (status === 406) {
+            return response.text().then((_responseText) => {
+            let result406: any = null;
+            result406 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u041d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d \u043a\u043e\u043d\u0442\u0435\u043d\u0442 \u043f\u043e \u0432\u0430\u0448\u0435\u043c\u0443 \u0437\u0430\u043f\u0440\u043e\u0441\u0443", status, _responseText, _headers, result406);
+            });
+        } else if (status === 408) {
+            return response.text().then((_responseText) => {
+            let result408: any = null;
+            result408 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0412\u0440\u0435\u043c\u044f \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u043e\u0441\u044c \u0438\u043b\u0438 \u0441\u0435\u0440\u0432\u0435\u0440 \u043d\u0435 \u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d", status, _responseText, _headers, result408);
+            });
+        } else if (status === 409) {
+            return response.text().then((_responseText) => {
+            let result409: any = null;
+            result409 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u041a\u043e\u043d\u0444\u043b\u0438\u043a\u0442 \u0441\u0435\u0440\u0432\u0435\u0440\u0430 \u0441 \u0442\u0435\u043a\u0443\u0449\u0438\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435\u043c", status, _responseText, _headers, result409);
+            });
+        } else if (status === 500) {
+            return response.text().then((_responseText) => {
+            let result500: any = null;
+            result500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0421\u0435\u0440\u0432\u0435\u0440 \u0443\u043f\u0430\u043b \u0432 \u043e\u0448\u0438\u0431\u043a\u0443 \u043f\u0440\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u0430", status, _responseText, _headers, result500);
+            });
+        } else if (status === 502) {
+            return response.text().then((_responseText) => {
+            let result502: any = null;
+            result502 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0417\u0430\u043f\u0440\u043e\u0441 \u043d\u0435 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d, \u043f\u043b\u043e\u0445\u043e\u0435 \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435", status, _responseText, _headers, result502);
+            });
+        } else if (status === 504) {
+            return response.text().then((_responseText) => {
+            let result504: any = null;
+            result504 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver) as ResultDto;
+            return throwException("\u0412\u0440\u0435\u043c\u044f \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u043e\u0441\u044c \u0438\u043b\u0438 \u0441\u0435\u0440\u0432\u0435\u0440 \u043d\u0435 \u0434\u043e\u0441\u0442\u0443\u043f\u0435\u043d\u0430", status, _responseText, _headers, result504);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<PublicPagesSectionsListDto>(null as any);
+    }
+
+    /**
      * Получение iblock по символьнуму коду
      * @param slug Slug iblock
      */
@@ -19033,6 +19148,36 @@ export interface PagesComponentsListDto {
     [key: string]: any;
 }
 
+export interface PublicPagesSectionsDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    /** Значения */
+    title?: any | null;
+    /** Значения */
+    description?: any | null;
+    /** Страница */
+    pages?: PagesDto | null;
+
+    [key: string]: any;
+}
+
+export interface PublicPagesSectionsListDto {
+    /** Статус */
+    isSuccess: boolean;
+    /** Статус код */
+    statusCode: number;
+    /** Сообщение */
+    message: string;
+    /** Ошибки */
+    errors: any;
+    /** Ответ */
+    entity: PublicPagesSectionsDto[] | null;
+
+    [key: string]: any;
+}
+
 export interface PagesIblockPublicDto {
     id?: number | null;
     createdAt?: string | null;
@@ -20260,7 +20405,7 @@ export interface ITemplateComponents {
 
 // Базовый url
 export function getBaseApiUrl(): string {
-    return 'http://localhost:3000';
+    return process.env.VUE_APP_HTTP_BACKEND!;
 }
 
 // функция для получения данных
