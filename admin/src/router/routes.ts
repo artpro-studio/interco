@@ -70,18 +70,18 @@ const routes: RouteRecordRaw[] = [
                     {
                         name: RouterName.Pages,
                         path: '',
-                        component: import('pages/Panel/Pages/Index/index.vue'),
+                        component: () => import('pages/Panel/Pages/Index/index.vue'),
                     },
                     {
                         name: RouterName.PagesCreate,
                         path: 'create',
-                        component: import('pages/Panel/Pages/CreateOrUpdate/index.vue'),
+                        component: () => import('pages/Panel/Pages/CreateOrUpdate/index.vue'),
                         meta: { title: 'Создание страницы' },
                     },
                     {
                         name: RouterName.PagesEdit,
                         path: ':id',
-                        component: import('pages/Panel/Pages/CreateOrUpdate/index.vue'),
+                        component: () => import('pages/Panel/Pages/CreateOrUpdate/index.vue'),
                         meta: { title: 'Изменение страницы' },
                     },
                     {
@@ -91,7 +91,7 @@ const routes: RouteRecordRaw[] = [
                             {
                                 name: RouterName.PagesBlogs,
                                 path: '',
-                                component: import('pages/Panel/Pages/Blogs/Index/index.vue'),
+                                component: () => import('pages/Panel/Pages/Blogs/Index/index.vue'),
                             },
                         ],
                     },
@@ -102,7 +102,7 @@ const routes: RouteRecordRaw[] = [
                             {
                                 name: RouterName.PagesLanding,
                                 path: '',
-                                component: import('pages/Panel/Pages/Landings/Index/index.vue'),
+                                component: () => import('pages/Panel/Pages/Landings/Index/index.vue'),
                             },
                         ],
                     },
@@ -113,18 +113,18 @@ const routes: RouteRecordRaw[] = [
                             {
                                 name: RouterName.Records,
                                 path: '',
-                                component: import('pages/Panel/Pages/Records/Index/index.vue'),
+                                component: () => import('pages/Panel/Pages/Records/Index/index.vue'),
                             },
                             {
                                 name: RouterName.PagesBlogsRecordsCreate,
                                 path: 'create',
-                                component: import('pages/Panel/Pages/Records/CreateOrUpdate/index.vue'),
+                                component: () => import('pages/Panel/Pages/Records/CreateOrUpdate/index.vue'),
                                 meta: { title: 'Создание статьи' },
                             },
                             {
                                 name: RouterName.PagesBlogsRecordsEdit,
                                 path: ':id',
-                                component: import('pages/Panel/Pages/Records/CreateOrUpdate/index.vue'),
+                                component: () => import('pages/Panel/Pages/Records/CreateOrUpdate/index.vue'),
                                 meta: { title: 'Изменение статьи' },
                             },
                         ],
@@ -132,7 +132,7 @@ const routes: RouteRecordRaw[] = [
                     {
                         name: RouterName.Comments,
                         path: 'comments',
-                        component: import('pages/Panel/Pages/components/Comments/CommentsTable.vue'),
+                        component: () => import('pages/Panel/Pages/components/Comments/CommentsTable.vue'),
                         meta: { title: 'Комментарии' },
                     },
                 ],
