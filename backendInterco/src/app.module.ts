@@ -13,6 +13,7 @@ import { ReferenceBookModule } from './reference-book/reference-book.module';
 import { CallbackModule } from './callback/callback.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
+import dataSource from './data-source';
 
 @Module({
   imports: [
@@ -20,14 +21,7 @@ import { HttpExceptionFilter } from './filter/http-exception.filter';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'postgres',
-      port: 5432,
-      username:  process.env.DB_USERNAME,
-      password:  process.env.DB_PASSWORD,
-      database:  process.env.DB_DATABASE_NAME,
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+        ...dataSource.options
     }),
     UserModule,
     AuthModule,
