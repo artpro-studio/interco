@@ -1,8 +1,8 @@
 # Создать бекап БД
-docker exec -t DOCKER_NAME_CONTAINER pg_dump -U postgres DB_NAME > backup.sql
+docker exec -t postgresCMS pg_dump -U postgress cms > backup.sql
 
 # Удалние БД
-docker exec -i DOCKER_NAME_CONTAINER psql -U postgres -d DB_NAME -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+docker exec -i postgresCMS psql -U postgress -d cms -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
 
 # Восстановление бекапа
-docker exec -i DOCKER_NAME_CONTAINER psql -U postgres -d DB_NAME < backup.sql
+docker exec -i postgresCMS psql -U postgress -d cms < backup.sql
