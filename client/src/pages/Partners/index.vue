@@ -54,7 +54,7 @@
 	<partners-how-become />
 	<partners-cooperation />
 	<partners-step />
-	<partners-contacts />
+	<partners-contacts :data="getContacts" />
 	<partners-program />
 	<partners-info />
 	<partners-form />
