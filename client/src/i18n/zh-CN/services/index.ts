@@ -3,6 +3,7 @@ import Contact from './contact';
 import Form from './form';
 import Banner from './banner';
 import Advantages from './advantages';
+import Item from './item';
 
 export default {
 	...Head,
@@ -10,4 +11,5 @@ export default {
 	...Form,
 	...Banner,
 	...Advantages,
+	...Item,
 }

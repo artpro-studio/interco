@@ -19,7 +19,7 @@ export class PublicPagesSectionsOptionDto extends ResultPaginationOptionDto {
     entity: PublicPagesSectionsDto[];
 }
 
-export class PublicPagesSectionsListDto extends ResultDto {
+export class PublicPagesSectionsPaginationDto extends ResultDto {
     @ApiProperty({ type: () => PublicPagesSectionsOptionDto, nullable: true, description: 'Ответ'})
     entity: PublicPagesSectionsOptionDto;
 }
@@ -27,4 +27,10 @@ export class PublicPagesSectionsListDto extends ResultDto {
 export class ResultPublicPagesSectionsDto extends ResultDto {
     @ApiProperty({ type: () => PublicPagesSectionsDto, nullable: true, description: 'Ответ'})
     entity?: PublicPagesSectionsDto;
+}
+
+
+export class PublicPagesSectionsListDto extends ResultDto {
+    @ApiProperty({ type: () => [PublicPagesSectionsDto], nullable: true, description: 'Ответ'})
+    entity?: [PublicPagesSectionsDto];
 }

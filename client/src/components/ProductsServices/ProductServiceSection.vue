@@ -23,8 +23,9 @@
 </template>
 <style lang="scss" scoped>
 	.service-product-section {
+		width: 100%;
 		&__header {
-			margin-bottom: 64px;
+			margin-bottom: 40px;
 			&__title {
 				&__arrow {
 					margin-right: 40px;

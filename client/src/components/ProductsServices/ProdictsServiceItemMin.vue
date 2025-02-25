@@ -2,6 +2,7 @@
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
 
 	interface IProps {
 		title: string;
@@ -11,6 +12,8 @@
 	}
 	defineProps<IProps>();
 
+	const { t } = useI18n();
+
 	const isOpenDialog = ref(false);
 </script>
 
@@ -19,21 +22,21 @@
 		<div class="service-product__body">
 			<div class="service-product__item">
 				<div class="service-product__item__content">
-					<h4 class="service-product__item__title fonts-oswald">Услуги по выбору оборудования</h4>
+					<h4 class="service-product__item__title fonts-oswald">{{ title }}</h4>
 					<div class="service-product__item__row row no-wrap">
 						<div class="service-product__item__info">
-							<h4>Описание</h4>
+							<h4>{{ t('productServiceItemDescription') }}</h4>
 							<p>{{ description }}</p>
 						</div>
 					</div>
 					<div class="service-product__item__info">
-						<h4>Преимущества сотрудничества</h4>
+						<h4>{{ t('productServiceItemAdvantages') }}</h4>
 						<div v-html="advantages"></div>
 					</div>
 					<div class="service-product__item__buttons row no-wrap items-center justify-between">
-						<p>Запрос консультации</p>
+						<p>{{ t('productServiceItemText') }}</p>
 						<v-btn color="primary" class="service-product__item__buttons__btn" @on-click="isOpenDialog = true">
-							<span>Связаться с нами</span>
+							<span>{{ t('productServiceItemBtn') }}</span>
 							<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 						</v-btn>
 					</div>

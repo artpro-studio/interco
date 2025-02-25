@@ -44,6 +44,10 @@
     });
     const optionsSections = ref<PagesIblockSectionDto[]>([]);
 
+    const cleanHtml = (data: string) => {
+        return data.replace(/<div>/g, '<p>').replace(/<\/div>/g, '</p>');
+    };
+
     const getNameField = (key: string): string => {
         const find = fields.value.find((el) => el.slug === key);
         return find?.name || '';
@@ -215,7 +219,7 @@
                                 <div class="text-bold q-mb-sm text-h6">{{ fieldKey.toString() }}:</div>
                                 <q-editor
                                     class="full"
-                                    v-model="form.fields[key][fieldKey].value"
+                                    :model-value="form.fields[key][fieldKey].value"
                                     :toolbar="[
                                         ['bold', 'italic', 'underline'],
                                         [{
@@ -225,6 +229,7 @@
                                             options: ['p', 'code']
                                         }]
                                     ]"
+                                    @update:model-value="form.fields[key][fieldKey].value = cleanHtml(form.fields[key][fieldKey].value)"
                                 />
                             </div>
                         </div>

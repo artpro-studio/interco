@@ -13,6 +13,8 @@ import { CreateLibraryFilesDto } from './dto/create-library-files.dto';
 import { ResultDto } from 'src/dto/reponse.dto';
 import { Role } from 'src/user/role-interface';
 import { UserDto } from 'src/user/dto/user.dto';
+import * as sharp from 'sharp';
+import { Readable } from 'stream';
 
 @Injectable()
 export class LibraryFilesService {
@@ -91,7 +93,7 @@ export class LibraryFilesService {
             }
 
             let parent: CreateLibraryFilesDto | undefined = undefined;
-            console.log('pareantID', pareantID)
+
             if (pareantID) {
                 parent = await this.libraryFilesRepository.findOne({
                     where: {
@@ -111,11 +113,21 @@ export class LibraryFilesService {
             };
 
             const fileName = hashedFileName + extension;
+            let thisFiles: any = files.buffer;
+
+            if (FileTypeData[files.mimetype] === FileType.IMAGES) {
+                const optimizedBuffer = await sharp(files.buffer)
+                    .jpeg({ quality: 80 }) // Сжатие JPEG с качеством 80
+                    .png({quality: 80})
+                    .toBuffer();
+                const stream = Readable.from(optimizedBuffer);
+                thisFiles = stream
+            }
 
             await this.minioClient.putObject(
                 this.bucketName,
                 fileName,
-                files.buffer,
+                thisFiles,
                 files.size,
                 metaData,
                 (err, obj) => {

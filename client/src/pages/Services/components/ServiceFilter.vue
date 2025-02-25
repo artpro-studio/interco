@@ -1,13 +1,26 @@
+<script lang="ts" setup>
+	import { RouterName } from 'src/router/routerName';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
+
+	interface IProps {
+		data?: any;
+	}
+	defineProps<IProps>();
+	const { locale } = useI18n();
+	const router = useRouter();
+
+	const routerReplace = (id: number) => {
+		router.replace({name: RouterName.Services, hash: `#${id}`})
+	}
+</script>
 <template>
 	<div data-aos="fade-up" class="service-filter pb-8">
 		<div class="container">
 			<div class="service-filter__category row">
 				<div class="service-filter__category__column">
-					<div class="service-filter__category__item">
-						<a href="/" class="active">Производственные линии под ключ</a>
-					</div>
-					<div class="service-filter__category__item">
-						<a href="/">Консалтинг и разработка технологий</a>
+					<div class="service-filter__category__item" v-for="(item, index) in data" :key="index">
+						<a class="cursor-pointer" @click="routerReplace(item.id)">{{ item?.title[locale] }}</a>
 					</div>
 				</div>
 			</div>

@@ -176,4 +176,6 @@ export function publicFormatterPagesSections(body: PagesSectionsDto[]): any {
             description
         })
     })
+
+    return sections;
 }

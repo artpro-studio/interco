@@ -3,21 +3,66 @@
 	import ProductsServiceContacts from 'src/components/ProductsServices/ProductsServiceContacts.vue';
 	import ProductsServicesItem from 'src/components/ProductsServices/ProductsServicesItem.vue';
 	import ProdictsServiceItemMin from 'src/components/ProductsServices/ProdictsServiceItemMin.vue';
+	import ProductServiceSection from 'src/components/ProductsServices/ProductServiceSection.vue';
 	import ProductsServicesAdvantages from 'src/components/ProductsServices/ProductsServicesAdvantages.vue';
 	import ProductsServicesForm from 'src/components/ProductsServices/ProductsServicesForm.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
 	import ServiceFilter from './components/ServiceFilter.vue';
-	import { serviceData } from './data';
 	import { useI18n } from 'vue-i18n';
-	import { onMounted } from 'vue';
+	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import { getApiClientInitialParams, PagesIblockPublicDto, PagesPublicControllerClient, PublicPagesSectionsDto, RecordsPublicDto } from 'src/ApiClient/ApiClient';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 
-	const ServiceData = serviceData;
+	const SLUG_SERVICE = 'service'
+	const SLUG_CONTACTS = 'products-contacts'
+
+	const isLoading = ref(true);
+	const rows = ref<RecordsPublicDto[]>([]);
+	const iblock = ref<PagesIblockPublicDto | null>(null);
+	const sections = ref<PublicPagesSectionsDto[]>([])
+
+	const getContacts = computed(() => {
+		const data = iblock.value;
+
+		return data && data.records?.length ? data.records[0] : null;
+	});
+
+	const getSectionsData = (sectionID: number) => {
+		return rows.value.filter((el) => {
+			const ids: number[] = el.sections.map((item: any) => item.id);
+			return ids.includes(sectionID);
+		});
+	}
+
+	const getIblock = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlug(SLUG_CONTACTS)
+			.then((res) => {
+				iblock.value = res.entity
+			})
+	}
+
+	const getSection = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getPagesSections(SLUG_SERVICE)
+			.then((res) => {
+				sections.value = res.entity || []
+			})
+	}
+
+	const getInfo = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getRecordsBlogs('', 1, 100, SLUG_SERVICE)
+			.then((res) => {
+				rows.value = res.entity?.entity || [];
+				isLoading.value = false;
+			})
+	}
 
 	onMounted(() => {
-		useGetMeta('service')
+		useGetMeta(SLUG_SERVICE);
+		getSection();
+		getInfo();
+		getIblock();
 	})
 
 </script>
@@ -32,24 +77,56 @@
 		:dense="false"
 		minHeightText="162px"
 	/>
-	<service-filter />
-	<products-services-item
-		v-for="(item, index) in ServiceData"
-		:key="index"
-		:title="item.title"
-		:text="item.description"
-		:image="item.image"
-		:description="item.list.description"
-		:specifications="item.list.specifications"
-		:spheres="item.list.spheres"
-		:advantages="item.list.advantages"
-	/>
-	<div class="container pb-8">
-		<div class="row q-gutter-lg">
-			<prodicts-service-item-min />
-			<prodicts-service-item-min />
-		</div>
+	<div v-if="isLoading" class="q-pa-md flex flex-center">
+		<q-circular-progress
+			indeterminate
+			rounded
+			color="primary"
+			size="30px"
+		/>
 	</div>
+	<template v-else>
+		<service-filter :data="sections" />
+		<div class="container pb-8">
+			<div class="full">
+				<div v-for="section in sections" :key="section.id!" :id="section.id!.toString()" style="width: 100%;">
+					<product-service-section
+						:title="section.title[locale]"
+						:text="section.description[locale]"
+					/>
+					<div class="row q-gutter-lg">
+						<template
+							v-for="(item, index) in getSectionsData(section.id!)"
+							:key="index"
+						>
+							<template v-if="item.paramsField?.image[locale]">
+								<products-services-item
+									:title="item.title[locale]"
+									:text="item.description[locale]"
+									:image="item.paramsField?.image[locale]?.path || ''"
+									:description="item.paramsField?.description[locale]"
+									:specifications="item.paramsField?.technical[locale]"
+									:spheres="item.paramsField?.application[locale]"
+									:advantages="item.paramsField?.advantages[locale]"
+									:is-hidden-title="true"
+								/>
+							</template>
+							<template v-else>
+								<prodicts-service-item-min
+									:title="item.title[locale]"
+									:text="item.description[locale]"
+									:description="item.paramsField?.description[locale]"
+									:advantages="item.paramsField?.advantages[locale]"
+								/>
+							</template>
+						</template>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</template>
 	<products-services-advantages
 		:is-service="true"
 		:title="t('advantagesServicesTitle')"
@@ -68,5 +145,5 @@
 		:description="t('serviceBannerText')"
 		:is-black="true"
 	/>
-	<products-service-contacts />
+	<products-service-contacts :data="getContacts" />
 </template>

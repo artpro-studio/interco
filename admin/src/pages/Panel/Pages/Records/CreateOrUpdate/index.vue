@@ -83,6 +83,10 @@
 
     const pagesParams = ref<FullPagesParamsDto[]>([]);
 
+    const cleanHtml = (data: string) => {
+        return data.replace(/<\/?div>/g, '');
+    };
+
     const getFieldParams = (id: number) => {
         const find = form.value?.paramsField?.find((el) => el.params?.id === id);
         return find;
@@ -262,6 +266,7 @@
                                     <q-editor
                                         v-model="item.value"
                                         class="full"
+                                        :force-plain-text="true"
                                         :toolbar="[
                                             ['bold', 'italic', 'underline'],
                                             [{
@@ -271,6 +276,7 @@
                                                 options: ['p', 'code']
                                             }]
                                         ]"
+                                        @update:model-value="item.value = cleanHtml($event)"
                                     />
                                 </div>
                             </div>

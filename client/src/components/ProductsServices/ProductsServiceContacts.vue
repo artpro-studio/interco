@@ -1,46 +1,57 @@
 <script lang="ts" setup>
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+import { RouterName } from 'src/router/routerName';
 	import { useSlots } from 'vue';
 	import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 	interface IProps {
 		data?: any;
 	}
-	defineProps<IProps>();
+	const props = defineProps<IProps>();
 
+	const router = useRouter();
 	const { t, locale } = useI18n();
 	const slots = useSlots()
+
+	const onRouterContacts = () => {
+		router.push({name: RouterName.Contacts})
+	}
 </script>
 
 <template>
 	<div class="clients-contacts pt-8 pb-12">
 		<div class="container">
 			<section-title :title="t('clientsContactsTitle')" color="gold" class="clients-contacts__title" />
-			<div data-aos="fade-up" class="clients-contacts__body row justify-between items-end no-wrap">
+			<div data-aos="fade-up" class="clients-contacts__body row justify-between no-wrap">
 				<template v-if="data">
-					<div
-						v-for="(item, index) in data"
-						:key="index"
-						class="clients-contacts__item"
-					>
-						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ item.fields.title[locale].value }}</h6>
-						<div v-if="item.fields.phone[locale].value" class="clients-contacts__item__link">
-							<a :href="'tel:' + item.fields.phone[locale].value">{{ item.fields.phone[locale].value }}</a>
-						</div>
-						<div v-if="item.fields.email[locale].value" class="clients-contacts__item__link">
-							<a :href="'mailto:' + item.fields.email[locale].value">{{ item.fields.email[locale].value }}</a>
-						</div>
-						<div v-if="item.fields.address[locale].value" class="clients-contacts__item__link">
-							<p>{{ item.fields.address[locale].value }}</p>
+					<div class="clients-contacts__item">
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitleEmail')}}</h6>
+						<div v-if="data?.fields?.email[locale]?.value" class="clients-contacts__item__link">
+							<a :href="'mailto:' + data?.fields?.email[locale]?.value">{{ data?.fields?.email[locale]?.value }}</a>
 						</div>
 					</div>
-					<v-btn>
-						<div class="row no-wrap items-center">
-							<span>Контакты</span>
-							<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
+					<div class="clients-contacts__item">
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitlePhone')}}</h6>
+						<div v-if="data?.fields?.phone[locale]?.value" class="clients-contacts__item__link">
+							<a :href="'tel:' + data?.fields?.phone[locale]?.value">{{ data?.fields?.phone[locale]?.value }}</a>
 						</div>
-					</v-btn>
+					</div>
+					<div class="clients-contacts__item">
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitleAddress')}}</h6>
+						<div v-if="data?.fields?.address[locale]?.value" class="clients-contacts__item__link">
+							<p>{{ data?.fields?.address[locale]?.value }}</p>
+						</div>
+					</div>
+					<div class="row items-end">
+						<v-btn color="primary" @on-click="onRouterContacts">
+							<div class="row no-wrap items-center">
+								<span>{{ t('serviceContactsBtnText') }}</span>
+								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
+							</div>
+						</v-btn>
+					</div>
 				</template>
 				<template v-else>
 					<slot name="default" />

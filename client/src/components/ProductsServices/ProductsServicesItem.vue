@@ -2,8 +2,10 @@
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 	import { ref } from 'vue';
+	import { useI18n } from 'vue-i18n';
 
 	interface IProps {
+		id?: string;
 		title: string;
 		text: string;
 		image: string;
@@ -11,22 +13,25 @@
 		specifications: string;
 		spheres: string;
 		advantages: any;
+		isHiddenTitle?: boolean;
 	}
 	defineProps<IProps>();
+
+	const { t } = useI18n();
 
 	const isOpenDialog = ref(false);
 </script>
 
 <template>
-	<div data-aos="fade-up" class="service-product pb-8">
-		<div class="container">
+	<div data-aos="fade-up" class="service-product full pb-8" :id="id ? id : ''">
+		<div class="container" v-if="!isHiddenTitle">
 			<div class="service-product__header row no-wrap items-center justify-between">
 				<div class="service-product__header__title row no-wrap items-center">
 					<q-img src="icons/arrow-red.svg" width="40px" class="service-product__header__title__arrow" />
 					<h4 class="service-product__header__title__text headline-2 text-uppercase">{{ title }}</h4>
 				</div>
 				<div class="service-product__header__text">
-					<p>{{ text }}</p>
+					<p v-html="text"></p>
 				</div>
 			</div>
 		</div>
@@ -36,36 +41,36 @@
 					<div class="service-product__item__content">
 						<div class="service-product__item__row row no-wrap">
 							<div class="service-product__item__info">
-								<h4>Описание</h4>
+								<h4>{{ t('productServiceItemDescription') }}</h4>
 								<p>{{ description }}</p>
 							</div>
 							<div class="service-product__item__info">
-								<h4>Технические характеристики</h4>
+								<h4>{{ t('productServiceItemSpecifications') }}</h4>
 								<p>{{ specifications }}</p>
 							</div>
 						</div>
 						<div class="service-product__item__info">
-							<h4>Сферы применения</h4>
+							<h4>{{ t('productServiceItemSpheres') }}</h4>
 							<p>{{ spheres }}</p>
 						</div>
 						<div class="service-product__item__info">
-							<h4>Преимущества сотрудничества</h4>
-							<p v-if="advantages.description">{{ advantages.description }}</p>
-							<ul v-if="advantages.list?.length">
-								<li v-for="(item, index) in advantages.list" :key="index">{{ item }}</li>
-							</ul>
+							<h4>{{ t('productServiceItemAdvantages') }}</h4>
+							<div v-html="advantages"></div>
 						</div>
 						<div class="service-product__item__buttons row no-wrap items-center justify-between">
-							<p>Запрос коммерческого предложения</p>
+							<p>{{ t('productServiceItemTextLong') }}</p>
 							<v-btn color="primary" class="service-product__item__buttons__btn" @on-click="isOpenDialog = true">
-								<span>Связаться с нами</span>
+								<span>{{ t('productServiceItemBtn') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</v-btn>
 						</div>
 						<div class="service-product__item__bg-mobile" :style="{backgroundImage: `url(${image})`}"></div>
 					</div>
 				</div>
-				<div class="service-product__item__bg" :style="{backgroundImage: `url(${image})`}"></div>
+				<div class="service-product__item__bg">
+					<img :src="image" />
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -74,9 +79,60 @@
 	</q-dialog>
 </template>
 
+<style lang="scss">
+.service-product {
+	&__header {
+		&__text {
+			p {
+				color: #888891;
+				font-size: 1em;
+				font-family: 'Oswald', sans-serif;
+			}
+		}
+	}
+	&__item {
+		&__info {
+			p {
+					color: #888891;
+				}
+
+				ul {
+					list-style-type: none;
+					margin: 0;
+					padding: 0;
+					margin-top: 24px;
+					li {
+						color: #888891;
+						position: relative;
+						margin-bottom: 16px;
+						padding-left: 33px;
+
+						&:last-child {
+							margin-bottom: 0;
+						}
+
+						&::before {
+							content: '';
+							width: 25px;
+							height: 25px;
+							background-image: url('/icons/arrow-yellow.svg');
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: contain;
+							position: absolute;
+							top: 50%;
+							left: 0;
+							margin-top: -12.5px;
+						}
+					}
+				}
+		}
+	}
+}
+</style>
 <style lang="scss" scoped>
 	.service-product {
-		padding-top: 40px;
+		width: 100%;
 
 		&__header {
 			margin-bottom: 64px;
@@ -122,7 +178,7 @@
 		&__item {
 			position: relative;
 			&__content {
-				max-width: 770px;
+				max-width: 760px;
 				border-radius: 10px;
 				background-color: #fff;
 				padding: 40px;
@@ -168,41 +224,6 @@
 					margin-bottom: 24px;
 				}
 
-				p {
-					color: #888891;
-				}
-
-				ul {
-					list-style-type: none;
-					margin: 0;
-					padding: 0;
-					margin-top: 24px;
-					li {
-						color: #888891;
-						position: relative;
-						margin-bottom: 16px;
-						padding-left: 33px;
-
-						&:last-child {
-							margin-bottom: 0;
-						}
-
-						&::before {
-							content: '';
-							width: 25px;
-							height: 25px;
-							background-image: url('/icons/arrow-yellow.svg');
-							background-repeat: no-repeat;
-							background-position: center;
-							background-size: contain;
-							position: absolute;
-							top: 50%;
-							left: 0;
-							margin-top: -12.5px;
-						}
-					}
-				}
-
 				@media (max-width: $breakpoint-sm-min) {
 					margin-bottom: 16px;
 					h4 {
@@ -243,6 +264,7 @@
 				background-repeat: no-repeat;
 				background-position: center right;
 				background-size: calc(100vw / 2 - 100px);
+				text-align: right;
 
 				@media (max-width: $breakpoint-md-min) {
 					display: none;
@@ -254,7 +276,7 @@
 				width: 100%;
 				height: 300px;
 				background-repeat: no-repeat;
-				background-position: bottom right;
+				background-position: bottom center;
 				background-size: contain;
 				margin-top: 16px;
 

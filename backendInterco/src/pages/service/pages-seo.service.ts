@@ -10,21 +10,45 @@ export class PagesSeoService {
     ) {}
 
     async getPageSeoParamsPublic(pageSlug: string): Promise<ResultPagesSeoPublicDto> {
-        const page = await this.pagesRepository.getForSlug(pageSlug);
-        if (!page) {
-            return {isSuccess: false, message:'Страница не найдена', entity: null}
-        }
-        const result = {};
-        page.seo.params.forEach((el) => {
-            if (!result[el.fieldType]) {
-                result[el.fieldType] = {};
+         try {
+            const page = await this.pagesRepository.getForSlug(pageSlug);
+            if (!page) {
+                return {isSuccess: false, message:'Страница не найдена', entity: null}
             }
-            result[el.fieldType][el.lang] = el.content;
-        })
+            const result = {};
+            page.seo.params.forEach((el) => {
+                if (!result[el.fieldType]) {
+                    result[el.fieldType] = {};
+                }
+                result[el.fieldType][el.lang] = el.content;
+            })
 
-        return {
-            isSuccess: true,
-            entity: result
-        };
+            return {
+                isSuccess: true,
+                entity: result
+            };
+        } catch (error) {
+            return {
+                isSuccess: true,
+                entity: {
+                    description: {
+                        "en-US": "",
+                        "ru-RU": "",
+                        "zh-CN": ""
+                    },
+                    title: {
+                        "en-US": "",
+                        "ru-RU": "",
+                        "zh-CN": ""
+                    },
+                    keywords: {
+                        "en-US": "",
+                        "ru-RU": "",
+                        "zh-CN": ""
+                    }
+                }
+            }
+        }
+
     }
 }

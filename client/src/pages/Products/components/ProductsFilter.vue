@@ -1,27 +1,39 @@
+<script lang="ts" setup>
+import { RouterName } from 'src/router/routerName';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
+
+	interface IProps {
+		data: any
+	}
+	const props = defineProps<IProps>();
+
+	const { locale } = useI18n();
+	const router = useRouter();
+
+	const getData = computed(() => {
+		if (props.data) {
+			const partSize = Math.ceil(props.data.length / 2); // округляем вверх, чтобы не потерять элементы
+			const result = [props.data.slice(0, partSize), props.data.slice(partSize, partSize * 2), props.data.slice(partSize * 2)];
+			return result;
+		}
+		return [];
+	})
+
+	const routerReplace = (id: number) => {
+		router.replace({name: RouterName.Products, hash: `#${id}`})
+	}
+</script>
 <template>
 	<div data-aos="fade-up" class="service-filter pb-8">
 		<div class="container">
 			<div class="service-filter__category row">
-				<div class="service-filter__category__column">
-					<div class="service-filter__category__item">
-						<a href="/" class="active">Строительное оборудование</a>
-					</div>
-					<div class="service-filter__category__item">
-						<a href="/">Дорожное оборудование</a>
-					</div>
-					<div class="service-filter__category__item">
-						<a href="/">Металлургическое оборудование</a>
-					</div>
-				</div>
-				<div class="service-filter__category__column">
-					<div class="service-filter__category__item">
-						<a href="/">Горнодобывающее оборудование</a>
-					</div>
-					<div class="service-filter__category__item">
-						<a href="/">Химическое оборудование</a>
-					</div>
-					<div class="service-filter__category__item">
-						<a href="/">Пищевое оборудование</a>
+				<div v-for="(item, index) in getData" :key="index" class="service-filter__category__column">
+					<div v-for="(el, indx) in item" :key="indx" class="service-filter__category__item">
+						<a @click="routerReplace(el.id!)" class="cursor-pointer">
+							{{ el.title[locale] }}
+						</a>
 					</div>
 				</div>
 			</div>
