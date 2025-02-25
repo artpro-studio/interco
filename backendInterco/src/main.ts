@@ -15,7 +15,8 @@ async function bootstrap() {
     origin: [
         'http://localhost:9002',
         'http://localhost:9003',
-        'http://localhost:9150'
+        'http://localhost:9150',
+        'http://admin.andreyi96.beget.tech/',
       ],
   });
   app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
