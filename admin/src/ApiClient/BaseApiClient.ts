@@ -120,7 +120,7 @@ export class ApiClientConfig {
 
 // Базовый url
 export function getBaseApiUrl(): string {
-    return 'http://localhost:3000';
+    return process.env.VUE_APP_HTTP_BACKEND!;
 }
 
 // функция для получения данных

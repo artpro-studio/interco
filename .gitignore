@@ -4,6 +4,10 @@ node_modules
 /client/node_modules
 
 # Quasar core related directories
+/admin/.quasar
+/admin/dist
+/admin/.env
+
 /client/.quasar
 /client/dist
 /client/.env
