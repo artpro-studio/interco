@@ -17,6 +17,7 @@ async function bootstrap() {
         'http://localhost:9003',
         'http://localhost:9150',
         'http://admin.andreyi96.beget.tech',
+        'http://interco.andreyi96.beget.tech',
       ],
   });
   app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
