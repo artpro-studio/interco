@@ -39,14 +39,16 @@ declare module '@vue/runtime-core' {
 // for each client)
 
  // for use inside Vue files (Options API) through this.$axios and this.$api
-const api = axios.create({
-    baseURL: import.meta.env.VITE_APP_BACKEND,
-    headers: {
-        'Access-Control-Allow-Origin': '*',
-    },
-});
+const api: any = null;
 
 export default boot(({ app, store }) => {
+    console.log(import.meta.env.VITE_APP_BACKEND);
+    const api = axios.create({
+        baseURL: import.meta.env.VITE_APP_BACKEND,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+    });
     api.interceptors.request.use(async (configAxios) => {
         configAxios.headers.Authorization = `Bearer ${store.getters['authorizationModule/getToken']}`;
         return configAxios;
