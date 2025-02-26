@@ -15,7 +15,8 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "analyze": "quasar build --mode analyze",
-    "postinstall": "quasar prepare"
+    "postinstall": "quasar prepare",
+	"startpm": "pm2 start index.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
