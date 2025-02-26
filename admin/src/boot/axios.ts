@@ -40,7 +40,7 @@ declare module '@vue/runtime-core' {
 
 export default boot(({ app, store }) => {
     // for use inside Vue files (Options API) through this.$axios and this.$api
-
+    console.log('test', import.meta.env.VITE_APP_BACKEND);
     const api = axios.create({
         baseURL: import.meta.env.VITE_APP_BACKEND,
         headers: {
