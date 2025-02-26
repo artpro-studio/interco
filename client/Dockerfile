@@ -1,32 +1,20 @@
-FROM node:20-alpine As development
+# Используем официальную версию Node.js (18 LTS) на легковесном Alpine
+FROM node:20-alpine
 
-WORKDIR /usr/src/client
+# Устанавливаем рабочую директорию
+WORKDIR /app
 
-COPY package*.json ./
+# Копируем весь код проекта
+COPY . .
 
-RUN npm install glob rimraf
-
-RUN npm install -g @quasar/cli
-
+# Устанавливаем зависимости
 RUN npm install
 
-COPY . .
+# Проверяем, что внутри контейнера есть Quasar
+RUN test -f quasar.config.ts || (echo "ERROR: Not a Quasar project!" && exit 1)
 
-RUN npm run build
+# Сборка Quasar SSR
+RUN npm run serve-build
 
-FROM node:20-alpine as production
-
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /usr/src/client
-
-COPY package*.json ./
-
-RUN npm install --only=production
-
-COPY . .
-
-COPY --from=development /usr/src/client/dist ./dist
-
-CMD ["node", "dist/main"]
+# Запускаем сервер Quasar
+CMD ["node", "dist/ssr/index.js"]

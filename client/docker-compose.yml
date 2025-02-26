@@ -1,23 +1,14 @@
 version: '3.8'
 
 services:
-  client:
-    container_name: prodClient
-    build:
-      context: .
-      target: development
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/client
-      - /usr/src/client/node_modules
+  quasar-ssr:
+    build: .
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
-    command: npm run prod
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app  # Монтируем код внутрь контейнера
     env_file:
       - .env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - webnet
-networks:
-  webnet:
+    restart: always
