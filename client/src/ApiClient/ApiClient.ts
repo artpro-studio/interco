@@ -20404,7 +20404,7 @@ export interface ITemplateComponents {
 
 // Базовый url
 export function getBaseApiUrl(): string {
-    return process.env.VUE_APP_HTTP_BACKEND!;
+    return import.meta.env.VITE_APP_BACKEND;
 }
 
 // функция для получения данных
