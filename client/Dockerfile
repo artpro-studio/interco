@@ -1,25 +1,32 @@
 FROM node:20-alpine As development
 
-# Устанавливаем рабочую директорию
-WORKDIR /app
+WORKDIR /usr/src/client
 
-# Копируем package.json и package-lock.json для кеширования зависимостей
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-# Устанавливаем Quasar CLI глобально
+RUN npm install glob rimraf
+
 RUN npm install -g @quasar/cli
 
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем весь проект (исключая файлы, указанные в .dockerignore)
 COPY . .
 
-# Проверяем, что находимся в папке Quasar-проекта
-RUN test -f quasar.conf.js || (echo "Not a Quasar project!" && exit 1)
+RUN npm run build
 
-# Собираем Quasar SSR
-RUN quasar build -m ssr
+FROM node:20-alpine as production
 
-# Запускаем сервер SSR
-CMD ["node", "dist/ssr/index.js"]
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/client
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/client/dist ./dist
+
+CMD ["node", "dist/main"]
