@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build:prod
+RUN npm run serve-build
 
 FROM node:20-alpine as production
 
