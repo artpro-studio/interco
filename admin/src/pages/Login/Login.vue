@@ -65,7 +65,7 @@
                             <div class="login__user__body row">
                                 <div class="login__user__images">
                                     <q-avatar class="q-mr-md">
-                                        <img src="/public/images/emoji/user.svg" />
+                                        <img src="/images/emoji/user.svg" />
                                     </q-avatar>
                                 </div>
                                 <div class="login__user__info">
@@ -114,7 +114,7 @@
 
         &__head {
             height: 470px;
-            background-image: url('/public/images/login2.png');
+            background-image: url('/images/login2.png');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;

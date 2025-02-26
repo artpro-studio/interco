@@ -31,7 +31,7 @@
 <template>
     <div class="no-items">
         <div class="no-items__icon q-mb-md">
-            <img src="/public/images/icons/files-folder.svg" alt="Нет контента" />
+            <img src="/images/icons/files-folder.svg" alt="Нет контента" />
         </div>
         <div class="no-items__body">
             <h4 class="text-h5 q-mb-sm">{{ props.title }}</h4>

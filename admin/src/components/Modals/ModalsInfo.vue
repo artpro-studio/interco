@@ -36,7 +36,7 @@
 
         <q-card-section class="q-pa-lg">
             <div class="modal-info__images q-mb-md" v-if="props.img">
-                <img src="/public/images/emoji/muted.svg" alt="" />
+                <img src="/images/emoji/muted.svg" alt="" />
             </div>
             <div class="modal-info__images q-mb-md" v-if="props.icon">
                 <q-icon :name="props.icon" :color="props.iconColor" size="48px" />

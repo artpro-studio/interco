@@ -172,7 +172,7 @@
 
         &__head {
             height: 470px;
-            background-image: url('/public/images/login.jpeg');
+            background-image: url('/images/login.jpeg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
