@@ -141,7 +141,7 @@ import { computed } from 'vue';
 			}
 
 			@media (max-width: $breakpoint-sm-min) {
-				justify-content: center;
+				justify-content: left;
 				margin-bottom: 40px;
 				&__item {
 					&__images {
