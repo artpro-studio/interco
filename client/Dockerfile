@@ -1,30 +1,19 @@
 FROM node:20-alpine As development
 
-WORKDIR /usr/src/client
+# Устанавливаем рабочую директорию
+WORKDIR /app
 
+# Копируем package.json и package-lock.json
 COPY package*.json ./
 
-RUN npm install glob rimraf
-
+# Устанавливаем зависимости
 RUN npm install
 
+# Копируем исходники
 COPY . .
 
-RUN npm run serve-build
+# Собираем Quasar в SSR-режиме
+RUN npm run build
 
-FROM node:20-alpine as production
-
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /usr/src/client
-
-COPY package*.json ./
-
-RUN npm install --only=production
-
-COPY . .
-
-COPY --from=development /usr/src/client/dist ./dist
-
-CMD ["node", "dist/main"]
+# Запускаем сервер Quasar
+CMD ["node", "dist/ssr/index.js"]
