@@ -1,5 +1,4 @@
-# Используем Node.js с поддержкой альпайна (легковесный образ)
-FROM node:20-alpine
+FROM node:20-alpine As development
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
