@@ -39,11 +39,11 @@ declare module '@vue/runtime-core' {
 // for each client)
 
  // for use inside Vue files (Options API) through this.$axios and this.$api
-const api: any = null;
+let api: any = null;
 
 export default boot(({ app, store }) => {
     console.log(import.meta.env.VITE_APP_BACKEND);
-    const api = axios.create({
+    api = axios.create({
         baseURL: import.meta.env.VITE_APP_BACKEND,
         headers: {
             'Access-Control-Allow-Origin': '*',
