@@ -181,6 +181,9 @@
         <q-circular-progress indeterminate size="50px" color="primary" class="q-ma-md" :thickness="0.1" />
     </div>
     <q-card class="create-update-pages-params" v-else>
+        <pre>
+            {{ form.fields }}
+        </pre>
         <q-card-section>
             <q-btn icon="close" class="create-update-pages-params__close" @click="emit('on-close')" round></q-btn>
             <div class="create-update-pages-params__header q-mb-lg">
@@ -229,7 +232,7 @@
                                             options: ['p', 'code']
                                         }]
                                     ]"
-                                    @update:model-value="form.fields[key][fieldKey].value = cleanHtml(form.fields[key][fieldKey].value)"
+                                    @update:model-value="form.fields[key][fieldKey].value = cleanHtml($event)"
                                 />
                             </div>
                         </div>
