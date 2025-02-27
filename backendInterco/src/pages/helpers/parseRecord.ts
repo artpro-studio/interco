@@ -42,7 +42,7 @@ export function publicFormatterOne(data: PagesIblockRecordsDto): Record<string, 
 
 export function publicFormatterList(data: PagesIblockRecordsDto[]): Record<string, any>[] {
     const result = [];
-
+    data.sort((a, b) => a.id - b.id);
     data.forEach((el) => {
         result.push(publicFormatterOne(el))
     })
