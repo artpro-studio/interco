@@ -16,7 +16,7 @@
 	const { t, locale } = useI18n();
 
 	const SLUG_SERVICE = 'service'
-	const SLUG_CONTACTS = 'products-contacts'
+	const SLUG_CONTACTS = 'service-contacts'
 
 	const isLoading = ref(true);
 	const rows = ref<RecordsPublicDto[]>([]);
