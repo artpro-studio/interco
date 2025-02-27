@@ -11,6 +11,7 @@
     import useValidationRules from '@/helpers/useValidationRules';
     import { QForm, useQuasar } from 'quasar';
     import { onMounted, ref } from 'vue';
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     import RecordsFieldArray from './records-fields/RecordsFieldArray.vue';
     import RecordsFieldImage from './records-fields/RecordsFieldImage.vue';
 
@@ -111,6 +112,7 @@
         if (!result.isSuccess) {
             resultError(result, null);
         } else {
+            console.log(result.entity.sections);
             form.value = {
                 ...result.entity,
                 fields: {
@@ -120,7 +122,10 @@
                 sections: result.entity.sections?.map((el: any) => {
                     return {
                         ...el,
-                        field: el.value?.map((item: any) => `${item.lang}: ${item.value}`).join(',')
+                        field:
+                            Array.isArray(el.value)
+                                ? el.value?.map((item: any) => `${item.lang}: ${item.value}`).join(',')
+                                : Object.keys(el.value).map((key: string) => `${key}: ${el.value[key]}`)
                     };
                 }) || []
             };

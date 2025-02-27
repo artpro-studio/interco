@@ -45,7 +45,7 @@
                 result[item.lang].value += result[item.lang].value.length ? `;${item.value}` : item.value || ' ';
             });
         });
-        console.log(result);
+
         emit('on-change', result);
 
     };
@@ -53,6 +53,7 @@
     onBeforeMount(() => {
         const arrayKey = [];
         const parseField: any = {};
+
         for (let key in props.field) {
             arrayKey.push(key);
             parseField[key] = props.field[key].value;
@@ -67,7 +68,8 @@
 
         const maxLengthKey: string = findKeyWithLongestArray(parseField);
         const arrayValue: string[] = parseField[maxLengthKey];
-        if (arrayValue.length) {
+
+        if (arrayValue && arrayValue.length) {
             const arrayNoMaxLength = arrayKey.filter((item: string) => item !== maxLengthKey);
             arrayValue.forEach((el: string, index: number) => {
                 const result = [];

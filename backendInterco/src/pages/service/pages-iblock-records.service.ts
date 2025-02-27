@@ -10,6 +10,7 @@ import { PagesIblockRecordsFieldValueRepository } from "../repository/pages-iblo
 import { PagesIblockRecordsPublicListDto, PagesIblockRecordsQuery, ResultPagesIblockRecordsPublicDto } from "../dto/iblock/records/response-iblock-records.dto";
 import { publicFormatterList, publicFormatterOne } from "../helpers/parseRecord";
 import { compareValuesByCommonKeys } from "../helpers";
+import { IIblockField } from "../interface";
 
 @Injectable()
 export class PagesIblockRecordsService {
@@ -142,14 +143,20 @@ export class PagesIblockRecordsService {
         for (let key in body.data.fields) {
             const thisFields = body.data.fields[key];
             const recordsFields = formtterRecords.fields[key];
-
+            const typeField = getRecords.fields.find((el) => el.field.slug === key)?.field?.type;
+            console.log('typeField', typeField);
             if (recordsFields) {
                 for (let keyLang in thisFields) {
-                    const valueField = thisFields[keyLang]
+                    let valueField = thisFields[keyLang]
+                    // Если приходит массив а не строка нужно преобразовать массив
+                    // в строку в БД лежит как строка
+                    if (typeField && typeField === IIblockField.ARRAY) {
+                        if (Array.isArray(valueField?.value)) {
+                            valueField.value = valueField?.value.join(';');
+                        }
+                    }
                     const valueRecordField = recordsFields[keyLang]
-                    console.log(valueField, valueRecordField);
-                    console.log(!compareValuesByCommonKeys(valueField, valueRecordField))
-                    console.log('------');
+
                     // Усли значения обьекта не совпадают отправляем на обновление
                     if (!compareValuesByCommonKeys(valueField, valueRecordField)) {
                         await this.pagesIblockRecordsFieldValueRepository.update({
