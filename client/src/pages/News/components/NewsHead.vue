@@ -53,6 +53,7 @@
 			position: relative;
 			z-index: 2;
 			text-transform: uppercase;
+			font-weight: 500;
 
 			&.dense {
 				font-size: 2.6em;

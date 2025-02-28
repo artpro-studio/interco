@@ -27,10 +27,11 @@
 		&__title {
 			font-size: 4.55em;
 			font-family: 'Oswald', sans-serif;
-			font-weight: normal;
 			margin-bottom: 40px;
 			line-height: 130%;
 			position: relative;
+			font-weight: 500;
+			text-transform: uppercase;
 			z-index: 2;
 
 			@media (max-width: $breakpoint-sm-min) {

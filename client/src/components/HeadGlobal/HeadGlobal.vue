@@ -50,8 +50,10 @@
 			font-family: 'Oswald', sans-serif;
 			margin-bottom: 80px;
 			line-height: 130%;
+			font-weight: 500;
 			position: relative;
 			z-index: 2;
+			text-transform: uppercase;
 
 			&.dense {
 				font-size: 2.6em;
