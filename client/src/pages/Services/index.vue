@@ -89,7 +89,7 @@
 		<service-filter :data="sections" />
 		<div class="container pb-8">
 			<div class="full">
-				<div v-for="section in sections" :key="section.id!" :id="section.id!.toString()" style="width: 100%;">
+				<div v-for="section in sections" :key="section.id!" :id="'service-' + section.id!.toString()" style="width: 100%;">
 					<product-service-section
 						:title="section.title[locale]"
 						:text="section.description[locale]"

@@ -11,7 +11,7 @@ import { useRouter } from 'vue-router';
 	const router = useRouter();
 
 	const routerReplace = (id: number) => {
-		router.replace({name: RouterName.Services, hash: `#${id}`})
+		router.replace({name: RouterName.Services, hash: `#service-${id}`})
 	}
 </script>
 <template>

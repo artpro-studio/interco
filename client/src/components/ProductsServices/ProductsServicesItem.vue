@@ -38,37 +38,40 @@
 		<div class="service-product__body">
 			<div class="service-product__item">
 				<div class="container">
-					<div class="service-product__item__content">
-						<div class="service-product__item__row row no-wrap">
-							<div class="service-product__item__info">
-								<h4>{{ t('productServiceItemDescription') }}</h4>
-								<p>{{ description }}</p>
+					<div class="service-product__item__body row no-wrap items-start">
+						<div class="service-product__item__content">
+							<div class="service-product__item__row row no-wrap">
+								<div class="service-product__item__info">
+									<h4>{{ t('productServiceItemDescription') }}</h4>
+									<p>{{ description }}</p>
+								</div>
+								<div class="service-product__item__info">
+									<h4>{{ t('productServiceItemSpecifications') }}</h4>
+									<p>{{ specifications }}</p>
+								</div>
 							</div>
 							<div class="service-product__item__info">
-								<h4>{{ t('productServiceItemSpecifications') }}</h4>
-								<p>{{ specifications }}</p>
+								<h4>{{ t('productServiceItemSpheres') }}</h4>
+								<p>{{ spheres }}</p>
 							</div>
+							<div class="service-product__item__info">
+								<h4>{{ t('productServiceItemAdvantages') }}</h4>
+								<div v-html="advantages"></div>
+							</div>
+							<div class="service-product__item__buttons row no-wrap items-center justify-between">
+								<p>{{ t('productServiceItemTextLong') }}</p>
+								<v-btn color="primary" class="service-product__item__buttons__btn" @on-click="isOpenDialog = true">
+									<span>{{ t('productServiceItemBtn') }}</span>
+									<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
+								</v-btn>
+							</div>
+							<div class="service-product__item__bg-mobile" :style="{backgroundImage: `url(${image})`}"></div>
 						</div>
-						<div class="service-product__item__info">
-							<h4>{{ t('productServiceItemSpheres') }}</h4>
-							<p>{{ spheres }}</p>
+						<div class="service-product__item__bg">
+							<q-img :src="image" fit="contain" style="width: 100%;" />
 						</div>
-						<div class="service-product__item__info">
-							<h4>{{ t('productServiceItemAdvantages') }}</h4>
-							<div v-html="advantages"></div>
-						</div>
-						<div class="service-product__item__buttons row no-wrap items-center justify-between">
-							<p>{{ t('productServiceItemTextLong') }}</p>
-							<v-btn color="primary" class="service-product__item__buttons__btn" @on-click="isOpenDialog = true">
-								<span>{{ t('productServiceItemBtn') }}</span>
-								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
-							</v-btn>
-						</div>
-						<div class="service-product__item__bg-mobile" :style="{backgroundImage: `url(${image})`}"></div>
 					</div>
-				</div>
-				<div class="service-product__item__bg">
-					<img :src="image" />
+
 				</div>
 
 			</div>
@@ -179,6 +182,7 @@
 			position: relative;
 			&__content {
 				max-width: 760px;
+				min-width: 760px;
 				border-radius: 10px;
 				background-color: #fff;
 				padding: 40px;
@@ -187,6 +191,7 @@
 
 				@media (max-width: $breakpoint-md-min) {
 					max-width: none;
+					min-width: 100%;
 					width: 100%;
 					padding-bottom: 0;
 				}
@@ -256,16 +261,8 @@
 			}
 
 			&__bg {
-				position: absolute;
-				top: 0;
-				right: 0;
+				margin-left: 20px;
 				width: 100%;
-				height: 100%;
-				background-repeat: no-repeat;
-				background-position: center right;
-				background-size: calc(100vw / 2 - 100px);
-				text-align: right;
-
 				@media (max-width: $breakpoint-md-min) {
 					display: none;
 				}

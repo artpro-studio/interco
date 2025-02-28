@@ -71,7 +71,7 @@
 		<products-filter :data="rows" />
 		<products-services-item
 			v-for="(item, index) in rows"
-			:id="item.id!.toString()"
+			:id="'product-' + item.id!.toString()"
 			:key="index"
 			:title="item.title[locale]"
 			:text="item.description[locale]"

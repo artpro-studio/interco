@@ -22,7 +22,7 @@ import { useRouter } from 'vue-router';
 	})
 
 	const routerReplace = (id: number) => {
-		router.replace({name: RouterName.Products, hash: `#${id}`})
+		router.replace({name: RouterName.Products, hash: `#product-${id}`})
 	}
 </script>
 <template>

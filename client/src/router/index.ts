@@ -6,6 +6,7 @@ import {
   createWebHistory,
 } from 'vue-router';
 import routes from './routes';
+import { nextTick } from 'vue';
 
 /*
  * If not building with SSR mode, you can
@@ -26,10 +27,20 @@ export default defineRouter(function (/* { store, ssrContext } */) {
 		if (savedPosition) {
 			return savedPosition;
 		} else if (to.hash) {
-			return {
-			el: to.hash,
-			behavior: 'smooth' // Плавный скролл
-			};
+			return new Promise((resolve) => {
+				nextTick(() => {
+					const element = document.querySelector(to.hash);
+						if (element) {
+							const headerOffset = 110; // 50px шапка + 5px отступ
+							const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+							const offsetPosition = elementPosition - headerOffset;
+
+							resolve({ left: 0, top: offsetPosition, behavior: 'smooth' });
+						} else {
+							resolve({ el: to.hash, behavior: 'smooth' }); // Фолбэк на стандартное поведение
+						}
+				})
+			});
 		}
 		return { top: 0 };
 	},

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { computed, inject, onMounted, ref } from 'vue';
+	import { computed, inject, ref } from 'vue';
 	import { menuData } from '../data';
 	import { useI18n } from 'vue-i18n';
 	import { RouterName } from 'src/router/routerName';
@@ -31,10 +31,6 @@
 
 		return path.fullPath;
 	}
-
-	onMounted(() => {
-		console.log(t('menuService'))
-	})
 </script>
 
 <template>

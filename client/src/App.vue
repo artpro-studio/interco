@@ -38,7 +38,6 @@
 	const getSettings = () => {
 		new SettingsPublicControllerClient(getApiClientInitialParams()).getSettings()
 			.then((res) => {
-				console.log(store);
 				store.commit('settingsModule/setSettings', res.entity)
 			})
 	}
