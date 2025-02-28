@@ -32,6 +32,7 @@ node_modules
 /backendInterco/node_modules
 /admin/node_modules
 /admin/.vscode
+/backendInterco/.env
 
 # Editor directories and files
 .idea
