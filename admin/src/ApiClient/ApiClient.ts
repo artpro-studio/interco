@@ -20055,6 +20055,8 @@ export enum ICallbackFiledAttribute {
     Web = "web",
     Price = "price",
     Comments = "comments",
+    Delivary = "delivary",
+    Company = "company",
 }
 
 export interface CallbackFieldDto {

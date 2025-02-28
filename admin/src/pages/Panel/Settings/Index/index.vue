@@ -128,20 +128,20 @@
                             <q-tab-panel name="callback">
                                 <h4 class="text-h5 q-mb-lg">Битрикс 24</h4>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.urlBitrix" label="Ссылка на Bitrix" outlined lazy-rules :rules="[isRequired]" />
+                                    <q-input color="primary" v-model="form!.urlBitrix" label="Ссылка на Bitrix" outlined/>
                                 </div>
                                 <h4 class="text-h5 q-mb-lg">AmoCRM</h4>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoDomain" label="Домен" outlined lazy-rules :rules="[isRequired]" />
+                                    <q-input color="primary" v-model="form!.amoDomain" label="Домен" outlined />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoClientId" label="Клиент id" outlined lazy-rules :rules="[isRequired]" />
+                                    <q-input color="primary" v-model="form!.amoClientId" label="Клиент id" outlined  />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoClientSecret" label="Секретный ключ" outlined lazy-rules :rules="[isRequired]" />
+                                    <q-input color="primary" v-model="form!.amoClientSecret" label="Секретный ключ" outlined  />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoBearer" label="Токен" outlined lazy-rules :rules="[isRequired]" />
+                                    <q-input color="primary" v-model="form!.amoBearer" label="Токен" outlined />
                                 </div>
                                 <h6 class="text-h6 text-normal q-mb-lg">Кастомные поля</h6>
                                 <amo-crm-custom-felds-list />

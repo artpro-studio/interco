@@ -20,7 +20,9 @@ export enum ICallbackFiledAttribute {
     PHONE_WORK = 'phoneWork',
     WEB = 'web',
     PRICE = 'price',
-    COMMENTS = 'comments'
+    COMMENTS = 'comments',
+    DELIVARY = 'delivary',
+    COMPANY = 'company',
 }
 
 
@@ -41,5 +43,7 @@ export enum IBitrixFieldAttribute {
     phoneWork = 'PHONE',
     web = 'WEB',
     price = 'PRICE',
-    comments = 'COMMENTS'
+    comments = 'COMMENTS',
+    delivary = 'ADDRESS',
+    company = 'COMPANY_TITLE',
 }

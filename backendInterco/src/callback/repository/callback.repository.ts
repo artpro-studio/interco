@@ -3,12 +3,19 @@ import { Repository, ILike } from 'typeorm';
 import { CallbackEntity } from '../entity/callback.entity';
 import { CallbackDto } from '../dto/callback/callback.dto';
 import { BaseQuery } from 'src/dto/reponse.dto';
+import { PagesCommentsController } from '../../pages/controller/pages-comments.controller';
 
 export class CallbackRepository {
     constructor(
         @InjectRepository(CallbackEntity) private readonly callbackRepository: Repository<CallbackEntity>,
     ) {}
 
+    async getForSlug(slug: string): Promise<CallbackDto> {
+        const query = this.callbackRepository.createQueryBuilder('callback')
+            .andWhere('callback.slug = :slug', {slug});
+
+        return await query.getOne();
+    }
 
     async getOneForID(id): Promise<CallbackDto> {
         return await this.callbackRepository.findOne({

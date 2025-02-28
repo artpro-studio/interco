@@ -22,6 +22,8 @@ import { AmoCrmService } from './service/amo-crm.service';
 import { AmoCustomRepository } from './repository/amo-custom-fields.repository';
 import { AmoCustmoFieldsEntity } from './entity/amo-custom-fields.entity';
 import { AmoCustomFieldsController } from './controller/amo-custom-fields.controller';
+import { PublicCallbackService } from './service/public-callback.service';
+import { PublicCallbackController } from './controller/public-callback.controller';
 
 const repository = [
     CallbackRepository,
@@ -35,7 +37,8 @@ const service = [
     CallbackFieldService,
     CallbackInstancesService,
     BitrixService,
-    AmoCrmService
+    AmoCrmService,
+    PublicCallbackService,
 ]
 
 @Module({
@@ -55,7 +58,7 @@ const service = [
         forwardRef(() => NodeMailerModule),
         forwardRef(() => SettingsModule)
     ],
-    controllers: [CallbackController, CallbackFieldController, CallbackInstancesController, AmoCustomFieldsController],
+    controllers: [CallbackController, CallbackFieldController, CallbackInstancesController, AmoCustomFieldsController, PublicCallbackController],
     providers: [...repository, ...service],
     exports: [...repository, ...service],
 })

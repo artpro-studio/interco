@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+	import {PublicCallbackControllerClient, getApiClientInitialParams} from 'src/ApiClient/ApiClient'
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VTextArea from '../UI/VTextArea/VTextArea.vue';
@@ -8,17 +9,32 @@
 
 	const emit = defineEmits(['on-close'])
 	const { t } = useI18n();
+	const $q = useQuasar();
 
+	const SLUG_FORM = 'application';
 	const isChecked = ref(false);
+	const formRef = ref<QForm | null>(null)
 	const form = ref({
-		lasttName: '',
-		firstName: '',
-		middleName: '',
+		title: 'Заявка',
+		lastName: '',
+		name: '',
+		secondName: '',
 		email: '',
 		phone: '',
-		place: '',
-		message: '',
-	})
+		delivary: '',
+		comments: '',
+	});
+
+	const onChange = async () => {
+		formRef.value?.validate().then((success) => {
+			if (success) {
+				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
+					slug: SLUG_FORM,
+					data: form.value
+				});
+            }
+		})
+	}
 </script>
 
 <template>
@@ -27,26 +43,26 @@
 		<div class="container">
 			<section-title :title="t('formTitle')" color-text="black" class="modal-application__title" style="margin-bottom: 40px;" />
 			<div class="modal-application__body">
-				<q-form class="modal-application__form">
+				<q-form class="modal-application__form" @submit="onChange">
 					<div class="modal-application__form__columns row no-wrap">
 						<div class="modal-application__form__column">
 							<div class="modal-application__form__field">
 								<v-input
-									v-model="form.firstName"
+									v-model="form.name"
 									color="gray"
 									:placeholder="t('firstName')"
 								/>
 							</div>
 							<div class="modal-application__form__field">
 								<v-input
-									v-model="form.lasttName"
+									v-model="form.lastName"
 									color="gray"
 									:placeholder="t('lastName')"
 								/>
 							</div>
 							<div class="modal-application__form__field">
 								<v-input
-									v-model="form.middleName"
+									v-model="form.secondName"
 									color="gray"
 									:placeholder="t('middleName')"
 								/>
@@ -77,12 +93,12 @@
 								</div>
 							</div>
 							<v-text-area
-								v-model="form.message"
+								v-model="form.comments"
 								color="gray"
 								:rows="10"
 							/>
 							<v-input
-								v-model="form.place"
+								v-model="form.delivary"
 								color="gray"
 								:placeholder="t('formDelivary')"
 							/>
@@ -105,7 +121,7 @@
 								:label="t('formPolicy')"
 							/>
 						</div>
-						<v-btn color="primary" class="modal-application__form__bottom__btn">
+						<v-btn type="submit" color="primary" class="modal-application__form__bottom__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('formBtn') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />

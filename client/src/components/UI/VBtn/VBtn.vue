@@ -3,13 +3,14 @@
 
 	interface IProps {
 		color?: NamedColor | undefined;
+		type?: string;
 	}
 	defineProps<IProps>();
 	const emit = defineEmits(['on-click'])
 </script>
 <template>
 	<div class="v-btn">
-		<q-btn :color="color" class="v-btn__wrap" @click="emit('on-click')">
+		<q-btn :type="type" :color="color" class="v-btn__wrap" @click="emit('on-click')">
 			<slot name="default" />
 		</q-btn>
 	</div>

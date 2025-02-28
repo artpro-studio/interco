@@ -9,6 +9,16 @@ export class CallbackFieldRepository {
         @InjectRepository(CallbackFieldEntity) private readonly callbackFieldRepository: Repository<CallbackFieldEntity>,
     ) {}
 
+    async getForSlugForm(slugForm: string): Promise<FullCallbakcFieldDto[]> {
+        const query = this.callbackFieldRepository.createQueryBuilder('callbackField')
+            .leftJoin('callbackField.callback', 'callback')
+            .andWhere('callback.slug = :slugForm', {
+                slugForm
+            })
+
+        return await query.getMany();
+    }
+
     async getOneForID(id): Promise<FullCallbakcFieldDto> {
         return await this.callbackFieldRepository.findOne({
             where: {

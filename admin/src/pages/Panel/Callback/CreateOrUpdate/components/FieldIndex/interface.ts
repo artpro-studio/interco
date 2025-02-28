@@ -55,6 +55,8 @@ export const CallbackFieldData = {
     [ICallbackFiledAttribute.Web]: 'Сайт',
     [ICallbackFiledAttribute.Price]: 'Цена',
     [ICallbackFiledAttribute.Comments]: 'Комментарий',
+    [ICallbackFiledAttribute.Delivary]: 'Место доставки',
+    [ICallbackFiledAttribute.Company]: 'Компания',
 };
 
 export const CallbackFieldOptions = [
@@ -105,6 +107,14 @@ export const CallbackFieldOptions = [
     {
         name: CallbackFieldData[ICallbackFiledAttribute.Comments],
         value: ICallbackFiledAttribute.Comments,
+    },
+    {
+        name: CallbackFieldData[ICallbackFiledAttribute.Delivary],
+        value: ICallbackFiledAttribute.Delivary,
+    },
+    {
+        name: CallbackFieldData[ICallbackFiledAttribute.Company],
+        value: ICallbackFiledAttribute.Company,
     },
 ];
 
