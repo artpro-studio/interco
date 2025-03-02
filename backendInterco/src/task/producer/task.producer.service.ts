@@ -1,0 +1,32 @@
+import { InjectQueue } from '@nestjs/bull';
+import { Injectable } from '@nestjs/common';
+import { Queue } from 'bull';
+
+@Injectable()
+export class TaskProducerService {
+    constructor(@InjectQueue('task-queue') private taskQueue: Queue) {}
+
+    async generateTask(body: any) {
+        try {
+            await this.taskQueue.add('addTask', body, { delay: 1000 });
+        } catch (e) {
+            console.log('error', e);
+        }
+    }
+
+    async updateTask(body: any) {
+        try {
+            await this.taskQueue.add('updateTask', body, { delay: 1000 });
+        } catch (e) {
+            console.log('error', e);
+        }
+    }
+
+    async deteteTask(body: any) {
+        try {
+            await this.taskQueue.add('deteteTask', body, { delay: 1000 });
+        } catch (e) {
+            console.log('error', e);
+        }
+    }
+}

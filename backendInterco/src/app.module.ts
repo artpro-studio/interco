@@ -14,28 +14,35 @@ import { CallbackModule } from './callback/callback.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import dataSource from './data-source';
+import { SubscriptionModule } from './subscription/subscription.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRoot({
-        ...dataSource.options
-    }),
-    UserModule,
-    AuthModule,
-    NodeMailerModule,
-    SettingsModule,
-    PagesModule,
-    LibraryFilesModule,
-    ReferenceBookModule,
-    CallbackModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_FILTER,
-    useClass: HttpExceptionFilter,
-  }],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
+        TypeOrmModule.forRoot({
+            ...dataSource.options,
+        }),
+        UserModule,
+        AuthModule,
+        NodeMailerModule,
+        SettingsModule,
+        PagesModule,
+        LibraryFilesModule,
+        ReferenceBookModule,
+        CallbackModule,
+        SubscriptionModule,
+        TaskModule,
+    ],
+    controllers: [AppController],
+    providers: [
+        AppService,
+        {
+            provide: APP_FILTER,
+            useClass: HttpExceptionFilter,
+        },
+    ],
 })
 export class AppModule {}
