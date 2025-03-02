@@ -4,7 +4,10 @@
 	interface IProps {
 		modelValue: string;
 		placeholder?: string;
-		color?: 'dark' | 'white' | 'gray'
+		color?: 'dark' | 'white' | 'gray';
+		lazyRules?: boolean;
+		rules?: any;
+		mask?: any;
 	}
 	const props = withDefaults(defineProps<IProps>(), {
 		color: 'dark',
@@ -13,8 +16,8 @@
 
 	const currentValue = computed({
 		get: () => props.modelValue,
-		set: (value: string) => emit('update:model-value', value)
-	})
+		set: (value: string) => emit('update:model-value', value),
+	});
 </script>
 
 <template>
@@ -23,9 +26,11 @@
 			v-model="currentValue"
 			:class="`v-input__field ` + props.color"
 			:placeholder="placeholder"
+			:rules="rules"
+			:lazy-rules="lazyRules"
+			:mask="mask"
 		/>
 	</div>
-
 </template>
 <style lang="scss">
 	.v-input {
@@ -48,7 +53,7 @@
 				}
 
 				input {
-					color:var(--dark-blue);
+					color: var(--dark-blue);
 
 					&::placeholder {
 						color: #616171;
@@ -59,7 +64,7 @@
 			&.gray {
 				.q-field__control {
 					&::before {
-						border-bottom: 1px solid #E3E3E3;
+						border-bottom: 1px solid #e3e3e3;
 					}
 
 					&::after {
@@ -68,7 +73,7 @@
 				}
 
 				input {
-					color:var(--dark-blue);
+					color: var(--dark-blue);
 
 					&::placeholder {
 						color: #616171;
@@ -77,6 +82,9 @@
 			}
 
 			&.white {
+				.q-field__bottom {
+					color: #fff;
+				}
 				.q-field__control {
 					&::before {
 						border-bottom: 1px solid #fff;

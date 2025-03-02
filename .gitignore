@@ -30,9 +30,10 @@ node_modules
 
 /backendInterco/dist
 /backendInterco/node_modules
+/backendInterco/.env
 /admin/node_modules
 /admin/.vscode
-/backendInterco/.env
+
 
 # Editor directories and files
 .idea

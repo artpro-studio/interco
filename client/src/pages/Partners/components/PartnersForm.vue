@@ -2,18 +2,53 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
-	import { ref } from 'vue';
+	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
+	import { ref, reactive } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import { QForm } from 'quasar';
+	import useValidationRules from 'src/helpers/useValidationRules';
+	import useMaskPhone from 'src/helpers/useMaskPhone';
+	import { getApiClientInitialParams, PublicCallbackControllerClient } from 'src/ApiClient/ApiClient';
 
 	const { t } = useI18n();
+	const { isRequired, isRequiredEmail } = useValidationRules();
+	const maskPhone = useMaskPhone();
 
+	const SLUG_FORM = 'application';
+	const isSuccess = ref(false);
+	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		firstName: '',
+		title: 'Готовы обсудить возможности сотрудничества?',
+		name: '',
 		email: '',
 		company: '',
 		phone: '',
-		comment: '',
-	})
+		comments: '',
+	});
+
+	const onCloseSuccess = () => {
+		isSuccess.value = false;
+		form.value.phone = '';
+		form.value.name = '';
+		form.value.email = '';
+		form.value.comments = '';
+		form.value.company = '';
+	};
+
+	const onChange = () => {
+		formRef.value?.validate().then(async (success) => {
+			if (success) {
+				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
+					slug: SLUG_FORM,
+					data: form.value,
+				});
+
+				if (result.isSuccess) {
+					isSuccess.value = true;
+				}
+			}
+		});
+	};
 </script>
 
 <template>
@@ -21,9 +56,9 @@
 		<div class="container">
 			<div class="clients-form__body row no-wrap">
 				<div data-aos="fade-right" class="clients-form__column">
-					<h4 class="clients-form__title text-uppercase fonts-oswald">{{t('partnersFormTitle')}}</h4>
+					<h4 class="clients-form__title text-uppercase fonts-oswald">{{ t('partnersFormTitle') }}</h4>
 					<div class="clients-form__info">
-						<p>{{t('partnersFormDescription')}}</p>
+						<p>{{ t('partnersFormDescription') }}</p>
 						<div class="clients-form__info__links">
 							<div class="clients-form__info__links__item">
 								<a href="mailto:partners@inter-sa.com" class="text-gradient">partners@inter-sa.com</a>
@@ -35,27 +70,58 @@
 					</div>
 				</div>
 				<div data-aos="fade-left" class="clients-form__content">
-					<q-form class="clients-form__form">
+					<q-form ref="formRef" class="clients-form__form" @submit="onChange">
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.firstName" color="white" :placeholder="t('partnersFormFirstName')" />
+								<v-input
+									v-model="form.name"
+									color="white"
+									:placeholder="t('partnersFormFirstName')"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.email" color="white" :placeholder="t('partnersFormEmail')" />
+								<v-input
+									v-model="form.email"
+									color="white"
+									:placeholder="t('partnersFormEmail')"
+									lazy-rules
+									:rules="[isRequiredEmail]"
+								/>
 							</div>
 						</div>
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.company" color="white" :placeholder="t('partnersFormCompany')" />
+								<v-input
+									v-model="form.company"
+									color="white"
+									:placeholder="t('partnersFormCompany')"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.phone" color="white" :placeholder="t('partnersFormPhone')" />
+								<v-input
+									v-model="form.phone"
+									color="white"
+									:placeholder="t('partnersFormPhone')"
+									:mask="maskPhone"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 						</div>
-						<v-input-text v-model="form.comment" color="white" :rows="1" class="clients-form__form__comment" :placeholder="t('partnersFormComment')" />
-						<v-btn color="primary" class="clients-form__form__btn">
+						<v-input-text
+							v-model="form.comments"
+							color="white"
+							:rows="1"
+							class="clients-form__form__comment"
+							:placeholder="t('partnersFormComment')"
+						/>
+						<v-btn type="submit" color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
-								<span>{{t('partnersFormSubmit')}}</span>
+								<span>{{ t('partnersFormSubmit') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 							</div>
 						</v-btn>
@@ -64,6 +130,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isSuccess" @hide="onCloseSuccess">
+		<modal-success @on-close="onCloseSuccess" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.clients-form {
@@ -149,6 +218,7 @@
 				@media (max-width: $breakpoint-sm-min) {
 					flex-wrap: wrap;
 					margin: 0;
+					margin-bottom: 0px !important;
 				}
 			}
 
@@ -157,7 +227,7 @@
 
 				@media (max-width: $breakpoint-sm-min) {
 					margin: 0;
-					margin-bottom: 16px !important;
+					margin-bottom: 0px !important;
 				}
 			}
 
@@ -192,7 +262,7 @@
 
 					a {
 						text-decoration: none;
-						transition: .4s all;
+						transition: 0.4s all;
 						font-family: 'Oswald', sans-serif;
 						font-size: 1.8em;
 

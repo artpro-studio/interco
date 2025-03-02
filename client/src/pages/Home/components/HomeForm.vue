@@ -2,17 +2,59 @@
 	import { ref } from 'vue';
 	import VTextArea from 'src/components/UI/VTextArea/VTextArea.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
-	import VBtn from 'src/components/UI/VBtn/VBtn.vue'
+	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
 	import { useI18n } from 'vue-i18n';
+	import { useStore } from 'src/store';
+	import { computed } from 'vue';
+	import { FullSettingsDto, PublicCallbackControllerClient, getApiClientInitialParams } from 'src/ApiClient/ApiClient';
+	import { QForm } from 'quasar';
+	import useValidationRules from 'src/helpers/useValidationRules';
+	import useMaskPhone from 'src/helpers/useMaskPhone';
 
 	const { t } = useI18n();
+	const store = useStore();
+	const { isRequired, isRequiredEmail } = useValidationRules();
+	const maskPhone = useMaskPhone();
 
+	const SLUG_FORM = 'application';
+	const formRef = ref<QForm | null>(null);
 	const form = ref({
+		title: 'Готовы обсудить ваш проект?',
 		comments: '',
-		firstName: '',
+		name: '',
 		email: '',
-		phone: ''
-	})
+		phone: '',
+	});
+
+	const isSuccess = ref(false);
+
+	const getSettings = computed((): FullSettingsDto | null => {
+		return store.getters['settingsModule/getSettings'];
+	});
+
+	const onCloseSuccess = () => {
+		isSuccess.value = false;
+		form.value.phone = '';
+		form.value.name = '';
+		form.value.email = '';
+		form.value.comments = '';
+	};
+
+	const onChange = () => {
+		formRef.value?.validate().then(async (success) => {
+			if (success) {
+				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
+					slug: SLUG_FORM,
+					data: form.value,
+				});
+
+				if (result.isSuccess) {
+					isSuccess.value = true;
+				}
+			}
+		});
+	};
 </script>
 
 <template>
@@ -28,21 +70,18 @@
 						</div>
 					</div>
 					<div class="home-form__left__fields">
-						<v-text-area
-							v-model="form.comments"
-							:placeholder="t('homeFormComment')"
-						/>
+						<v-text-area v-model="form.comments" :placeholder="t('homeFormComment')" />
 					</div>
 					<div class="home-form__social">
 						<h5 class="home-form__social__title fonts-oswald text-white">{{ t('homeFormSocial') }}</h5>
 						<div class="home-form__social__body">
-							<a href="/" class="home-form__social__item">
+							<a v-if="getSettings?.whatsapp" :href="getSettings?.whatsapp" class="home-form__social__item">
 								<q-img src="icons/whatsapp.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
-							<a href="/" class="home-form__social__item">
+							<a v-if="getSettings?.discord" :href="getSettings?.discord" class="home-form__social__item">
 								<q-img src="icons/discord.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
-							<a href="/" class="home-form__social__item">
+							<a v-if="getSettings?.telegram" :href="getSettings?.telegram" class="home-form__social__item">
 								<q-img src="icons/telegram.svg" loading="lazy" class="home-form__social__item__img" width="40px" />
 							</a>
 						</div>
@@ -53,26 +92,23 @@
 						<h4 class="home-form__right__header__title headline-2 text-dark">{{ t('homeFormSubTitle') }}</h4>
 						<p class="fonts-oswald">{{ t('homeFormSubText') }}</p>
 					</div>
-					<q-form class="home-form__right__form">
+					<q-form ref="formRef" class="home-form__right__form" @submit="onChange">
 						<div class="home-form__right__form__field">
-							<v-input
-								v-model="form.firstName"
-								:placeholder="t('homeFormFirstName')"
-							/>
+							<v-input v-model="form.name" :placeholder="t('homeFormFirstName')" lazy-rules :rules="[isRequired]" />
 						</div>
 						<div class="home-form__right__form__field">
-							<v-input
-								v-model="form.email"
-								:placeholder="t('homeFormEmail')"
-							/>
+							<v-input v-model="form.email" :placeholder="t('homeFormEmail')" lazy-rules :rules="[isRequiredEmail]" />
 						</div>
 						<div class="home-form__right__form__field">
 							<v-input
 								v-model="form.phone"
 								:placeholder="t('homeFormPhone')"
+								:mask="maskPhone"
+								lazy-rules
+								:rules="[isRequired]"
 							/>
 						</div>
-						<v-btn color="primary" class="home-form__right__form__btn">
+						<v-btn type="submit" color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('submitApplication') }}</span>
 								<q-img src="icons/arrow-red.svg" loading="lazy" width="16px" class="q-ml-md" />
@@ -83,6 +119,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isSuccess" @hide="onCloseSuccess">
+		<modal-success @on-close="onCloseSuccess" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.home-form {
@@ -162,7 +201,6 @@
 				padding-top: 136px;
 				margin-bottom: 108px;
 				width: 100%;
-
 			}
 
 			@media (max-width: 850px) {
@@ -190,7 +228,7 @@
 				margin: 0 12px;
 
 				&__img {
-					transition: .4s all;
+					transition: 0.4s all;
 
 					@media (max-width: $breakpoint-sm-min) {
 						width: 28px !important;
@@ -229,7 +267,7 @@
 				margin-top: 74px;
 
 				&__field {
-					margin-bottom: 40px;
+					margin-bottom: 10px;
 
 					&:last-child {
 						margin-bottom: 0;

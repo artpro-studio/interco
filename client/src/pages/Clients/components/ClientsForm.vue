@@ -2,24 +2,59 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import useValidationRules from 'src/helpers/useValidationRules';
+	import { QForm } from 'quasar';
+	import { getApiClientInitialParams, PublicCallbackControllerClient } from 'src/ApiClient/ApiClient';
+	import useMaskPhone from 'src/helpers/useMaskPhone';
 
 	const { t } = useI18n();
+	const { isRequired, isRequiredEmail } = useValidationRules();
+	const maskPhone = useMaskPhone();
 
+	const SLUG_FORM = 'application';
+	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		firstName: '',
+		title: 'Как оставить отзыв?',
+		name: '',
 		email: '',
 		company: '',
 		phone: '',
-		comment: '',
-	})
+		comments: '',
+	});
+	const isSuccess = ref(false);
+
+	const onCloseSuccess = () => {
+		isSuccess.value = false;
+		form.value.phone = '';
+		form.value.name = '';
+		form.value.email = '';
+		form.value.comments = '';
+		form.value.company = '';
+	};
+
+	const onChange = () => {
+		formRef.value?.validate().then(async (success) => {
+			if (success) {
+				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
+					slug: SLUG_FORM,
+					data: form.value,
+				});
+
+				if (result.isSuccess) {
+					isSuccess.value = true;
+				}
+			}
+		});
+	};
 </script>
 
 <template>
 	<div class="clients-form pt-8 pb-8">
 		<div data-aos="zoom-in" class="container">
-			<div class="clients-form__body row no-wrap">
+			<div class="clients-form__body row no-wrap justify-between">
 				<div class="clients-form__column">
 					<h4 class="clients-form__title headline-1 text-red text-uppercase">{{ t('clientsFormTitle') }}</h4>
 					<div class="clients-form__info">
@@ -37,25 +72,38 @@
 				<div class="clients-form__content">
 					<h5 class="clients-form__content__title">{{ t('clientsFormTitleForm') }}</h5>
 					<p>{{ t('clientsFormTextForm') }}</p>
-					<q-form class="clients-form__form">
+					<q-form ref="formRef" class="clients-form__form" @submit="onChange">
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.firstName" color="white" placeholder="Имя" />
+								<v-input v-model="form.name" color="white" :placeholder="t('firstName')" lazy-rules :rules="[isRequired]" />
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.email" color="white" placeholder="E-mail" />
+								<v-input v-model="form.email" color="white" :placeholder="t('formEmail')" lazy-rules :rules="[isRequiredEmail]" />
 							</div>
 						</div>
 						<div class="clients-form__form__body row no-wrap q-gutter-md">
 							<div class="clients-form__form__field">
-								<v-input v-model="form.company" color="white" placeholder="Компания" />
+								<v-input v-model="form.company" color="white" :placeholder="t('formCompany')" lazy-rules :rules="[isRequired]" />
 							</div>
 							<div class="clients-form__form__field">
-								<v-input v-model="form.phone" color="white" placeholder="Номер телефона" />
+								<v-input
+									v-model="form.phone"
+									color="white"
+									:placeholder="t('phone')"
+									:mask="maskPhone"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 						</div>
-						<v-input-text v-model="form.comment" color="white" :rows="1" class="clients-form__form__comment" placeholder="Сообщение" />
-						<v-btn color="primary" class="clients-form__form__btn">
+						<v-input-text
+							v-model="form.comments"
+							color="white"
+							:rows="1"
+							class="clients-form__form__comment"
+							:placeholder="t('formMessage')"
+						/>
+						<v-btn type="submit" color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('clientsFormTextBtn') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
@@ -66,6 +114,9 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isSuccess" @hide="onCloseSuccess">
+		<modal-success @on-close="onCloseSuccess" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.clients-form {
@@ -198,7 +249,7 @@
 					a {
 						color: var(--dark-blue);
 						text-decoration: none;
-						transition: .4s all;
+						transition: 0.4s all;
 
 						&:hover {
 							color: var(--red);

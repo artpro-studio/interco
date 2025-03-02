@@ -10,15 +10,15 @@ import Contacts from './home/contacts';
 import Form from './home/form';
 import Footer from './footer';
 import Policy from './policy';
-import CareerPage from './career'
-import ServicesPage from './services'
-import PartnersPage from './partners'
-import ClientsPage from './clients'
-import ClientsNews from './news'
-import Social from './Social'
-import BannerCallback from './bannerCallback'
-import ContactsPage from './contacts'
-import AboutPages from './about'
+import CareerPage from './career';
+import ServicesPage from './services';
+import PartnersPage from './partners';
+import ClientsPage from './clients';
+import ClientsNews from './news';
+import Social from './Social';
+import BannerCallback from './bannerCallback';
+import ContactsPage from './contacts';
+import AboutPages from './about';
 
 export default {
 	failed: 'Action failed',
@@ -34,18 +34,31 @@ export default {
 	moreDetailed: 'Подробнее',
 	submitApplication: 'Оставить заявку',
 	firstName: 'Имя',
-    lastName: 'Фамилия',
-    middleName: 'Отчество',
-    position: 'Должность',
+	lastName: 'Фамилия',
+	middleName: 'Отчество',
+	position: 'Должность',
 	phone: 'Телефон',
 	formTitle: 'Заявка',
 	formEmail: 'Ваш e-mail',
+	formCompany: 'Компания',
+	formMessage: 'Сообщение',
 	formRequest: 'Запрос',
-	formRequestText: 'Пожалуйста, подробно опишите ваш запрос или необходимую услугу. Укажите конкретные требования, важные детали и любую дополнительную информацию(например, сроки, условия и т. д.), которая поможет нам точно понять и эффективно выполнить вашу задачу. Чем точнее описание, тем быстрее и качественнее мы сможем предоставить помощь.',
+	formRequestText:
+		'Пожалуйста, подробно опишите ваш запрос или необходимую услугу. Укажите конкретные требования, важные детали и любую дополнительную информацию(например, сроки, условия и т. д.), которая поможет нам точно понять и эффективно выполнить вашу задачу. Чем точнее описание, тем быстрее и качественнее мы сможем предоставить помощь.',
 	formDelivary: 'Место доставки',
 	formFile: 'Прикрепить файл',
 	formPolicy: 'Даю согласие на обработку персональных данных, согласно политике конфиденциальности',
 	formBtn: 'Отправить',
+	fromValidateChecked: 'Вы не не дали согласие на обработку персональных данных',
+	validateTextRequired: 'Обязательное поле',
+	validateTextEmail: 'Некорректный email',
+	validateTextMinLength: 'Минимальная длина 10 символов',
+	validateTextPassword: 'Пароли должны совпадать',
+	validateTextNumber: 'Допустимые символы: цифры, точка и запятая',
+	validateTextNotPassword: 'Вы ввели неверный пароль',
+	validateTextLink: 'Некорректная ссылка',
+	modalSuccessTitle: 'Ваша заявка принята',
+	modalSuccessText: 'Мы скоро свяжемся с Вами',
 	address: 'Адрес',
 	email: 'Электронная почта',
 	timeJob: 'Время работы',
@@ -70,4 +83,4 @@ export default {
 	...BannerCallback,
 	...ContactsPage,
 	...AboutPages,
-  };
+};
