@@ -4,4 +4,7 @@ export default {
 	newsFormBtnText: 'Subscribe',
 	newsFormFirstName: 'Your name',
 	newsFormEmail: 'Your e-mail',
-}
+	modalSubscriptionTitle: 'Subscription completed',
+	modalSubscriptionText: 'You have successfully subscribed to our news',
+	modalSubscriptionError: 'You have already subscribed',
+};

@@ -4,6 +4,7 @@ import { SubscriptionEntity } from '../entity/subscription.entity';
 import { Repository } from 'typeorm';
 import { SubscriptionDto } from '../dto/subscription.dto';
 import { BaseQuery } from 'src/dto/reponse.dto';
+import { publicFormatterListSendsSubscription } from '../helpers/getParser';
 
 @Injectable()
 export class SubscriptionRepository {
@@ -34,7 +35,7 @@ export class SubscriptionRepository {
         return {
             count: await query.getCount(),
             limit: take,
-            entity: await query.execute(),
+            entity: await query.getMany(),
         };
     }
 

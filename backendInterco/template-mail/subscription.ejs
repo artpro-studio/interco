@@ -454,7 +454,7 @@
                                                                         >
                                                                             <span
                                                                                 style="word-break: break-word;"
-                                                                                >Заявка с сайта</span
+                                                                                ><%= locals.title %></span
                                                                             >
                                                                         </p>
                                                                     </div>
@@ -499,65 +499,8 @@
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                                                         width="100%"
                                                     >
-                                                        <table
-                                                            border="0"
-                                                            cellpadding="10"
-                                                            cellspacing="0"
-                                                            class="table_block block-1"
-                                                            role="presentation"
-                                                            style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                            width="100%"
-                                                        >
-                                                            <tr>
-                                                                <td class="pad">
-                                                                    <table
-                                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; width: 100%; table-layout: fixed; direction: ltr; background-color: transparent; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: 400; color: #101112; text-align: left; letter-spacing: 0px; word-break: break-all;"
-                                                                        width="100%"
-                                                                    >
-                                                                        <thead
-                                                                            style="vertical-align: top; background-color: transparent; color: #101112; font-size: 14px; line-height: 120%; text-align: center;"
-                                                                        >
-                                                                            <tr>
-                                                                                <th
-                                                                                    style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid #7747ff; border-right: 1px solid #7747ff; border-bottom: 1px solid #7747ff; border-left: 1px solid #7747ff;"
-                                                                                    width="50%"
-                                                                                >
-                                                                                    Название
-                                                                                    поля
-                                                                                </th>
-                                                                                <th
-                                                                                    style="padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid #7747ff; border-right: 1px solid #7747ff; border-bottom: 1px solid #7747ff; border-left: 1px solid #7747ff;"
-                                                                                    width="50%"
-                                                                                >
-                                                                                    Значение
-                                                                                </th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody
-                                                                            style="vertical-align: top; font-size: 16px; line-height: 120%;"
-                                                                        >
-                                                                        <% sendData.forEach(function(data){ %>
-                                                                            <tr>
-                                                                                <td
-                                                                                    style="padding: 10px; word-break: break-word; border-top: 1px solid #7747ff; border-right: 1px solid #7747ff; border-bottom: 1px solid #7747ff; border-left: 1px solid #7747ff;"
-                                                                                    width="50%"
-                                                                                >
-                                                                                <%= data.name %>
-                                                                                </td>
-                                                                                <td
-                                                                                    style="padding: 10px; word-break: break-word; border-top: 1px solid #7747ff; border-right: 1px solid #7747ff; border-bottom: 1px solid #7747ff; border-left: 1px solid #7747ff;"
-                                                                                    width="50%"
-                                                                                >
-                                                                                <%= data.value %>
-                                                                                </td>
-                                                                            </tr>
-                                                                        <% }); %>
 
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
+                                                        <%- locals.description %>
                                                     </td>
                                                 </tr>
                                             </tbody>

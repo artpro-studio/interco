@@ -140,10 +140,10 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'iblock/:id',
                 meta: {
-                    title: 'Информационный блок'
+                    title: 'Информационный блок',
                 },
                 name: RouterName.Iblock,
-                component: () => import('pages/Panel/Pages/Iblock/index.vue')
+                component: () => import('pages/Panel/Pages/Iblock/index.vue'),
             },
             {
                 path: 'library/',
@@ -307,6 +307,18 @@ const routes: RouteRecordRaw[] = [
                         ],
                     },
                 ],
+            },
+            {
+                path: '/subscription',
+                name: RouterName.Subscription,
+                component: () => import('pages/Panel/Subscription/Index/index.vue'),
+                meta: { title: 'Подписанные пользователи' },
+            },
+            {
+                path: '/subscription-sends',
+                name: RouterName.SendsSubScription,
+                component: () => import('pages/Panel/Subscription/Sends/index.vue'),
+                meta: { title: 'Рассылка' },
             },
         ],
     },

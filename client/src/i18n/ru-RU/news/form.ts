@@ -4,4 +4,7 @@ export default {
 	newsFormBtnText: 'Подписаться',
 	newsFormFirstName: 'Ваше имя',
 	newsFormEmail: 'Ваш e-mail',
-}
+	modalSubscriptionTitle: 'Подписка оформлена',
+	modalSubscriptionText: 'Вы успешно подписались на наши новости',
+	modalSubscriptionError: 'Вы уже подписаны',
+};

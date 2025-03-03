@@ -2,6 +2,7 @@ import { TaskStatus, TaskType } from '../interface';
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { DefaultBaseEntity } from 'src/entity/base.entity';
+import { SendsSubscriptionEntity } from 'src/subscription/entity/sends-subscriptioin.entity';
 
 @Entity({
     name: 'task',
@@ -42,4 +43,8 @@ export class TaskEntity extends DefaultBaseEntity {
         default: TaskType.GenerateGraph,
     })
     type: TaskType;
+
+    @ApiProperty({ description: 'Запись' })
+    @OneToMany(() => SendsSubscriptionEntity, (title) => title.task)
+    sendsSubscription: SendsSubscriptionEntity[];
 }

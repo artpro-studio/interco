@@ -1,15 +1,53 @@
 <script lang="ts" setup>
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import useValidationRules from 'src/helpers/useValidationRules';
+	import { QForm, Notify } from 'quasar';
+	import {
+		getApiClientInitialParams,
+		ILangSubscription,
+		PublicSubscriptionControllerClient,
+		SubscriptionDto,
+	} from 'src/ApiClient/ApiClient';
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+	const { isRequired, isRequiredEmail } = useValidationRules();
 
-	const form = ref({
-		firstName: '',
+	const isSuccess = ref(false);
+	const formRef = ref<QForm | null>(null);
+	const form = ref<SubscriptionDto>({
+		name: '',
 		email: '',
-	})
+		lang: locale.value as ILangSubscription,
+	});
+
+	const onCloseSuccess = () => {
+		isSuccess.value = false;
+		form.value.name = '';
+		form.value.email = '';
+	};
+
+	const onChange = () => {
+		formRef.value?.validate().then(async (success) => {
+			if (success) {
+				const result = await new PublicSubscriptionControllerClient(getApiClientInitialParams()).create(form.value);
+
+				if (result.isSuccess) {
+					isSuccess.value = true;
+				} else {
+					Notify.create({
+						color: 'negative',
+						textColor: 'white',
+						icon: 'warning',
+						message: t('modalSubscriptionError'),
+					});
+				}
+			}
+		});
+	};
 </script>
 
 <template>
@@ -23,14 +61,20 @@
 					</div>
 				</div>
 				<div data-aos="fade-left" class="clients-form__content">
-					<q-form class="clients-form__form">
+					<q-form ref="formRef" class="clients-form__form" @submit="onChange">
 						<div class="clients-form__form__field">
-							<v-input v-model="form.firstName" color="white" :placeholder="t('newsFormFirstName')" />
+							<v-input v-model="form.name" color="white" :placeholder="t('newsFormFirstName')" lazy-rules :rules="[isRequired]" />
 						</div>
 						<div class="clients-form__form__field">
-							<v-input v-model="form.email" color="white" :placeholder="t('newsFormEmail')" />
+							<v-input
+								v-model="form.email"
+								color="white"
+								:placeholder="t('newsFormEmail')"
+								lazy-rules
+								:rules="[isRequiredEmail]"
+							/>
 						</div>
-						<v-btn color="primary" class="clients-form__form__btn">
+						<v-btn type="submit" color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('newsFormBtnText') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
@@ -41,10 +85,12 @@
 			</div>
 		</div>
 	</div>
+	<q-dialog v-model="isSuccess" @hide="onCloseSuccess">
+		<modal-success :title="t('modalSubscriptionTitle')" :text="t('modalSubscriptionText')" @on-close="onCloseSuccess" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.clients-form {
-
 		@media (max-width: $breakpoint-sm-min) {
 			background-size: 200px;
 			padding-bottom: 0;
@@ -124,7 +170,7 @@
 
 			&__field {
 				width: 100%;
-				margin-bottom: 24px;
+				margin-bottom: 10px;
 
 				@media (max-width: $breakpoint-sm-min) {
 					margin: 0;
@@ -166,7 +212,7 @@
 
 					a {
 						text-decoration: none;
-						transition: .4s all;
+						transition: 0.4s all;
 						font-family: 'Oswald', sans-serif;
 						font-size: 1.8em;
 

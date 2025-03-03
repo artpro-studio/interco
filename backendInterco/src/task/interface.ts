@@ -7,6 +7,7 @@ export enum TaskStatus {
     FAILED = 'failed',
 }
 export enum TaskType {
+    SendMessage = 'sendMessage',
     GenerateGraph = 'generateGraph',
     DeleteGraph = 'deleteGraph',
     UpdateGraph = 'updateGraph',

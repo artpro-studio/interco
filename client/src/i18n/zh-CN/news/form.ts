@@ -4,4 +4,7 @@ export default {
 	newsFormBtnText: '订阅',
 	newsFormFirstName: '您的姓名',
 	newsFormEmail: '您的电子邮件',
-}
+	modalSubscriptionTitle: '已完成订阅',
+	modalSubscriptionText: '您已成功订阅我们的新闻',
+	modalSubscriptionError: '你已经订阅了',
+};

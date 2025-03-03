@@ -25,6 +25,14 @@ export class TaskRepoitory {
         return await query.getOne();
     }
 
+    async getOneForTask(idTask: number): Promise<TaskDto> {
+        const query = this.taskRepository
+            .createQueryBuilder('task')
+            .andWhere('task.idTask = :idTask', { idTask });
+
+        return await query.getOne();
+    }
+
     async create(body: TaskDto): Promise<TaskDto> {
         const entity = this.taskRepository.create(body);
         await this.taskRepository.save(entity);

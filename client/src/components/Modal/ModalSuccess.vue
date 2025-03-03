@@ -1,17 +1,28 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
 
+	interface IProps {
+		title?: string;
+		text?: string;
+	}
+	const props = withDefaults(defineProps<IProps>(), {
+		title: '',
+		text: '',
+	});
 	const emit = defineEmits(['on-close']);
 
 	const { t } = useI18n();
+
+	const getTitle = props.title || t('modalSuccessTitle');
+	const getText = props.text || t('modalSuccessText');
 </script>
 
 <template>
 	<div class="modal-success">
 		<q-btn class="modal-success__close" @click="emit('on-close')" flat><q-icon name="close" /></q-btn>
 		<div class="modal-success__body">
-			<h4 class="modal-success__title text-center q-mb-md">{{ t('modalSuccessTitle') }}</h4>
-			<p class="modal-success__description text-center">{{ t('modalSuccessText') }}</p>
+			<h4 class="modal-success__title text-center q-mb-md">{{ getTitle }}</h4>
+			<p class="modal-success__description text-center">{{ getText }}</p>
 		</div>
 	</div>
 </template>

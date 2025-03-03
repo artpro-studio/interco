@@ -57,4 +57,8 @@ export enum RouterName {
     CallbackInstances = 'callback-instances',
     CallbackInstancesCreate = 'callback-instances-create',
     CallbackInstancesEdit = 'callback-instances-edit',
+    Subscription = 'subscription',
+    SendsSubScription = 'sends-subscription',
+    SendsSubScriptionCreate = 'sends-subscription-create',
+    SendsSubScriptionEdit = 'sends-subscription-edit',
 }

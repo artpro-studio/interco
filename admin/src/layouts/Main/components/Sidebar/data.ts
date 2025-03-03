@@ -60,6 +60,26 @@ export const dataMenu: IMenuContent[] = [
         ],
     },
     {
+        name: 'Рассылка',
+        content: [
+            {
+                name: 'Рассылка',
+                icon: 'subscriptions',
+                isOpenChildren: false,
+                children: [
+                    {
+                        title: 'Подписаные пользователи',
+                        path: RouterName.Subscription,
+                    },
+                    {
+                        title: 'Рассылки',
+                        path: RouterName.SendsSubScription,
+                    },
+                ],
+            },
+        ],
+    },
+    {
         name: 'Файлы',
         content: [
             {

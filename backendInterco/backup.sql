@@ -123,19 +123,6 @@ CREATE TYPE public.pages_sections_title_value_lang_enum AS ENUM (
 ALTER TYPE public.pages_sections_title_value_lang_enum OWNER TO postgress;
 
 --
--- Name: pages_sections_value_lang_enum; Type: TYPE; Schema: public; Owner: postgress
---
-
-CREATE TYPE public.pages_sections_value_lang_enum AS ENUM (
-    'ru-RU',
-    'en-US',
-    'zh-CN'
-);
-
-
-ALTER TYPE public.pages_sections_value_lang_enum OWNER TO postgress;
-
---
 -- Name: pages_seo_params_fieldtype_enum; Type: TYPE; Schema: public; Owner: postgress
 --
 
@@ -223,8 +210,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.amo_custom_fields (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "amoID" integer,
     attribute character varying DEFAULT 'title'::character varying NOT NULL
@@ -261,8 +248,8 @@ ALTER SEQUENCE public.amo_custom_fields_id_seq OWNED BY public.amo_custom_fields
 
 CREATE TABLE public."auth-confirm" (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     uuid uuid DEFAULT public.uuid_generate_v4() NOT NULL,
     "isActive" boolean DEFAULT true NOT NULL,
@@ -301,8 +288,8 @@ ALTER SEQUENCE public."auth-confirm_id_seq" OWNED BY public."auth-confirm".id;
 
 CREATE TABLE public.callback (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL,
@@ -320,8 +307,8 @@ ALTER TABLE public.callback OWNER TO postgress;
 
 CREATE TABLE public.callback_field (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     type character varying DEFAULT 'string'::character varying NOT NULL,
@@ -383,8 +370,8 @@ ALTER SEQUENCE public.callback_id_seq OWNED BY public.callback.id;
 
 CREATE TABLE public.callback_instances (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "callbackId" integer
 );
@@ -420,8 +407,8 @@ ALTER SEQUENCE public.callback_instances_id_seq OWNED BY public.callback_instanc
 
 CREATE TABLE public.callback_instances_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying DEFAULT ''::character varying,
     "instanceId" integer,
@@ -459,8 +446,8 @@ ALTER SEQUENCE public.callback_instances_value_id_seq OWNED BY public.callback_i
 
 CREATE TABLE public.library_files (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     path character varying,
     type character varying DEFAULT 'file'::character varying NOT NULL,
@@ -539,13 +526,48 @@ ALTER SEQUENCE public.library_files_id_seq OWNED BY public.library_files.id;
 
 
 --
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgress
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    "timestamp" bigint NOT NULL,
+    name character varying NOT NULL
+);
+
+
+ALTER TABLE public.migrations OWNER TO postgress;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgress
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.migrations_id_seq OWNER TO postgress;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgress
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
 -- Name: pages; Type: TABLE; Schema: public; Owner: postgress
 --
 
 CREATE TABLE public.pages (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     description character varying,
@@ -564,8 +586,8 @@ ALTER TABLE public.pages OWNER TO postgress;
 
 CREATE TABLE public."pages-comments" (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     content character varying,
     status character varying DEFAULT 'verify'::character varying NOT NULL,
@@ -606,8 +628,8 @@ ALTER SEQUENCE public."pages-comments_id_seq" OWNED BY public."pages-comments".i
 
 CREATE TABLE public."pages-components" (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "order" integer DEFAULT 0 NOT NULL,
     name character varying(1024) NOT NULL,
@@ -646,13 +668,13 @@ ALTER SEQUENCE public."pages-components_id_seq" OWNED BY public."pages-component
 
 CREATE TABLE public.pages_iblock (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL,
-    "pageId" integer,
-    attributes json
+    attributes json,
+    "pageId" integer
 );
 
 
@@ -664,8 +686,8 @@ ALTER TABLE public.pages_iblock OWNER TO postgress;
 
 CREATE TABLE public.pages_iblock_fields (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL,
@@ -704,8 +726,8 @@ ALTER SEQUENCE public.pages_iblock_fields_id_seq OWNED BY public.pages_iblock_fi
 
 CREATE TABLE public.pages_iblock_fields_label (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.pages_iblock_fields_label_lang_enum NOT NULL,
@@ -738,42 +760,6 @@ ALTER SEQUENCE public.pages_iblock_fields_label_id_seq OWNED BY public.pages_ibl
 
 
 --
--- Name: pages_iblock_fields_records; Type: TABLE; Schema: public; Owner: postgress
---
-
-CREATE TABLE public.pages_iblock_fields_records (
-    id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-05 11:19:39.965'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-05 11:19:39.965'::timestamp without time zone NOT NULL,
-    "deletedAt" timestamp without time zone
-);
-
-
-ALTER TABLE public.pages_iblock_fields_records OWNER TO postgress;
-
---
--- Name: pages_iblock_fields_records_id_seq; Type: SEQUENCE; Schema: public; Owner: postgress
---
-
-CREATE SEQUENCE public.pages_iblock_fields_records_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pages_iblock_fields_records_id_seq OWNER TO postgress;
-
---
--- Name: pages_iblock_fields_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgress
---
-
-ALTER SEQUENCE public.pages_iblock_fields_records_id_seq OWNED BY public.pages_iblock_fields_records.id;
-
-
---
 -- Name: pages_iblock_id_seq; Type: SEQUENCE; Schema: public; Owner: postgress
 --
 
@@ -801,11 +787,11 @@ ALTER SEQUENCE public.pages_iblock_id_seq OWNED BY public.pages_iblock.id;
 
 CREATE TABLE public.pages_iblock_records (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
-    "iblockId" integer,
-    sort integer DEFAULT 0
+    sort integer DEFAULT 0,
+    "iblockId" integer
 );
 
 
@@ -817,8 +803,8 @@ ALTER TABLE public.pages_iblock_records OWNER TO postgress;
 
 CREATE TABLE public.pages_iblock_records_field (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "recordId" integer,
     "fieldId" integer
@@ -855,12 +841,12 @@ ALTER SEQUENCE public.pages_iblock_records_field_id_seq OWNED BY public.pages_ib
 
 CREATE TABLE public.pages_iblock_records_field_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
-    "recordFieldId" integer,
+    value character varying NOT NULL,
     lang public.pages_iblock_records_field_value_lang_enum NOT NULL,
-    value character varying NOT NULL
+    "recordFieldId" integer
 );
 
 
@@ -928,8 +914,8 @@ ALTER TABLE public.pages_iblock_records_sections_pages_iblock_section OWNER TO p
 
 CREATE TABLE public.pages_iblock_section (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "iblockId" integer
 );
@@ -965,8 +951,8 @@ ALTER SEQUENCE public.pages_iblock_section_id_seq OWNED BY public.pages_iblock_s
 
 CREATE TABLE public.pages_iblock_section_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.pages_iblock_section_value_lang_enum NOT NULL,
@@ -1026,8 +1012,8 @@ ALTER SEQUENCE public.pages_id_seq OWNED BY public.pages.id;
 
 CREATE TABLE public.pages_params (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL,
@@ -1045,8 +1031,8 @@ ALTER TABLE public.pages_params OWNER TO postgress;
 
 CREATE TABLE public.pages_params_field (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "paramsId" integer,
     "recordId" integer
@@ -1083,8 +1069,8 @@ ALTER SEQUENCE public.pages_params_field_id_seq OWNED BY public.pages_params_fie
 
 CREATE TABLE public.pages_params_field_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.pages_params_field_value_lang_enum NOT NULL,
@@ -1139,53 +1125,13 @@ ALTER SEQUENCE public.pages_params_id_seq OWNED BY public.pages_params.id;
 
 
 --
--- Name: pages_params_value; Type: TABLE; Schema: public; Owner: postgress
---
-
-CREATE TABLE public.pages_params_value (
-    id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-20 12:57:18.033'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-20 12:57:18.033'::timestamp without time zone NOT NULL,
-    "deletedAt" timestamp without time zone,
-    value character varying,
-    "valueJson" json,
-    "paramsId" integer,
-    "recordId" integer
-);
-
-
-ALTER TABLE public.pages_params_value OWNER TO postgress;
-
---
--- Name: pages_params_value_id_seq; Type: SEQUENCE; Schema: public; Owner: postgress
---
-
-CREATE SEQUENCE public.pages_params_value_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pages_params_value_id_seq OWNER TO postgress;
-
---
--- Name: pages_params_value_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgress
---
-
-ALTER SEQUENCE public.pages_params_value_id_seq OWNED BY public.pages_params_value.id;
-
-
---
 -- Name: pages_sections; Type: TABLE; Schema: public; Owner: postgress
 --
 
 CREATE TABLE public.pages_sections (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "pagesId" integer
 );
@@ -1199,8 +1145,8 @@ ALTER TABLE public.pages_sections OWNER TO postgress;
 
 CREATE TABLE public.pages_sections_description_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.pages_sections_description_value_lang_enum NOT NULL,
@@ -1260,8 +1206,8 @@ ALTER SEQUENCE public.pages_sections_id_seq OWNED BY public.pages_sections.id;
 
 CREATE TABLE public.pages_sections_title_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.pages_sections_title_value_lang_enum NOT NULL,
@@ -1294,52 +1240,13 @@ ALTER SEQUENCE public.pages_sections_title_value_id_seq OWNED BY public.pages_se
 
 
 --
--- Name: pages_sections_value; Type: TABLE; Schema: public; Owner: postgress
---
-
-CREATE TABLE public.pages_sections_value (
-    id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-23 11:53:11.021'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-23 11:53:11.021'::timestamp without time zone NOT NULL,
-    "deletedAt" timestamp without time zone,
-    value character varying NOT NULL,
-    lang public.pages_sections_value_lang_enum NOT NULL,
-    "sectionId" integer
-);
-
-
-ALTER TABLE public.pages_sections_value OWNER TO postgress;
-
---
--- Name: pages_sections_value_id_seq; Type: SEQUENCE; Schema: public; Owner: postgress
---
-
-CREATE SEQUENCE public.pages_sections_value_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pages_sections_value_id_seq OWNER TO postgress;
-
---
--- Name: pages_sections_value_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgress
---
-
-ALTER SEQUENCE public.pages_sections_value_id_seq OWNED BY public.pages_sections_value.id;
-
-
---
 -- Name: pages_seo; Type: TABLE; Schema: public; Owner: postgress
 --
 
 CREATE TABLE public.pages_seo (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone
 );
 
@@ -1374,8 +1281,8 @@ ALTER SEQUENCE public.pages_seo_id_seq OWNED BY public.pages_seo.id;
 
 CREATE TABLE public.pages_seo_params (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     content character varying(2048) DEFAULT ''::character varying NOT NULL,
     lang public.pages_seo_params_lang_enum NOT NULL,
@@ -1414,15 +1321,15 @@ ALTER SEQUENCE public.pages_seo_params_id_seq OWNED BY public.pages_seo_params.i
 
 CREATE TABLE public.records (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "countView" integer DEFAULT 0 NOT NULL,
+    "titleId" integer,
+    "descriptionId" integer,
     "pagesId" integer,
     "authorId" integer,
-    "titleId" integer,
-    "seoId" integer,
-    "descriptionId" integer
+    "seoId" integer
 );
 
 
@@ -1434,8 +1341,8 @@ ALTER TABLE public.records OWNER TO postgress;
 
 CREATE TABLE public.records_description (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone
 );
 
@@ -1470,8 +1377,8 @@ ALTER SEQUENCE public.records_description_id_seq OWNED BY public.records_descrip
 
 CREATE TABLE public.records_description_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.records_description_value_lang_enum NOT NULL,
@@ -1543,8 +1450,8 @@ ALTER TABLE public.records_sections_pages_sections OWNER TO postgress;
 
 CREATE TABLE public.records_seo (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone
 );
 
@@ -1579,8 +1486,8 @@ ALTER SEQUENCE public.records_seo_id_seq OWNED BY public.records_seo.id;
 
 CREATE TABLE public.records_seo_params (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     content character varying(2048) DEFAULT ''::character varying NOT NULL,
     lang public.records_seo_params_lang_enum NOT NULL,
@@ -1619,8 +1526,8 @@ ALTER SEQUENCE public.records_seo_params_id_seq OWNED BY public.records_seo_para
 
 CREATE TABLE public.records_title (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone
 );
 
@@ -1655,8 +1562,8 @@ ALTER SEQUENCE public.records_title_id_seq OWNED BY public.records_title.id;
 
 CREATE TABLE public.records_title_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying NOT NULL,
     lang public.records_title_value_lang_enum NOT NULL,
@@ -1694,8 +1601,8 @@ ALTER SEQUENCE public.records_title_value_id_seq OWNED BY public.records_title_v
 
 CREATE TABLE public.reference_book (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL
@@ -1710,8 +1617,8 @@ ALTER TABLE public.reference_book OWNER TO postgress;
 
 CREATE TABLE public.reference_book_attributes (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     name character varying(1024) NOT NULL,
     slug character varying(1024) NOT NULL,
@@ -1772,8 +1679,8 @@ ALTER SEQUENCE public.reference_book_id_seq OWNED BY public.reference_book.id;
 
 CREATE TABLE public.reference_book_instances (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "referenceBookId" integer
 );
@@ -1809,8 +1716,8 @@ ALTER SEQUENCE public.reference_book_instances_id_seq OWNED BY public.reference_
 
 CREATE TABLE public.reference_book_instances_value (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     value character varying,
     "valueJson" json,
@@ -1849,8 +1756,8 @@ ALTER SEQUENCE public.reference_book_instances_value_id_seq OWNED BY public.refe
 
 CREATE TABLE public.settings (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     title character varying(1024) NOT NULL,
     description character varying(1024),
@@ -1859,16 +1766,16 @@ CREATE TABLE public.settings (
     viber character varying(1024),
     whatsapp character varying(1024),
     telegram character varying(1024),
+    discord character varying(1024),
+    "linkedIn" character varying(1024),
+    instagram character varying(1024),
     phone character varying(1024),
     email character varying(1024),
     "urlBitrix" character varying DEFAULT ''::character varying,
     "amoClientId" character varying DEFAULT ''::character varying,
     "amoClientSecret" character varying DEFAULT ''::character varying,
     "amoDomain" character varying DEFAULT ''::character varying,
-    "amoBearer" character varying DEFAULT ''::character varying,
-    discord character varying(1024),
-    "linkedIn" character varying(1024),
-    instagram character varying(1024)
+    "amoBearer" character varying DEFAULT ''::character varying
 );
 
 
@@ -1880,8 +1787,8 @@ ALTER TABLE public.settings OWNER TO postgress;
 
 CREATE TABLE public."settings-contacts" (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     content character varying(1024),
     description character varying(1024),
@@ -1943,8 +1850,8 @@ ALTER SEQUENCE public.settings_id_seq OWNED BY public.settings.id;
 
 CREATE TABLE public.settings_menu (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     title character varying(512) NOT NULL,
     slug character varying(512)
@@ -1981,8 +1888,8 @@ ALTER SEQUENCE public.settings_menu_id_seq OWNED BY public.settings_menu.id;
 
 CREATE TABLE public.settings_menu_item (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     title character varying(512) NOT NULL,
     hash character varying(512),
@@ -2024,8 +1931,8 @@ ALTER SEQUENCE public.settings_menu_item_id_seq OWNED BY public.settings_menu_it
 
 CREATE TABLE public."user" (
     id integer NOT NULL,
-    "createdAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
-    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 12:04:45.436'::timestamp without time zone NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
+    "updatedAt" timestamp without time zone DEFAULT '2025-02-25 18:46:18.553'::timestamp without time zone NOT NULL,
     "deletedAt" timestamp without time zone,
     "isActive" boolean DEFAULT false NOT NULL,
     "lastName" character varying(1024) NOT NULL,
@@ -2123,6 +2030,13 @@ ALTER TABLE ONLY public.library_files ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgress
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
 -- Name: pages id; Type: DEFAULT; Schema: public; Owner: postgress
 --
 
@@ -2162,13 +2076,6 @@ ALTER TABLE ONLY public.pages_iblock_fields ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.pages_iblock_fields_label ALTER COLUMN id SET DEFAULT nextval('public.pages_iblock_fields_label_id_seq'::regclass);
-
-
---
--- Name: pages_iblock_fields_records id; Type: DEFAULT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_iblock_fields_records ALTER COLUMN id SET DEFAULT nextval('public.pages_iblock_fields_records_id_seq'::regclass);
 
 
 --
@@ -2228,13 +2135,6 @@ ALTER TABLE ONLY public.pages_params_field_value ALTER COLUMN id SET DEFAULT nex
 
 
 --
--- Name: pages_params_value id; Type: DEFAULT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_params_value ALTER COLUMN id SET DEFAULT nextval('public.pages_params_value_id_seq'::regclass);
-
-
---
 -- Name: pages_sections id; Type: DEFAULT; Schema: public; Owner: postgress
 --
 
@@ -2253,13 +2153,6 @@ ALTER TABLE ONLY public.pages_sections_description_value ALTER COLUMN id SET DEF
 --
 
 ALTER TABLE ONLY public.pages_sections_title_value ALTER COLUMN id SET DEFAULT nextval('public.pages_sections_title_value_id_seq'::regclass);
-
-
---
--- Name: pages_sections_value id; Type: DEFAULT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_sections_value ALTER COLUMN id SET DEFAULT nextval('public.pages_sections_value_id_seq'::regclass);
 
 
 --
@@ -2441,55 +2334,45 @@ COPY public.callback_instances_value (id, "createdAt", "updatedAt", "deletedAt",
 --
 
 COPY public.library_files (id, "createdAt", "updatedAt", "deletedAt", path, type, name, filename, size, "isSystem", "parentId") FROM stdin;
-4	2025-02-07 21:00:07.449	2025-02-07 21:02:59.54787	2025-02-07 21:02:59.54787		images	direction-sllide3.png	26bc21726c8e463d4617f944db7606ac.png	572060	f	\N
-3	2025-02-07 21:00:07.449	2025-02-07 21:15:30.625301	2025-02-07 21:15:30.625301		images	direction-sllide3.png	9d6c9f011d2ab9a7203d75a5f694e6af.png	572060	f	\N
-5	2025-02-07 21:00:07.449	2025-02-07 21:15:30.625301	2025-02-07 21:15:30.625301		images	direction-sllide3.png	a037571959cb19d85c87d02f0730b93f.png	572060	f	\N
-6	2025-02-07 21:00:07.449	2025-02-07 21:15:30.625301	2025-02-07 21:15:30.625301		images	direction-sllide3.png	5eb461c3ae8bc8726e6f2e895974a7d6.png	572060	f	\N
-7	2025-02-07 21:00:07.449	2025-02-07 21:15:30.625301	2025-02-07 21:15:30.625301		images	direction-sllide3.png	d2ef049eac0f1784a372bac967ee9b6b.png	572060	f	\N
-8	2025-02-07 21:00:07.449	2025-02-07 21:15:30.625301	2025-02-07 21:15:30.625301		images	direction-sllide3.png	1d7c992f4da67cabecd5516940a173a6.png	572060	f	\N
-11	2025-02-07 21:39:35.328	2025-02-07 21:53:42.712326	2025-02-07 21:53:42.712326		images	direction-sllide3.png	e8ba87faf28897f9217749f3ab058c7e.png	572060	f	\N
-12	2025-02-07 21:43:47.097	2025-02-07 21:55:43.212592	2025-02-07 21:55:43.212592		images	direction-sllide3.png	b4530f51058556c985d62ab302c993dc.png	572060	f	\N
-13	2025-02-07 21:43:47.097	2025-02-07 21:56:10.269315	2025-02-07 21:56:10.269315		images	direction-sllide3.png	353c2d9cf1bdca7a1086ba9baedd5a3c.png	572060	f	\N
-10	2025-02-07 21:00:07.449	2025-02-07 21:56:26.352384	2025-02-07 21:56:26.352384		images	direction-sllide3.png	6e272edeee6a4c4a4f42e5b46a844208.png	572060	f	\N
-9	2025-02-07 21:00:07.449	2025-02-07 21:56:31.441629	2025-02-07 21:56:31.441629		images	direction-sllide3.png	ccd46878193742e2badb90fdb1c8a32b.png	572060	f	\N
-14	2025-02-07 21:43:47.097	2025-02-07 21:57:41.300476	2025-02-07 21:57:41.300476		images	direction-sllide3.png	03ff216f3b724c8d492f3e767dc9adf0.png	572060	f	\N
-15	2025-02-07 21:43:47.097	2025-02-07 21:59:22.461421	2025-02-07 21:59:22.461421		images	direction-sllide3.png	5f24535fdc704b6ef6371df0535922ce.png	572060	f	\N
-16	2025-02-07 21:43:47.097	2025-02-07 22:00:24.385428	2025-02-07 22:00:24.385428		images	direction-sllide3.png	da79f60d6d44a20d1948ca3e24c9a61b.png	572060	f	\N
-17	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide1.png	184c4dd28c52993c0f575905f9107138.png	477111	f	\N
-18	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide3.png	8ac0289ed87ec875111e220894c7d510.png	572060	f	\N
-19	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide3.png	fee30b83dabf20a4de8bd54ed7b681eb.png	572060	f	\N
-20	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide4.png	0f7d9c2df4ab36205a8549da11643e97.png	383186	f	\N
-21	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide5.png	1c0b7cdd15533106c4b5af3f70b9e8c9.png	483775	f	\N
-22	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	direction-sllide1 (1).png	5f444d616b1246ff642347834993248c.png	477111	f	\N
-23	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	employee1.png	e9328a420e4b6e837068792ae736ee4e.png	311628	f	\N
-24	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	employee2.png	1f326340add2ab34f6d84fc374f2349f.png	331924	f	\N
-25	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	employee3.png	33087b1bfaf3c4f22d15884a7603d16a.png	293021	f	\N
-26	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	employee2.png	df51f069abaaeef886b214e9b8fb2ddf.png	331924	f	\N
-27	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		images	employee3.png	c85a6640a65a2a7d074132d399e08dd3.png	293021	f	\N
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		docs	ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx	c175b3d6a6639d91d951d4186b5f5020.docx	127336	f	\N
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N		docs	ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx	5918bdb0f5f1a72df4bd1893c652e9fc.docx	127336	f	\N
-30	2025-02-08 15:06:16.218	2025-02-08 15:06:16.218	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	cab52bf32fee7ed01f30ab99032e0cd7.png	207506	f	\N
-31	2025-02-08 15:06:16.218	2025-02-08 15:06:16.218	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	20fad2e49476c37616017254693f6f31.png	207506	f	\N
-32	2025-02-08 15:06:16.218	2025-02-08 15:06:16.218	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	af2aafa78713bac2c359bb96efda090f.png	207506	f	\N
-33	2025-02-08 15:17:40.567	2025-02-08 15:17:40.567	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	bf768fcf2dcb1b830b18b730ad6f24a7.png	207506	f	\N
-34	2025-02-21 11:48:01.126	2025-02-21 11:48:01.126	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	6845b1482d1d009535fc9a69c201270b.png	207506	f	\N
-35	2025-02-21 11:48:01.126	2025-02-21 12:14:21.23599	2025-02-21 12:14:21.23599		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	37cc9beb9e7bdb9e59737571289d2436.png	207506	f	\N
-36	2025-02-21 11:48:01.126	2025-02-21 12:14:54.409588	2025-02-21 12:14:54.409588		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	87b16a3eecf9ef38d17d2e98b7c1cb6c.png	207506	f	\N
-37	2025-02-21 11:48:01.126	2025-02-21 12:15:32.862159	2025-02-21 12:15:32.862159		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	b635f145ee3866b8c931734e24998af6.png	207506	f	\N
-38	2025-02-21 18:05:26.145	2025-02-21 18:05:26.146	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	060546e642504b43c8d68d149702cc91.png	207506	f	\N
-39	2025-02-21 18:16:30.149	2025-02-21 18:16:30.149	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	6d16c9bdf7f50200a9a9e09eee333310.png	207506	f	\N
-40	2025-02-21 18:16:30.149	2025-02-21 18:16:30.149	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	6ce1687bb241c5391cd4479795fa4a4a.png	207506	f	\N
-41	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	3416cf05174c5019811406e3e62ed967.png	207506	f	\N
-42	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	d0754fea50ff1b286264760ef2132d11.png	207506	f	\N
-43	2025-02-21 18:21:16.057	2025-02-21 18:24:10.006475	2025-02-21 18:24:10.006475		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	9a432343f4f9157da818f2f5f4171189.png	207506	f	\N
-44	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	89efbaf0d2b7e540d2c040adc1f549bf.png	207506	f	\N
-45	2025-02-21 18:21:16.057	2025-02-21 18:26:54.888709	2025-02-21 18:26:54.888709		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	e425f70ac3c29d7a2c67683be39aaaa5.png	207506	f	\N
-46	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	87e723c8e804dd49bd8ee96ecf634013.png	207506	f	\N
-47	2025-02-21 18:21:16.057	2025-02-21 18:39:57.88055	2025-02-21 18:39:57.88055		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	c1e00f6b80562eaf06828a5005bbfb8b.png	207506	f	\N
-48	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	7219259062fb1a6271ce94f588f579b9.png	207506	f	\N
-50	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N		images	pngwing.com (2) 1.png	be8e2c016341cf9f77ad0341d0daed6d.png	515224	f	\N
-49	2025-02-24 08:07:25.591	2025-02-25 07:29:20.129243	2025-02-25 07:29:20.129243		images	pngwing.com (4) 1.png	b749acbf881d96070c311efed3b0a16b.png	367918	f	\N
-51	2025-02-25 07:28:44.604	2025-02-25 07:28:44.604	\N		images	pngwing.com (4) 1.png	f7685ef0a882cb5dde13e64f222336e4.png	367918	f	\N
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	2025-02-26 09:14:19.837664		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	2348d6f8677ea986836c79bf01b4227f.png	207506	f	\N
+2	2025-02-25 18:46:18.553	2025-02-26 09:18:00.347342	2025-02-26 09:18:00.347342		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	3219022a4ee2c86ba778195570cdb9ef.png	207506	f	\N
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	daulet-turubayev-RAwn1QFwfss-unsplash.png	996fbcad74d59d1479b3fb6730ca8f9b.png	207506	f	\N
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	DALLÂ·E 2024-09-20 00.51.38 1.png	bcb485d608f4e6a9fa07466d506b9f7b.png	533239	f	\N
+5	2025-02-25 18:46:18.553	2025-02-27 17:14:10.270281	2025-02-27 17:14:10.270281		file	Ð¡Ð°Ð¸ÌÑ ÐÐÐ ÐÐÐ¢ÐÐ ÐÐ (2).zip	365d963b115567f045a97da5b21547b0.zip	567124	f	\N
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	DALLÂ·E 2024-09-20 00.51.38 1.png	270de414d4609e9921623fddb34f905e.png	566808	f	\N
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	DALLÂ·E 2024-09-20 00.51.38 1.png	b66aa2f3800efcb5969fc3933b4e6291.png	645353	f	\N
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	DALLÂ·E 2024-09-20 00.51.38 1.png	c17d994bb918cf12d0eaa40c6f08f4b4.png	444181	f	\N
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	DALLÂ·E 2024-09-20 00.51.38 1.png	3cd4084c1e97b44c01d56dcfc9778f3b.png	548330	f	\N
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	jonas-kakaroto-KIPqvvTOC1s-unsplash.png	7718065781f3ed643cfc2f16136c893a.png	391276	f	\N
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	jonas-kakaroto-KIPqvvTOC1s-unsplash.png	77f24146d9f7ecab201cf9be464dce3d.png	391276	f	\N
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	jonas-kakaroto-KIPqvvTOC1s-unsplash.png	a011ec9cc35d9c1258f5ffeb6adfe342.png	391276	f	\N
+13	2025-02-25 18:46:18.553	2025-02-27 18:16:27.417745	2025-02-27 18:16:27.417745		pdf	policy.pdf	0f3f068b61225c94de2f9108ee0123d2.pdf	9616	f	\N
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		docs	policy.docx	c7b190264abed1f1d6285b9fb577110b.docx	7525	f	\N
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		docs	policy.docx	b1aae3847de1572488f5aaf03066b64e.docx	7525	f	\N
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	linkedin-sales-solutions-NpyF7rjqmq4-unsplash 1.png	2dfb3ccd6eb74468f92b424f33049bc0.png	361705	f	\N
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	jonas-kakaroto-KIPqvvTOC1s-unsplash.png	d499660c915e40db3f45c14d5da2db02.png	391276	f	\N
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png	670973da319cf9784fc8aa7623dd77f3.png	348752	f	\N
+19	2025-02-25 18:46:18.553	2025-02-27 19:57:58.476399	2025-02-27 19:57:58.476399		images	linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png	6b5f8b46043d3081f0f436318068f6fb.png	348752	f	\N
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (2) 1.png	13cc7bf22590c668a7f641ecf4754915.png	515224	f	\N
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (3) 1.png	b6e6290768a0bc8f834ea19efe2445d7.png	434233	f	\N
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	f515b0ab97eef8699c697910f4a38175.png	367598	f	\N
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	ca88ad1cd612627c383985ad09eccd58.png	390548	f	\N
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	a7f6d68ddd390c561737fbd60c5ecd9b.png	384798	f	\N
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	bef29189be1467cf8fc550717ea92ae2.png	302874	f	\N
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	f02bf4de3aa35d4b1616c0112a33754f.png	291995	f	\N
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	8805f1491762fe56012cb99fa2840b4d.png	184414	f	\N
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	e0e7839836114b51b5fee8a9b05d6dda.png	367918	f	\N
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	eaa8a1b674a3f981c838e9ff2e609c82.png	354639	f	\N
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		images	pngwing.com (4) 1.png	f441ff437d92d423c3a5c0693f5f668e.png	302874	f	\N
+\.
+
+
+--
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgress
+--
+
+COPY public.migrations (id, "timestamp", name) FROM stdin;
+1	1740509177262	Auto1740509177262
 \.
 
 
@@ -2498,18 +2381,18 @@ COPY public.library_files (id, "createdAt", "updatedAt", "deletedAt", path, type
 --
 
 COPY public.pages (id, "createdAt", "updatedAt", "deletedAt", name, description, slug, type, "pagePath", "seoId") FROM stdin;
-1	2025-02-06 19:49:13.614	2025-02-06 19:52:21.643785	\N	Главная		home	Landing	""	1
-2	2025-02-06 20:16:54.119	2025-02-06 20:17:33.339925	\N	О компании		about	Landing	""	2
-3	2025-02-06 20:18:02.496	2025-02-06 20:18:26.285481	\N	Контакты		contacts	Landing	""	3
-4	2025-02-06 20:18:48.748	2025-02-06 20:19:21.879482	\N	Политика конфиденциальности		policy	Landing	""	4
-5	2025-02-06 20:19:41.606	2025-02-06 20:20:02.283774	\N	Клиенты		clients	Landing	""	5
-6	2025-02-06 20:20:35.866	2025-02-06 20:20:58.248598	\N	Партнерам		partners	Landing	""	6
-7	2025-02-06 20:21:17.268	2025-02-06 20:21:46.086179	\N	Карьера		career	Landing	""	7
-8	2025-02-19 07:38:13.197	2025-02-19 07:38:41.954787	\N	Новости		news	blog	""	8
-9	2025-02-22 15:16:53.13	2025-02-22 15:16:53.13	\N	Статьи и аналитика		articles-analytics	blog	""	\N
-10	2025-02-22 15:24:13.311	2025-02-22 15:24:13.311	\N	Пресс-релизы		press-release	blog	""	\N
-11	2025-02-23 09:45:03.483	2025-02-23 09:45:03.483	\N	Услуги		service	blog	""	\N
-12	2025-02-24 08:45:02.416	2025-02-24 08:45:02.416	\N	Продукты		products	blog	""	\N
+1	2025-02-25 19:45:01.815	2025-02-25 19:46:01.095491	\N	Главная		home	Landing	""	1
+2	2025-02-25 19:53:18.886	2025-02-25 19:54:01.196223	\N	О компании		about	Landing	""	2
+3	2025-02-25 19:57:16.136	2025-02-25 19:57:41.954919	\N	Контакты		contacts	Landing	""	3
+4	2025-02-25 20:08:24.399	2025-02-25 20:09:08.912987	\N	Политика конфиденциальности		policy	Landing	""	4
+5	2025-02-25 20:11:01.918	2025-02-25 20:11:29.54904	\N	Клиенты		clients	Landing	""	5
+6	2025-02-25 20:14:45.881	2025-02-25 20:15:14.987136	\N	Партнерам		partners	Landing	""	6
+7	2025-02-25 20:18:10.235	2025-02-25 20:18:39.863466	\N	Карьера		career	Landing	""	7
+8	2025-02-25 20:26:03.719	2025-02-25 20:26:33.908564	\N	Новости		news	blog	""	8
+9	2025-02-25 20:29:58.894	2025-02-25 20:29:58.894	\N	Статьи и аналитика		articles-analytics	blog	""	\N
+10	2025-02-25 20:31:13.642	2025-02-25 20:31:13.642	\N	Пресс-релизы		press-release	blog	""	\N
+11	2025-02-25 20:32:50.2	2025-02-25 20:33:18.176978	\N	Услуги		service	blog	""	9
+12	2025-02-25 20:38:57.868	2025-02-25 20:39:26.00428	\N	Продукты		products	blog	""	10
 \.
 
 
@@ -2533,31 +2416,30 @@ COPY public."pages-components" (id, "createdAt", "updatedAt", "deletedAt", "orde
 -- Data for Name: pages_iblock; Type: TABLE DATA; Schema: public; Owner: postgress
 --
 
-COPY public.pages_iblock (id, "createdAt", "updatedAt", "deletedAt", name, slug, "pageId", attributes) FROM stdin;
-1	2025-02-06 19:48:01.55	2025-02-19 19:49:08.088509	2025-02-19 19:49:08.088509	Преимущества 	advantages	1	[{"type":"text","name":"title","fields":{"ru-RU":"Заголовок","en-US":"Title","zh-CN":"Title"},"field":{"ru-RU":"Заголовок","en-US":"Title","zh-CN":"Title"}},{"type":"images","name":"image","fields":{"ru-RU":{"path":"http://localhost:9000/cms/af2aafa78713bac2c359bb96efda090f.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"af2aafa78713bac2c359bb96efda090f.png","size":207506,"deletedAt":null,"id":32,"createdAt":"2025-02-08T15:06:16.218Z","updatedAt":"2025-02-08T15:06:16.218Z","isSystem":false},"en-US":{"path":"http://localhost:9000/cms/af2aafa78713bac2c359bb96efda090f.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"af2aafa78713bac2c359bb96efda090f.png","size":207506,"deletedAt":null,"id":32,"createdAt":"2025-02-08T15:06:16.218Z","updatedAt":"2025-02-08T15:06:16.218Z","isSystem":false},"zh-CN":{"path":"http://localhost:9000/cms/af2aafa78713bac2c359bb96efda090f.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"af2aafa78713bac2c359bb96efda090f.png","size":207506,"deletedAt":null,"id":32,"createdAt":"2025-02-08T15:06:16.218Z","updatedAt":"2025-02-08T15:06:16.218Z","isSystem":false}}}]
-2	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Наши направления деятельности	home-direction	1	\N
-4	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контакты	home-contacts	1	\N
-5	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Актуальные вакансии	job-openings	7	\N
-7	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контакты	career-contcats	7	\N
-8	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Часто задаваемые вопросы (FAQ)	faq	5	\N
-9	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контакты	clients-contacts	5	\N
-10	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Основные контакты	main-contacts	3	\N
-11	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Социальные сети	social	3	\N
-12	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Общие контакты	common-contacts	3	\N
-13	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	О компании	about-company	2	\N
-14	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Ключевые вехи	key-milestones	2	\N
-15	2025-02-07 21:43:47.097	2025-02-08 10:26:53.084676	\N	Команда	command	2	\N
-16	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контакты	partners-contact	6	\N
-17	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Документы	documents	4	\N
-3	2025-02-07 21:43:47.097	2025-02-08 15:19:27.344401	\N	Стратегические проекты	stratagy-project	1	[{"type":"text","name":"title","fields":{"ru-RU":"Стратегические проекты","en-US":"Strategic projects","zh-CN":"策略性项目"},"field":{"ru-RU":"Стратегические проекты","en-US":"Strategic projects","zh-CN":"策略性项目"}},{"type":"images","name":"image","fields":{"ru-RU":{"path":"http://localhost:9000/cms/bf768fcf2dcb1b830b18b730ad6f24a7.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"bf768fcf2dcb1b830b18b730ad6f24a7.png","size":207506,"deletedAt":null,"id":33,"createdAt":"2025-02-08T15:17:40.567Z","updatedAt":"2025-02-08T15:17:40.567Z","isSystem":false},"en-US":{"path":"http://localhost:9000/cms/bf768fcf2dcb1b830b18b730ad6f24a7.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"bf768fcf2dcb1b830b18b730ad6f24a7.png","size":207506,"deletedAt":null,"id":33,"createdAt":"2025-02-08T15:17:40.567Z","updatedAt":"2025-02-08T15:17:40.567Z","isSystem":false},"zh-CN":{"path":"http://localhost:9000/cms/bf768fcf2dcb1b830b18b730ad6f24a7.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"bf768fcf2dcb1b830b18b730ad6f24a7.png","size":207506,"deletedAt":null,"id":33,"createdAt":"2025-02-08T15:17:40.567Z","updatedAt":"2025-02-08T15:17:40.567Z","isSystem":false}}}]
-6	2025-02-07 21:43:47.097	2025-02-08 15:21:43.530809	\N	Истории сотрудников	career-employee	7	[{"type":"text","name":"title","fields":{"ru-RU":"Истории сотрудников","en-US":"Employee stories","zh-CN":"员工故事"},"field":{"ru-RU":"Истории сотрудников","en-US":"Employee stories","zh-CN":"员工故事"}},{"type":"textarea","name":"description","fields":{"ru-RU":"Познакомьтесь с историями успеха наших сотрудников, которые уже стали частью команды SA International","en-US":"Get to know the success stories of our employees who have already become part of the SA International team.","zh-CN":"了解我们已经成为SA国际团队一员的员工的成功故事。"},"field":{"ru-RU":"Познакомьтесь с историями успеха наших сотрудников, которые уже стали частью команды SA International","en-US":"Get to know the success stories of our employees who have already become part of the SA International team.","zh-CN":"了解我们已经成为SA国际团队一员的员工的成功故事。"}}]
-18	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Шапка новостей	header-news	8	\N
-19	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Шапка	header-articles-analytics	9	\N
-20	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Шапка	header-press-release	10	\N
-21	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Социальные сети	news-socail	8	\N
-22	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Контакты	news-contacts	8	\N
-24	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Контакты	service-contacts	11	\N
-23	2025-02-24 08:07:25.591	2025-02-24 08:56:12.427824	\N	Контакты	products-contacts	12	\N
+COPY public.pages_iblock (id, "createdAt", "updatedAt", "deletedAt", name, slug, attributes, "pageId") FROM stdin;
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	О компании	about-company	\N	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ключевые вехи	key-milestones	\N	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Команда	command	\N	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Основные контакты	main-contacts	\N	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Социальные сети	social	\N	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общие контакты	common-contacts	\N	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Документы	documents	\N	4
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Часто задаваемые вопросы (FAQ)	faq	\N	5
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	clients-contacts	\N	5
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	partners-contact	\N	6
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Актуальные вакансии	job-openings	\N	7
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Истории сотрудников	career-employee	[{"type":"text","name":"title","fields":{"ru-RU":"Истории сотрудников","en-US":"Employee stories","zh-CN":"员工故事"},"field":{"ru-RU":"Истории сотрудников","en-US":"Employee stories","zh-CN":"员工故事"}},{"type":"textarea","name":"description","fields":{"ru-RU":"Познакомьтесь с историями успеха наших сотрудников, которые уже стали частью команды SA International","en-US":"Get to know the success stories of our employees who have already become part of the SA International team.","zh-CN":"了解我们已经成为SA国际团队一员的员工的成功故事。"},"field":{"ru-RU":"Познакомьтесь с историями успеха наших сотрудников, которые уже стали частью команды SA International","en-US":"Get to know the success stories of our employees who have already become part of the SA International team.","zh-CN":"了解我们已经成为SA国际团队一员的员工的成功故事。"}}]	7
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	career-contcats	\N	7
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Шапка новостей	header-news	\N	8
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Социальные сети	news-socail	\N	8
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	news-contacts	\N	8
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Шапка	header-articles-analytics	\N	9
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Шапка	header-press-release	\N	10
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	service-contacts	\N	11
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	products-contacts	\N	12
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	home-contacts	\N	1
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Наши направления деятельности	home-direction	\N	1
+2	2025-02-25 18:46:18.553	2025-02-26 09:21:28.617565	\N	Стратегические проекты	stratagy-project	[{"type":"text","name":"title","fields":{"ru-RU":"Стратегические проекты","en-US":"Strategic Projects","zh-CN":"战略项目"},"field":{"ru-RU":"Стратегические проекты","en-US":"Strategic Projects","zh-CN":"战略项目"}},{"type":"images","name":"image","fields":{"ru-RU":{"path":"http://cloud.andreyi96.beget.tech:9000/cms/996fbcad74d59d1479b3fb6730ca8f9b.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"996fbcad74d59d1479b3fb6730ca8f9b.png","size":207506,"id":3,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false},"en-US":{"path":"http://cloud.andreyi96.beget.tech:9000/cms/996fbcad74d59d1479b3fb6730ca8f9b.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"996fbcad74d59d1479b3fb6730ca8f9b.png","size":207506,"id":3,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false},"zh-CN":{"path":"http://cloud.andreyi96.beget.tech:9000/cms/996fbcad74d59d1479b3fb6730ca8f9b.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"996fbcad74d59d1479b3fb6730ca8f9b.png","size":207506,"id":3,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}}}]	1
 \.
 
 
@@ -2566,96 +2448,90 @@ COPY public.pages_iblock (id, "createdAt", "updatedAt", "deletedAt", name, slug,
 --
 
 COPY public.pages_iblock_fields (id, "createdAt", "updatedAt", "deletedAt", name, slug, type, "iblockId") FROM stdin;
-1	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Заголовок	title	text	1
-2	2025-02-06 19:48:01.55	2025-02-06 20:11:38.031107	\N	Описание	description	text	1
-3	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Заголовок	title	text	2
-4	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Список	list	array	2
-5	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Ссылка	link	text	2
-6	2025-02-07 20:39:33.302	2025-02-07 20:39:33.302	\N	Изоображение	image	image	2
-7	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	3
-8	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	3
-9	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	4
-10	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	4
-11	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	phone	text	4
-12	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	email	text	4
-13	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Название	title	text	5
-14	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Местоположение	location	text	5
-15	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Требования	requirements	array	5
-16	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Обязанности	responsibilities	array	5
-17	2025-02-07 21:43:47.097	2025-02-08 08:43:25.269244	\N	Условия	conditions	array	5
-18	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	ФИО	fio	text	6
-19	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Должность	post	text	6
-20	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	6
-21	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Изоображение	image	image	6
-22	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	7
-23	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	phone	text	7
-24	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	email	text	7
-25	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	7
-26	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Доб. к телефону	code-phone	text	7
-27	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Вопрос	question	text	8
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	8
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	9
-30	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	phone	text	9
-31	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	email	text	9
-32	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес	address	text	9
-33	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес	address	text	10
-34	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Ссылка	link	text	10
-35	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Общий телефон	general-phone	text	10
-36	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон отдела продаж	department-phone	text	10
-37	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон технической поддержки	technical-phone	text	10
-38	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Общий email	general-email	text	10
-39	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email отдела продаж	department-email	text	10
-40	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email технической поддержки	technical-email	text	10
-43	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	11
-44	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	11
-45	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Instagram	instagram	text	11
-46	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Discord	discord	text	11
-47	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	VK	vk	text	11
-48	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	LinkedIn	linkedin	text	11
-49	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для общих вопросов	general-email	text	12
-50	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для партнеров	partners-email	text	12
-51	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для клиентов	clients-email	text	12
-52	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для прессы	press-emal	text	12
-54	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	13
-55	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	13
-56	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Год	year	text	14
-57	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	14
-58	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	ФИО	fio	text	15
-59	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Должность	post	text	15
-60	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	description	text	15
-61	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Изоображение	image	image	15
-62	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	E-mail	email	text	16
-63	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	phone	text	16
-64	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес главного офиса	address	text	16
-65	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контактное лицо	user	text	16
-66	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	title	text	17
-67	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание1	description1	text	17
-68	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание2	description2	text	17
-70	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Файл	file	image	17
-69	2025-02-07 21:43:47.097	2025-02-08 10:44:48.778195	\N	Список	list	array	17
-41	2025-02-07 21:43:47.097	2025-02-17 11:45:33.979565	\N	Время работы	time-job	editor	10
-71	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	Заголовок	title	text	16
-42	2025-02-07 21:43:47.097	2025-02-19 07:10:31.967941	\N	Заголовок	title	text	10
-53	2025-02-07 21:43:47.097	2025-02-19 07:30:50.534184	\N	Время работы	workin	editor	12
-72	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Заголовок	title	text	18
-73	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Описание	description	text	18
-74	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	title	text	19
-75	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	description	text	19
-76	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	title	text	20
-77	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	description	text	20
-78	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	title	text	21
-79	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	description	text	21
-80	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	title	text	22
-81	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	description	text	22
-82	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Адрес	address	text	22
-83	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Телефон	phone	text	22
-84	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	E-mail	email	text	22
-85	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	email	text	23
-86	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Телефон	phone	text	23
-87	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Адрес	address	text	23
-88	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	email	text	24
-89	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Телефон	phone	text	24
-90	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Адрес	address	text	24
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Список	list	array	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ссылка	link	text	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	image	image	1
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	email	text	3
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	4
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Год	year	text	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	5
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ФИО	fio	text	6
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Должность	post	text	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	6
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	image	image	6
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	address	text	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ссылка	link	text	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общий телефон	general-phone	text	7
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон отдела продаж	department-phone	text	7
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон технической поддержки	technical-phone	text	7
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общий email	general-email	text	7
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email отдела продаж	department-email	text	7
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email технической поддержки	technical-email	text	7
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Время работы	time-job	editor	7
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	7
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	8
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	8
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для общих вопросов	general-email	text	9
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для партнеров	partners-email	text	9
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для клиентов	clients-email	text	9
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для прессы	press-emal	text	9
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Время работы	workin	editor	9
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	10
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание1	description1	text	10
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание2	description2	text	10
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Список	list	array	10
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Файл	file	image	10
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Вопрос	question	text	11
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	11
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	12
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	12
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	email	text	12
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	address	text	12
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	email	text	13
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	13
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес главного офиса	address	text	13
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контактное лицо	user	text	13
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	13
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Название	title	text	14
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Местоположение	location	text	14
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Требования	requirements	array	14
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Обязанности	responsibilities	array	14
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Условия	conditions	array	14
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ФИО	fio	text	15
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Должность	post	text	15
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	15
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	image	image	15
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	16
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	16
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	email	text	16
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	16
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Доб. к телефону	code-phone	text	16
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	17
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	17
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	18
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	18
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	19
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	19
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	19
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	address	text	19
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	email	text	19
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	20
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	20
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	title	text	21
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	description	text	21
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	email	text	22
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	22
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	address	text	22
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	email	text	23
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	phone	text	23
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	address	text	23
 \.
 
 
@@ -2664,284 +2540,258 @@ COPY public.pages_iblock_fields (id, "createdAt", "updatedAt", "deletedAt", name
 --
 
 COPY public.pages_iblock_fields_label (id, "createdAt", "updatedAt", "deletedAt", value, lang, "fieldId") FROM stdin;
-1	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Заголовок	ru-RU	1
-2	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Title	en-US	1
-3	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Title	zh-CN	1
-5	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Description	en-US	2
-6	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Description	zh-CN	2
-4	2025-02-06 19:48:01.55	2025-02-06 20:11:38.036076	\N	Описание	ru-RU	2
-7	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Title	ru-RU	3
-8	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Title	en-US	3
-9	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Title	zh-CN	3
-10	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Список	ru-RU	4
-11	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	List	en-US	4
-12	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	List	zh-CN	4
-13	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Ссылка	ru-RU	5
-14	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Link	en-US	5
-15	2025-02-07 07:00:23.031	2025-02-07 07:00:23.032	\N	Link	zh-CN	5
-16	2025-02-07 20:39:33.302	2025-02-07 20:39:33.302	\N	Изоображение	ru-RU	6
-17	2025-02-07 20:39:33.302	2025-02-07 20:39:33.302	\N	Image	en-US	6
-18	2025-02-07 20:39:33.302	2025-02-07 20:39:33.302	\N	Image	zh-CN	6
-19	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	7
-20	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	7
-21	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	7
-22	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	8
-23	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	8
-24	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	8
-25	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	9
-26	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	9
-27	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	9
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	10
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	10
-30	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	10
-31	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	ru-RU	11
-32	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	en-US	11
-33	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	zh-CN	11
-34	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	ru-RU	12
-35	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	en-US	12
-36	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	zh-CN	12
-37	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Название	ru-RU	13
-38	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	13
-39	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	13
-40	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Местоположение	ru-RU	14
-41	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Location	en-US	14
-42	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	地点	zh-CN	14
-43	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Требования	ru-RU	15
-44	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Requirements	en-US	15
-45	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	要求	zh-CN	15
-46	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Обязанности	ru-RU	16
-47	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Responsibilities	en-US	16
-48	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	职责	zh-CN	16
-49	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Условия	ru-RU	17
-50	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	条件	zh-CN	17
-51	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Conditions	en-US	17
-52	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	ФИО	ru-RU	18
-53	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	FIO	en-US	18
-54	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	FIO	zh-CN	18
-55	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Post	en-US	19
-56	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Должность	ru-RU	19
-57	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Post	zh-CN	19
-58	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	20
-59	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	20
-60	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	20
-61	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Изоображение	ru-RU	21
-62	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Image	en-US	21
-63	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Image	zh-CN	21
-64	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	22
-65	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	22
-66	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	22
-67	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	ru-RU	23
-68	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	en-US	23
-69	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	zh-CN	23
-70	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	ru-RU	24
-71	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	en-US	24
-72	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	zh-CN	24
-73	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	25
-74	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	25
-75	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	25
-76	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Code Phone	en-US	26
-77	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Доб. к телефону	ru-RU	26
-78	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Code Phone	zh-CN	26
-79	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Вопрос	ru-RU	27
-80	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Question	zh-CN	27
-81	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Question	en-US	27
-82	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	28
-83	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	28
-84	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	28
-85	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	29
-86	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	29
-87	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	29
-88	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	ru-RU	30
-89	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	en-US	30
-90	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	zh-CN	30
-91	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	ru-RU	31
-92	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	en-US	31
-93	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email	zh-CN	31
-94	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес	ru-RU	32
-95	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Address	en-US	32
-96	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Address	zh-CN	32
-97	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес	ru-RU	33
-98	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Address	en-US	33
-99	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	地址	zh-CN	33
-100	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Посмотреть на карте Baidu Maps (https://map.baidu.com/)	ru-RU	34
-101	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	View on the Baidu Maps map (https://map.baidu.com /)	en-US	34
-102	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	在百度地图上查看（https://map.baidu.com /)	zh-CN	34
-103	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Общий	ru-RU	35
-104	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	General	en-US	35
-105	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	一般事务	zh-CN	35
-106	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Отдел продаж:	ru-RU	36
-107	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Sales Department	en-US	36
-111	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	技术支持:	zh-CN	37
-113	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	General	en-US	38
-117	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	销售部	zh-CN	39
-120	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	技术支持:	zh-CN	40
-123	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	工作时间	zh-CN	41
-108	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	销售部	zh-CN	36
-109	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Техническая поддержка:	ru-RU	37
-114	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	一般事务	zh-CN	38
-118	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Техническая поддержка:	ru-RU	40
-110	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Technical support:	en-US	37
-112	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Общий	ru-RU	38
-115	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Отдел продаж:	ru-RU	39
-116	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Sales Department	en-US	39
-119	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Technical support:	en-US	40
-121	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Время работы	ru-RU	41
-122	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Working hours	en-US	41
-124	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	42
-125	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	42
-126	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	42
-127	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	43
-128	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	43
-129	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	43
-130	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	44
-131	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	44
-132	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	44
-133	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Instagram	ru-RU	45
-134	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Instagram	en-US	45
-135	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Instagram	zh-CN	45
-136	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Discord	ru-RU	46
-137	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Discord	en-US	46
-138	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Discord	zh-CN	46
-139	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	VK	ru-RU	47
-140	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	VK	en-US	47
-141	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	VK	zh-CN	47
-142	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	LinkedIn	ru-RU	48
-143	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	LinkedIn	en-US	48
-144	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	LinkedIn	zh-CN	48
-145	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для общих вопросов	ru-RU	49
-146	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email for General Inquiries	en-US	49
-147	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	一般问题邮箱	zh-CN	49
-148	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для партнеров	ru-RU	50
-149	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email for Partners	en-US	50
-150	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	合作伙伴邮箱	zh-CN	50
-151	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для клиентов	ru-RU	51
-152	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	客户邮箱	zh-CN	51
-153	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email for Clients	en-US	51
-154	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email для прессы	ru-RU	52
-155	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Email for Press	en-US	52
-156	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	新闻邮箱	zh-CN	52
-157	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Время работы	ru-RU	53
-158	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Working hours	en-US	53
-159	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	工作时间	zh-CN	53
-160	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	54
-161	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	54
-162	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	54
-163	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	55
-164	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	55
-165	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	55
-166	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Год	ru-RU	56
-167	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Year	en-US	56
-168	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Year	zh-CN	56
-169	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	57
-170	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	57
-171	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	57
-172	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	ФИО	ru-RU	58
-173	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	FIO	en-US	58
-174	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	FIO	zh-CN	58
-175	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Должность	ru-RU	59
-176	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Post	en-US	59
-177	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Post	zh-CN	59
-178	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание	ru-RU	60
-179	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	en-US	60
-180	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description	zh-CN	60
-181	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Изоображение	ru-RU	61
-182	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Image	en-US	61
-183	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Image	zh-CN	61
-184	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	E-mail	ru-RU	62
-185	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	電子郵件	zh-CN	62
-186	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	E-mail	en-US	62
-187	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Телефон	ru-RU	63
-188	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Phone	en-US	63
-189	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	電話	zh-CN	63
-190	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Адрес главного офиса	ru-RU	64
-191	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Main office address	en-US	64
-192	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	总部地址	zh-CN	64
-193	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Контактное лицо	ru-RU	65
-194	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Contact person	en-US	65
-195	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	联系人	zh-CN	65
-196	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Заголовок	ru-RU	66
-197	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	zh-CN	66
-198	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Title	en-US	66
-199	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание1	ru-RU	67
-200	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description1	en-US	67
-201	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description1	zh-CN	67
-202	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Описание2	ru-RU	68
-203	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description2	en-US	68
-204	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Description2	zh-CN	68
-205	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Список	ru-RU	69
-206	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	List	en-US	69
-207	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	List	zh-CN	69
-208	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	Файл	ru-RU	70
-209	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	File	en-US	70
-210	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	File	zh-CN	70
-211	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	Заголовок	ru-RU	71
-212	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	Title	en-US	71
-213	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	Title	zh-CN	71
-214	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Заголовок	ru-RU	72
-215	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Title	zh-CN	72
-216	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Title	en-US	72
-217	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Описание	ru-RU	73
-218	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Description	en-US	73
-219	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	Description	zh-CN	73
-220	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	ru-RU	74
-221	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	zh-CN	74
-222	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	en-US	74
-223	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	ru-RU	75
-225	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	zh-CN	75
-226	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	ru-RU	76
-253	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	ru-RU	85
-258	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	phone	zh-CN	86
-260	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	address	en-US	87
-227	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	en-US	76
-231	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	zh-CN	77
-254	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	en-US	85
-257	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	phone	en-US	86
-261	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	address	zh-CN	87
-228	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	zh-CN	76
-230	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	en-US	77
-255	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	zh-CN	85
-229	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	ru-RU	77
-256	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Телефон	ru-RU	86
-232	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	ru-RU	78
-259	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Адрес	ru-RU	87
-233	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	en-US	78
-237	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	zh-CN	79
-262	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	ru-RU	88
-267	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Phone	zh-CN	89
-269	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Address	en-US	90
-234	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	zh-CN	78
-236	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	en-US	79
-263	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	en-US	88
-266	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Phone	en-US	89
-270	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Address	zh-CN	90
-235	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	ru-RU	79
-264	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Email	zh-CN	88
-238	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Заголовок	ru-RU	80
-242	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	en-US	81
-247	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Телефон	ru-RU	83
-265	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Телефон	ru-RU	89
-239	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	en-US	80
-268	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Адрес	ru-RU	90
-240	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Title	zh-CN	80
-241	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Описание	ru-RU	81
-246	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Address	zh-CN	82
-248	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Phone	en-US	83
-251	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	E-mail	en-US	84
-243	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	zh-CN	81
-245	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Address	en-US	82
-249	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Phone	zh-CN	83
-252	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	E-mail	zh-CN	84
-244	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Адрес	ru-RU	82
-250	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	E-mail	ru-RU	84
-224	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Description	en-US	75
-\.
-
-
---
--- Data for Name: pages_iblock_fields_records; Type: TABLE DATA; Schema: public; Owner: postgress
---
-
-COPY public.pages_iblock_fields_records (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Список	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	List	en-US	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	List	zh-CN	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ссылка	ru-RU	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Link	en-US	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Link	zh-CN	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	en-US	4
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	ru-RU	4
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	zh-CN	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	5
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	5
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	6
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	6
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	7
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	8
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	8
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	8
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	9
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	9
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	9
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	ru-RU	10
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	en-US	10
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	zh-CN	10
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	11
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	11
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	11
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	12
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	12
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	12
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Год	ru-RU	13
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Year	en-US	13
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Year	zh-CN	13
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	14
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	14
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	14
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ФИО	ru-RU	15
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	FIO	en-US	15
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	FIO	zh-CN	15
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Должность	ru-RU	16
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Post	zh-CN	16
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Post	en-US	16
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	17
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	17
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	17
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	ru-RU	18
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	en-US	18
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	zh-CN	18
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	ru-RU	19
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	en-US	19
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	地址	zh-CN	19
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Посмотреть на карте Baidu Maps (https://map.baidu.com/)	ru-RU	20
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	View on Baidu Maps(https://map.baidu.com/)	en-US	20
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	查看在百度地图(https://map.baidu.com/)	zh-CN	20
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общий	ru-RU	21
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	General	en-US	21
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总机	zh-CN	21
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Отдел продаж	ru-RU	22
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Sales Department	en-US	22
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	销售部门	zh-CN	22
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Техническая поддержка	ru-RU	23
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	技术支持	zh-CN	23
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Technical Support	en-US	23
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общий	ru-RU	24
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	General	en-US	24
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总机	zh-CN	24
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Отдел продаж	ru-RU	25
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	销售部门	zh-CN	25
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Sales Department	en-US	25
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Техническая поддержка:	ru-RU	26
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Technical Support	en-US	26
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	技术支持	zh-CN	26
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Время работы	ru-RU	27
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Working hours	en-US	27
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	工作时间	zh-CN	27
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	28
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	28
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	标题	zh-CN	28
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	29
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	29
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	29
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	30
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	30
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	30
+91	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для общих вопросов	ru-RU	31
+92	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email for General Inquiries	en-US	31
+93	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	一般问题邮箱	zh-CN	31
+94	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email for Partners	en-US	32
+95	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	合作伙伴邮箱	zh-CN	32
+96	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для партнеров	ru-RU	32
+97	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для клиентов	ru-RU	33
+98	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email for Clients	en-US	33
+99	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户邮箱	zh-CN	33
+100	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email для прессы	ru-RU	34
+101	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email for Press	en-US	34
+102	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	新闻邮箱	zh-CN	34
+103	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Working hourse	en-US	35
+104	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	工作时间	zh-CN	35
+105	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Время работы	ru-RU	35
+106	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	36
+107	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	36
+108	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	36
+109	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание1	ru-RU	37
+110	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description1	en-US	37
+111	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description1	zh-CN	37
+113	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description2	zh-CN	38
+112	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание2	ru-RU	38
+114	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description2	en-US	38
+115	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Список	ru-RU	39
+116	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	List	en-US	39
+117	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	List	zh-CN	39
+118	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	File	zh-CN	40
+119	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	File	en-US	40
+120	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Файл	ru-RU	40
+121	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Вопрос	ru-RU	41
+122	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Question	en-US	41
+123	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Question	zh-CN	41
+124	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	42
+125	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	42
+126	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	42
+127	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	43
+128	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	43
+129	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	43
+130	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	44
+131	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	44
+132	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	44
+133	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	en-US	45
+134	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	zh-CN	45
+135	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	ru-RU	45
+136	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	ru-RU	46
+137	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	en-US	46
+138	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	zh-CN	46
+139	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	ru-RU	47
+140	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	en-US	47
+141	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	电子邮件	zh-CN	47
+142	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	48
+143	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	电话	zh-CN	48
+144	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	48
+145	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес главного офиса	ru-RU	49
+146	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Main office address	en-US	49
+147	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总部地址	zh-CN	49
+148	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контактное лицо	ru-RU	50
+149	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Contact person	en-US	50
+150	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	联系人	zh-CN	50
+151	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	51
+152	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	标题	zh-CN	51
+153	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	51
+154	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Название	ru-RU	52
+155	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	标题	zh-CN	52
+156	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Location	en-US	53
+157	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Местоположение	ru-RU	53
+158	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	52
+159	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	地点	zh-CN	53
+160	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Требования	ru-RU	54
+161	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Requirements	en-US	54
+162	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	要求	zh-CN	54
+163	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Обязанности	ru-RU	55
+164	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Responsibilities	en-US	55
+165	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	职责	zh-CN	55
+166	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Условия	ru-RU	56
+167	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Conditions	en-US	56
+168	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	条件	zh-CN	56
+169	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ФИО	ru-RU	57
+170	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	FIO	en-US	57
+171	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	FIO	zh-CN	57
+172	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Должность	ru-RU	58
+173	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Post	en-US	58
+174	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Post	zh-CN	58
+175	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	59
+176	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	59
+177	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	59
+178	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Изоображение	ru-RU	60
+179	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	en-US	60
+180	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Image	zh-CN	60
+181	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	61
+182	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	61
+183	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	61
+184	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	62
+185	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	62
+186	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	62
+187	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	ru-RU	63
+188	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	zh-CN	63
+189	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	en-US	63
+190	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	64
+191	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	64
+192	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	64
+193	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Доб. к телефону	ru-RU	65
+194	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Code Phone	zh-CN	65
+195	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Code Phone	en-US	65
+196	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	66
+197	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	66
+198	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	66
+199	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	67
+200	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	67
+201	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	67
+202	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	68
+203	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	68
+204	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	68
+205	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	69
+206	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	69
+207	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	69
+208	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	70
+209	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	70
+210	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	70
+211	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	71
+212	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	71
+216	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	72
+213	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	71
+215	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	72
+220	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	ru-RU	74
+214	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	72
+217	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	en-US	73
+221	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	en-US	74
+218	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	ru-RU	73
+219	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	zh-CN	73
+222	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	E-mail	zh-CN	74
+223	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	75
+224	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	75
+225	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	75
+226	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	76
+227	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	76
+228	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	76
+229	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Заголовок	ru-RU	77
+230	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	en-US	77
+231	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Title	zh-CN	77
+232	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	zh-CN	78
+233	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Описание	ru-RU	78
+234	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Description	en-US	78
+235	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	ru-RU	79
+236	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	en-US	79
+237	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	zh-CN	79
+238	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	80
+239	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	80
+240	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	80
+241	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	ru-RU	81
+242	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	en-US	81
+243	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	zh-CN	81
+244	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	ru-RU	82
+245	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	en-US	82
+246	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Email	zh-CN	82
+247	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Телефон	ru-RU	83
+248	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	en-US	83
+249	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Phone	zh-CN	83
+250	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Адрес	ru-RU	84
+251	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	zh-CN	84
+252	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Address	en-US	84
 \.
 
 
@@ -2949,63 +2799,65 @@ COPY public.pages_iblock_fields_records (id, "createdAt", "updatedAt", "deletedA
 -- Data for Name: pages_iblock_records; Type: TABLE DATA; Schema: public; Owner: postgress
 --
 
-COPY public.pages_iblock_records (id, "createdAt", "updatedAt", "deletedAt", "iblockId", sort) FROM stdin;
-1	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	0
-2	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	2	0
-3	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	2	1
-4	2025-02-07 21:43:47.097	2025-02-08 08:21:59.294193	\N	2	2
-5	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	2	3
-6	2025-02-07 21:43:47.097	2025-02-08 08:25:15.847266	\N	2	4
-7	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	3	0
-8	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	3	0
-9	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	4	0
-10	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	5	0
-11	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	0
-12	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	1
-13	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	3
-14	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	7	0
-15	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	0
-16	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	1
-17	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	2
-18	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	3
-19	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	4
-20	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	5
-21	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	0
-22	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	1
-23	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	0
-24	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	0
-25	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	0
-27	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	2
-26	2025-02-07 21:43:47.097	2025-02-08 10:02:46.321104	\N	10	1
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	3
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	0
-30	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	0
-31	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	0
-32	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	0
-33	2025-02-07 21:43:47.097	2025-02-08 10:23:18.118826	\N	14	1
-34	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	2
-35	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	3
-36	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	4
-37	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	0
-38	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	1
-39	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	3
-40	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	0
-41	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	0
-42	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	1
-46	2025-02-18 20:04:44.607	2025-02-18 20:40:49.989304	2025-02-18 20:40:49.989304	16	1
-45	2025-02-18 20:04:44.607	2025-02-18 20:40:52.931314	2025-02-18 20:40:52.931314	16	1
-44	2025-02-18 20:04:44.607	2025-02-18 20:40:55.830193	2025-02-18 20:40:55.830193	16	0
-43	2025-02-18 20:04:44.607	2025-02-18 20:41:03.574554	\N	16	1
-47	2025-02-18 20:41:43.531	2025-02-18 20:42:17.209564	2025-02-18 20:42:17.209564	16	1
-48	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	16	2
-49	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	16	3
-50	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	18	0
-51	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	19	0
-52	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	21	0
-53	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	22	0
-54	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	20	0
-55	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	23	0
-56	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	24	0
+COPY public.pages_iblock_records (id, "createdAt", "updatedAt", "deletedAt", sort, "iblockId") FROM stdin;
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	1
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	1
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	4
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	5
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	5
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	5
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	5
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	6
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	6
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	7
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	7
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	8
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	9
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	10
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	10
+27	2025-02-25 18:46:18.553	2025-02-27 18:40:17.437464	2025-02-27 18:40:17.437464	0	11
+26	2025-02-25 18:46:18.553	2025-02-27 18:40:47.242189	2025-02-27 18:40:47.242189	1	11
+25	2025-02-25 18:46:18.553	2025-02-27 18:42:35.947375	2025-02-27 18:42:35.947375	0	11
+28	2025-02-25 18:46:18.553	2025-02-27 18:42:38.963802	2025-02-27 18:42:38.963802	1	11
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	11
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	11
+31	2025-02-25 18:46:18.553	2025-02-27 18:44:31.097549	2025-02-27 18:44:31.097549	2	11
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	11
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	11
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	11
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	11
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	12
+37	2025-02-25 18:46:18.553	2025-02-27 18:54:33.931224	\N	1	12
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	12
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	12
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	13
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	13
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	13
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	13
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	14
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	14
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	14
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	15
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	15
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	15
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	16
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	17
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	18
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	19
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	20
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	21
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	22
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	23
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	0	2
 \.
 
 
@@ -3014,230 +2866,224 @@ COPY public.pages_iblock_records (id, "createdAt", "updatedAt", "deletedAt", "ib
 --
 
 COPY public.pages_iblock_records_field (id, "createdAt", "updatedAt", "deletedAt", "recordId", "fieldId") FROM stdin;
-1	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	1
-2	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	2
-3	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	2	3
-4	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	2	4
-5	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	2	5
-6	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	3
-7	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	4
-8	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	5
-9	2025-02-07 21:39:35.328	2025-02-07 21:39:35.328	\N	3	6
-10	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	2	6
-11	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	4	3
-12	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	4	4
-13	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	4	5
-14	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	4	6
-15	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	5	3
-16	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	5	4
-17	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	5	5
-18	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	5	6
-19	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	3
-20	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	4
-21	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	5
-22	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	6	6
-23	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	7	7
-24	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	7	8
-25	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	7
-26	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	8	8
-27	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	9
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	10
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	11
-30	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	9	12
-31	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	13
-32	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	14
-33	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	15
-34	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	16
-35	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	17
-36	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	18
-37	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	19
-38	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	20
-39	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	21
-40	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	18
-41	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	19
-42	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	20
-43	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	21
-44	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	18
-45	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	19
-46	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	20
-47	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	21
-48	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	22
-49	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	23
-50	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	24
-51	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	25
-52	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	14	26
-53	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	27
-54	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	28
-55	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	27
-56	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	28
-57	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	27
-58	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	28
-59	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	18	27
-60	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	18	28
-61	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	19	27
-62	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	19	28
-63	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	20	27
-64	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	20	28
-65	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	29
-66	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	30
-67	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	31
-68	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	32
-69	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	22	29
-70	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	22	30
-71	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	22	31
-72	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	22	32
-73	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	29
-74	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	30
-75	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	31
-76	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	32
-77	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	29
-78	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	30
-79	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	31
-80	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	32
-81	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	33
-82	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	34
-83	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	35
-84	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	36
-85	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	37
-86	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	38
-87	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	39
-88	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	40
-89	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	41
-90	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	42
-91	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	33
-92	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	34
-93	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	35
-94	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	36
-95	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	37
-96	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	38
-97	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	39
-98	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	40
-99	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	41
-100	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	42
-101	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	33
-102	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	34
-103	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	35
-104	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	36
-105	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	37
-106	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	38
-107	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	39
-108	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	40
-109	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	41
-110	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	42
-111	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	33
-112	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	34
-113	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	35
-114	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	36
-115	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	37
-116	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	38
-117	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	39
-118	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	40
-119	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	41
-120	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	42
-121	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	43
-122	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	44
-123	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	45
-124	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	46
-125	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	47
-126	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	48
-127	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	49
-128	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	50
-129	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	51
-130	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	52
-131	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	53
-132	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	31	54
-133	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	31	55
-134	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	32	56
-135	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	32	57
-136	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	33	56
-137	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	33	57
-138	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	34	56
-139	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	34	57
-140	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	35	56
-141	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	35	57
-142	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	36	56
-143	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	36	57
-144	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	58
-145	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	59
-146	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	60
-147	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	61
-148	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	58
-149	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	59
-150	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	60
-151	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	61
-152	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	58
-153	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	59
-154	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	60
-155	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	61
-156	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	62
-157	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	63
-158	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	64
-159	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	65
-160	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	66
-161	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	67
-162	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	68
-163	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	69
-164	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	70
-165	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	66
-166	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	67
-167	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	68
-168	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	69
-169	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	70
-170	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	43	62
-171	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	43	63
-172	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	43	64
-173	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	43	65
-174	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	43	71
-175	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	44	62
-176	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	44	63
-177	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	44	64
-178	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	44	65
-179	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	44	71
-180	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	45	62
-181	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	45	63
-182	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	45	64
-183	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	45	65
-184	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	45	71
-185	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	46	62
-186	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	46	63
-187	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	46	64
-188	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	46	65
-189	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	46	71
-190	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	47	62
-191	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	47	63
-192	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	47	64
-193	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	47	65
-194	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	47	71
-195	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	48	62
-196	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	48	63
-197	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	48	64
-198	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	48	65
-199	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	48	71
-200	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	40	71
-201	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	49	62
-202	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	49	63
-203	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	49	64
-204	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	49	65
-205	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	49	71
-206	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	50	72
-207	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	50	73
-208	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	51	74
-209	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	51	75
-210	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	52	78
-211	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	52	79
-212	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	53	80
-213	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	53	81
-214	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	53	82
-215	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	53	83
-216	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	53	84
-217	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	54	76
-218	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	54	77
-219	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	55	85
-220	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	55	86
-221	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	55	87
-222	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	56	88
-223	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	56	89
-224	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	56	90
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	2
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	3
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	4
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	1
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	4
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	1
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	2
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	3
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	1
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	2
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	3
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	4
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	1
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	2
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	3
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	4
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	5
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	6
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	7
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	8
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	9
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	10
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	11
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	12
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	13
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	14
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	13
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	14
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	13
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	14
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	13
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	14
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	13	13
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	13	14
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	14	15
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	14	16
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	14	17
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	14	18
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	15	15
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	15	16
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	15	17
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	15	18
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	16	15
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	16	16
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	16	17
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	16	18
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	19
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	20
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	21
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	22
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	23
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	24
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	25
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	26
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	27
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	17	28
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	19
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	20
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	21
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	22
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	23
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	24
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	25
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	26
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	27
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	18	28
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	19
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	20
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	21
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	22
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	23
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	24
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	25
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	26
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	27
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	19	28
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	19
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	20
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	21
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	22
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	23
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	24
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	25
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	26
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	27
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	20	28
+91	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	21	29
+92	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	21	30
+93	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	22	31
+94	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	22	32
+95	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	22	33
+96	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	22	34
+97	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	22	35
+98	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	23	36
+99	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	23	37
+100	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	23	38
+101	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	23	39
+102	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	23	40
+103	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	24	36
+104	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	24	37
+105	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	24	38
+106	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	24	39
+107	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	24	40
+108	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	25	41
+109	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	25	42
+110	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	26	41
+111	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	26	42
+112	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	27	41
+113	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	27	42
+114	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	28	41
+115	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	28	42
+116	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	29	41
+117	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	29	42
+118	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	30	41
+119	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	30	42
+120	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	31	41
+121	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	31	42
+122	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	32	41
+123	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	32	42
+124	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	33	41
+125	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	33	42
+126	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	34	41
+127	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	34	42
+128	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	35	41
+129	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	35	42
+130	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	36	43
+131	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	36	44
+132	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	36	45
+133	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	36	46
+134	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	37	43
+135	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	37	44
+136	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	37	45
+137	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	37	46
+138	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	38	43
+139	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	38	44
+140	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	38	45
+141	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	38	46
+142	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	39	43
+143	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	39	44
+144	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	39	45
+145	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	39	46
+146	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	40	47
+147	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	40	48
+148	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	40	49
+149	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	40	50
+150	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	40	51
+151	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	41	47
+152	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	41	48
+153	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	41	49
+154	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	41	50
+155	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	41	51
+156	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	42	47
+157	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	42	48
+158	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	42	49
+159	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	42	50
+160	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	42	51
+161	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	43	47
+162	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	43	48
+163	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	43	49
+164	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	43	50
+165	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	43	51
+166	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	44	52
+167	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	44	53
+168	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	44	54
+169	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	44	55
+170	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	44	56
+171	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	45	52
+172	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	45	53
+173	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	45	54
+174	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	45	55
+175	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	45	56
+176	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	46	52
+177	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	46	53
+178	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	46	54
+179	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	46	55
+180	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	46	56
+181	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	47	57
+182	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	47	58
+183	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	47	59
+184	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	47	60
+185	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	48	57
+186	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	48	58
+187	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	48	59
+188	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	48	60
+189	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	49	57
+190	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	49	58
+191	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	49	59
+192	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	49	60
+193	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	50	61
+194	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	50	62
+195	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	50	63
+196	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	50	64
+197	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	50	65
+198	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	51	66
+199	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	51	67
+200	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	52	68
+201	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	52	69
+202	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	53	70
+203	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	53	71
+204	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	53	72
+205	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	53	73
+206	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	53	74
+207	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	54	75
+208	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	54	76
+209	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	55	77
+210	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	55	78
+211	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	56	79
+212	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	56	80
+213	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	56	81
+214	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	57	82
+215	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	57	83
+216	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	57	84
+217	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	58	5
+218	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	58	6
 \.
 
 
@@ -3245,715 +3091,661 @@ COPY public.pages_iblock_records_field (id, "createdAt", "updatedAt", "deletedAt
 -- Data for Name: pages_iblock_records_field_value; Type: TABLE DATA; Schema: public; Owner: postgress
 --
 
-COPY public.pages_iblock_records_field_value (id, "createdAt", "updatedAt", "deletedAt", "recordFieldId", lang, value) FROM stdin;
-1	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	ru-RU	1. Комплексные решения
-2	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	en-US	1. Comprehensive Solutions
-3	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	1	zh-CN	1. 全面解决方案
-4	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	2	ru-RU	Мы предлагаем полный спектр услуг — от разработки концепции до запуска и обслуживания оборудования.
-5	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	2	en-US	We offer a full range of services—from concept development to equipment launch and maintenance.
-6	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	2	zh-CN	我们提供从概念设计到设备启动与维护的全套服务。
-7	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	ru-RU	Дорожное оборудование
-8	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	en-US	Road equipment
-9	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	3	zh-CN	道路设备
-10	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	4	ru-RU	Асфальтовые заводы;Дорожные катки;Фрезы
-11	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	4	en-US	Asphalt plants;Road rinks;Milling cutters
-12	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	4	zh-CN	沥青厂;道路溜冰场;铣刀/铣刀
-13	2025-02-07 20:05:15.353	2025-02-07 20:35:24.918348	\N	5	ru-RU	/home
-14	2025-02-07 20:05:15.353	2025-02-07 20:35:24.92518	\N	5	en-US	/home
-15	2025-02-07 20:05:15.353	2025-02-07 20:35:24.927349	\N	5	zh-CN	/home
-16	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	6	ru-RU	Металлургическое оборудование
-17	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	6	en-US	Metallurgical equipment
-18	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	6	zh-CN	冶金设备
-19	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	7	ru-RU	Плавильные печи;Прокатные станы;Обрабатывающие центры
-20	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	7	en-US	Melting furnaces;Rolling mills;Processing centers
-21	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	7	zh-CN	熔炼炉;轧机;加工中心
-22	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	8	ru-RU	/
-23	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	8	en-US	/
-24	2025-02-07 20:05:15.353	2025-02-07 20:05:15.353	\N	8	zh-CN	/
-25	2025-02-07 21:39:35.328	2025-02-08 08:10:09.314806	\N	9	ru-RU	{"path":"http://localhost:9000/cms/fee30b83dabf20a4de8bd54ed7b681eb.png","type":"images","name":"direction-sllide3.png","filename":"fee30b83dabf20a4de8bd54ed7b681eb.png","size":572060,"deletedAt":null,"id":19,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-26	2025-02-07 21:39:35.328	2025-02-08 08:10:09.320278	\N	9	en-US	{"path":"http://localhost:9000/cms/fee30b83dabf20a4de8bd54ed7b681eb.png","type":"images","name":"direction-sllide3.png","filename":"fee30b83dabf20a4de8bd54ed7b681eb.png","size":572060,"deletedAt":null,"id":19,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-27	2025-02-07 21:39:35.328	2025-02-08 08:10:09.323309	\N	9	zh-CN	{"path":"http://localhost:9000/cms/fee30b83dabf20a4de8bd54ed7b681eb.png","type":"images","name":"direction-sllide3.png","filename":"fee30b83dabf20a4de8bd54ed7b681eb.png","size":572060,"deletedAt":null,"id":19,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-31	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	ru-RU	Горнодобывающее оборудование
-32	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	en-US	Mining equipment
-33	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	11	zh-CN	采矿设备
-34	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	ru-RU	Дробильные установки;Конвейерные системы;Обогатительное оборудование
-35	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	en-US	Crushing plants;Conveyor systems;Processing equipment
-36	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	12	zh-CN	破碎设备;输送系统;加工设备
-37	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	ru-RU	/
-38	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	en-US	/
-39	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	13	zh-CN	/
-42	2025-02-07 21:43:47.097	2025-02-08 08:21:59.301595	\N	14	zh-CN	{"path":"http://localhost:9000/cms/0f7d9c2df4ab36205a8549da11643e97.png","type":"images","name":"direction-sllide4.png","filename":"0f7d9c2df4ab36205a8549da11643e97.png","size":383186,"deletedAt":null,"id":20,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-43	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	ru-RU	Пищевое оборудование
-44	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	en-US	Food processing equipment
-28	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	ru-RU	{"path":"http://localhost:9000/cms/184c4dd28c52993c0f575905f9107138.png","type":"images","name":"direction-sllide1.png","filename":"184c4dd28c52993c0f575905f9107138.png","size":477111,"deletedAt":null,"id":17,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-29	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	en-US	{"path":"http://localhost:9000/cms/184c4dd28c52993c0f575905f9107138.png","type":"images","name":"direction-sllide1.png","filename":"184c4dd28c52993c0f575905f9107138.png","size":477111,"deletedAt":null,"id":17,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-30	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	10	zh-CN	{"path":"http://localhost:9000/cms/184c4dd28c52993c0f575905f9107138.png","type":"images","name":"direction-sllide1.png","filename":"184c4dd28c52993c0f575905f9107138.png","size":477111,"deletedAt":null,"id":17,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-40	2025-02-07 21:43:47.097	2025-02-08 08:21:59.297339	\N	14	ru-RU	{"path":"http://localhost:9000/cms/0f7d9c2df4ab36205a8549da11643e97.png","type":"images","name":"direction-sllide4.png","filename":"0f7d9c2df4ab36205a8549da11643e97.png","size":383186,"deletedAt":null,"id":20,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-41	2025-02-07 21:43:47.097	2025-02-08 08:21:59.299562	\N	14	en-US	{"path":"http://localhost:9000/cms/0f7d9c2df4ab36205a8549da11643e97.png","type":"images","name":"direction-sllide4.png","filename":"0f7d9c2df4ab36205a8549da11643e97.png","size":383186,"deletedAt":null,"id":20,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-45	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	15	zh-CN	食品加工设备
-46	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	ru-RU	Линии для производства пищевых продуктов;Упаковочные машины
-47	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	en-US	Food production lines;Packaging machines
-48	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	16	zh-CN	食品生产线;包装机
-49	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	ru-RU	/
-50	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	en-US	/
-51	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	17	zh-CN	/
-268	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	90	ru-RU	Шанхай (Главный офис)
-269	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	90	zh-CN	上海（总部）
-270	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	90	en-US	Shanghai (Main Office)
-358	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	120	ru-RU	Благовещенск
-52	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	18	ru-RU	{"path":"http://localhost:9000/cms/1c0b7cdd15533106c4b5af3f70b9e8c9.png","type":"images","name":"direction-sllide5.png","filename":"1c0b7cdd15533106c4b5af3f70b9e8c9.png","size":483775,"deletedAt":null,"id":21,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-53	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	18	en-US	{"path":"http://localhost:9000/cms/1c0b7cdd15533106c4b5af3f70b9e8c9.png","type":"images","name":"direction-sllide5.png","filename":"1c0b7cdd15533106c4b5af3f70b9e8c9.png","size":483775,"deletedAt":null,"id":21,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-54	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	18	zh-CN	{"path":"http://localhost:9000/cms/1c0b7cdd15533106c4b5af3f70b9e8c9.png","type":"images","name":"direction-sllide5.png","filename":"1c0b7cdd15533106c4b5af3f70b9e8c9.png","size":483775,"deletedAt":null,"id":21,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-55	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	19	ru-RU	Строительное оборудование
-56	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	19	en-US	Construction Equipment
-57	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	19	zh-CN	建筑设备
-58	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	20	ru-RU	Бетонные заводы;Смесительные системы;Бетоносмесители
-59	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	20	en-US	Concrete Plants;Mixing Systems;Concrete Mixers
-60	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	20	zh-CN	混凝土搅拌站;混合系统;混凝土搅拌机
-61	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	ru-RU	/
-62	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	en-US	/
-63	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	21	zh-CN	/
-64	2025-02-07 21:43:47.097	2025-02-08 08:25:15.850283	\N	22	ru-RU	{"path":"http://localhost:9000/cms/5f444d616b1246ff642347834993248c.png","type":"images","name":"direction-sllide1 (1).png","filename":"5f444d616b1246ff642347834993248c.png","size":477111,"deletedAt":null,"id":22,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-65	2025-02-07 21:43:47.097	2025-02-08 08:25:15.856125	\N	22	en-US	{"path":"http://localhost:9000/cms/5f444d616b1246ff642347834993248c.png","type":"images","name":"direction-sllide1 (1).png","filename":"5f444d616b1246ff642347834993248c.png","size":477111,"deletedAt":null,"id":22,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-66	2025-02-07 21:43:47.097	2025-02-08 08:25:15.858773	\N	22	zh-CN	{"path":"http://localhost:9000/cms/5f444d616b1246ff642347834993248c.png","type":"images","name":"direction-sllide1 (1).png","filename":"5f444d616b1246ff642347834993248c.png","size":477111,"deletedAt":null,"id":22,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-67	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	ru-RU	Создание бартерной биржи
-68	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	en-US	Creation of a Barter Exchange
-69	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	23	zh-CN	建立易货交易平台
-70	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	ru-RU	Совместно с ведущими компаниями мы инвестировали в создание инновационной бартерной биржи, которая позволит предприятиям эффективно обмениваться товарами и услугами.
-71	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	en-US	Together with leading companies, we have invested in developing an innovative barter exchange, enabling businesses to efficiently trade goods and services.
-72	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	24	zh-CN	与领先企业合作，我们投资开发创新的易货交易平台，使企业能够高效交换商品与服务。
-73	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	ru-RU	Строительство завода роботов-манипуляторов в России
-74	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	en-US	Construction of a Robot Manipulator Factory in Russia
-75	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	25	zh-CN	在俄罗斯建设机器人手臂工厂
-76	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	ru-RU	Мы начинаем строительство завода по производству роботизированных рук в России, стремясь к полной локализации производства к 2028 году и развитию промышленного потенциала региона.
-77	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	en-US	We are launching the construction of a factory for robotic arms in Russia, aiming for full production localization by 2028 and contributing to the region's industrial potential.
-78	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	26	zh-CN	我们正在启动机器人手臂制造厂的建设，目标是在2028年实现生产的全面本地化，并推动该地区的工业潜力发展。
-79	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	ru-RU	SA International
-80	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	zh-CN	SA International
-81	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	27	en-US	SA International
-82	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	ru-RU	— Ваш проводник в мире инновационных промышленных решений
-83	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	zh-CN	-您的创新工业解决方案引导者
-84	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	28	en-US	— Your Guide to Innovative Industrial Solutions
-85	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	ru-RU	+86-21-5432-2755
-86	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	en-US	+86-21-5432-2755
-87	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	29	zh-CN	+86-21-5432-2755
-88	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	ru-RU	info@inter-sa.com
-89	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	en-US	info@inter-sa.com
-90	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	30	zh-CN	info@inter-sa.com
-91	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	31	ru-RU	Директор по продажам
-92	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	31	zh-CN	销售总监
-93	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	31	en-US	Sales Director
-94	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	32	ru-RU	Шанхай, Китай
-95	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	32	en-US	Shanghai, China
-96	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	32	zh-CN	中国上海
-97	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	33	ru-RU	 - Навыки стратегического мышления и лидерства; - Опыт работы на руководящей позиции в продажах не менее 5 лет; - Высшее образование в области маркетинга, экономики или управления; - Знание английского и/или китайского языков на высоком уровне
-98	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	33	en-US	- Strategic thinking and leadership skills;- At least 5 years of experience in a sales management position;- Higher education in marketing, economics or management;- High level knowledge of English and/or Chinese languages
-99	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	33	zh-CN	-战略思维和领导能力;-5年以上销售管理工作经验;-市场营销，经济或管理的高等教育;-高水平的英语和/或中文知识
-603	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	189	zh-CN	电话
-100	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	34	ru-RU	 - Разработка и реализация стратегии продаж; - Управление командой менеджеров по продажам; - Установление и поддержание отношений с ключевыми клиентами; - Анализ рынка и поиск новых возможностей для развития бизнеса
-101	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	34	en-US	- Development and implementation of a sales strategy;- Managing a team of sales managers;- Establishing and maintaining relationships with key clients;- Market analysis and search for new business development opportunities
-102	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	34	zh-CN	-制定和实施销售策略;-管理销售经理团队;-与主要客户建立及维持关系;-市场分析及寻找新的业务发展机会
-103	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	35	ru-RU	 - Конкурентоспособная заработная плата; - Бонусы по результатам работы; - Социальный пакет и медицинская страховка; - Возможности для профессионального роста
-104	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	35	zh-CN	-有竞争力的薪酬;-基于工作成果的奖金;-社会福利及医疗保险;-专业成长的机会
-105	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	35	en-US	- Competitive salary;- Bonuses based on work results;- Social package and medical insurance;- Opportunities for professional growth
-106	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	36	ru-RU	Марина Смирнова 
-107	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	36	en-US	Marina Smirnova
-108	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	36	zh-CN	玛丽娜*斯米尔诺娃
-109	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	en-US	Account Manager
-110	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	ru-RU	Менеджер по работе с клиентами
-111	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	37	zh-CN	客户经理
-112	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	ru-RU	Когда я присоединилась к SA International два года назад, я и не предполагала, насколько быстро смогу вырасти профессионально. Компания предоставляет все возможности для обучения и развития. Я работаю с клиентами из разных стран, что позволяет постоянно расширять свой кругозор и приобретать новый опыт.
-113	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	en-US	When I joined SA International two years ago, I had no idea how quickly I would be able to grow professionally. The company provides all the opportunities for training and development. I work with clients from different countries, which allows me to constantly expand my horizons and gain new experience.
-114	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	38	zh-CN	当我两年前加入SA International时，我不知道我能以多快的速度专业成长。 公司提供所有培训和发展的机会。 我与来自不同国家的客户合作，这使我能够不断拓展视野并获得新的经验。
-115	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	ru-RU	{"path":"http://localhost:9000/cms/e9328a420e4b6e837068792ae736ee4e.png","type":"images","name":"employee1.png","filename":"e9328a420e4b6e837068792ae736ee4e.png","size":311628,"deletedAt":null,"id":23,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-116	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	en-US	{"path":"http://localhost:9000/cms/e9328a420e4b6e837068792ae736ee4e.png","type":"images","name":"employee1.png","filename":"e9328a420e4b6e837068792ae736ee4e.png","size":311628,"deletedAt":null,"id":23,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-117	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	39	zh-CN	{"path":"http://localhost:9000/cms/e9328a420e4b6e837068792ae736ee4e.png","type":"images","name":"employee1.png","filename":"e9328a420e4b6e837068792ae736ee4e.png","size":311628,"deletedAt":null,"id":23,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-118	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	ru-RU	Иван Ковалев
-119	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	en-US	Ivan Kovalev
-120	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	40	zh-CN	伊万*科瓦廖夫
-121	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	en-US	Automation Engineer
-122	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	ru-RU	Инженер по автоматизации
-123	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	41	zh-CN	自动化工程师
-124	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	ru-RU	Работа в SA International — это постоянный вызов и возможность участвовать в передовых проектах. Особенно интересно было работать над проектом по внедрению искусственного интеллекта в производственные процессы. Команда профессионалов и поддержка руководства делают работу здесь по-настоящему увлекательной.
-125	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	en-US	Working at SA International is a constant challenge and an opportunity to participate in cutting—edge projects. It was especially interesting to work on a project to introduce artificial intelligence into production processes. The professional team and management support make the work here really exciting.
-126	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	42	zh-CN	在SA International工作是一个持续的挑战，也是参与尖端项目的机会。 参与一个将人工智能引入生产过程的项目尤其有趣。 专业的团队和管理支持使这里的工作非常令人兴奋。
-127	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	43	ru-RU	{"path":"http://localhost:9000/cms/1f326340add2ab34f6d84fc374f2349f.png","type":"images","name":"employee2.png","filename":"1f326340add2ab34f6d84fc374f2349f.png","size":331924,"deletedAt":null,"id":24,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-128	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	43	en-US	{"path":"http://localhost:9000/cms/1f326340add2ab34f6d84fc374f2349f.png","type":"images","name":"employee2.png","filename":"1f326340add2ab34f6d84fc374f2349f.png","size":331924,"deletedAt":null,"id":24,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-129	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	43	zh-CN	{"path":"http://localhost:9000/cms/1f326340add2ab34f6d84fc374f2349f.png","type":"images","name":"employee2.png","filename":"1f326340add2ab34f6d84fc374f2349f.png","size":331924,"deletedAt":null,"id":24,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-130	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	44	ru-RU	Лю Чэнь
-131	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	44	en-US	Liu Chen
-132	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	44	zh-CN	刘晨
-133	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	45	en-US	Logistics Specialist
-134	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	45	ru-RU	Специалист по логистике
-135	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	45	zh-CN	物流专家
-356	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	119	en-US	Monday – Friday: 9:00 – 18:00 Saturday: 10:00 – 16:00 Sunday: closed
-136	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	46	ru-RU	SA International дала мне возможность реализовать себя в международной логистике. Здесь ценят инициативу и стремление к совершенству. Я горжусь тем, что являюсь частью компании, которая активно развивается и покоряет новые рынки.
-137	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	46	en-US	SA International gave me the opportunity to realize myself in international logistics. Initiative and striving for excellence are appreciated here. I am proud to be a part of a company that is actively developing and conquering new markets.
-138	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	46	zh-CN	SA International让我有机会在国际物流中实现自己。 这里赞赏主动性和追求卓越. 我很自豪能成为一家积极开发和征服新市场的公司的一员。
-139	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	47	ru-RU	{"path":"http://localhost:9000/cms/33087b1bfaf3c4f22d15884a7603d16a.png","type":"images","name":"employee3.png","filename":"33087b1bfaf3c4f22d15884a7603d16a.png","size":293021,"deletedAt":null,"id":25,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-140	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	47	en-US	{"path":"http://localhost:9000/cms/33087b1bfaf3c4f22d15884a7603d16a.png","type":"images","name":"employee3.png","filename":"33087b1bfaf3c4f22d15884a7603d16a.png","size":293021,"deletedAt":null,"id":25,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-141	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	47	zh-CN	{"path":"http://localhost:9000/cms/33087b1bfaf3c4f22d15884a7603d16a.png","type":"images","name":"employee3.png","filename":"33087b1bfaf3c4f22d15884a7603d16a.png","size":293021,"deletedAt":null,"id":25,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-142	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	48	ru-RU	Контактная информация отдела кадров
-143	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	48	zh-CN	人力资源部联系信息
-144	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	48	en-US	HR DEPARTMENT CONTACT INFORMATION
-145	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	49	ru-RU	+86-21-5432-2755
-146	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	49	en-US	+86-21-5432-2755
-147	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	49	zh-CN	+86-21-5432-2755
-148	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	50	ru-RU	hr@inter-sa.com
-149	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	50	en-US	hr@inter-sa.com
-150	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	50	zh-CN	hr@inter-sa.com
-151	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	51	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-152	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	51	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-153	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	51	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-154	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	52	en-US	812
-155	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	52	ru-RU	812
-156	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	52	zh-CN	812
-157	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	53	ru-RU	Как сделать заказ?
-158	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	53	zh-CN	如何下订单？
-159	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	53	en-US	How do I place an order?
-160	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	54	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-161	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	54	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-162	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	54	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-163	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	55	ru-RU	Какие способы оплаты доступны?
-164	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	55	zh-CN	有哪些付款方式？
-165	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	55	en-US	What payment methods are available?
-166	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	56	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-167	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	56	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-168	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	56	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-169	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	57	ru-RU	Какова средняя продолжительность доставки?
-170	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	57	zh-CN	平均交货时间是多少?
-171	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	57	en-US	What is the average delivery time?
-172	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	58	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-173	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	58	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-174	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	58	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-175	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	59	ru-RU	Что делать, если оборудование не работает корректно?
-176	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	59	zh-CN	如果硬件无法正常工作，我该怎么办？
-177	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	59	en-US	What should I do if the hardware is not working correctly?
-178	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	60	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-179	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	60	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-180	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	60	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-181	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	61	ru-RU	Как заказать запасные части?
-182	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	61	zh-CN	如何订购备件？
-183	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	61	en-US	How do I order spare parts?
-604	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	190	ru-RU	
-605	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	190	zh-CN	
-606	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	190	en-US	
-184	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	62	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-185	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	62	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-186	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	62	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-187	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	63	ru-RU	Предоставляете ли вы услуги по установке и наладке оборудования?
-188	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	63	zh-CN	你们提供设备安装和调整服务吗?
-189	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	63	en-US	Do you provide equipment installation and adjustment services?
-190	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	64	ru-RU	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com
-191	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	64	en-US	You can place an order by contacting our sales department at +86-21-5432-2755 (ext. 813) or by sending a request to sales@inter-sa.com
-192	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	64	zh-CN	您可以致电+86-21-5432-2755（分机）与我们的销售部联系。 813)或通过向sales@inter-sa.com
-193	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	65	ru-RU	Служба поддержки
-194	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	65	en-US	Support Service
-195	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	65	zh-CN	客户支持服务：
-196	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	66	ru-RU	+86-5432-2755
-197	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	66	en-US	+86-5432-2755
-198	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	66	zh-CN	+86-5432-2755
-199	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	67	ru-RU	support@inter-sa.com
-200	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	67	en-US	support@inter-sa.com
-201	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	67	zh-CN	support@inter-sa.com
-202	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	68	ru-RU	
-203	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	68	en-US	
-204	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	68	zh-CN	
-205	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	69	ru-RU	Отдел запасных частей
-208	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	70	ru-RU	
-209	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	70	en-US	
-210	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	70	zh-CN	
-211	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	71	ru-RU	parts@inter-sa.com
-212	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	71	en-US	parts@inter-sa.com
-213	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	71	zh-CN	parts@inter-sa.com
-214	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	72	ru-RU	
-215	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	72	en-US	
-216	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	72	zh-CN	
-206	2025-02-07 21:43:47.097	2025-02-08 09:32:43.378314	\N	69	en-US	Spare Parts Department
-207	2025-02-07 21:43:47.097	2025-02-08 09:32:43.384906	\N	69	zh-CN	备件部门：
-217	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	73	ru-RU	Общие вопросы
-218	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	73	en-US	General ibquiries
-219	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	73	zh-CN	一般咨询：
-220	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	74	ru-RU	
-221	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	74	en-US	
-222	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	74	zh-CN	
-223	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	75	ru-RU	info@inter-sa.com
-224	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	75	en-US	info@inter-sa.com
-225	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	75	zh-CN	info@inter-sa.com
-226	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	76	ru-RU	
-227	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	76	en-US	
-228	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	76	zh-CN	
-229	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	77	ru-RU	Адрес главного офиса
-230	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	77	en-US	Main office address
-231	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	77	zh-CN	总部地址：
-232	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	78	ru-RU	
-233	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	78	en-US	
-234	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	78	zh-CN	
-235	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	79	ru-RU	
-236	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	79	en-US	
-237	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	79	zh-CN	
-238	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	80	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-239	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	80	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-240	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	80	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-241	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	81	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-242	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	81	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-243	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	81	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-244	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	82	ru-RU	/
-245	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	82	en-US	/
-246	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	82	zh-CN	/
-247	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	83	ru-RU	+86 (021) 5432 2755
-248	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	83	en-US	+86 (021) 5432 2755
-249	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	83	zh-CN	+86 (021) 5432 2755
-250	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	84	ru-RU	+86 (021) 5432 2755
-251	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	84	en-US	+86 (021) 5432 2755
-252	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	84	zh-CN	+86 (021) 5432 2755
-253	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	85	ru-RU	+86 (021) 5432 2755
-254	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	85	en-US	+86 (021) 5432 2755
-255	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	85	zh-CN	+86 (021) 5432 2755
-256	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	86	ru-RU	info@inter-sa.com
-257	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	86	en-US	info@inter-sa.com
-258	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	86	zh-CN	info@inter-sa.com
-259	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	87	ru-RU	sales@inter-sa.com
-260	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	87	en-US	sales@inter-sa.com
-261	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	87	zh-CN	sales@inter-sa.com
-262	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	88	ru-RU	 support@inter-sa.com
-263	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	88	en-US	 support@inter-sa.com
-264	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	88	zh-CN	 support@inter-sa.com
-357	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	119	zh-CN	星期一至五:9:00-18:00 星期六:10:00-16:00 星期日:休息
-271	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	91	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-272	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	91	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-273	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	91	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-274	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	92	ru-RU	/
-275	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	92	en-US	/
-276	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	92	zh-CN	/
-277	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	93	ru-RU	+86 (021) 5432 2755
-278	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	93	en-US	+86 (021) 5432 2755
-279	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	93	zh-CN	+86 (021) 5432 2755
-280	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	94	ru-RU	+86 (021) 5432 2755
-281	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	94	en-US	+86 (021) 5432 2755
-282	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	94	zh-CN	+86 (021) 5432 2755
-283	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	95	ru-RU	+86 (021) 5432 2755
-284	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	95	en-US	+86 (021) 5432 2755
-285	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	95	zh-CN	+86 (021) 5432 2755
-286	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	96	ru-RU	info@inter-sa.com
-287	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	96	en-US	info@inter-sa.com
-288	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	96	zh-CN	info@inter-sa.com
-289	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	97	ru-RU	sales@inter-sa.com
-290	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	97	en-US	sales@inter-sa.com
-291	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	97	zh-CN	sales@inter-sa.com
-292	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	98	ru-RU	 support@inter-sa.com
-293	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	98	en-US	 support@inter-sa.com
-294	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	98	zh-CN	 support@inter-sa.com
-295	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	99	ru-RU	Понедельник – Пятница: 9:00 – 18:00 Суббота: 10:00 – 16:00 Воскресенье: выходной
-296	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	99	en-US	Monday – Friday: 9:00 – 18:00 Saturday: 10:00 – 16:00 Sunday: closed
-297	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	99	zh-CN	星期一至五:9:00-18:00 星期六:10:00-16:00 星期日:休息
-298	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	100	ru-RU	ИУ
-299	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	100	zh-CN	义乌 
-300	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	100	en-US	YIWU
-301	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	101	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-302	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	101	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-303	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	101	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-304	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	102	ru-RU	/
-305	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	102	en-US	/
-306	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	102	zh-CN	/
-307	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	103	ru-RU	+86 (021) 5432 2755
-308	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	103	en-US	+86 (021) 5432 2755
-309	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	103	zh-CN	+86 (021) 5432 2755
-310	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	104	ru-RU	+86 (021) 5432 2755
-311	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	104	en-US	+86 (021) 5432 2755
-312	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	104	zh-CN	+86 (021) 5432 2755
-313	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	105	ru-RU	+86 (021) 5432 2755
-314	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	105	en-US	+86 (021) 5432 2755
-315	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	105	zh-CN	+86 (021) 5432 2755
-316	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	106	ru-RU	info@inter-sa.com
-317	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	106	en-US	info@inter-sa.com
-318	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	106	zh-CN	info@inter-sa.com
-319	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	107	ru-RU	sales@inter-sa.com
-320	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	107	en-US	sales@inter-sa.com
-321	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	107	zh-CN	sales@inter-sa.com
-322	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	108	ru-RU	 support@inter-sa.com
-323	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	108	en-US	 support@inter-sa.com
-324	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	108	zh-CN	 support@inter-sa.com
-325	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	109	ru-RU	Понедельник – Пятница: 9:00 – 18:00 Суббота: 10:00 – 16:00 Воскресенье: выходной
-326	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	109	en-US	Monday – Friday: 9:00 – 18:00 Saturday: 10:00 – 16:00 Sunday: closed
-327	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	109	zh-CN	星期一至五:9:00-18:00 星期六:10:00-16:00 星期日:休息
-328	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	110	ru-RU	Гонконг
-329	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	110	zh-CN	Hong Kong
-330	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	110	en-US	香港
-331	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	111	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-332	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	111	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-333	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	111	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-334	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	112	ru-RU	/
-335	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	112	en-US	/
-336	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	112	zh-CN	/
-337	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	113	ru-RU	+86 (021) 5432 2755
-338	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	113	en-US	+86 (021) 5432 2755
-339	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	113	zh-CN	+86 (021) 5432 2755
-340	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	114	ru-RU	+86 (021) 5432 2755
-341	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	114	en-US	+86 (021) 5432 2755
-342	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	114	zh-CN	+86 (021) 5432 2755
-343	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	115	ru-RU	+86 (021) 5432 2755
-344	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	115	en-US	+86 (021) 5432 2755
-345	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	115	zh-CN	+86 (021) 5432 2755
-346	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	116	ru-RU	info@inter-sa.com
-347	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	116	en-US	info@inter-sa.com
-348	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	116	zh-CN	info@inter-sa.com
-349	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	117	ru-RU	sales@inter-sa.com
-350	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	117	en-US	sales@inter-sa.com
-351	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	117	zh-CN	sales@inter-sa.com
-352	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	118	ru-RU	 support@inter-sa.com
-353	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	118	en-US	 support@inter-sa.com
-354	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	118	zh-CN	 support@inter-sa.com
-355	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	119	ru-RU	Понедельник – Пятница: 9:00 – 18:00 Суббота: 10:00 – 16:00 Воскресенье: выходной
-359	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	120	zh-CN	布拉戈维申斯克
-360	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	120	en-US	Blagoveshchensk
-361	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	121	ru-RU	Социальные сети
-362	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	121	zh-CN	社交网络
-363	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	121	en-US	Social network
-364	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	122	ru-RU	Следите за нами в социальных сетях, чтобы получать оперативные обновления и участвовать в обсуждения
-365	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	122	en-US	Follow us on social media to receive live updates and participate in discussions.
-366	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	122	zh-CN	在社交媒体上关注我们，以接收实时更新并参与讨论。
-367	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	123	ru-RU	/
-368	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	123	en-US	/
-369	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	123	zh-CN	/
-370	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	124	ru-RU	/
-371	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	124	en-US	/
-372	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	124	zh-CN	/
-373	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	125	ru-RU	/
-374	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	125	en-US	/
-375	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	125	zh-CN	/
-376	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	126	ru-RU	/
-377	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	126	en-US	/
-378	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	126	zh-CN	/
-379	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	127	ru-RU	info@inter-sa.com
-380	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	127	en-US	info@inter-sa.com
-381	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	127	zh-CN	info@inter-sa.com
-382	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	128	ru-RU	partners@inter-sa.com
-383	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	128	en-US	partners@inter-sa.com
-384	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	128	zh-CN	partners@inter-sa.com
-385	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	129	ru-RU	support@inter-sa.com
-386	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	129	zh-CN	support@inter-sa.com
-387	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	129	en-US	support@inter-sa.com
-388	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	130	ru-RU	press@inter-sa.com
-389	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	130	en-US	press@inter-sa.com
-390	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	130	zh-CN	press@inter-sa.com
-394	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	132	ru-RU	История компании
-395	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	132	en-US	Company History
-396	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	132	zh-CN	公司历史
-397	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	133	ru-RU	Основанная в 2020 году, компания SA International (上海亚际机电有限公司) начала свой путь как часть SIBC Group, фокусируясь на предоставлении консалтинговых услуг и подборе промышленного оборудования для различных отраслей. Наша цель с самого начала заключалась в том, чтобы стать надежным партнером для предприятий по всему миру, предлагая инновационные решения и высокий уровень сервиса.
-398	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	133	en-US	Founded in 2020, SA International (上海亚际机电有限公司) began its journey as part of SIBC Group, focusing on providing consulting services and selecting industrial equipment for various industries. From the very start, our goal has been to become a reliable partner for businesses worldwide, offering innovative solutions and high-quality service.
-399	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	133	zh-CN	上海亚际机电有限公司成立于2020年，起初作为SIBC集团的一部分，专注于为各行业提供咨询服务和工业设备选型。自公司成立以来，我们的目标是成为全球企业的可靠合作伙伴，提供创新解决方案和高质量服务。
-400	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	134	ru-RU	2020
-401	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	134	en-US	2020
-402	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	134	zh-CN	2020
-403	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	135	ru-RU	Основание SA International в составе SIBC Group в Шанхае. Открытие первого зарубежного офиса в Благовещенске, Россия, что позволило нам укрепить позиции на рынке СНГ.
-404	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	135	en-US	Founding of SA International as part of SIBC Group in Shanghai. The opening of the first foreign office in Blagoveshchensk, Russia, allowed us to strengthen our position in the CIS market.
-405	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	135	zh-CN	成立SA国际作为SIBC集团在上海的一部分. 在俄罗斯布拉戈维申斯克开设的第一家外国办事处使我们能够加强我们在独联体市场的地位。
-406	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	136	ru-RU	2021
-407	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	136	en-US	2021
-408	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	136	zh-CN	2021
-409	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	137	ru-RU	Запуск собственного производства вилочных погрузчиков и конвейерных лент, расширение продуктовой линейки.
-410	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	137	en-US	Launch of own production of forklifts and conveyor belts, expansion of the product line.
-411	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	137	zh-CN	推出自己生产的叉车和输送带,扩大生产线.
-412	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	138	ru-RU	2022
-413	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	138	en-US	2022
-414	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	138	zh-CN	2022
-415	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	139	ru-RU	Начало внедрения инновационных технологий с использованием искусственного интеллекта в производственные процессы.
-416	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	139	en-US	The beginning of the introduction of innovative technologies using artificial intelligence in production processes.
-417	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	139	zh-CN	在生产过程中引入使用人工智能的创新技术的开始。
-418	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	140	ru-RU	2023
-419	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	140	en-US	2023
-420	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	140	zh-CN	2023
-466	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	156	ru-RU	partners@inter-sa.com
-467	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	156	zh-CN	partners@inter-sa.com
-468	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	156	en-US	partners@inter-sa.com
-393	2025-02-07 21:43:47.097	2025-02-19 07:31:36.971527	\N	131	zh-CN	星期一至五:9:00-18:00&nbsp;<div>星期六:10–00-16:00(只限总办事处)&nbsp;</div><div>星期日:休息</div>
-421	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	141	ru-RU	Участие в Восточном Экономическом Форуме. Подписание договоров с правительством Российской Федерации о строительстве завода по производству портового оборудования.
-422	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	141	en-US	Participation in the Eastern Economic Forum. Signing of agreements with the Government of the Russian Federation on the construction of a plant for the production of port equipment.
-423	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	141	zh-CN	参加东方经济论坛。 与俄罗斯联邦政府签署关于建造港口设备生产工厂的协议。
-424	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	142	ru-RU	2024
-425	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	142	en-US	2024
-426	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	142	zh-CN	2024
-427	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	143	ru-RU	Создание бартерной биржи совместно с партнерами, инвестиции в размере 5 млн юаней для развития проекта. Подготовка к строительству завода по производству роботизированных рук в России с целью полной локализации производства к 2028 году. Расширение международного присутствия, планирование открытия офисов в Москве и Крыму, увеличение штата сотрудников до 50 человек. Открытие офисов в Гонконге и Иу.
-428	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	143	en-US	Creation of a barter exchange together with partners, investments in the amount of 5 million yuan for the development of the project. Preparations for the construction of a plant for the production of robotic arms in Russia with the aim of fully localizing production by 2028. Expanding its international presence, planning the opening of offices in Moscow and Crimea, and increasing its staff to 50 people. Opening of offices in Hong Kong and Yiwu.
-429	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	143	zh-CN	与合作伙伴一起创建易货交换，投资金额为500万元，用于项目的开发。 准备在俄罗斯建造一个生产机器人手臂的工厂，目的是到2028年完全本地化生产。 扩大其国际存在，计划在莫斯科和克里米亚开设办事处，并将其员工增加到50人。 在香港和义乌开设办事处。
-430	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	144	ru-RU	Куроедов Евгений
-431	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	144	en-US	Kuroedov Evgeny
-432	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	144	zh-CN	黑田东彦叶夫根尼
-433	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	145	ru-RU	Генеральный директор
-434	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	145	en-US	General manager
-435	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	145	zh-CN	总经理
-436	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	146	ru-RU	Более 10 лет опыта в управлении международными проектами и стратегическом развитии
-437	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	146	en-US	More than 10 years of experience in international project management and strategic development
-438	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	146	zh-CN	超过10年的国际项目管理和战略发展经验
-439	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	147	ru-RU	{"path":"http://localhost:9000/cms/df51f069abaaeef886b214e9b8fb2ddf.png","type":"images","name":"employee2.png","filename":"df51f069abaaeef886b214e9b8fb2ddf.png","size":331924,"deletedAt":null,"id":26,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-440	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	147	en-US	{"path":"http://localhost:9000/cms/df51f069abaaeef886b214e9b8fb2ddf.png","type":"images","name":"employee2.png","filename":"df51f069abaaeef886b214e9b8fb2ddf.png","size":331924,"deletedAt":null,"id":26,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-441	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	147	zh-CN	{"path":"http://localhost:9000/cms/df51f069abaaeef886b214e9b8fb2ddf.png","type":"images","name":"employee2.png","filename":"df51f069abaaeef886b214e9b8fb2ddf.png","size":331924,"deletedAt":null,"id":26,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-442	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	148	ru-RU	Дудник Игорь
-443	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	148	en-US	Igor Dudnik
-444	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	148	zh-CN	伊戈尔*杜德尼克
-445	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	149	ru-RU	Операционный директор
-446	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	149	en-US	Chief Operating Officer
-447	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	149	zh-CN	总营运主任
-448	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	150	ru-RU	Эксперт в области инновационных технологий с опытом работы в ведущих мировых компаниях
-449	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	150	en-US	An expert in the field of innovative technologies with experience in leading global companies
-450	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	150	zh-CN	创新技术领域的专家，在全球领先的公司有经验
-451	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	151	ru-RU	{"path":"http://localhost:9000/cms/c85a6640a65a2a7d074132d399e08dd3.png","type":"images","name":"employee3.png","filename":"c85a6640a65a2a7d074132d399e08dd3.png","size":293021,"deletedAt":null,"id":27,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-452	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	151	en-US	{"path":"http://localhost:9000/cms/c85a6640a65a2a7d074132d399e08dd3.png","type":"images","name":"employee3.png","filename":"c85a6640a65a2a7d074132d399e08dd3.png","size":293021,"deletedAt":null,"id":27,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-453	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	151	zh-CN	{"path":"http://localhost:9000/cms/c85a6640a65a2a7d074132d399e08dd3.png","type":"images","name":"employee3.png","filename":"c85a6640a65a2a7d074132d399e08dd3.png","size":293021,"deletedAt":null,"id":27,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-454	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	152	ru-RU	Гаврилов Дмитрий
-455	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	152	en-US	Gavrilov Dmitry
-456	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	152	zh-CN	加夫里洛夫德米特里
-457	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	153	ru-RU	Директор по развитию бизнеса
-458	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	153	en-US	Director of Business Development
-459	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	153	zh-CN	业务发展总监
-460	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	154	ru-RU	Специалист по международным рынкам и построению эффективных партнерских отношений
-461	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	154	en-US	Specialist in international markets and building effective partnerships
-462	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	154	zh-CN	国际市场专家，建立有效的伙伴关系
-463	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	155	ru-RU	
-464	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	155	en-US	
-465	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	155	zh-CN	
-478	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	160	ru-RU	Политика конфиденциальности
-479	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	160	zh-CN	隐私政策
-480	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	160	en-US	Privacy Policy
-481	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	161	ru-RU	Политика конфиденциальности описывает, какие данные мы собираем, как мы их используем, храним и защищаем
-482	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	161	en-US	Our Privacy Policy explains what data we collect, how we use, store, and protect it.
-483	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	161	zh-CN	隐私政策描述了我们收集哪些数据、如何使用、存储以及保护这些数据。
-484	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	162	ru-RU	Мы стремимся обеспечить безопасность вашей персональной информации и соблюдать все применимые законы и нормативные акты в области защиты данных
-485	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	162	en-US	We are committed to safeguarding your personal information and adhering to all applicable data protection laws and regulations.
-486	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	162	zh-CN	我们致力于确保您的个人信息安全，并遵守所有适用的数据保护法律和法规。
-493	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	zh-CN	信息收集和使用：我们在您访问网站或使用服务时收集哪些数据及其用途。;Cookie 和类似技术：我们如何使用 Cookie 改善网站的使用体验。;向第三方传递数据：我们在何种条件下会将您的数据传递给合作伙伴和服务商。;数据安全：保护您的信息免遭未经授权访问的措施。;用户权利：如何管理、更新或删除您的数据。;政策变更：我们如何通知您隐私政策的变更。;联系信息：如何就隐私相关问题与我们联系。
-494	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	en-US	Information Collection and Use: Details on the data we collect when you visit our website or use our services, and the purposes for which it is collected.;Cookies and Similar Technologies: How we use cookies to enhance your browsing experience.;Data Sharing with Third Parties: Conditions under which we may share your data with partners and service providers.;Data Security: Measures taken to protect your information from unauthorized access;User Rights: How you can manage, update, or delete your personal data.;Policy Updates: How we will notify you of changes to our Privacy Policy.;Contact Information: How to reach us for questions related to privacy.
-495	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	ru-RU	Сбор и использование информации: какие данные мы собираем при посещении нашего сайта или использовании услуг, и с какой целью;Файлы cookie и аналогичные технологии: как мы используем файлы cookie для улучшения работы сайта;Передача данных третьим лицам: условия, при которых мы можем передавать ваши данные партнерам или сервисам;Безопасность данных: меры, предпринимаемые для защиты вашей информации от несанкционированного доступа;Права пользователей: как вы можете управлять своими данными, обновлять или удалять их;Изменения в политике: как мы будем информировать вас об изменениях в нашей Политике конфиденциальности;Контактная информация: как связаться с нами по вопросам, связанным с конфиденциальностью
-491	2025-02-07 21:43:47.097	2025-02-18 19:15:51.083099	\N	164	en-US	{"path":"http://localhost:9000/cms/c175b3d6a6639d91d951d4186b5f5020.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"c175b3d6a6639d91d951d4186b5f5020.docx","size":127336,"deletedAt":null,"id":28,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-490	2025-02-07 21:43:47.097	2025-02-18 19:15:51.089874	\N	164	ru-RU	{"path":"http://localhost:9000/cms/c175b3d6a6639d91d951d4186b5f5020.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"c175b3d6a6639d91d951d4186b5f5020.docx","size":127336,"deletedAt":null,"id":28,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-587	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	184	en-US	Phone
-496	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	165	ru-RU	Пользовательское соглашение
-499	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	166	ru-RU	Пользовательское соглашение устанавливает правила и условия использования нашего веб-сайта и предоставляемых нами сервисов
-500	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	166	en-US	Our User Agreement sets out the rules and conditions for using our website and services. Reviewing this document will help you understand your rights and obligations when interacting with our company.
-501	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	166	zh-CN	用户协议 用户协议规定了使用我们网站和服务的规则和条件。阅读该文件将帮助您了解与我们公司互动时的权利和义务
-497	2025-02-07 21:43:47.097	2025-02-18 14:03:12.116567	\N	165	zh-CN	用户协议
-498	2025-02-07 21:43:47.097	2025-02-18 14:03:12.128377	\N	165	en-US	Our User Agreement
-492	2025-02-07 21:43:47.097	2025-02-18 19:15:51.076167	\N	164	zh-CN	{"path":"http://localhost:9000/cms/c175b3d6a6639d91d951d4186b5f5020.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"c175b3d6a6639d91d951d4186b5f5020.docx","size":127336,"deletedAt":null,"id":28,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-588	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	184	zh-CN	电话
-589	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	185	ru-RU	
-590	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	185	zh-CN	
-591	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	185	en-US	
-592	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	186	ru-RU	+86-5432-2755
-470	2025-02-07 21:43:47.097	2025-02-18 20:45:10.481777	\N	157	en-US	
-471	2025-02-07 21:43:47.097	2025-02-18 20:45:10.484908	\N	157	zh-CN	
-472	2025-02-07 21:43:47.097	2025-02-18 20:45:10.487626	\N	158	ru-RU	
-473	2025-02-07 21:43:47.097	2025-02-18 20:45:10.491391	\N	158	en-US	
-474	2025-02-07 21:43:47.097	2025-02-18 20:45:10.495308	\N	158	zh-CN	
-475	2025-02-07 21:43:47.097	2025-02-18 20:45:10.498407	\N	159	ru-RU	
-476	2025-02-07 21:43:47.097	2025-02-18 20:45:10.501192	\N	159	en-US	
-477	2025-02-07 21:43:47.097	2025-02-18 20:45:10.503892	\N	159	zh-CN	
-502	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	167	ru-RU	Ознакомление с этим документом поможет вам понять свои права и обязанности при взаимодействии с нашей компанией
-503	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	167	en-US	Reading this document will help you understand your rights and obligations when interacting with our company
-504	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	167	zh-CN	阅读本文档将帮助您了解您在与我们公司互动时的权利和义务
-511	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	ru-RU	Общие положения: сфера действия соглашения, определения основных терминов;Права и обязанности пользователей: правила поведения на сайте, ответственность за предоставляемую информацию;Права и обязанности компании: наши обязательства перед пользователями, право на изменение контента и условий;Интеллектуальная собственность: правила использования материалов, размещенных на сайте;Ограничение ответственности: условия, при которых компания не несет ответственности за определенные действия или события;Порядок разрешения споров: механизмы урегулирования возможных разногласий;Изменения в соглашении: процедура внесения изменений и уведомления пользователей;Применимое законодательство: указание юрисдикции и применимых законов
-512	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	en-US	General Provisions: Scope of the agreement, definitions of key terms.;User Rights and Responsibilities: Website behavior rules and accountability for provided information.;Company Rights and Responsibilities: Our commitments to users, including the right to modify content and terms.;Intellectual Property: Guidelines for using materials published on the website.;Liability Disclaimer: Conditions under which the company is not responsible for certain actions or events.;Dispute Resolution: Mechanisms for resolving potential disagreements.;Agreement Modifications: Procedures for making changes and notifying users.;Applicable Law: Jurisdiction and governing laws.
-513	2025-02-07 21:43:47.097	2025-02-07 21:43:47.097	\N	\N	zh-CN	一般规定： 协议的适用范围，基本术语的定义。;用户的权利和义务： 网站行为规则和对提供信息的责任。;公司的权利和义务： 我们对用户的承诺，以及修改内容和条款的权利。;知识产权： 网站上发布的材料使用规则。;责任限制： 公司不对某些行为或事件承担责任的条件。;争议解决程序： 解决潜在分歧的机制。;争议解决程序： 解决潜在分歧的机制。;适用法律： 指定的司法管辖权和适用法律。
-520	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	test
-521	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	{""}
-517	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	 
-265	2025-02-07 21:43:47.097	2025-02-17 11:49:05.537461	\N	89	ru-RU	Понедельник – Пятница: 9:00 – 18:00&nbsp;<div>Суббота: 10:00 – 16:00&nbsp;</div><div>Воскресенье: выходной</div>
-266	2025-02-07 21:43:47.097	2025-02-17 11:49:05.539144	\N	89	en-US	Monday – Friday: 9:00 – 18:00&nbsp;<div>Saturday: 10:00 – 16:00&nbsp;</div><div>Sunday: closed</div>
-267	2025-02-07 21:43:47.097	2025-02-17 11:49:13.20128	\N	89	zh-CN	星期一至五:9:00-18:00&nbsp;<div>星期六:10:00-16:00</div><div>星期日:休息</div>
-509	2025-02-07 21:43:47.097	2025-02-18 19:18:55.28737	\N	169	en-US	{"path":"http://localhost:9000/cms/5918bdb0f5f1a72df4bd1893c652e9fc.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"5918bdb0f5f1a72df4bd1893c652e9fc.docx","size":127336,"deletedAt":null,"id":29,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-510	2025-02-07 21:43:47.097	2025-02-18 19:18:55.290499	\N	169	zh-CN	{"path":"http://localhost:9000/cms/5918bdb0f5f1a72df4bd1893c652e9fc.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"5918bdb0f5f1a72df4bd1893c652e9fc.docx","size":127336,"deletedAt":null,"id":29,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-593	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	186	en-US	+86-5432-2755
-518	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	 
-522	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	{""}
-594	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	186	zh-CN	+86-5432-2755
-514	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	 
-515	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	 
-516	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	 
-538	2025-02-18 14:14:20.414	2025-02-18 14:14:20.414	\N	\N	ru-RU	test
-519	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	 
-535	2025-02-18 14:10:01.824	2025-02-18 14:10:01.824	\N	\N	ru-RU	test
-526	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	test
-527	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	test
-529	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	test;test1
-523	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	test
-524	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	test
-525	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	test
-532	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	ru-RU	test
-528	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	test
-539	2025-02-18 14:14:20.414	2025-02-18 14:14:20.414	\N	\N	en-US	test
-530	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	test;test1
-531	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	test;test1
-595	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	187	ru-RU	
-533	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	en-US	test
-534	2025-02-18 12:54:07.504	2025-02-18 12:54:07.504	\N	\N	zh-CN	test
-536	2025-02-18 14:10:01.824	2025-02-18 14:10:01.824	\N	\N	en-US	test
-537	2025-02-18 14:10:01.824	2025-02-18 14:10:01.824	\N	\N	zh-CN	test
-541	2025-02-18 14:14:53.994	2025-02-18 14:14:53.994	\N	\N	ru-RU	test
-540	2025-02-18 14:14:20.414	2025-02-18 14:14:20.414	\N	\N	zh-CN	test
-596	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	187	en-US	
-542	2025-02-18 14:14:53.994	2025-02-18 14:14:53.994	\N	\N	en-US	test
-543	2025-02-18 14:14:53.994	2025-02-18 14:14:53.994	\N	\N	zh-CN	tset
-506	2025-02-07 21:43:47.097	2025-02-18 19:18:55.272127	\N	168	en-US	General Provisions: Scope of the agreement, definitions of key terms.;User Rights and Responsibilities: Website behavior rules and accountability for provided information.;Company Rights and Responsibilities: Our commitments to users, including the right to modify content and terms.;Intellectual Property: Guidelines for using materials published on the website.;Liability Disclaimer: Conditions under which the company is not responsible for certain actions or events.;Dispute Resolution: Mechanisms for resolving potential disagreements.;Agreement Modifications: Procedures for making changes and notifying users.;Applicable Law: Jurisdiction and governing laws.
-597	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	187	zh-CN	
-598	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	188	ru-RU	
-599	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	188	en-US	
-600	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	188	zh-CN	
-601	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	189	ru-RU	Телефон
-602	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	189	en-US	Phone
-487	2025-02-07 21:43:47.097	2025-02-18 19:15:51.057817	\N	163	ru-RU	Сбор и использование информации: какие данные мы собираем при посещении нашего сайта или использовании услуг, и с какой целью;Файлы cookie и аналогичные технологии: как мы используем файлы cookie для улучшения работы сайта;Передача данных третьим лицам: условия, при которых мы можем передавать ваши данные партнерам или сервисам;Безопасность данных: меры, предпринимаемые для защиты вашей информации от несанкционированного доступа;Права пользователей: как вы можете управлять своими данными, обновлять или удалять их;Изменения в политике: как мы будем информировать вас об изменениях в нашей Политике конфиденциальности;Контактная информация: как связаться с нами по вопросам, связанным с конфиденциальностью
-488	2025-02-07 21:43:47.097	2025-02-18 19:15:51.06497	\N	163	en-US	Information Collection and Use: Details on the data we collect when you visit our website or use our services, and the purposes for which it is collected.;Cookies and Similar Technologies: How we use cookies to enhance your browsing experience.;Data Sharing with Third Parties: Conditions under which we may share your data with partners and service providers.;Data Security: Measures taken to protect your information from unauthorized access;User Rights: How you can manage, update, or delete your personal data.;Policy Updates: How we will notify you of changes to our Privacy Policy.;Contact Information: How to reach us for questions related to privacy.
-489	2025-02-07 21:43:47.097	2025-02-18 19:15:51.07033	\N	163	zh-CN	信息收集和使用：我们在您访问网站或使用服务时收集哪些数据及其用途。;Cookie 和类似技术：我们如何使用 Cookie 改善网站的使用体验。;向第三方传递数据：我们在何种条件下会将您的数据传递给合作伙伴和服务商。;数据安全：保护您的信息免遭未经授权访问的措施。;用户权利：如何管理、更新或删除您的数据。;政策变更：我们如何通知您隐私政策的变更。;联系信息：如何就隐私相关问题与我们联系。
-507	2025-02-07 21:43:47.097	2025-02-18 19:18:55.276329	\N	168	zh-CN	一般规定： 协议的适用范围，基本术语的定义。;用户的权利和义务： 网站行为规则和对提供信息的责任。;公司的权利和义务： 我们对用户的承诺，以及修改内容和条款的权利。;知识产权： 网站上发布的材料使用规则。;责任限制： 公司不对某些行为或事件承担责任的条件。;争议解决程序： 解决潜在分歧的机制。;协议变更： 修改程序和通知用户的方式。;适用法律： 指定的司法管辖权和适用法律。
-505	2025-02-07 21:43:47.097	2025-02-18 19:18:55.279876	\N	168	ru-RU	Общие положения: сфера действия соглашения, определения основных терминов;Права и обязанности пользователей: правила поведения на сайте, ответственность за предоставляемую информацию;Права и обязанности компании: наши обязательства перед пользователями, право на изменение контента и условий;Интеллектуальная собственность: правила использования материалов, размещенных на сайте;Ограничение ответственности: условия, при которых компания не несет ответственности за определенные действия или события;Порядок разрешения споров: механизмы урегулирования возможных разногласий;Изменения в соглашении: процедура внесения изменений и уведомления пользователей;Применимое законодательство: указание юрисдикции и применимых законов
-508	2025-02-07 21:43:47.097	2025-02-18 19:18:55.284012	\N	169	ru-RU	{"path":"http://localhost:9000/cms/5918bdb0f5f1a72df4bd1893c652e9fc.docx","type":"docs","name":"ÐÐ´Ð¼Ð¸Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ.docx","filename":"5918bdb0f5f1a72df4bd1893c652e9fc.docx","size":127336,"deletedAt":null,"id":29,"createdAt":"2025-02-07T21:43:47.097Z","updatedAt":"2025-02-07T21:43:47.097Z","isSystem":false}
-544	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	170	ru-RU	
-545	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	170	zh-CN	
-546	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	170	en-US	
-547	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	171	ru-RU	+86-5432-2755
-548	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	171	en-US	+86-5432-2755
-549	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	171	zh-CN	+86-5432-2755
-550	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	172	ru-RU	
-551	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	172	en-US	
-552	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	172	zh-CN	
-553	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	173	ru-RU	
-554	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	173	en-US	
-555	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	173	zh-CN	
-556	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	174	ru-RU	Телефон
-557	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	174	en-US	Phone
-558	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	174	zh-CN	电话
-559	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	175	ru-RU	
-560	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	175	zh-CN	
-561	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	175	en-US	
-562	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	176	ru-RU	+86-5432-2755
-563	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	176	en-US	+86-5432-2755
-564	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	176	zh-CN	+86-5432-2755
-565	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	177	ru-RU	
-566	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	177	en-US	
-567	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	177	zh-CN	
-568	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	178	ru-RU	
-569	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	178	en-US	
-570	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	178	zh-CN	
-571	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	179	ru-RU	Телефон
-572	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	179	en-US	Phone
-573	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	179	zh-CN	电话
-574	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	180	ru-RU	
-575	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	180	zh-CN	
-576	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	180	en-US	
-577	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	181	ru-RU	+86-5432-2755
-578	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	181	en-US	+86-5432-2755
-579	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	181	zh-CN	+86-5432-2755
-580	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	182	ru-RU	
-581	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	182	en-US	
-582	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	182	zh-CN	
-583	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	183	ru-RU	
-584	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	183	en-US	
-585	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	183	zh-CN	
-586	2025-02-18 20:04:44.607	2025-02-18 20:04:44.607	\N	184	ru-RU	Телефон
-607	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	191	ru-RU	+86-5432-2755
-608	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	191	en-US	+86-5432-2755
-609	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	191	zh-CN	+86-5432-2755
-610	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	192	ru-RU	
-611	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	192	en-US	
-612	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	192	zh-CN	
-613	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	193	ru-RU	
-614	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	193	en-US	
-615	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	193	zh-CN	
-616	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	194	ru-RU	Телефон
-617	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	194	en-US	Phone
-618	2025-02-18 20:41:43.531	2025-02-18 20:41:43.531	\N	194	zh-CN	电话
-619	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	195	ru-RU	
-620	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	195	zh-CN	
-621	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	195	en-US	
-622	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	196	ru-RU	
-623	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	196	en-US	
-624	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	196	zh-CN	
-625	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	197	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-626	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	197	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-627	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	197	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-628	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	198	ru-RU	
-629	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	198	en-US	
-630	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	198	zh-CN	
-631	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	199	ru-RU	Адрес главного офиса
-632	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	199	en-US	Main office address
-633	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	199	zh-CN	总部地址：
-469	2025-02-07 21:43:47.097	2025-02-18 20:45:10.4712	\N	157	ru-RU	
-634	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	200	ru-RU	E-mail
-635	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	200	en-US	E-mail
-636	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	200	zh-CN	E-mail
-637	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	201	ru-RU	
-638	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	201	zh-CN	
-639	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	201	en-US	
-640	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	202	ru-RU	
-641	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	202	en-US	
-642	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	202	zh-CN	
-643	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	203	ru-RU	
-644	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	203	en-US	
-645	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	203	zh-CN	
-646	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	204	ru-RU	Дмитрий Александрович Гаврилов, Директор по развитию бизнеса
-647	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	204	en-US	Dmitry Alexandrovich Gavrilov, Director of Business Development
-648	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	204	zh-CN	Dmitry Alexandrovich Gavrilov，业务发展总监
-649	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	205	ru-RU	Адрес главного офиса
-650	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	205	en-US	Main office address
-651	2025-02-18 20:42:13.262	2025-02-18 20:42:13.262	\N	205	zh-CN	总部地址：
-391	2025-02-07 21:43:47.097	2025-02-19 07:31:36.963989	\N	131	ru-RU	Понедельник – Пятница: 9:00 – 18:00&nbsp;<div>Суббота: 10:00 – 16:00 (только главный офис)&nbsp;</div><div>Воскресенье: выходной</div>
-392	2025-02-07 21:43:47.097	2025-02-19 07:31:36.967628	\N	131	en-US	Monday – Friday: 9:00 – 18:00&nbsp;<div>Saturday: 10:00 – 16:00 (main office only)&nbsp;</div><div>Sunday: closed</div>
-652	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	206	ru-RU	Новости компании
-653	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	206	zh-CN	公司新闻
-654	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	206	en-US	Company News
-655	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	207	ru-RU	Будьте в курсе последних событий и новостей нашей компании.
-656	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	207	en-US	Keep up to date with the latest events and news of our company.
-657	2025-02-21 19:46:23.824	2025-02-21 19:46:23.824	\N	207	zh-CN	随时了解我们公司的最新事件和消息.
-658	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	208	ru-RU	Статьи и аналитика
-659	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	208	zh-CN	文章和分析
-660	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	208	en-US	Articles and analytics
-661	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	209	ru-RU	Мы делимся своим опытом и экспертными знаниями, публикуя статьи и аналитические материалы по актуальным темам промышленности и технологий.
-662	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	209	en-US	We share our experience and expertise by publishing articles and analytical materials on current topics in industry and technology.
-663	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	209	zh-CN	我们通过发表关于当前工业和技术主题的文章和分析材料来分享我们的经验和专业知识。
-664	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	210	ru-RU	Социальные сети
-665	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	210	en-US	Social network
-666	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	210	zh-CN	社交网络
-667	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	211	ru-RU	Следите за нами в социальных сетях, чтобы получать оперативные обновления и участвовать в обсуждениях
-668	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	211	en-US	Follow us on social media to receive live updates and participate in discussions.
-669	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	211	zh-CN	在社交媒体上关注我们，以接收实时更新并参与讨论。
-670	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	212	ru-RU	SA International
-671	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	212	en-US	SA International
-672	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	212	zh-CN	SA International
-673	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	213	ru-RU	 — ваш источник актуальной информации и экспертных знаний в сфере промышленности и технологий
-674	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	213	en-US	— your source of relevant information and expertise in the field of industry and technology
-675	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	213	zh-CN	—您在工业和技术领域的相关信息和专业知识的来源
-676	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	214	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-677	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	214	en-US	China, Shanghai, Minhang District, 115 Xinjunhuan Street, Building 1, offices 503-505
-678	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	214	zh-CN	中国上海市闵行区新俊环街115号1楼503-505办公室
-679	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	215	ru-RU	+86-21-5432-2755
-680	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	215	en-US	+86-21-5432-2755
-681	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	215	zh-CN	+86-21-5432-2755
-682	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	216	ru-RU	info@inter-sa.com
-683	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	216	en-US	info@inter-sa.com
-684	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	216	zh-CN	info@inter-sa.com
-685	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	217	ru-RU	Пресс-релизы
-686	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	217	en-US	Press releases
-687	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	217	zh-CN	新闻公报
-688	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	218	ru-RU	Официальные заявления и анонсы компании SA International
-689	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	218	en-US	Official statements and announcements of SA International
-690	2025-02-22 15:40:16.305	2025-02-22 15:40:16.305	\N	218	zh-CN	SA国际官方声明及公告
-691	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	219	ru-RU	info@inter-sa.com
-692	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	219	en-US	info@inter-sa.com
-693	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	219	zh-CN	info@inter-sa.com
-694	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	220	ru-RU	+86-21-5432-2755
-695	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	220	en-US	+86-21-5432-2755
-696	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	220	zh-CN	+86-21-5432-2755
-697	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	221	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-698	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	221	en-US	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505
-699	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	221	zh-CN	总部地址 中国上海市闵行区新骏环路115号1号楼503-505办公室
-700	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	222	ru-RU	info@inter-sa.com
-701	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	222	en-US	info@inter-sa.com
-702	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	222	zh-CN	info@inter-sa.com
-703	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	223	ru-RU	+86-21-5432-2755
-704	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	223	en-US	+86-21-5432-2755
-705	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	223	zh-CN	+86-21-5432-2755
-706	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	224	ru-RU	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505
-707	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	224	en-US	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505
-708	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	224	zh-CN	总部地址 中国上海市闵行区新骏环路115号1号楼503-505办公室
+COPY public.pages_iblock_records_field_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "recordFieldId") FROM stdin;
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Строительное оборудование	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	建筑设备	zh-CN	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Construction Equipment	en-US	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Бетонные заводы;Смесительные системы;Бетоносмесители	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Concrete Plants;Mixing Systems;Concrete Mixers	en-US	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	混凝土搅拌站;混合系统;混凝土搅拌机	zh-CN	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	ru-RU	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	en-US	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	zh-CN	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/bcb485d608f4e6a9fa07466d506b9f7b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"bcb485d608f4e6a9fa07466d506b9f7b.png","size":533239,"id":4,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	4
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/bcb485d608f4e6a9fa07466d506b9f7b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"bcb485d608f4e6a9fa07466d506b9f7b.png","size":533239,"id":4,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	4
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/bcb485d608f4e6a9fa07466d506b9f7b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"bcb485d608f4e6a9fa07466d506b9f7b.png","size":533239,"id":4,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Дорожное оборудование	ru-RU	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	道路設備	zh-CN	5
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Road equipment	en-US	5
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Асфальтовые заводы;Дорожные катки;Фрезы	ru-RU	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Asphalt plants;Road rollers;Milling cutters	en-US	6
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	瀝青廠;壓路機;銑刀	zh-CN	6
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	ru-RU	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	en-US	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	zh-CN	7
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/270de414d4609e9921623fddb34f905e.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"270de414d4609e9921623fddb34f905e.png","size":566808,"id":6,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	8
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/270de414d4609e9921623fddb34f905e.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"270de414d4609e9921623fddb34f905e.png","size":566808,"id":6,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	8
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/270de414d4609e9921623fddb34f905e.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"270de414d4609e9921623fddb34f905e.png","size":566808,"id":6,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	8
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Металлургическое оборудование	ru-RU	9
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	冶金設備	zh-CN	9
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Metallurgical equipment	en-US	9
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Плавильные печи;Прокатные станы;Обрабатывающие центры	ru-RU	10
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Smelting furnaces;Rolling mills;Machining centers	en-US	10
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	熔化爐;軋機;加工中心	zh-CN	10
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	ru-RU	11
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	en-US	11
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	zh-CN	11
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b66aa2f3800efcb5969fc3933b4e6291.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"b66aa2f3800efcb5969fc3933b4e6291.png","size":645353,"id":7,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	12
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b66aa2f3800efcb5969fc3933b4e6291.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"b66aa2f3800efcb5969fc3933b4e6291.png","size":645353,"id":7,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	12
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b66aa2f3800efcb5969fc3933b4e6291.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"b66aa2f3800efcb5969fc3933b4e6291.png","size":645353,"id":7,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	12
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Горнодобывающее оборудование	ru-RU	13
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	礦山設備	zh-CN	13
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Mining equipment	en-US	13
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Дробильные установки;Конвейерные системы;Обогатительное оборудование	ru-RU	14
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Crushing plants;Conveyor systems;Mineral processing equipment	en-US	14
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	破碎設備;輸送系統;加工設備	zh-CN	14
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	ru-RU	15
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	en-US	15
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	zh-CN	15
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c17d994bb918cf12d0eaa40c6f08f4b4.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"c17d994bb918cf12d0eaa40c6f08f4b4.png","size":444181,"id":8,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	16
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c17d994bb918cf12d0eaa40c6f08f4b4.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"c17d994bb918cf12d0eaa40c6f08f4b4.png","size":444181,"id":8,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	16
+96	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	启动了叉车和输送带的自有生产线，扩展了产品线。	zh-CN	32
+97	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2022	ru-RU	33
+98	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2022	en-US	33
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c17d994bb918cf12d0eaa40c6f08f4b4.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"c17d994bb918cf12d0eaa40c6f08f4b4.png","size":444181,"id":8,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	16
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Пищевое оборудование	ru-RU	17
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	食品設備	zh-CN	17
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Food equipment	en-US	17
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Линии для производства пищевых продуктов;Упаковочные машины	ru-RU	18
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Food production lines;Packaging machines	en-US	18
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	食品生產線;包裝機	zh-CN	18
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	ru-RU	19
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	en-US	19
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	/	zh-CN	19
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/3cd4084c1e97b44c01d56dcfc9778f3b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"3cd4084c1e97b44c01d56dcfc9778f3b.png","size":548330,"id":9,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	20
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/3cd4084c1e97b44c01d56dcfc9778f3b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"3cd4084c1e97b44c01d56dcfc9778f3b.png","size":548330,"id":9,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	20
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/3cd4084c1e97b44c01d56dcfc9778f3b.png","type":"images","name":"DALLÂ·E 2024-09-20 00.51.38 1.png","filename":"3cd4084c1e97b44c01d56dcfc9778f3b.png","size":548330,"id":9,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	20
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL	ru-RU	23
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL	en-US	23
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司	zh-CN	23
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Your Guide to Innovative Industrial Solutions	en-US	24
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	—— 您的创新工业解决方案引导者	zh-CN	24
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	ru-RU	25
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	en-US	25
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	zh-CN	25
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	26
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	26
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	26
+70	2025-02-25 18:46:18.553	2025-02-27 17:33:34.337938	\N	— Ваш проводник в мире инновационных промышленных решений +86-21-5432-2755	ru-RU	24
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	История компании	ru-RU	27
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Основанная в 2020 году, компания SA International (上海亚际机电有限公司) начала свой путь как часть SIBC Group, фокусируясь на предоставлении консалтинговых услуг и подборе промышленного оборудования для различных отраслей. Наша цель с самого начала заключалась в том, чтобы стать надежным партнером для предприятий по всему миру, предлагая инновационные решения и высокий уровень сервиса.	ru-RU	28
+81	2025-02-25 18:46:18.553	2025-02-27 17:36:29.138475	\N	Company History	en-US	27
+80	2025-02-25 18:46:18.553	2025-02-27 17:36:29.143593	\N	公司历史	zh-CN	27
+82	2025-02-25 18:46:18.553	2025-02-27 17:36:29.147884	\N	Founded in 2020, SA International (上海亚际机电有限公司) began its journey as part of SIBC Group, focusing on providing consulting services and selecting industrial equipment for various industries. From the very start, our goal has been to become a reliable partner for businesses worldwide, offering innovative solutions and high-quality service.	en-US	28
+83	2025-02-25 18:46:18.553	2025-02-27 17:36:29.150582	\N	上海亚际机电有限公司成立于2020年，起初作为SIBC集团的一部分，专注于为各行业提供咨询服务和工业设备选型。自公司成立以来，我们的目标是成为全球企业的可靠合作伙伴，提供创新解决方案和高质量服务。	zh-CN	28
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2020	ru-RU	29
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2020	en-US	29
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2020年	zh-CN	29
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ОСНОВАНИЕ SA INTERNATIONAL B COCTABE SIBC GROUP В ШАНХАЕ. ОТКРЫТИЕ ПЕРВОГО ЗАРУБЕЖНОГО ОФИСА В БЛАГОВЕЩЕНСКЕ, РОССИЯ, ЧТО ПОЗВОЛИЛО НАМ УКРЕПИТЬ ПОЗИЦИИ НА РЫНКЕ СНГ.	ru-RU	30
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Establishment of SA International as part of SIBC Group in Shanghai. Opening of the first overseas office in Blagoveshchensk, Russia, strengthening our position in the CIS market.	en-US	30
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司在上海作为SIBC集团的一部分成立，并开设了首个海外办事处——位于俄罗斯布拉戈维申斯克的办事处，巩固了我们在独联体市场的地位。	zh-CN	30
+91	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2021	ru-RU	31
+92	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2021	en-US	31
+93	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2021年	zh-CN	31
+94	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ЗАПУСК СОБСТВЕННОГО ПРОИЗВОДСТВА ВИЛОЧНЫХ ПОГРУЗЧИКОВ И КОНВЕЙЕРНЫХ ЛЕНТ, РАСШИРЕНИЕ ПРОДУКТОВОЙ ЛИНЕЙКИ.	ru-RU	32
+95	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Launch of in-house production of forklifts and conveyor belts, expanding the product line.	en-US	32
+62	2025-02-25 18:46:18.553	2025-02-28 05:54:10.861049	\N	Creation of a Barter Exchange	en-US	21
+63	2025-02-25 18:46:18.553	2025-02-28 05:54:10.864602	\N	建立易货交易平台	zh-CN	21
+66	2025-02-25 18:46:18.553	2025-02-28 05:54:10.871663	\N	Together with leading companies, we have invested in developing an innovative barter exchange, enabling businesses to efficiently trade goods and services.	en-US	22
+65	2025-02-25 18:46:18.553	2025-02-28 05:54:10.874927	\N	与领先企业合作，我们投资开发创新的易货交易平台， 使企业能够高效交换商品与服务。	zh-CN	22
+99	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2022年	zh-CN	33
+100	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	НАЧАЛО ВНЕДРЕНИЯ ИННОВАЦИОННЫХ ТЕХНОЛОГИЙ С ИСПОЛЬЗОВАНИЕМ ИСКУССТВЕННОГО ИНТЕЛЛЕКТА В ПРОИЗВОДСТВЕННЫЕ ПРОЦЕССЫ.	ru-RU	34
+101	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Introduction of innovative technologies using artificial intelligence in production processes.	en-US	34
+102	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	开始在生产过程中引入人工智能技术，推动创新技术的应用。	zh-CN	34
+103	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2023	ru-RU	35
+104	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2023	en-US	35
+105	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2023年	zh-CN	35
+106	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	УЧАСТИЕ В ВОСТОЧНОМ ЭКОНОМИЧЕСКОМ ФОРУМЕ. ПОДПИСАНИЕ ДОГОВОРОВ С ПРАВИТЕЛЬСТВОМ РОССИЙСКОЙ ФЕДЕРАЦИИ О СТРОИТЕЛЬСТВЕ ЗАВОДА ПО ПРОИЗВОДСТВУ ПОРТОВОГО ОБОРУДОВАНИЯ.	ru-RU	36
+107	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Participation in the Eastern Economic Forum. Signing agreements with the Russian Federation government to build a plant for port equipment manufacturing.	en-US	36
+108	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	参加了东方经济论坛，并与俄罗斯联邦政府签署了建设港口设备生产厂的协议。	zh-CN	36
+109	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2024	ru-RU	37
+110	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2024	en-US	37
+111	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2024年	zh-CN	37
+112	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СОЗДАНИЕ БАРТЕРНОЙ БИРЖИ СОВМЕСТНО С ПАРТНЕРАМИ, ИНВЕСТИЦИИ В РАЗМЕРЕ 5 МЛН ЮАНЕЙ ДЛЯ РАЗВИТИЯ ПРОЕКТА. ПОДГОТОВКА К СТРОИТЕЛЬСТВУ ЗАВОДА ПО ПРОИЗВОДСТВУ РОБОТИЗИРОВАННЫХ РУК В РОССИИ С ЦЕЛЬЮ ПОЛНОЙ ЛОКАЛИЗАЦИИ ПРОИЗВОДСТВА К 2028 ГОДУ. РАСШИРЕНИЕ МЕЖДУНАРОДНОГО ПРИСУТСТВИЯ, ПЛАНИРОВАНИЕ ОТКРЫТИЯ ОФИСОВ В МОСКВЕ И КРЫМУ, УВЕЛИЧЕНИЕ ШТАТА СОТРУДНИКОВ ДО 50 ЧЕЛОВЕК. ОТКРЫТИЕ ОФИСОВ В ГОНКОНГЕ И ИУ.	ru-RU	38
+113	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Creation of a barter exchange in partnership with stakeholders, investing 5 million yuan to develop the project. Preparation for the construction of a robotic arm manufacturing plant in Russia with full localization planned by 2028. Expansion of international presence with plans to open offices in Moscow and Crimea, increasing the team to 50 employees. Opening new offices in Hong Kong and Yiwu.	en-US	38
+114	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	与合作伙伴共同建立了商品交换市场，投资500万元人民币发展该项目，计划于2028年在俄罗斯建设机器人手臂生产厂，实现生产完全本地化。同时，扩大国际业务，计划在莫斯科和克里米亚开设办事处，员工人数将增至50人。并在香港和义乌开设新办事处。	zh-CN	38
+115	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	КУРОЕДОВ ЕВГЕНИЙ	ru-RU	39
+116	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Evgeny Kuroedov	en-US	39
+117	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	孔恩丰	zh-CN	39
+118	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Генеральный директор	ru-RU	40
+119	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总经理	zh-CN	40
+120	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	General Director	en-US	40
+121	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Более 10 лет опыта в управлении международными проектами и стратегическом развитии	ru-RU	41
+122	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Over 10 years of experience in managing international projects and strategic development.	en-US	41
+123	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	拥有超过10年国际项目管理和战略发展经验	zh-CN	41
+127	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ДУДНИК ИГОРЬ	ru-RU	43
+128	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Igor Dudnik	en-US	43
+129	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	伊戈尔	zh-CN	43
+130	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Операционный директор	ru-RU	44
+131	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	运营长	zh-CN	44
+132	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Operations Director	en-US	44
+133	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Эксперт в области инновационных технологий с опытом работы в ведущих мировых компаниях	ru-RU	45
+134	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Expert in innovative technologies with experience in leading global companies.	en-US	45
+135	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	创新技术专家，曾在全球领先企业工作	zh-CN	45
+136	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/7718065781f3ed643cfc2f16136c893a.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"7718065781f3ed643cfc2f16136c893a.png","size":391276,"id":10,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	46
+137	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/7718065781f3ed643cfc2f16136c893a.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"7718065781f3ed643cfc2f16136c893a.png","size":391276,"id":10,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	46
+138	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/7718065781f3ed643cfc2f16136c893a.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"7718065781f3ed643cfc2f16136c893a.png","size":391276,"id":10,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	46
+124	2025-02-25 18:46:18.553	2025-02-27 17:47:17.557208	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/77f24146d9f7ecab201cf9be464dce3d.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"77f24146d9f7ecab201cf9be464dce3d.png","size":391276,"id":11,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	42
+125	2025-02-25 18:46:18.553	2025-02-27 17:47:17.563938	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/77f24146d9f7ecab201cf9be464dce3d.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"77f24146d9f7ecab201cf9be464dce3d.png","size":391276,"id":11,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	42
+126	2025-02-25 18:46:18.553	2025-02-27 17:47:17.569751	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/77f24146d9f7ecab201cf9be464dce3d.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"77f24146d9f7ecab201cf9be464dce3d.png","size":391276,"id":11,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	42
+139	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ГАВРИЛОВ ДМИТРИЙ	ru-RU	47
+140	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Dmitry Gavrilov	en-US	47
+141	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	黄海睿	zh-CN	47
+142	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Директор по развитию бизнеса	ru-RU	48
+143	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	开发总监	zh-CN	48
+144	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Business Development Director	en-US	48
+145	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Специалист по международным рынкам и построению эффективных партнерских отношений	ru-RU	49
+146	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Specialist in international markets and building effective partnerships.	en-US	49
+147	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	国际市场和有效合作伙伴关系建设专家	zh-CN	49
+148	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a011ec9cc35d9c1258f5ffeb6adfe342.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"a011ec9cc35d9c1258f5ffeb6adfe342.png","size":391276,"id":12,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	50
+149	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a011ec9cc35d9c1258f5ffeb6adfe342.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"a011ec9cc35d9c1258f5ffeb6adfe342.png","size":391276,"id":12,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	50
+150	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a011ec9cc35d9c1258f5ffeb6adfe342.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"a011ec9cc35d9c1258f5ffeb6adfe342.png","size":391276,"id":12,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	50
+151	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505	ru-RU	51
+152	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	51
+153	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区新骏环路115号1号楼503-505办公室	zh-CN	51
+154	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	https://map.baidu.com/	ru-RU	52
+155	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	https://map.baidu.com/	en-US	52
+156	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	https://map.baidu.com/	zh-CN	52
+157	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755	ru-RU	53
+158	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755	en-US	53
+159	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755	zh-CN	53
+160	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (ext. 813)	ru-RU	54
+161	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (ext. 813)	en-US	54
+162	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (分机813)	zh-CN	54
+163	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (ext. 804)	ru-RU	55
+164	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (分机804)	zh-CN	55
+165	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86 (021) 5432 2755 (ext. 804)	en-US	55
+166	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	56
+167	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	56
+168	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	56
+169	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	sales@inter-sa.com	ru-RU	57
+170	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	sales@inter-sa.com	zh-CN	57
+171	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	sales@inter-sa.com	en-US	57
+172	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	ru-RU	58
+173	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	en-US	58
+174	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	zh-CN	58
+178	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ШАНХАЙ (ГЛАВНЫЙ ОФИС)	ru-RU	60
+179	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SHANGHAI (MAIN OFFICE)	en-US	60
+180	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海（总部） 	zh-CN	60
+181	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	61
+182	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	61
+183	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	61
+184	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	62
+185	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	62
+186	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	62
+187	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	63
+188	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	63
+189	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	63
+190	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	64
+191	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	64
+192	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	64
+193	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	65
+194	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	65
+195	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	65
+196	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	66
+197	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	66
+198	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	66
+199	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	67
+200	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	67
+201	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	67
+202	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	68
+203	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	68
+204	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	68
+205	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	69
+206	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	69
+207	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	69
+208	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ИУ	ru-RU	70
+209	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Yiwu	en-US	70
+210	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	义乌 	zh-CN	70
+211	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	71
+212	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	71
+213	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	71
+214	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	72
+215	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	72
+216	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	72
+217	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	73
+218	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	73
+219	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	73
+220	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	74
+221	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	74
+222	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	74
+223	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	75
+224	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	75
+225	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	75
+226	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	76
+227	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	76
+228	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	76
+229	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	77
+230	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	77
+231	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	77
+232	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	78
+233	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	78
+234	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	78
+235	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	79
+236	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	79
+237	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	79
+238	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ГОНКОНГ	ru-RU	80
+239	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Hong Kong	en-US	80
+240	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	香港 	zh-CN	80
+241	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	81
+242	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	81
+243	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	81
+244	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	82
+245	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	82
+246	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	82
+247	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	83
+248	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	83
+249	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	83
+250	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	84
+251	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	84
+252	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	84
+253	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	85
+254	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	85
+255	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	85
+256	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	86
+257	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	86
+258	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	86
+259	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	87
+260	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	87
+261	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	87
+262	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	88
+263	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	88
+264	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	88
+265	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	89
+266	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	89
+267	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	89
+268	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	БЛАГОВЕЩЕНСК	ru-RU	90
+269	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Blagoveshchensk	en-US	90
+270	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	布拉戈维申斯克	zh-CN	90
+271	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СОЦИАЛЬНЫЕ СЕТИ	ru-RU	91
+272	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	社交媒体	zh-CN	91
+273	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SOCIAL MEDIA	en-US	91
+274	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Следите за последними новостями и обновлениями, подписывайтесь на наши официальные страницы в социальных сетях	ru-RU	92
+275	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Follow us for the latest news and updates on our official social media pages.	en-US	92
+276	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	关注我们的最新消息和更新，订阅我们的官方社交媒体页面	zh-CN	92
+277	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	INFO@INTER-SA.COM	ru-RU	93
+278	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	93
+279	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	93
+280	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	partners@inter-sa.com	en-US	94
+281	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	partners@inter-sa.com	zh-CN	94
+282	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PARTNERS@INTER-SA.COM	ru-RU	94
+283	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SUPPORT@INTER-SA.COM	ru-RU	95
+284	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	en-US	95
+285	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	zh-CN	95
+286	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PRESS@INTER-SA.COM	ru-RU	96
+287	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	press@inter-sa.com	en-US	96
+288	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	press@inter-sa.com	zh-CN	96
+292	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Политика конфиденциальности	ru-RU	98
+295	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Политика конфиденциальности описывает, какие данные мы собираем, как мы их используем, храним и защищаем	ru-RU	99
+298	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Мы стремимся обеспечить безопасность вашей персональной информации и соблюдать все применимые законы и нормативные акты в области защиты данных	ru-RU	100
+293	2025-02-25 18:46:18.553	2025-02-27 18:15:30.237075	\N	Privacy Policy	en-US	98
+294	2025-02-25 18:46:18.553	2025-02-27 18:15:30.240097	\N	隐私政策	zh-CN	98
+296	2025-02-25 18:46:18.553	2025-02-27 18:15:30.249665	\N	Our Privacy Policy explains what data we collect, how we use, store, and protect it.	en-US	99
+297	2025-02-25 18:46:18.553	2025-02-27 18:15:30.303871	\N	隐私政策描述了我们收集哪些数据、如何使用、存储以及保护这些数据。	zh-CN	99
+300	2025-02-25 18:46:18.553	2025-02-27 18:15:30.307009	\N	We are committed to safeguarding your personal information and adhering to all applicable data protection laws and regulations.	en-US	100
+299	2025-02-25 18:46:18.553	2025-02-27 18:15:30.309732	\N	我们致力于确保您的个人信息安全，并遵守所有适用的数据保护法律和法规。	zh-CN	100
+291	2025-02-25 18:46:18.553	2025-02-27 18:34:18.436757	\N	<p>ПОНЕДЕЛЬНИК - ПЯТНИЦА: 9:00 - 18:00</p><p>СУББОТА: 10:00 - 16:00 (ТОЛЬКО ГЛАВНЫЙ ОФИС)</p><p>ВОСКРЕСЕНЬЕ: ВЫХОДНОЙ</p>	ru-RU	97
+303	2025-02-25 18:46:18.553	2025-02-27 18:27:39.893341	\N	信息收集和使用： 我们在您访问网站或使用服务时收集哪些数据及其用途。;Cookie 和类似技术： 我们如何使用 Cookie 改善网站的使用体验。;向第三方传递数据： 我们在何种条件下会将您的数据传递给合作伙伴和服务商。;数据安全： 保护您的信息免遭未经授权访问的措施。;用户权利： 如何管理、更新或删除您的数据。;政策变更：我们如何通知您隐私政策的变更。;联系信息：如何就隐私相关问题与我们联系。	zh-CN	101
+304	2025-02-25 18:46:18.553	2025-02-27 18:27:39.90581	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c7b190264abed1f1d6285b9fb577110b.docx","type":"docs","name":"policy.docx","filename":"c7b190264abed1f1d6285b9fb577110b.docx","size":7525,"id":14,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	102
+289	2025-02-25 18:46:18.553	2025-02-27 18:34:18.443832	\N	<p>Monday – Friday: 9:00 AM – 6:00 PM</p><p>Saturday: 10:00 AM – 4:00 PM (Main Office Only)</p><p>Sunday: Closed</p>	en-US	97
+290	2025-02-25 18:46:18.553	2025-02-27 18:34:18.446598	\N	<p>周一 - 周五：9:00 - 18:00</p><p>周六：10:00 - 16:00（仅限总部）</p><p>周日：休息</p>	zh-CN	97
+357	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	119
+364	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Какова средняя продолжительность доставки?	ru-RU	122
+365	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What is the average delivery time?	en-US	122
+301	2025-02-25 18:46:18.553	2025-02-27 18:27:39.880574	\N	Сбор и использование информации: какие  какие данные мы собираем при посещении нашего сайта или использования услуг, и с  какой целью. ;Файлы cookie и аналогичные технологии: как  мы используем файлы cookie для улучшения  работы сайта;Передача данных третьим лицам: условия, при которых мы можем передавать ваши данные партнерам и сервисам. ;Безопасность данных: меры, приемняемые для  защиты ващей информации от  несанкционированного доступа;Права пользователей: как вы можете управлять своими данными, обновлять или удалять их;Изменения в политике: как мы будем  информировать вас об изменениях в нашей Политике конфиденциальности;Контактная информация: как связаться с нами  по вопросам, связанным с конфиденциальностью	ru-RU	101
+302	2025-02-25 18:46:18.553	2025-02-27 18:27:39.889477	\N	Information Collection and Use: Details on the data we collect when you visit our website or use our services, and the purposes for which it is collected.;Cookies and Similar Technologies: How we use cookies to enhance your browsing experience.;Data Sharing with Third Parties: Conditions under which we may share your data with partners and service providers.;Data Security: Measures taken to protect your information from unauthorized access;User Rights: How you can manage, update, or delete your personal data.;Policy Updates: How we will notify you of changes to our Privacy Policy. ;Contact Information: How to reach us for questions related to privacy.	en-US	101
+306	2025-02-25 18:46:18.553	2025-02-27 18:27:39.896237	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c7b190264abed1f1d6285b9fb577110b.docx","type":"docs","name":"policy.docx","filename":"c7b190264abed1f1d6285b9fb577110b.docx","size":7525,"id":14,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	102
+358	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Какова средняя продолжительность доставки?	ru-RU	120
+359	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What is the average delivery time?	en-US	120
+360	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	有哪些支付方式？	zh-CN	120
+305	2025-02-25 18:46:18.553	2025-02-27 18:27:39.900933	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/c7b190264abed1f1d6285b9fb577110b.docx","type":"docs","name":"policy.docx","filename":"c7b190264abed1f1d6285b9fb577110b.docx","size":7525,"id":14,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	102
+307	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Пользовательское соглашение	ru-RU	103
+308	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	User Agreement	en-US	103
+309	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	用户协议	zh-CN	103
+361	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	121
+310	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Пользовательское соглашение устанавливает  правила и условия использования нашего  веб-сайта и предоставляемых нами сервисов	ru-RU	104
+311	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Our User Agreement sets out the rules and conditions for using our website and services. 	en-US	104
+312	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	用户协议规定了使用我们网站和服务的规则和条件。	zh-CN	104
+313	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ознакомление с этим документом поможет вам  понять свои права и обязанности при  взаимодействии с нашей компанией  Прочитать пользовательское соглашение. 	ru-RU	105
+314	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	阅读该文件将帮助您了解与我们公司互动时的权利和义务。	zh-CN	105
+315	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Reviewing this document will help you understand your rights and obligations when interacting with our company.	en-US	105
+362	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	121
+363	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	121
+366	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	平均交货时间是多少？	zh-CN	122
+367	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	123
+368	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	123
+369	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	123
+370	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Что делать, если оборудование не работает корректно?	ru-RU	124
+371	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What to do if the equipment is not working properly?	en-US	124
+372	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	如果设备无法正常工作怎么办？	zh-CN	124
+373	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	125
+374	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	125
+375	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	125
+376	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Как заказать запасные части?	ru-RU	126
+377	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	How to order spare parts?	en-US	126
+378	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	如何订购备件？	zh-CN	126
+379	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	127
+380	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	127
+381	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	127
+382	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Предоставляете ли вы услуги по установке и наладке оборудования?	ru-RU	128
+383	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Do you provide installation and commissioning services?	en-US	128
+384	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	是否提供设备安装和调试服务？	zh-CN	128
+385	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Да, наши специалисты могут провести установку и пуско-наладочные работы на вашем объекте.	ru-RU	129
+386	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Yes, our specialists can perform installation and commissioning work at your site.	en-US	129
+387	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	是的，我们的专家可以在您的现场完成安装和调试工作。	zh-CN	129
+388	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СЛУЖБА ПОДДЕРЖКИ	ru-RU	130
+389	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SUPPORT SERVICE:	en-US	130
+390	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户支持服务：	zh-CN	130
+391	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755 (ext. 804)	ru-RU	131
+392	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755 (ext. 804)	en-US	131
+393	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755 (ext. 804)	zh-CN	131
+394	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	en-US	132
+395	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	zh-CN	132
+396	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	support@inter-sa.com	ru-RU	132
+475	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	159
+316	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общие положения: сфера действия  соглашения, определения основных терминов;Права и обязанности пользователей: правила  поведения на сайте, ответственность за  предоставляемую информацию;Права и обязанности компании: наши  обязательства перед пользователями, право  на изменение контента и условий;Интеллектуальная собственность:  правила использования материалов,  размещенных на сайте;Ограничение ответственности: условия, при  которых компания не несет ответственности  за определенные действия или события;Порядок разрешения споров: механизмы  урегулирования возможных разногласий;Изменения в соглашении: процедура внесения  изменений и уведомления пользователей;Применимое законодательство: указание  юрисдикции и применимых законов	ru-RU	106
+317	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	General Provisions: Scope of the agreement, definitions of key terms.;User Rights and Responsibilities: Website behavior rules and accountability for provided information.;Company Rights and Responsibilities: Our commitments to users, including the right to modify content and terms.;Intellectual Property: Guidelines for using materials published on the website.;Liability Disclaimer: Conditions under which the company is not responsible for certain actions or events.;Dispute Resolution: Mechanisms for resolving potential disagreements.;Agreement Modifications: Procedures for making changes and notifying users.;Applicable Law: Jurisdiction and governing laws.	en-US	106
+318	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	一般规定： 协议的适用范围，基本术语的定义。;用户的权利和义务： 网站行为规则和对提供信息的责任。;公司的权利和义务： 我们对用户的承诺，以及修改内容和条款的权利。;知识产权： 网站上发布的材料使用规则。;责任限制： 公司不对某些行为或事件承担责任的条件。;争议解决程序： 解决潜在分歧的机制。;协议变更： 修改程序和通知用户的方式。;适用法律： 指定的司法管辖权和适用法律。	zh-CN	106
+319	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b1aae3847de1572488f5aaf03066b64e.docx","type":"docs","name":"policy.docx","filename":"b1aae3847de1572488f5aaf03066b64e.docx","size":7525,"id":15,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	107
+320	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b1aae3847de1572488f5aaf03066b64e.docx","type":"docs","name":"policy.docx","filename":"b1aae3847de1572488f5aaf03066b64e.docx","size":7525,"id":15,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	107
+321	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b1aae3847de1572488f5aaf03066b64e.docx","type":"docs","name":"policy.docx","filename":"b1aae3847de1572488f5aaf03066b64e.docx","size":7525,"id":15,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	107
+175	2025-02-25 18:46:18.553	2025-02-27 18:33:12.220039	\N	<p>Понедельник - Пятница: 9:00 - 18:00</p><p>Суббота: 10:00 - 16:00</p><p>Воскресенье: выходной</p>	ru-RU	59
+176	2025-02-25 18:46:18.553	2025-02-27 18:33:12.229619	\N	<p>Monday – Friday: 9:00 AM – 6:00 PM</p><p>Saturday: 10:00 AM – 4:00 PM</p><p>Sunday: Closed</p>	en-US	59
+177	2025-02-25 18:46:18.553	2025-02-27 18:33:12.2344	\N	<p>周一 - 周五：9:00 - 18:00</p><p>周六：10:00 - 16:00</p><p>周日：休息</p>	zh-CN	59
+322	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Как сделать заказ?	ru-RU	108
+323	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	How to place an order?	en-US	108
+324	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	如何下订单？	zh-CN	108
+325	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com	ru-RU	109
+326	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	You can place an order by contacting our sales department at:	en-US	109
+327	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	您可以通过电话 +86-21-5432-2755 (ext. 813) 联系销售部门，或发送邮件至 sales@inter-sa.com。	zh-CN	109
+328	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Какие способы оплаты доступны?	ru-RU	110
+329	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What payment methods are available?	en-US	110
+330	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	有哪些支付方式？	zh-CN	110
+331	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	111
+332	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	111
+333	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	111
+334	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	123	ru-RU	112
+335	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	123	en-US	112
+336	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	123	zh-CN	112
+337	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	113
+338	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	113
+339	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	113
+340	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Какие способы оплаты доступны?	ru-RU	114
+341	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What payment methods are available?	en-US	114
+342	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	有哪些支付方式？	zh-CN	114
+343	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	115
+344	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	115
+345	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	115
+346	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Как сделать заказ?	ru-RU	116
+347	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	How to place an order?	en-US	116
+348	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	如何下订单？	zh-CN	116
+349	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Вы можете оформить заказ, связавшись с нашим отделом продаж по телефону +86-21-5432-2755 (ext. 813) или отправив запрос на sales@inter-sa.com	ru-RU	117
+350	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	You can place an order by contacting our sales department at: Phone: +86-21-5432-2755 (ext. 813) Email: sales@inter-sa.com	en-US	117
+351	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	您可以通过电话 +86-21-5432-2755 (ext. 813) 联系销售部门，或发送邮件至 sales@inter-sa.com。	zh-CN	117
+352	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Какие способы оплаты доступны?	ru-RU	118
+353	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	What payment methods are available?	en-US	118
+354	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	有哪些支付方式？	zh-CN	118
+355	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	119
+356	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	119
+397	2025-02-25 18:46:18.553	2025-02-27 18:53:28.842308	\N		ru-RU	133
+398	2025-02-25 18:46:18.553	2025-02-27 18:53:28.848151	\N		en-US	133
+399	2025-02-25 18:46:18.553	2025-02-27 18:53:28.852615	\N		zh-CN	133
+400	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ОТДЕЛ ЗАПАСНЫХ ЧАСТЕЙ	ru-RU	134
+401	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SPARE PARTS DEPARTMENT:	en-US	134
+402	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	备件部门：	zh-CN	134
+403	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	135
+404	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	135
+405	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	135
+406	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	parts@inter-sa.com	en-US	136
+407	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	parts@inter-sa.com	zh-CN	136
+408	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	parts@inter-sa.com	ru-RU	136
+409	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	137
+410	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	137
+411	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	137
+412	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ОБЩИЕ ВОПРОСЫ	ru-RU	138
+413	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	GENERAL INQUIRIES:	en-US	138
+414	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	一般咨询：	zh-CN	138
+415	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	139
+416	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	139
+417	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	139
+418	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	140
+419	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	140
+420	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	140
+421	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	141
+422	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	141
+423	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	141
+424	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	АДРЕС ГЛАВНОГО ОФИСА	ru-RU	142
+425	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	MAIN OFFICE ADDRESS:	en-US	142
+426	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总部地址：	zh-CN	142
+427	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	143
+428	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	143
+429	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	143
+430	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	144
+431	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	144
+432	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	144
+433	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505	ru-RU	145
+434	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	145
+435	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区新骏环路115号1号楼503-505办公室	zh-CN	145
+436	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	partners@inter-sa.com	ru-RU	146
+437	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	partners@inter-sa.com	en-US	146
+438	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	partners@inter-sa.com	zh-CN	146
+439	2025-02-25 18:46:18.553	2025-02-27 19:02:03.250791	\N		ru-RU	147
+441	2025-02-25 18:46:18.553	2025-02-27 19:02:03.254775	\N		en-US	147
+440	2025-02-25 18:46:18.553	2025-02-27 19:02:03.257478	\N		zh-CN	147
+442	2025-02-25 18:46:18.553	2025-02-27 19:02:03.259943	\N		ru-RU	148
+443	2025-02-25 18:46:18.553	2025-02-27 19:02:03.263012	\N		en-US	148
+444	2025-02-25 18:46:18.553	2025-02-27 19:02:03.265556	\N		zh-CN	148
+445	2025-02-25 18:46:18.553	2025-02-27 19:02:03.26771	\N		ru-RU	149
+446	2025-02-25 18:46:18.553	2025-02-27 19:02:03.270091	\N		en-US	149
+447	2025-02-25 18:46:18.553	2025-02-27 19:02:03.272917	\N		zh-CN	149
+450	2025-02-25 18:46:18.553	2025-02-27 19:02:03.275387	\N	E-MAIL	ru-RU	150
+448	2025-02-25 18:46:18.553	2025-02-27 19:02:03.278301	\N	EMAIL	en-US	150
+449	2025-02-25 18:46:18.553	2025-02-27 19:02:03.283265	\N	电子邮件	zh-CN	150
+451	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	151
+452	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	151
+453	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	151
+454	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8+6-21-5432-2755 (ext. 818)	ru-RU	152
+455	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755 (ext. 818)	zh-CN	152
+456	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755 (ext. 818)	en-US	152
+457	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	153
+458	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	153
+459	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	153
+460	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	154
+461	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	154
+462	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	154
+463	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PHONE	en-US	155
+464	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	电话	zh-CN	155
+465	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ТЕЛЕФОН	ru-RU	155
+466	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	156
+467	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	156
+468	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	156
+469	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	157
+470	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	157
+471	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	157
+472	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505	ru-RU	158
+473	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	158
+474	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区辛军环路115号，1栋503-505室	zh-CN	158
+476	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	159
+477	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	159
+478	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	MAIN OFFICE ADDRESS	en-US	160
+479	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	总部地址	zh-CN	160
+480	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	АДРЕС ГЛАВНОГО ОФИСА	ru-RU	160
+481	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	161
+482	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	161
+483	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	161
+484	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	162
+485	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	162
+486	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	162
+487	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	163
+488	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	163
+489	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	163
+490	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Дмитрий Александрович Гаврилов. Директор по развитию бизнеса	ru-RU	164
+491	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Dmitry Alexandrovich Gavrilov Business Development Director	en-US	164
+492	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Dmitry Alexandrovich Gavrilov 开发总监	zh-CN	164
+493	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	CONTACT PERSON	en-US	165
+494	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	联系人	zh-CN	165
+495	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	КОНТАКТНОЕ ЛИЦО	ru-RU	165
+496	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Директор по продажам	ru-RU	166
+497	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	销售总监	zh-CN	166
+498	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Sales Director	en-US	166
+499	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Shanghai, China	en-US	167
+500	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Шанхай, Китай	ru-RU	167
+501	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海	zh-CN	167
+502	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Навыки стратегического мышления и  лидерства;Опыт работы на руководящей позиции  в продажах не менее 5 лет;Высшее образование в области маркетинга,  экономики или управления;Знание английского и/или китайского языков  на высоком уровне	ru-RU	168
+503	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Strategic thinking and leadership skills;At least 5 years of experience in a managerial sales position;A degree in marketing, economics, or management;Proficiency in English and/or Chinese at a high level	en-US	168
+504	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	战略思维与领导能力;至少5年销售管理职位经验;市场营销、经济或管理领域的高等学历;英语和/或汉语高级水平	zh-CN	168
+505	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Разработка и реализация стратегии продаж;Управление командой менеджеров по  продажам;Установление и поддержание отношений с  ключевыми клиентами;Анализ рынка и поиск новых возможностей  для развития бизнеса	ru-RU	169
+506	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Developing and implementing sales strategies;Managing the sales team;Building and maintaining relationships with key clients;Market analysis and identifying new business opportunities	en-US	169
+507	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	制定并实施销售战略;管理销售团队;与关键客户建立并维护关系;市场分析与寻找业务发展新机会	zh-CN	169
+508	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Конкурентоспособная заработная плата;Бонусы по результатам работы;Социальный пакет и медицинская страховка;Возможности для профессионального роста	ru-RU	170
+509	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Competitive salary;Performance-based bonuses;Social benefits and medical insurance;Opportunities for professional growth	en-US	170
+510	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	具有竞争力的薪资;绩效奖金;社会保障与医疗保险;职业发展机会	zh-CN	170
+511	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Инженер-механик	ru-RU	171
+512	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	机械工程师	zh-CN	171
+513	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Mechanical Engineer	en-US	171
+514	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Blagoveshchensk, Russia	en-US	172
+515	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Благовещенск, Россия	ru-RU	172
+516	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	俄罗斯布拉戈维申斯克	zh-CN	172
+517	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Высшее техническое образование  (инженер-механик);Опыт работы в сфере машиностроения от 3  лет;Уверенное владение САПР (CAD) программами;Знание английского или китайского языка  будет преимуществом	ru-RU	173
+518	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Higher technical education (Mechanical Engineer);At least 3 years of experience in mechanical engineering;Proficiency in CAD software;Knowledge of English or Chinese is an advantage	en-US	173
+519	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	工程师学位（机械方向）;至少3年机械制造行业工作经验;熟练掌握CAD软件;英语或汉语能力将是优势	zh-CN	173
+520	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Разработка и проектирование промышленного  оборудования;Подготовка технической документации;Взаимодействие с производственным отделом  и контролем качества;Участие в пуско-наладочных работах	ru-RU	174
+521	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Designing and developing industrial equipment;Preparing technical documentation;Collaborating with the production department and quality control;Participating in commissioning work	en-US	174
+522	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	工业设备的设计与开发;编制技术文档;与生产部门及质量控制部门协作;参与调试与安装工作	zh-CN	174
+523	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Достойная заработная плата;Обучение и повышение квалификации;Социальный пакет;Работа в международной команде	ru-RU	175
+524	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Competitive salary;Training and skill development;Social benefits;Work in an international team	en-US	175
+525	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	优厚的薪资待遇;培训与技能提升机会;社会保障;国际化团队合作	zh-CN	175
+526	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Инженер-механик	ru-RU	176
+527	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	机械工程师	zh-CN	176
+528	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Mechanical Engineer	en-US	176
+531	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	俄罗斯布拉戈维申斯克	zh-CN	177
+529	2025-02-25 18:46:18.553	2025-02-27 19:15:41.509269	\N	Blagoveshchensk, Russia	en-US	177
+589	2025-02-25 18:46:18.553	2025-02-27 19:24:33.946315	\N	812	ru-RU	197
+530	2025-02-25 18:46:18.553	2025-02-27 19:15:41.505908	\N	Благовещенск, Россия	ru-RU	177
+578	2025-02-25 18:46:18.553	2025-02-27 19:24:33.922136	\N	HR DEPARTMENT CONTACT INFORMATION	en-US	193
+584	2025-02-25 18:46:18.553	2025-02-27 19:24:33.939207	\N	hr@inter-sa.com	zh-CN	195
+587	2025-02-25 18:46:18.553	2025-02-27 19:24:33.941718	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	196
+588	2025-02-25 18:46:18.553	2025-02-27 19:24:33.94417	\N	中国上海市闵行区新骏环路115号1号楼503-505室	zh-CN	196
+591	2025-02-25 18:46:18.553	2025-02-27 19:24:33.948592	\N	812	en-US	197
+590	2025-02-25 18:46:18.553	2025-02-27 19:24:33.95136	\N	812	zh-CN	197
+594	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	公司新闻	zh-CN	198
+595	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Будьте в курсе последних событий и новостей ншей компании 	ru-RU	199
+596	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	了解我们公司最新的动态和新闻	zh-CN	199
+597	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Stay informed about the latest events and news from our company.	en-US	199
+598	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СОЦИАЛЬНЫЕ СЕТИ	ru-RU	200
+599	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SOCIAL MEDIA	en-US	200
+600	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	社交媒体	zh-CN	200
+601	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Следите за нами в социальных сетях, чтобы получать оперативные обновления и участвовать в обсуждения	ru-RU	201
+602	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Follow us on social media to receive updates and participate in discussions promptly.	en-US	201
+603	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	通过社交媒体关注我们，获取最新动态并参与讨论。	zh-CN	201
+604	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL	ru-RU	202
+605	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL	en-US	202
+606	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司	zh-CN	202
+607	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	— ВАШ ИСТОЧНИК АКТУАЛЬНОЙ ИНФОРМАЦИИ И ЭКСПЕРТНЫХ ЗНАНИЙ В СФЕРЕ ПРОМЫШЛЕННОСТИ И ТЕХНОЛОГИЙ	ru-RU	203
+608	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Your source for the latest information and expert knowledge in the field of industry and technology.	en-US	203
+609	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	—— 您获取工业与技术领域最新信息和专业知识的来源	zh-CN	203
+610	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	ru-RU	204
+611	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	en-US	204
+612	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-21-5432-2755	zh-CN	204
+613	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	205
+614	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-50	ru-RU	205
+615	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区新骏环路115号1号楼503-505办公室	zh-CN	205
+616	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	206
+617	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	206
+532	2025-02-25 18:46:18.553	2025-02-27 19:17:59.386691	\N	Высшее техническое образование  (инженер-механик)	ru-RU	178
+533	2025-02-25 18:46:18.553	2025-02-27 19:17:59.390478	\N	Higher technical education (Mechanical Engineer)	en-US	178
+534	2025-02-25 18:46:18.553	2025-02-27 19:17:59.392848	\N	工程师学位（机械方向）	zh-CN	178
+535	2025-02-25 18:46:18.553	2025-02-27 19:17:59.39582	\N	Разработка и проектирование промышленного  оборудования	ru-RU	179
+536	2025-02-25 18:46:18.553	2025-02-27 19:17:59.39833	\N	Designing and developing industrial equipment	en-US	179
+537	2025-02-25 18:46:18.553	2025-02-27 19:17:59.401733	\N	工业设备的设计与开发	zh-CN	179
+538	2025-02-25 18:46:18.553	2025-02-27 19:17:59.404271	\N	Достойная заработная плата	ru-RU	180
+539	2025-02-25 18:46:18.553	2025-02-27 19:17:59.406539	\N	Competitive salary	en-US	180
+540	2025-02-25 18:46:18.553	2025-02-27 19:17:59.409372	\N	优厚的薪资待遇	zh-CN	180
+541	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	 МАРИНА СМИРНОВА	ru-RU	181
+542	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Marina Smirnova	en-US	181
+543	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Marina Smirnova	zh-CN	181
+544	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Менеджер по работе с клиентами	ru-RU	182
+545	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Client Relations Manager	en-US	182
+546	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户经理	zh-CN	182
+547	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"When I joined SA International two years ago, I couldn't imagine how quickly I would grow professionally. The company provides all the opportunities for learning and development. I work with clients from different countries, which constantly broadens my horizons and enriches my experience."	en-US	183
+548	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	“当我两年前加入上海亚际机电有限公司时，我没有想到自己会如此迅速地实现职业发展。公司提供了全面的学习和成长机会。我与来自不同国家的客户合作，这不断拓宽了我的视野，带来了丰富的经验。”	zh-CN	183
+549	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"Когда я присоединилась к SA International два года назад, я и не предполагала, насколько быстро смогу вырасти профессионально. Компания предоставляет все возможности для обучения и развития. Я работаю с клиентами из разных стран, что позволяет постоянно расширять свой кругозор и приобретать новый опыт."	ru-RU	183
+618	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	206
+619	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СТАТЬИ И АНАЛИТИКА	ru-RU	207
+620	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ARTICLES AND ANALYTICS	en-US	207
+621	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	文章与分析	zh-CN	207
+622	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Мы делимся своим опытом и экспертными знаниями, публикуя статьи и аналитические материалы по актуальным темам промышленности и технологий	ru-RU	208
+623	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们分享我们的经验和专业知识，发布与工业和技术相关的文章和分析材料	zh-CN	208
+624	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We share our expertise and knowledge through articles and analytical materials on current industry and technology topics.	en-US	208
+625	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ПРЕСС-РЕЛИЗЫ 	ru-RU	209
+626	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PRESS RELEASES	en-US	209
+627	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	新闻稿	zh-CN	209
+628	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司的官方声明与公告	zh-CN	210
+629	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Официальные заявления и анонсы SA internetional	ru-RU	210
+550	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/2dfb3ccd6eb74468f92b424f33049bc0.png","type":"images","name":"linkedin-sales-solutions-NpyF7rjqmq4-unsplash 1.png","filename":"2dfb3ccd6eb74468f92b424f33049bc0.png","size":361705,"id":16,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	184
+551	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/2dfb3ccd6eb74468f92b424f33049bc0.png","type":"images","name":"linkedin-sales-solutions-NpyF7rjqmq4-unsplash 1.png","filename":"2dfb3ccd6eb74468f92b424f33049bc0.png","size":361705,"id":16,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	184
+552	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/2dfb3ccd6eb74468f92b424f33049bc0.png","type":"images","name":"linkedin-sales-solutions-NpyF7rjqmq4-unsplash 1.png","filename":"2dfb3ccd6eb74468f92b424f33049bc0.png","size":361705,"id":16,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	184
+553	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ИВАН КОВАЛЕВ	ru-RU	185
+554	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ivan Kovalev	en-US	185
+555	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ivan Kovalev	zh-CN	185
+556	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Инженер по автоматизации	ru-RU	186
+557	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Automation Engineer	en-US	186
+558	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	自动化工程师	zh-CN	186
+559	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"Working at SA International is a constant challenge and an opportunity to participate in cutting-edge projects. I especially enjoyed working on the project to implement artificial intelligence in production processes. A team of professionals and supportive leadership make this job truly exciting."	en-US	187
+560	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	“在上海亚际机电有限公司工作是一种持续的挑战，也是参与前沿项目的机会。我尤其喜欢参与人工智能在生产流程中的应用项目。专业团队和管理层的支持使这里的工作真正令人兴奋。”	zh-CN	187
+561	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"Работа в SA International - это постоянный вызов и возможность участвовать в передовых проектах. Особенно интересно было работать над проектом по внедрению искусственного интеллекта в производственные процессы. Команда профессионалов и поддержка руководства делают работу здесь по-настоящему увлекательной."	ru-RU	187
+562	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/d499660c915e40db3f45c14d5da2db02.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"d499660c915e40db3f45c14d5da2db02.png","size":391276,"id":17,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	188
+563	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/d499660c915e40db3f45c14d5da2db02.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"d499660c915e40db3f45c14d5da2db02.png","size":391276,"id":17,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	188
+564	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/d499660c915e40db3f45c14d5da2db02.png","type":"images","name":"jonas-kakaroto-KIPqvvTOC1s-unsplash.png","filename":"d499660c915e40db3f45c14d5da2db02.png","size":391276,"id":17,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	188
+565	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ЛЮ ЧЭНЬ	ru-RU	189
+566	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Liu Chen	en-US	189
+567	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Liu Chen	zh-CN	189
+568	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Специалист по логистике	ru-RU	190
+569	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Logistics Specialist	en-US	190
+570	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	物流专家	zh-CN	190
+571	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"SA International gave me the opportunity to realize my potential in international logistics. Initiative and striving for excellence are highly valued here. I am proud to be part of a company that is actively growing and conquering new markets."	en-US	191
+572	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	“上海亚际机电有限公司为我提供了在国际物流领域实现自我的机会。这里重视主动性和追求卓越。我为自己是这家积极发展、开拓新市场的公司的成员而自豪。”	zh-CN	191
+573	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	"SA International дала мне возможность реализовать себя в международной логистике. здесь ценят инициативу и стремление к совершенству. Я горжусь тем, что являюсь частью компании, которая активно развивается и покоряет новые рынки."	ru-RU	191
+574	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/670973da319cf9784fc8aa7623dd77f3.png","type":"images","name":"linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png","filename":"670973da319cf9784fc8aa7623dd77f3.png","size":348752,"id":18,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	192
+575	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/670973da319cf9784fc8aa7623dd77f3.png","type":"images","name":"linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png","filename":"670973da319cf9784fc8aa7623dd77f3.png","size":348752,"id":18,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	192
+576	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/670973da319cf9784fc8aa7623dd77f3.png","type":"images","name":"linkedin-sales-solutions-pAtA8xe_iVM-unsplash 1.png","filename":"670973da319cf9784fc8aa7623dd77f3.png","size":348752,"id":18,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	192
+577	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	КОНТАКТНАЯ ИНФОРМАЦИЯ ОТДЕЛА КАДРОВ	ru-RU	193
+579	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	193
+583	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	hr@inter-sa.com	ru-RU	195
+586	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505	ru-RU	196
+580	2025-02-25 18:46:18.553	2025-02-27 19:24:33.927959	\N	+86-21-5432-2755	ru-RU	194
+581	2025-02-25 18:46:18.553	2025-02-27 19:24:33.93174	\N	+86-21-5432-2755	en-US	194
+582	2025-02-25 18:46:18.553	2025-02-27 19:24:33.934463	\N	+86-21-5432-2755	zh-CN	194
+585	2025-02-25 18:46:18.553	2025-02-27 19:24:33.936745	\N	hr@inter-sa.com	en-US	195
+592	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	НОВОСТИ КОМПАНИИ 	ru-RU	198
+593	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	COMPANY NEWS	en-US	198
+630	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Official announcements and statements from SA International.	en-US	210
+631	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	211
+632	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	211
+633	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	211
+634	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	ru-RU	212
+635	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	en-US	212
+636	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	zh-CN	212
+637	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115. корпус 1, офисы 503-505	ru-RU	213
+638	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	213
+639	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区新骏环路115号1号楼503-505办公室	zh-CN	213
+640	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	ru-RU	214
+641	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	en-US	214
+642	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	info@inter-sa.com	zh-CN	214
+643	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	ru-RU	215
+644	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	en-US	215
+645	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	+86-5432-2755	zh-CN	215
+646	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115.	ru-RU	216
+647	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	中国上海市闵行区新骏环路115号1号楼503-505办公室	zh-CN	216
+648	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	China, Shanghai, Minhang District, Xinjunhuan Street, Building 115, Unit 1, Offices 503–505	en-US	216
+61	2025-02-25 18:46:18.553	2025-02-28 05:54:10.849054	\N	Создание бартерной биржи 	ru-RU	21
+64	2025-02-25 18:46:18.553	2025-02-28 05:54:10.868792	\N	Совмесно с ведущими компаниями мы инвестировали в  содание инновационной бартерной биржи, которая позволит  предприятиям эффективно обмениваться товарами и услугами	ru-RU	22
+649	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Строительство завода роботов-манипуляторов в россии	ru-RU	217
+650	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Construction of a Robot Manipulator Factory in Russia	en-US	217
+651	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	在俄罗斯建设机器人手臂工厂	zh-CN	217
+652	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Мы начинаем строительство завода по производству  работизированных рук в России, стремясь к полной  локатизации производства к 2028 году и развитию  промышленного потенциала региона. 	ru-RU	218
+653	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们正在启动机器人手臂制造厂的建设， 目标是在2028年实现生产的全面本地化， 并推动该地区的工业潜力发展。	zh-CN	218
+654	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We are launching the construction of a factory for robotic arms in Russia, aiming for full production localization by 2028 and contributing to the region's industrial potential.	en-US	218
 \.
 
 
@@ -3962,12 +3754,17 @@ COPY public.pages_iblock_records_field_value (id, "createdAt", "updatedAt", "del
 --
 
 COPY public.pages_iblock_records_sections_pages_iblock_section ("pagesIblockRecordsId", "pagesIblockSectionId") FROM stdin;
-15	3
-16	3
-17	3
-18	4
-19	4
-20	4
+25	2
+26	1
+27	2
+28	1
+29	1
+30	1
+31	1
+32	1
+33	2
+34	2
+35	2
 \.
 
 
@@ -3976,10 +3773,8 @@ COPY public.pages_iblock_records_sections_pages_iblock_section ("pagesIblockReco
 --
 
 COPY public.pages_iblock_section (id, "createdAt", "updatedAt", "deletedAt", "iblockId") FROM stdin;
-1	2025-02-17 07:56:30.912	2025-02-17 09:04:46.502461	\N	\N
-2	2025-02-17 07:56:30.912	2025-02-17 10:59:19.22978	\N	\N
-3	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	8
-4	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	8
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11
 \.
 
 
@@ -3988,22 +3783,12 @@ COPY public.pages_iblock_section (id, "createdAt", "updatedAt", "deletedAt", "ib
 --
 
 COPY public.pages_iblock_section_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "sectionId") FROM stdin;
-1	2025-02-17 07:56:30.912	2025-02-17 07:56:30.912	\N	testRU	ru-RU	1
-2	2025-02-17 07:56:30.912	2025-02-17 07:56:30.912	\N	testEn	en-US	1
-3	2025-02-17 07:56:30.912	2025-02-17 07:56:30.912	\N	tsetCH	zh-CN	1
-4	2025-02-17 07:56:30.912	2025-02-17 08:50:09.465191	\N	testEn	en-US	\N
-5	2025-02-17 07:56:30.912	2025-02-17 08:50:09.468865	\N	tsetCH	zh-CN	\N
-7	2025-02-17 07:56:30.912	2025-02-17 07:56:30.912	\N	testEN	en-US	2
-8	2025-02-17 07:56:30.912	2025-02-17 07:56:30.912	\N	testCH	zh-CN	2
-9	2025-02-17 07:56:30.912	2025-02-17 09:05:04.266886	\N	testEN	en-US	\N
-10	2025-02-17 07:56:30.912	2025-02-17 09:05:04.269923	\N	testCH	zh-CN	\N
-6	2025-02-17 07:56:30.912	2025-02-17 10:23:28.834685	\N	testRu111	ru-RU	2
-11	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	Общие вопросы	ru-RU	3
-12	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	General Questions	en-US	3
-13	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	一般问题	zh-CN	3
-14	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	Технические вопросы	ru-RU	4
-15	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	Technical Questions	en-US	4
-16	2025-02-17 10:58:23.052	2025-02-17 10:58:23.052	\N	技术问题	zh-CN	4
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Общие вопросы	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	General Questions	en-US	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	一般问题	zh-CN	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Технические вопросы	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Technical Questions	en-US	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	技术问题	zh-CN	2
 \.
 
 
@@ -4012,19 +3797,18 @@ COPY public.pages_iblock_section_value (id, "createdAt", "updatedAt", "deletedAt
 --
 
 COPY public.pages_params (id, "createdAt", "updatedAt", "deletedAt", name, slug, type, "isFilter", "pagesId") FROM stdin;
-1	2025-02-19 20:35:34.83	2025-02-19 20:35:34.83	\N	Изоображение	image	image	f	8
-2	2025-02-20 13:50:21.358	2025-02-21 18:12:51.812078	2025-02-21 18:12:51.812078	test	test	text	f	8
-3	2025-02-22 15:25:34.196	2025-02-22 15:25:34.196	\N	Изоображение	image	image	f	10
-4	2025-02-24 08:08:12.432	2025-02-24 08:08:12.432	\N	Описание	description	textarea	f	11
-5	2025-02-24 08:08:51.811	2025-02-24 08:08:51.811	\N	Технические характеристики	technical	textarea	f	11
-6	2025-02-24 08:09:38.961	2025-02-24 08:09:38.961	\N	Сферы применения	application	textarea	f	11
-8	2025-02-24 08:38:57.583	2025-02-24 08:38:57.584	\N	Изоображение	image	image	f	11
-9	2025-02-24 08:45:21.839	2025-02-24 08:45:21.839	\N	Описание	description	textarea	f	12
-10	2025-02-24 08:47:16.143	2025-02-24 08:47:16.143	\N	Технические характеристики	technical	textarea	f	12
-11	2025-02-24 08:47:24.257	2025-02-24 08:47:24.257	\N	Сферы применения	application	textarea	f	12
-7	2025-02-24 08:10:27.543	2025-02-24 08:47:49.628033	\N	Преимущества сотрудничества	advantages	editor	f	11
-12	2025-02-24 08:47:54.92	2025-02-24 08:47:54.92	\N	Преимущества сотрудничества	advantages	editor	f	12
-13	2025-02-24 08:48:10.833	2025-02-24 08:48:10.833	\N	Изоображение	image	image	f	12
+1	2025-02-25 20:29:19.765	2025-02-25 20:29:19.765	\N	Изоображение	image	image	f	8
+2	2025-02-25 20:32:16.022	2025-02-25 20:32:16.022	\N	Изоображение	image	image	f	10
+3	2025-02-25 20:37:32.165	2025-02-25 20:37:32.165	\N	Описание	description	textarea	f	11
+4	2025-02-25 20:37:49.788	2025-02-25 20:37:49.788	\N	Технические характеристики	technical	textarea	f	11
+5	2025-02-25 20:38:02.632	2025-02-25 20:38:02.632	\N	Сферы применения	application	textarea	f	11
+6	2025-02-25 20:38:16.463	2025-02-25 20:38:16.463	\N	Преимущества сотрудничества	advantages	editor	f	11
+7	2025-02-25 20:38:32.348	2025-02-25 20:38:32.348	\N	Изоображение	image	image	f	11
+8	2025-02-25 20:40:30.498	2025-02-25 20:40:30.498	\N	Описание	description	textarea	f	12
+9	2025-02-25 20:40:45.14	2025-02-25 20:40:45.14	\N	Технические характеристики	technical	textarea	f	12
+10	2025-02-25 20:41:00.065	2025-02-25 20:41:00.065	\N	Сферы применения	application	textarea	f	12
+11	2025-02-25 20:41:13.815	2025-02-25 20:41:13.815	\N	Преимущества сотрудничества	advantages	editor	f	12
+12	2025-02-25 20:41:29.27	2025-02-25 20:41:29.27	\N	Изоображение	image	image	f	12
 \.
 
 
@@ -4033,33 +3817,97 @@ COPY public.pages_params (id, "createdAt", "updatedAt", "deletedAt", name, slug,
 --
 
 COPY public.pages_params_field (id, "createdAt", "updatedAt", "deletedAt", "paramsId", "recordId") FROM stdin;
-1	2025-02-21 12:54:10.908	2025-02-21 12:54:10.908	\N	1	6
-2	2025-02-21 12:54:10.908	2025-02-21 12:54:10.908	\N	2	6
-3	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	1	7
-4	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	2	7
-5	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	1	8
-6	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	3	11
-7	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	3	12
-8	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	4	13
-9	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	5	13
-10	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	6	13
-11	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	7	13
-12	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	8	13
-13	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	4	14
-14	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	5	14
-15	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	6	14
-16	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	7	14
-17	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	8	14
-18	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	9	15
-19	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	10	15
-20	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	11	15
-21	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	12	15
-22	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	13	15
-23	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	4	16
-24	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	5	16
-25	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	6	16
-26	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	7	16
-27	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	8	16
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	2
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	1	3
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	9
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	10
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	2	11
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	12
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	12
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	12
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	12
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	12
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	13
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	13
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	13
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	13
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	13
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	14
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	14
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	14
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	14
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	14
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	15
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	15
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	15
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	15
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	15
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	16
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	16
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	16
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	16
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	16
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	17
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	17
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	17
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	17
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	17
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	18
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	18
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	18
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	18
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	18
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	19
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	19
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	19
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	19
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	19
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	20
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	20
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	20
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	20
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	20
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	8	21
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	9	21
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	10	21
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11	21
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	12	21
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	22
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	22
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	22
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	22
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	22
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	23
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	23
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	23
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	23
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	23
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	24
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	24
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	24
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	24
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	24
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	25
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	25
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	25
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	25
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	25
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	26
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	26
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	26
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	26
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	26
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	27
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	27
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	27
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	27
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	27
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	3	28
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	4	28
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	5	28
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	6	28
+91	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	7	28
 \.
 
 
@@ -4068,68 +3916,189 @@ COPY public.pages_params_field (id, "createdAt", "updatedAt", "deletedAt", "para
 --
 
 COPY public.pages_params_field_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "pagesParamsFieldId") FROM stdin;
-1	2025-02-21 12:54:10.908	2025-02-21 12:54:10.908	\N	ENG	en-US	2
-3	2025-02-21 12:54:10.908	2025-02-21 12:54:10.908	\N	CH	zh-CN	2
-2	2025-02-21 12:54:10.908	2025-02-21 12:55:24.032946	\N	Русский 111	ru-RU	2
-4	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	ru-RU	4
-5	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	en-US	4
-6	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	zh-CN	4
-7	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	{"path":"http://localhost:9000/cms/87e723c8e804dd49bd8ee96ecf634013.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"87e723c8e804dd49bd8ee96ecf634013.png","size":207506,"deletedAt":null,"id":46,"createdAt":"2025-02-21T18:21:16.057Z","updatedAt":"2025-02-21T18:21:16.057Z","isSystem":false}	ru-RU	1
-8	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	{"path":"http://localhost:9000/cms/87e723c8e804dd49bd8ee96ecf634013.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"87e723c8e804dd49bd8ee96ecf634013.png","size":207506,"deletedAt":null,"id":46,"createdAt":"2025-02-21T18:21:16.057Z","updatedAt":"2025-02-21T18:21:16.057Z","isSystem":false}	zh-CN	1
-9	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	{"path":"http://localhost:9000/cms/87e723c8e804dd49bd8ee96ecf634013.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"87e723c8e804dd49bd8ee96ecf634013.png","size":207506,"deletedAt":null,"id":46,"createdAt":"2025-02-21T18:21:16.057Z","updatedAt":"2025-02-21T18:21:16.057Z","isSystem":false}	en-US	1
-10	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	{"path":"http://localhost:9000/cms/7219259062fb1a6271ce94f588f579b9.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"7219259062fb1a6271ce94f588f579b9.png","size":207506,"deletedAt":null,"id":48,"createdAt":"2025-02-21T20:49:50.236Z","updatedAt":"2025-02-21T20:49:50.237Z","isSystem":false}	ru-RU	6
-11	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	{"path":"http://localhost:9000/cms/7219259062fb1a6271ce94f588f579b9.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"7219259062fb1a6271ce94f588f579b9.png","size":207506,"deletedAt":null,"id":48,"createdAt":"2025-02-21T20:49:50.236Z","updatedAt":"2025-02-21T20:49:50.237Z","isSystem":false}	en-US	6
-12	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	{"path":"http://localhost:9000/cms/7219259062fb1a6271ce94f588f579b9.png","type":"images","name":"daulet-turubayev-RAwn1QFwfss-unsplash.png","filename":"7219259062fb1a6271ce94f588f579b9.png","size":207506,"deletedAt":null,"id":48,"createdAt":"2025-02-21T20:49:50.236Z","updatedAt":"2025-02-21T20:49:50.237Z","isSystem":false}	zh-CN	6
-13	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Разработка концепции, проектирование, подбор и поставка оборудования, монтаж, пуско-наладочные работы, обучение персонала	ru-RU	8
-14	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Concept development, design, equipment selection and supply, installation, commissioning, personnel training\n	en-US	8
-15	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	现代技术的整合、流程自动化、符合国际质量和安全标准\n	zh-CN	9
-16	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	食品工业、冶金、化工、建材生产、包装\n	zh-CN	10
-17	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Integration of modern technologies, process automation, compliance with international quality and safety standards\n	en-US	9
-18	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Пищевая промышленность, металлургия, химическая промышленность, производство строительных материалов, упаковка\n	ru-RU	10
-19	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Интеграция современных технологий, автоматизация процессов, соответствие международным стандартам качества и безопасности\n	ru-RU	9
-20	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Food industry, metallurgy, chemical industry, construction materials production, packaging\n	en-US	10
-21	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	概念开发、设计、设备选型与供应、安装、调试、员工培训	zh-CN	8
-22	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>Единый подрядчик на всех этапах проекта</li><li>Оптимизация затрат и сроков реализации</li><li>Гарантия качества и соблюдение сроков</li><li>Запрос коммерческого предложения</li></ul>	ru-RU	11
-23	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>A single contractor for all project stages</li><li>Cost and implementation time optimization</li><li>Quality assurance and adherence to deadlines</li><li>Request a Commercial Offer</li></ul>	en-US	11
-24	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>项目各阶段的单一承包商</li><li>优化成本和实施时间</li><li>质量保证和按时交付</li><li>请求商业报价</li></ul>	zh-CN	11
-28	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Подбор оптимального оборудования на основе анализа ваших потребностей и особенностей производства	ru-RU	13
-29	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Selection of optimal equipment based on an analysis of your needs and production specifics\n	en-US	13
-30	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	根据对您的需求和生产特点的分析，选择最佳设备。\n	zh-CN	13
-31	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>Экономия времени и ресурсов</li><li>Доступ к широкой базе проверенных поставщиков</li><li>Независимая экспертная оценка и рекомендации</li></ul>	ru-RU	16
-32	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>Time and resource savings</li><li>Access to a wide database of verified suppliers</li><li>Independent expert evaluation and recommendations</li></ul>	en-US	16
-33	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>节省时间和资源</li><li>访问广泛的经过验证的供应商数据库</li><li>独立的专家评估和建议</li></ul>	zh-CN	16
-27	2025-02-24 08:07:25.591	2025-02-25 07:29:43.030027	\N	{"path":"http://localhost:9000/cms/f7685ef0a882cb5dde13e64f222336e4.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f7685ef0a882cb5dde13e64f222336e4.png","size":367918,"deletedAt":null,"id":51,"createdAt":"2025-02-25T07:28:44.604Z","updatedAt":"2025-02-25T07:28:44.604Z","isSystem":false}	zh-CN	12
-34	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Экскаваторы, бульдозеры, грейдеры, башенные и мобильные краны, генераторы, компрессоры, сварочные аппараты, перфораторы 	ru-RU	18
-35	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>Manufacturer's quality guarantee</li><li>Technical support and maintenance service</li><li>&nbsp;Individual approach to each project</li></ul>	en-US	21
-36	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Excavators, bulldozers, graders, tower and mobile cranes, generators, compressors, welding machines, jackhammers\n	en-US	18
-37	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Высокая производительность, энергоэффективность, простота в обслуживании\n	ru-RU	19
-38	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	挖掘机、推土机、平地机、塔式和移动式起重机、发电机、压缩机、焊接机、电锤\n	zh-CN	18
-39	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	High performance, energy efficiency, ease of maintenance\n	en-US	19
-40	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Гражданское и промышленное строительство, возведение жилых комплексов, инфраструктурные проекты\n	ru-RU	20
-41	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>制造商的质量保证</li><li>技术支持和售后服务</li><li>为每个项目量身定制的解决方案</li></ul>	zh-CN	21
-42	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	高生产率、节能、易于维护\n	zh-CN	19
-43	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Civil and industrial construction, residential complex construction, infrastructure projects\n	en-US	20
-44	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	民用和工业建筑、住宅综合楼建设、基础设施项目\n	zh-CN	20
-45	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	<ul><li>Гарантия качества от производителя</li><li>Техническая поддержка и сервисное обслуживание</li><li>Индивидуальный подход к каждому проекту</li></ul>	ru-RU	21
-46	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	{"path":"http://localhost:9000/cms/be8e2c016341cf9f77ad0341d0daed6d.png","type":"images","name":"pngwing.com (2) 1.png","filename":"be8e2c016341cf9f77ad0341d0daed6d.png","size":515224,"deletedAt":null,"id":50,"createdAt":"2025-02-24T08:07:25.591Z","updatedAt":"2025-02-24T08:07:25.592Z","isSystem":false}	en-US	22
-47	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	{"path":"http://localhost:9000/cms/be8e2c016341cf9f77ad0341d0daed6d.png","type":"images","name":"pngwing.com (2) 1.png","filename":"be8e2c016341cf9f77ad0341d0daed6d.png","size":515224,"deletedAt":null,"id":50,"createdAt":"2025-02-24T08:07:25.591Z","updatedAt":"2025-02-24T08:07:25.592Z","isSystem":false}	zh-CN	22
-48	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	{"path":"http://localhost:9000/cms/be8e2c016341cf9f77ad0341d0daed6d.png","type":"images","name":"pngwing.com (2) 1.png","filename":"be8e2c016341cf9f77ad0341d0daed6d.png","size":515224,"deletedAt":null,"id":50,"createdAt":"2025-02-24T08:07:25.591Z","updatedAt":"2025-02-24T08:07:25.592Z","isSystem":false}	ru-RU	22
-49	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	Интеграция современных технологий, включая искусственный интеллект и автоматизацию, в существующие производственные процессы\n	ru-RU	23
-50	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	Integration of modern technologies, including artificial intelligence and automation, into existing production processes\n	en-US	23
-51	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	将现代技术（包括人工智能和自动化）整合到现有的生产流程中。\n	zh-CN	23
-52	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	<ul><li>Повышение эффективности и производительности</li><li>Снижение издержек и оптимизация ресурсов</li><li>Улучшение качества продукции и услуг</li></ul>	ru-RU	26
-53	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	<ul><li>提高效率和生产力</li><li>降低成本并优化资源</li><li>提高产品和服务质量</li></ul>	zh-CN	26
-54	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	<ul><li>Increased efficiency and productivity</li><li>Cost reduction and resource optimization</li><li>Improved product and service quality</li></ul>	en-US	26
-25	2025-02-24 08:07:25.591	2025-02-25 07:29:43.023002	\N	{"path":"http://localhost:9000/cms/f7685ef0a882cb5dde13e64f222336e4.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f7685ef0a882cb5dde13e64f222336e4.png","size":367918,"deletedAt":null,"id":51,"createdAt":"2025-02-25T07:28:44.604Z","updatedAt":"2025-02-25T07:28:44.604Z","isSystem":false}	ru-RU	12
-26	2025-02-24 08:07:25.591	2025-02-25 07:29:43.030772	\N	{"path":"http://localhost:9000/cms/f7685ef0a882cb5dde13e64f222336e4.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f7685ef0a882cb5dde13e64f222336e4.png","size":367918,"deletedAt":null,"id":51,"createdAt":"2025-02-25T07:28:44.604Z","updatedAt":"2025-02-25T07:28:44.604Z","isSystem":false}	en-US	12
-\.
-
-
---
--- Data for Name: pages_params_value; Type: TABLE DATA; Schema: public; Owner: postgress
---
-
-COPY public.pages_params_value (id, "createdAt", "updatedAt", "deletedAt", value, "valueJson", "paramsId", "recordId") FROM stdin;
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Экскаваторы, бульдозеры, грейдеры, башенные и мобильные краны, генераторы, компрессоры, сварочные аппараты, перфораторы \n	ru-RU	7
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/13cc7bf22590c668a7f641ecf4754915.png","type":"images","name":"pngwing.com (2) 1.png","filename":"13cc7bf22590c668a7f641ecf4754915.png","size":515224,"id":20,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	11
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	挖掘机、推土机、平地机、塔式和移动式起重机、发电机、压缩机、焊接机、电锤\n	zh-CN	7
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Excavators, bulldozers, graders, tower and mobile cranes, generators, compressors, welding machines, jackhammers\n	en-US	7
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/13cc7bf22590c668a7f641ecf4754915.png","type":"images","name":"pngwing.com (2) 1.png","filename":"13cc7bf22590c668a7f641ecf4754915.png","size":515224,"id":20,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	11
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/13cc7bf22590c668a7f641ecf4754915.png","type":"images","name":"pngwing.com (2) 1.png","filename":"13cc7bf22590c668a7f641ecf4754915.png","size":515224,"id":20,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	11
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Высокая производительность, энергоэффективность, простота в обслуживании\n	ru-RU	8
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	High performance, energy efficiency, ease of maintenance\n	en-US	8
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	民用和工业建筑、住宅综合楼建设、基础设施项目\n	zh-CN	9
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	高生产率、节能、易于维护\n	zh-CN	8
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Гражданское и промышленное строительство, возведение жилых комплексов, инфраструктурные проекты\n	ru-RU	9
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Civil and industrial construction, residential complex construction, infrastructure projects\n	en-US	9
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Асфальтовые заводы, дорожные катки, фрезы, распределители битума\n	ru-RU	12
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	沥青厂、压路机、铣刨机、沥青洒布车\n	zh-CN	12
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Construction and repair of roads, bridges, tunnels\n	en-US	14
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Reliability, long service life, compliance with international standards\n	en-US	13
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b6e6290768a0bc8f834ea19efe2445d7.png","type":"images","name":"pngwing.com (3) 1.png","filename":"b6e6290768a0bc8f834ea19efe2445d7.png","size":434233,"id":21,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	16
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Надежность, длительный срок службы, соответствие международным стандартам\n	ru-RU	13
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Asphalt plants, road rollers, milling machines, bitumen distributors\n	en-US	12
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	可靠性、长使用寿命、符合国际标准\n	zh-CN	13
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Строительство и ремонт дорог, мостов, туннелей\n	ru-RU	14
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b6e6290768a0bc8f834ea19efe2445d7.png","type":"images","name":"pngwing.com (3) 1.png","filename":"b6e6290768a0bc8f834ea19efe2445d7.png","size":434233,"id":21,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	16
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/b6e6290768a0bc8f834ea19efe2445d7.png","type":"images","name":"pngwing.com (3) 1.png","filename":"b6e6290768a0bc8f834ea19efe2445d7.png","size":434233,"id":21,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	16
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	道路、桥梁、隧道的建设和维修\n	zh-CN	14
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Плавильные печи, прокатные станы, оборудование для обработки металла, системы охлаждения\n	ru-RU	17
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Melting furnaces, rolling mills, metal processing equipment, cooling systems\n	en-US	17
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	熔炉、轧机、金属加工设备、冷却系统\n	zh-CN	17
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	High performance, process automation, energy efficiency\n	en-US	18
+3	2025-02-25 18:46:18.553	2025-02-27 20:14:31.498428	\N	<div>民用和工业建筑、住宅综合楼建设、基础设施项目</div><div><ul><li>制造商的质量保证</li><li>技术支持和售后服务</li><li>为每个项目量身定制的解决方案</li></ul></div>	zh-CN	10
+2	2025-02-25 18:46:18.553	2025-02-27 20:14:31.502621	\N	<div>Civil and industrial construction, residential complex construction, infrastructure projects</div><div><ul><li>Manufacturer's quality guarantee</li><li>Technical support and maintenance service</li><li>Individual approach to each project</li></ul></div>	en-US	10
+29	2025-02-25 18:46:18.553	2025-02-27 20:15:45.316378	\N	<div>Комплексные решения "под ключ"</div><div><ul><li>Обучение персонала работе с оборудованием</li><li>Гибкие условия оплаты и доставки</li></ul></div>	ru-RU	15
+19	2025-02-25 18:46:18.553	2025-02-27 20:15:45.326111	\N	<div>“交钥匙”综合解决方案</div><div><ul><li>设备操作人员培训</li><li>灵活的付款和交付条件</li></ul></div>	zh-CN	15
+17	2025-02-25 18:46:18.553	2025-02-27 20:15:45.327497	\N	<div>Turnkey comprehensive solutions</div><div><ul><li>Personnel training for equipment operation</li><li>Flexible payment and delivery terms</li></ul></div>	en-US	15
+36	2025-02-25 18:46:18.553	2025-02-27 20:16:14.978316	\N	<div><ul><li>项目各阶段的技术支持</li><li>现有设备升级的可能性</li><li>生产流程优化</li></ul></div>	zh-CN	20
+32	2025-02-25 18:46:18.553	2025-02-27 20:16:14.979233	\N	<div><ul><li>Technical support at all stages of the project</li><li>Possibility of upgrading existing equipment</li><li>Optimization of production processes</li></ul></div>	en-US	20
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Высокая производительность, автоматизация процессов, энергоэффективность\n	ru-RU	18
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f515b0ab97eef8699c697910f4a38175.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f515b0ab97eef8699c697910f4a38175.png","size":367598,"id":22,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	21
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f515b0ab97eef8699c697910f4a38175.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f515b0ab97eef8699c697910f4a38175.png","size":367598,"id":22,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	21
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f515b0ab97eef8699c697910f4a38175.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f515b0ab97eef8699c697910f4a38175.png","size":367598,"id":22,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	21
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	高生产率、自动化流程、节能\n	zh-CN	18
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	冶金工厂、金属结构生产企业\n	zh-CN	19
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Metallurgical plants, enterprises producing metal structures\n	en-US	19
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Металлургические заводы, предприятия по производству металлоконструкций\n	ru-RU	19
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Дробильные установки, грохоты, конвейерные системы, обогатительное оборудование\n	ru-RU	22
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Crushing plants, screens, conveyor systems, beneficiation equipment\n	en-US	22
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Durability, reliability, adaptability to challenging operating conditions\n	en-US	23
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	破碎设备、筛分机、输送系统、选矿设备\n	zh-CN	22
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Прочность, надежность, адаптация к сложным условиям эксплуатации\n	ru-RU	23
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Extraction of ore and non-ore materials, coal, minerals\n	en-US	24
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	坚固性、可靠性、适应复杂操作条件\n	zh-CN	23
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Добыча рудных и нерудных материалов, угля, полезных ископаемых\n	ru-RU	24
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	矿石和非矿石材料、煤炭、矿物的开采\n	zh-CN	24
+57	2025-02-25 18:46:18.553	2025-02-27 20:06:19.045535	\N	<div><ul><li>Индивидуальные решения под специфические задачи</li><li>Обучение и тренинги для персонала</li><li>Круглосуточная техническая поддержка</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	25
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/ca88ad1cd612627c383985ad09eccd58.png","type":"images","name":"pngwing.com (4) 1.png","filename":"ca88ad1cd612627c383985ad09eccd58.png","size":390548,"id":23,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	26
+48	2025-02-25 18:46:18.553	2025-02-27 20:06:19.06249	\N	<div><ul><li>Customized solutions for specific tasks</li><li>Training and workshops for personnel</li><li>24/7 technical support</li><li>Request a commercial offer</li></ul></div>	en-US	25
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/ca88ad1cd612627c383985ad09eccd58.png","type":"images","name":"pngwing.com (4) 1.png","filename":"ca88ad1cd612627c383985ad09eccd58.png","size":390548,"id":23,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	26
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/ca88ad1cd612627c383985ad09eccd58.png","type":"images","name":"pngwing.com (4) 1.png","filename":"ca88ad1cd612627c383985ad09eccd58.png","size":390548,"id":23,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	26
+49	2025-02-25 18:46:18.553	2025-02-27 20:06:19.06421	\N	<div><ul><li>针对特定任务的个性化解决方案</li><li>员工培训</li><li>全天候技术支持</li><li>请求商业报价</li></ul></div>	zh-CN	25
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Реакторы, сепараторы, насосы, теплообменники, системы фильтрации\n	ru-RU	27
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Technical consultations from industry experts</li><li>Equipment adaptation to customer requirements</li><li>Warranty and post-warranty service</li><li>Request a commercial offer</li></ul></div>	en-US	30
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>来自行业专家的技术咨询</li><li>根据客户需求定制设备</li><li>保修及售后维护</li><li>请求商业报价</li></ul></div>	zh-CN	30
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a7f6d68ddd390c561737fbd60c5ecd9b.png","type":"images","name":"pngwing.com (4) 1.png","filename":"a7f6d68ddd390c561737fbd60c5ecd9b.png","size":384798,"id":24,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	31
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a7f6d68ddd390c561737fbd60c5ecd9b.png","type":"images","name":"pngwing.com (4) 1.png","filename":"a7f6d68ddd390c561737fbd60c5ecd9b.png","size":384798,"id":24,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	31
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	反应器、分离器、泵、热交换器、过滤系统\n	zh-CN	27
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Reactors, separators, pumps, heat exchangers, filtration systems\n	en-US	27
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Химическая стойкость, надежность, соответствие международным стандартам\n	ru-RU	28
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Chemical resistance, reliability, compliance with international standards\n	en-US	28
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	化学稳定性、可靠性、符合国际标准\n	zh-CN	28
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/a7f6d68ddd390c561737fbd60c5ecd9b.png","type":"images","name":"pngwing.com (4) 1.png","filename":"a7f6d68ddd390c561737fbd60c5ecd9b.png","size":384798,"id":24,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	31
+44	2025-02-25 18:46:18.553	2025-02-27 20:16:14.968374	\N	<div><ul><li>Техническая поддержка на всех этапах проекта</li><li>Возможность модернизации существующего оборудования</li><li>Оптимизация производственных процессов</li></ul></div>	ru-RU	20
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	化学试剂生产、石油化工、制药\n	zh-CN	29
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Технические консультации от экспертов отрасли</li><li>Адаптация оборудования под требования клиента</li><li>Гарантийное и постгарантийное обслуживание</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	30
+100	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Гарантия от производителя</li><li>Наличие запасных частей и расходных материалов</li><li>Сервисное обслуживание и ремонт</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	40
+141	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	混凝土搅拌站、搅拌机、混凝土搅拌车、混凝土泵、混凝土布料机、振动板、深层振动器、抹平机、研磨机\n	zh-CN	52
+170	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Assistance in entering international markets, export of equipment and technologies from China to other countries\n	en-US	82
+173	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>In-depth knowledge of international markets and requirements</li><li>Assistance in certification and product adaptation</li><li>Full logistics support and customs clearance</li></ul>	en-US	85
+176	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Assistance for foreign companies entering the Chinese market, including the import of equipment and technologies into China\n	en-US	87
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Production of chemical reagents, petrochemicals, pharmaceuticals\n	en-US	29
+101	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	仓储物流、生产、建筑、购物中心\n	zh-CN	39
+142	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Высокая производительность, надежность, точность дозирования компонентов\n	ru-RU	53
+171	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	协助进入国际市场，将设备和技术从中国出口到其他国家。\n	zh-CN	82
+174	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>深入了解国际市场及其要求</li><li>协助产品认证和适应性调整</li><li>全面的物流支持和海关清关</li></ul>	zh-CN	85
+177	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	协助外国公司进入中国市场，包括将设备和技术进口到中国。\n	zh-CN	87
+179	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Knowledge of local legislation and regulatory requirements</li><li>Support in marketing and product promotion</li><li>Search for reliable partners and customers</li><li>Request a Consultation</li></ul></div>	en-US	90
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Линии для производства пищевых продуктов, упаковочные машины, стерилизаторы, пастеризаторы\n	ru-RU	32
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Custom design of production lines</li><li>Personnel training and turnkey launch</li><li>Ongoing support and technology updates</li><li>Request a commercial offer</li></ul></div>	en-US	35
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>个性化设计的生产线</li><li>员工培训和“交钥匙”启动</li><li>持续的技术支持与更新</li><li>请求商业报价</li></ul></div>	zh-CN	35
+102	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Складская логистика, производство, строительство, торговые центры\n	ru-RU	39
+143	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	高生产率、可靠性、精确的成分计量\n	zh-CN	53
+172	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>Глубокое знание международных рынков и требований</li><li>Помощь в сертификации и адаптации продукции</li><li>Полное логистическое сопровождение и таможенное оформление</li></ul>	ru-RU	85
+175	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Помощь иностранным компаниям в выходе на китайский рынок, включая импорт оборудования и технологий в Китай\n	ru-RU	87
+180	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>熟悉当地法律法规和监管要求</li><li>提供市场营销和产品推广支持</li><li>寻找可靠的合作伙伴和客户</li><li>请求咨询</li></ul></div>	zh-CN	90
+181	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f441ff437d92d423c3a5c0693f5f668e.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f441ff437d92d423c3a5c0693f5f668e.png","size":302874,"id":30,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	36
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Food production lines, packaging machines, sterilizers, pasteurizers\n\n	en-US	32
+103	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Ленточные, роликовые, модульные конвейеры различных конфигураций\n	ru-RU	42
+104	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Custom project tailored to your needs</li><li>Installation and commissioning</li><li>Warranty and post-warranty service</li><li>Request a commercial offer</li></ul></div>	en-US	45
+105	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>针对您的需求定制的个性化项目</li><li>安装与调试服务</li><li>保修及售后维护</li><li>请求商业报价</li></ul></div>	zh-CN	45
+106	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/8805f1491762fe56012cb99fa2840b4d.png","type":"images","name":"pngwing.com (4) 1.png","filename":"8805f1491762fe56012cb99fa2840b4d.png","size":184414,"id":27,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	46
+108	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/8805f1491762fe56012cb99fa2840b4d.png","type":"images","name":"pngwing.com (4) 1.png","filename":"8805f1491762fe56012cb99fa2840b4d.png","size":184414,"id":27,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	46
+109	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/8805f1491762fe56012cb99fa2840b4d.png","type":"images","name":"pngwing.com (4) 1.png","filename":"8805f1491762fe56012cb99fa2840b4d.png","size":184414,"id":27,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	46
+144	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	High performance, reliability, precise component dosing\n	en-US	53
+182	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f441ff437d92d423c3a5c0693f5f668e.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f441ff437d92d423c3a5c0693f5f668e.png","size":302874,"id":30,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	36
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	食品生产线、包装机、杀菌器、巴氏杀菌器\n	zh-CN	32
+107	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	各种配置的皮带式、滚轴式和模块化输送机\n	zh-CN	42
+145	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Строительные компании, предприятия по производству строительных материалов\n	ru-RU	54
+183	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f441ff437d92d423c3a5c0693f5f668e.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f441ff437d92d423c3a5c0693f5f668e.png","size":302874,"id":30,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	36
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Compliance with sanitary standards, automation, energy efficiency\n	en-US	33
+110	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Belt, roller, modular conveyors in various configurations\n	en-US	42
+146	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Полный цикл производства оборудования</li><li>Адаптация под специфические требования проекта</li><li>Техническая поддержка и обучение персонала</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	55
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	符合卫生标准、自动化、节能\n	zh-CN	33
+111	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производственные линии, складские комплексы, горнодобывающая и перерабатывающая промышленность\n	ru-RU	44
+147	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	建筑公司、建筑材料生产企业\n	zh-CN	54
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Соответствие санитарным нормам, автоматизация, энергоэффективность\n	ru-RU	33
+112	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	坚固的结构，根据客户需求定制，多种涂层和材料选择\n	zh-CN	43
+148	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Подбор оптимального оборудования на основе анализа ваших потребностей и особенностей производства\n	ru-RU	57
+153	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>Time and resource savings</li><li>Access to a wide database of verified suppliers</li><li>Independent expert evaluation and recommendations</li></ul>	en-US	60
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Beverage, confectionery, meat, and dairy products production\n	en-US	34
+113	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Прочная конструкция, адаптация к требованиям клиента, различные типы покрытий и материалов\n	ru-RU	43
+149	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Selection of optimal equipment based on an analysis of your needs and production specifics\n	en-US	57
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Индивидуальный дизайн производственных линий</li><li>Обучение персонала и запуск "под ключ"</li><li>Постоянная поддержка и обновление технологий</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	35
+114	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Robust construction, customization to client requirements, various types of coatings and materials\n	en-US	43
+150	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	根据对您的需求和生产特点的分析，选择最佳设备。\n	zh-CN	57
+152	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>节省时间和资源</li><li>访问广泛的经过验证的供应商数据库</li><li>独立的专家评估和建议</li></ul>	zh-CN	60
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производство напитков, кондитерских изделий, мясных и молочных продуктов\n	ru-RU	34
+115	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Production lines, warehouse complexes, mining and processing industries\n	en-US	44
+151	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>Экономия времени и ресурсов</li><li>Доступ к широкой базе проверенных поставщиков</li><li>Независимая экспертная оценка и рекомендации</li></ul>	ru-RU	60
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	饮料、糖果、肉类和乳制品生产\n	zh-CN	34
+116	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Индивидуальный проект под ваши задачи</li><li>Монтаж и пуско-наладочные работы</li><li>Гарантийное и постгарантийное обслуживание</li><li>Запрос коммерческого предложения</li></ul></div>	ru-RU	45
+155	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	将现代技术（包括人工智能和自动化）整合到现有的生产流程中。\n	zh-CN	67
+157	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>提高效率和生产力</li><li>降低成本并优化资源</li><li>提高产品和服务质量</li></ul>	zh-CN	70
+14	2025-02-25 18:46:18.553	2025-02-27 20:14:31.480515	\N	<div>Гражданское и промышленное строительство, возведение жилых комплексов, инфраструктурные проекты</div><div><ul><li>Гарантия качества от производителя</li><li>Техническая поддержка и сервисное обслуживание</li><li>Индивидуальный подход к каждому проекту</li></ul></div>	ru-RU	10
+117	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	生产线、仓储中心、采矿和加工行业\n	zh-CN	44
+156	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Integration of modern technologies, including artificial intelligence and automation, into existing production processes\n	en-US	67
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Электрические и дизельные погрузчики с грузоподъемностью от 1 до 10 тонн\n	ru-RU	37
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Manufacturer's warranty</li><li>Availability of spare parts and consumables</li><li>Service maintenance and repair</li><li>Request a commercial offer</li></ul></div>	en-US	40
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>制造商提供的保修</li><li>备件和耗材供应充足</li><li>售后服务与维修</li><li>请求商业报价</li></ul></div>	zh-CN	40
+93	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f02bf4de3aa35d4b1616c0112a33754f.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f02bf4de3aa35d4b1616c0112a33754f.png","size":291995,"id":26,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	41
+118	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Разработка концепции, проектирование, подбор и поставка оборудования, монтаж, пуско-наладочные работы, обучение персонала\n	ru-RU	47
+123	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Integration of modern technologies, process automation, compliance with international and safety standards\n	en-US	48
+126	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	食品工业、冶金、化工、建材生产、包装\n	zh-CN	49
+128	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>A single contractor for all project stages</li><li>Cost and implementation time optimization</li><li>Quality assurance and adherence to deadlines</li></ul>	en-US	50
+132	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/e0e7839836114b51b5fee8a9b05d6dda.png","type":"images","name":"pngwing.com (4) 1.png","filename":"e0e7839836114b51b5fee8a9b05d6dda.png","size":367918,"id":28,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	51
+154	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Интеграция современных технологий, включая искусственный интеллект и автоматизацию, в существующие производственные процессы\n	ru-RU	67
+159	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>Increased efficiency and productivity</li><li>Cost reduction and resource optimization</li><li>Improved product and service quality</li></ul>	en-US	70
+91	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	载重量从1吨到10吨的电动和柴油叉车\n	zh-CN	37
+95	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f02bf4de3aa35d4b1616c0112a33754f.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f02bf4de3aa35d4b1616c0112a33754f.png","size":291995,"id":26,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	41
+119	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Concept development, design, equipment selection and supply, installation, commissioning, personnel training\n	en-US	47
+124	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Пищевая промышленность, металлургия, химическая промышленность, производство строительных материалов, упаковка\n	ru-RU	49
+129	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>项目各阶段的单一承包商</li><li>优化成本和实施时间</li><li>质量保证和按时交付</li></ul>	zh-CN	50
+130	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/e0e7839836114b51b5fee8a9b05d6dda.png","type":"images","name":"pngwing.com (4) 1.png","filename":"e0e7839836114b51b5fee8a9b05d6dda.png","size":367918,"id":28,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	51
+158	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<ul><li>Повышение эффективности и производительности</li><li>Снижение издержек и оптимизация ресурсов</li><li>Улучшение качества продукции и услуг</li></ul>	ru-RU	70
+92	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Electric and diesel forklifts with lifting capacities from 1 to 10 tons\n	en-US	37
+96	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/f02bf4de3aa35d4b1616c0112a33754f.png","type":"images","name":"pngwing.com (4) 1.png","filename":"f02bf4de3aa35d4b1616c0112a33754f.png","size":291995,"id":26,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	41
+120	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	概念开发、设计、设备选型与供应、安装、调试、员工培训\n	zh-CN	47
+121	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	现代技术的整合、流程自动化、符合国际质量和安全标准\n	zh-CN	48
+127	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Единый подрядчик на всех этапах проекта</li><li>Оптимизация затрат и сроков реализации</li><li>Гарантия качества и соблюдение сроков</li></ul></div><div><br></div>	ru-RU	50
+160	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Анализ текущих процессов, выявление узких мест и разработка стратегий по их улучшению и оптимизации\n	ru-RU	72
+167	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We provide export and import services for equipment and technologies, ensuring effective interaction between companies from different countries.\n	en-US	77
+94	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Высокая маневренность, прочность конструкции, эргономичный дизайн кабины\n	ru-RU	38
+122	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Интеграция современных технологий, автоматизация процессов, соответствие международным стандартам качества и безопасности\n	ru-RU	48
+125	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Food industry, metallurgy, chemical industry, construction materials production, packaging\n	en-US	49
+131	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/e0e7839836114b51b5fee8a9b05d6dda.png","type":"images","name":"pngwing.com (4) 1.png","filename":"e0e7839836114b51b5fee8a9b05d6dda.png","size":367918,"id":28,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	51
+161	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	分析当前流程，识别瓶颈并制定改进和优化策略。\n	zh-CN	72
+165	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>提高劳动生产率</li><li>缩短生产周期时间</li><li>改善质量管理</li><li>请求咨询</li></ul></div>	zh-CN	75
+168	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供设备和技术的进出口服务，确保不同国家公司之间的有效合作。\n	zh-CN	77
+97	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	高机动性、坚固的结构、符合人体工程学的驾驶室设计\n	zh-CN	38
+133	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Бетонные заводы, бетоносмесители, автобетоносмесители, бетононасосы, бетоноукладчики, виброплиты, глубинные вибраторы, затирочные машины, шлифовальные машины\n	ru-RU	52
+134	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Full-cycle equipment production</li><li>Customization to specific project requirements</li><li>Technical support and personnel training</li><li>Request a commercial offer</li></ul></div>	en-US	55
+135	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>设备生产的全流程服务</li><li>根据项目的特定要求进行调整</li><li>技术支持与员工培训</li><li>请求商业报价</li></ul></div>	zh-CN	55
+136	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/eaa8a1b674a3f981c838e9ff2e609c82.png","type":"images","name":"pngwing.com (4) 1.png","filename":"eaa8a1b674a3f981c838e9ff2e609c82.png","size":354639,"id":29,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	ru-RU	56
+137	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/eaa8a1b674a3f981c838e9ff2e609c82.png","type":"images","name":"pngwing.com (4) 1.png","filename":"eaa8a1b674a3f981c838e9ff2e609c82.png","size":354639,"id":29,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	en-US	56
+138	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	{"path":"http://cloud.andreyi96.beget.tech:9000/cms/eaa8a1b674a3f981c838e9ff2e609c82.png","type":"images","name":"pngwing.com (4) 1.png","filename":"eaa8a1b674a3f981c838e9ff2e609c82.png","size":354639,"id":29,"createdAt":"2025-02-25T18:46:18.553Z","updatedAt":"2025-02-25T18:46:18.553Z","deletedAt":null,"isSystem":false}	zh-CN	56
+162	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Analysis of current processes, identification of bottlenecks, and development of strategies for their improvement and optimization\n	en-US	72
+164	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Increased labor productivity</li><li>Reduced production cycle time</li><li>Improved quality management</li><li>Request a Consultation</li></ul></div>	en-US	75
+98	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	High maneuverability, robust construction, ergonomic cabin design\n	en-US	38
+139	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Concrete plants, concrete mixers, truck mixers, concrete pumps, concrete placers, vibratory plates, deep vibrators, trowel machines, grinding machines\n	en-US	52
+163	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Повышение производительности труда</li><li>Сокращение времени цикла производства</li><li>Улучшение управления качеством</li><li>Запрос консультации</li></ul></div>	ru-RU	75
+166	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Мы оказываем услуги по экспорту и импорту оборудования и технологий, обеспечивая эффективное взаимодействие между компаниями из разных стран.\n	ru-RU	77
+99	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Warehouse logistics, manufacturing, construction, shopping malls\n	en-US	39
+140	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Construction companies, enterprises producing building materials\n	en-US	54
+169	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Содействие в выходе на международные рынки, экспорт оборудования и технологий из Китая в другие страны\n	ru-RU	82
+178	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<div><ul><li>Знание местного законодательства и регуляторных требований</li><li>Поддержка в маркетинге и продвижении продукции</li><li>Поиск надежных партнеров и клиентов</li><li>Запрос консультации</li></ul></div>	ru-RU	90
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производство химических реагентов, нефтехимия, фармацевтика\n	ru-RU	29
 \.
 
 
@@ -4138,8 +4107,8 @@ COPY public.pages_params_value (id, "createdAt", "updatedAt", "deletedAt", value
 --
 
 COPY public.pages_sections (id, "createdAt", "updatedAt", "deletedAt", "pagesId") FROM stdin;
-2	2025-02-23 12:02:24.518	2025-02-23 12:02:24.518	\N	11
-3	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	11
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	11
 \.
 
 
@@ -4148,12 +4117,12 @@ COPY public.pages_sections (id, "createdAt", "updatedAt", "deletedAt", "pagesId"
 --
 
 COPY public.pages_sections_description_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "sectionId") FROM stdin;
-2	2025-02-23 12:02:24.518	2025-02-24 08:41:03.028233	\N	We offer comprehensive solutions for creating production lines fully adapted to your business needs.	en-US	2
-1	2025-02-23 12:02:24.518	2025-02-24 08:41:03.028432	\N	Предлагаем комплексные решения по созданию производственных линий, полностью адаптированных под ваши бизнес-задачи	ru-RU	2
-3	2025-02-23 12:02:24.518	2025-02-24 08:41:03.029164	\N	我们提供全面的解决方案，打造完全适应您业务需求的生产线。	zh-CN	2
-4	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Наша команда экспертов готова предоставить профессиональные консультации и разработать инновационные решения для вашего бизнеса.	ru-RU	3
-5	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	我们的专家团队随时准备为您提供专业咨询，并为您的业务开发创新解决方案	zh-CN	3
-6	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Our team of experts is ready to provide professional consultations and develop innovative solutions for your business	en-US	3
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供全面的解决方案，打造完全适应您业务需求的生产线。	zh-CN	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Предлагаем комплексные решения по созданию производственных линий, полностью адаптированных под ваши бизнес-задачи	ru-RU	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We offer comprehensive solutions for creating production lines fully adapted to your business needs.\n	en-US	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Наша команда экспертов готова предоставить профессиональные консультации и разработать инновационные решения для вашего бизнеса.	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们的专家团队随时准备为您提供专业咨询，并为您的业务开发创新解决方案	zh-CN	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Our team of experts is ready to provide professional consultations and develop innovative solutions for your business	en-US	2
 \.
 
 
@@ -4162,20 +4131,12 @@ COPY public.pages_sections_description_value (id, "createdAt", "updatedAt", "del
 --
 
 COPY public.pages_sections_title_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "sectionId") FROM stdin;
-1	2025-02-23 12:02:24.518	2025-02-24 08:41:03.019084	\N	Производственные линии под ключ	ru-RU	2
-3	2025-02-23 12:02:24.518	2025-02-24 08:41:03.024247	\N	交钥匙生产线	zh-CN	2
-2	2025-02-23 12:02:24.518	2025-02-24 08:41:03.025838	\N	Turnkey Production Lines	en-US	2
-4	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Консалтинг и разработка технологий	ru-RU	3
-5	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Consulting and Technology Development	en-US	3
-6	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	咨询与技术开发	zh-CN	3
-\.
-
-
---
--- Data for Name: pages_sections_value; Type: TABLE DATA; Schema: public; Owner: postgress
---
-
-COPY public.pages_sections_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "sectionId") FROM stdin;
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производственные линии под ключ	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Turnkey Production Lines	en-US	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	交钥匙生产线	zh-CN	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Консалтинг и разработка технологий	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	咨询与技术开发	zh-CN	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Consulting and Technology Development	en-US	2
 \.
 
 
@@ -4184,14 +4145,16 @@ COPY public.pages_sections_value (id, "createdAt", "updatedAt", "deletedAt", val
 --
 
 COPY public.pages_seo (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
-1	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N
-2	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-3	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-4	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-5	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-6	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-7	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N
-8	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
 \.
 
 
@@ -4200,78 +4163,96 @@ COPY public.pages_seo (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
 --
 
 COPY public.pages_seo_params (id, "createdAt", "updatedAt", "deletedAt", content, lang, "fieldType", "pagesSeoId") FROM stdin;
-1	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Home	en-US	description	1
-2	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Home	en-US	title	1
-3	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Главная	ru-RU	description	1
-4	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Главная	ru-RU	title	1
-5	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Home	en-US	keywords	1
-6	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	HomeCH	zh-CN	description	1
-7	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	HomeCH	zh-CN	title	1
-8	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	Главная	ru-RU	keywords	1
-9	2025-02-06 19:48:01.55	2025-02-06 19:48:01.55	\N	HomeCH	zh-CN	keywords	1
-10	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	en-US	description	2
-11	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	О компании	ru-RU	description	2
-12	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	en-US	title	2
-13	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	О компании	ru-RU	title	2
-14	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	zh-CN	title	2
-15	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	zh-CN	description	2
-16	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	zh-CN	keywords	2
-17	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	О компании	ru-RU	keywords	2
-18	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	About Us	en-US	keywords	2
-19	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Контакты	ru-RU	description	3
-20	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Контакты	ru-RU	title	3
-21	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	en-US	title	3
-22	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	zh-CN	description	3
-23	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	en-US	keywords	3
-24	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	en-US	description	3
-25	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Контакты	ru-RU	keywords	3
-26	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	zh-CN	title	3
-27	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сontacts	zh-CN	keywords	3
-28	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Политика конфиденциальности	ru-RU	keywords	4
-29	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	zh-CN	description	4
-30	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	en-US	title	4
-31	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	en-US	description	4
-32	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Политика конфиденциальности	ru-RU	description	4
-33	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	en-US	keywords	4
-34	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Политика конфиденциальности	ru-RU	title	4
-35	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	zh-CN	keywords	4
-36	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Policy	zh-CN	title	4
-37	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Клиенты	ru-RU	description	5
-38	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Клиенты	ru-RU	title	5
-39	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Клиенты	ru-RU	keywords	5
-40	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	en-US	description	5
-41	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	zh-CN	description	5
-42	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	en-US	title	5
-43	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	zh-CN	title	5
-44	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	en-US	keywords	5
-45	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Сlients	zh-CN	keywords	5
-46	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	zh-CN	description	6
-47	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	en-US	title	6
-48	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Партнерам	ru-RU	description	6
-49	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	en-US	keywords	6
-50	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	zh-CN	keywords	6
-51	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	en-US	description	6
-52	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Партнерам	ru-RU	keywords	6
-53	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Партнерам	ru-RU	title	6
-54	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Partners	zh-CN	title	6
-55	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Карьера	ru-RU	title	7
-56	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	en-US	description	7
-57	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Карьера	ru-RU	description	7
-58	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	zh-CN	title	7
-59	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Карьера	ru-RU	keywords	7
-60	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	zh-CN	keywords	7
-61	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	zh-CN	description	7
-62	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	en-US	title	7
-63	2025-02-06 20:11:07.928	2025-02-06 20:11:07.928	\N	Career	en-US	keywords	7
-64	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	en-US	title	8
-65	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	Новости	ru-RU	description	8
-66	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	Новости	ru-RU	keywords	8
-67	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	zh-CN	description	8
-68	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	Новости	ru-RU	title	8
-69	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	en-US	description	8
-70	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	zh-CN	title	8
-71	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	en-US	keywords	8
-72	2025-02-19 06:24:29.897	2025-02-19 06:24:29.897	\N	News	zh-CN	keywords	8
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Главная	ru-RU	title	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Home	en-US	keywords	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	家	zh-CN	title	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Главная	ru-RU	description	1
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Главная	ru-RU	keywords	1
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Home	en-US	title	1
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Home	en-US	description	1
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	家	zh-CN	keywords	1
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	家	zh-CN	description	1
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	О компании	ru-RU	description	2
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	О компании	ru-RU	title	2
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	About Us	en-US	title	2
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	О компании	ru-RU	keywords	2
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	About Us	en-US	keywords	2
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	About Us	en-US	description	2
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	关于我们	zh-CN	keywords	2
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	关于我们	zh-CN	description	2
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	关于我们	zh-CN	title	2
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	ru-RU	keywords	3
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	ru-RU	title	3
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Contacts	en-US	title	3
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Контакты	ru-RU	description	3
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Contacts	en-US	description	3
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Contacts	en-US	keywords	3
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	联络人	zh-CN	title	3
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	联络人	zh-CN	keywords	3
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	联络人	zh-CN	description	3
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Политика конфиденциальности	ru-RU	keywords	4
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Политика конфиденциальности	ru-RU	title	4
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Privacy Policy	en-US	description	4
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Политика конфиденциальности	ru-RU	description	4
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	隐私政策	zh-CN	title	4
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Privacy Policy	en-US	keywords	4
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	隐私政策	zh-CN	description	4
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	隐私政策	zh-CN	keywords	4
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Privacy Policy	en-US	title	4
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Клиенты	ru-RU	title	5
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Сlients	en-US	description	5
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Клиенты	ru-RU	description	5
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Клиенты	ru-RU	keywords	5
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户群	zh-CN	title	5
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Сlients	en-US	title	5
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Сlients	en-US	keywords	5
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户群	zh-CN	keywords	5
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	客户群	zh-CN	description	5
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Партнерам	ru-RU	description	6
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Партнерам	ru-RU	title	6
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Партнерам	ru-RU	keywords	6
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	合作伙伴	zh-CN	description	6
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Partners	en-US	title	6
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Partners	en-US	description	6
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	合作伙伴	zh-CN	title	6
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	合作伙伴	zh-CN	keywords	6
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Partners	en-US	keywords	6
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Карьера	ru-RU	description	7
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Карьера	ru-RU	keywords	7
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Карьера	ru-RU	title	7
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Career	en-US	title	7
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Career	en-US	keywords	7
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	职业生涯	zh-CN	title	7
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Career	en-US	description	7
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	职业生涯	zh-CN	description	7
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	职业生涯	zh-CN	keywords	7
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	News	en-US	title	8
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Новости	ru-RU	title	8
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Новости	ru-RU	keywords	8
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	News	en-US	keywords	8
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	新闻	zh-CN	keywords	8
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Новости	ru-RU	description	8
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	新闻	zh-CN	description	8
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	News	en-US	description	8
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	新闻	zh-CN	title	8
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Services	en-US	description	9
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Услуги	ru-RU	keywords	9
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	服务	zh-CN	description	9
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Услуги	ru-RU	description	9
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Услуги	ru-RU	title	9
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Services	en-US	title	9
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Services	en-US	keywords	9
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	服务	zh-CN	title	9
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	服务	zh-CN	keywords	9
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Продукты	ru-RU	keywords	10
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Products	en-US	description	10
+85	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Продукты	ru-RU	description	10
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Products	en-US	title	10
+86	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Продукты	ru-RU	title	10
+87	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Products	en-US	keywords	10
+88	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	产品中心	zh-CN	title	10
+89	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	产品中心	zh-CN	description	10
+90	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	产品中心	zh-CN	keywords	10
 \.
 
 
@@ -4279,23 +4260,35 @@ COPY public.pages_seo_params (id, "createdAt", "updatedAt", "deletedAt", content
 -- Data for Name: records; Type: TABLE DATA; Schema: public; Owner: postgress
 --
 
-COPY public.records (id, "createdAt", "updatedAt", "deletedAt", "countView", "pagesId", "authorId", "titleId", "seoId", "descriptionId") FROM stdin;
-1	2025-02-20 11:37:37.755	2025-02-20 11:38:26.859701	2025-02-20 11:38:26.859701	0	8	\N	1	\N	1
-2	2025-02-20 11:38:28.578	2025-02-20 11:38:59.93677	2025-02-20 11:38:59.93677	0	8	\N	2	\N	2
-3	2025-02-20 11:39:10.712	2025-02-20 11:47:48.719961	2025-02-20 11:47:48.719961	0	8	\N	3	\N	3
-4	2025-02-20 11:47:49.804	2025-02-20 11:55:31.310094	2025-02-20 11:55:31.310094	0	8	\N	4	\N	4
-5	2025-02-20 11:49:27.746	2025-02-20 11:55:33.805698	2025-02-20 11:55:33.805698	0	8	\N	5	1	5
-6	2025-02-20 11:56:25.095	2025-02-20 12:05:36.426341	\N	0	8	\N	6	2	6
-7	2025-02-21 12:56:40.907	2025-02-21 18:27:47.296747	2025-02-21 18:27:47.296747	0	8	\N	7	3	7
-8	2025-02-21 18:40:13.283	2025-02-21 18:40:13.283	\N	0	8	\N	8	4	8
-9	2025-02-22 15:21:29.23	2025-02-22 15:21:29.23	\N	0	9	\N	9	5	9
-10	2025-02-22 15:21:54.692	2025-02-22 15:21:54.692	\N	0	9	\N	10	6	10
-11	2025-02-22 15:27:47.866	2025-02-22 15:27:47.866	\N	0	10	\N	11	7	11
-12	2025-02-22 15:29:39.836	2025-02-22 15:29:39.836	\N	0	10	\N	12	8	12
-13	2025-02-24 07:51:17.758	2025-02-24 07:51:17.758	\N	0	11	\N	16	12	16
-14	2025-02-24 08:42:01.983	2025-02-24 08:42:01.983	\N	0	11	\N	17	13	17
-15	2025-02-24 08:48:23.164	2025-02-24 08:48:23.164	\N	0	12	\N	18	14	18
-16	2025-02-25 07:09:33.888	2025-02-25 07:09:33.888	\N	0	11	\N	19	15	19
+COPY public.records (id, "createdAt", "updatedAt", "deletedAt", "countView", "titleId", "descriptionId", "pagesId", "authorId", "seoId") FROM stdin;
+1	2025-02-27 19:26:24.223	2025-02-27 19:26:24.223	\N	0	1	1	8	\N	1
+2	2025-02-27 19:28:15.651	2025-02-27 19:28:15.651	\N	0	2	2	8	\N	2
+3	2025-02-27 19:28:50.929	2025-02-27 19:28:50.929	\N	0	3	3	8	\N	3
+4	2025-02-27 19:39:27.619	2025-02-27 19:39:27.619	\N	0	4	4	9	\N	4
+5	2025-02-27 19:40:09.047	2025-02-27 19:40:09.047	\N	0	5	5	9	\N	5
+6	2025-02-27 19:40:52.861	2025-02-27 19:40:52.861	\N	0	6	6	9	\N	6
+7	2025-02-27 19:41:22.579	2025-02-27 19:41:22.579	\N	0	7	7	9	\N	7
+8	2025-02-27 19:41:48.911	2025-02-27 19:41:48.911	\N	0	8	8	9	\N	8
+9	2025-02-27 19:43:17.693	2025-02-27 19:43:17.693	\N	0	9	9	10	\N	9
+10	2025-02-27 19:43:51.247	2025-02-27 19:43:51.247	\N	0	10	10	10	\N	10
+11	2025-02-27 19:44:28.395	2025-02-27 19:44:28.395	\N	0	11	11	10	\N	11
+12	2025-02-27 19:52:25.533	2025-02-27 19:52:25.533	\N	0	12	12	12	\N	12
+13	2025-02-27 19:58:37.498	2025-02-27 19:58:37.498	\N	0	13	13	12	\N	13
+14	2025-02-27 20:01:15.442	2025-02-27 20:01:15.442	\N	0	14	14	12	\N	14
+15	2025-02-27 20:03:20.177	2025-02-27 20:03:20.177	\N	0	15	15	12	\N	15
+16	2025-02-27 20:06:22.407	2025-02-27 20:06:22.407	\N	0	16	16	12	\N	16
+17	2025-02-27 20:10:18.534	2025-02-27 20:10:18.534	\N	0	17	17	12	\N	17
+18	2025-02-27 20:17:02.164	2025-02-27 20:17:02.164	\N	0	18	18	12	\N	18
+19	2025-02-27 20:19:21.842	2025-02-27 20:19:21.842	\N	0	19	19	12	\N	19
+20	2025-02-27 20:17:16.427	2025-02-27 20:17:16.427	\N	0	20	20	11	\N	20
+21	2025-02-27 20:21:31.907	2025-02-27 20:21:31.907	\N	0	21	21	12	\N	21
+22	2025-02-27 20:22:09.007	2025-02-27 20:22:09.007	\N	0	22	22	11	\N	22
+23	2025-02-27 20:24:55.366	2025-02-27 20:26:46.4945	2025-02-27 20:26:46.4945	0	23	23	11	\N	23
+24	2025-02-27 20:24:42.167	2025-02-27 20:24:42.167	\N	0	24	24	11	\N	24
+25	2025-02-27 20:26:49.732	2025-02-27 20:26:49.732	\N	0	25	25	11	\N	25
+26	2025-02-27 20:27:05.936	2025-02-27 20:27:05.936	\N	0	26	26	11	\N	26
+27	2025-02-27 20:28:27.684	2025-02-27 20:28:27.684	\N	0	27	27	11	\N	27
+28	2025-02-27 20:28:27.523	2025-02-27 20:28:27.523	\N	0	28	28	11	\N	28
 \.
 
 
@@ -4304,25 +4297,34 @@ COPY public.records (id, "createdAt", "updatedAt", "deletedAt", "countView", "pa
 --
 
 COPY public.records_description (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
-1	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N
-2	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N
-3	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N
-4	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N
-5	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N
-6	2025-02-20 11:55:23.454	2025-02-20 11:55:23.454	\N
-7	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N
-8	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N
-9	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-10	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-11	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-12	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-13	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-14	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-15	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N
-16	2025-02-24 07:54:55.55	2025-02-24 07:54:55.55	\N
-17	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-18	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-19	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
 \.
 
 
@@ -4331,63 +4333,90 @@ COPY public.records_description (id, "createdAt", "updatedAt", "deletedAt") FROM
 --
 
 COPY public.records_description_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "recordDescriptionId") FROM stdin;
-1	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	test	ru-RU	1
-3	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	test	zh-CN	1
-53	2025-02-24 08:07:25.591	2025-02-24 20:39:53.746531	\N	Мы предоставляем надежное и современное строительное оборудование, необходимое для успешного выполнения проектов любой сложности	ru-RU	18
-4	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	ru-RU	2
-54	2025-02-24 08:07:25.591	2025-02-24 20:39:11.642047	\N	我们提供可靠且现代化的建筑设备，这些设备对于成功完成任何复杂项目的必要条件。	zh-CN	18
-5	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	en-US	2
-6	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	zh-CN	2
-7	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	<span data-metadata="<!--(figmeta)eyJmaWxlS2V5IjoiSlVQN0dKcTNNRWFTRUU3UVJERHBEWiIsInBhc3RlSUQiOjE2NTI4NzQ1MjIsImRhdGFUeXBlIjoic2NlbmUifQo=(/figmeta)-->"></span>В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.	ru-RU	3
-19	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	en-US	7
-23	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	Due to the emerging difficulties in international payments between Russia and China, SA International held a series of seminars and meetings with representatives of banks and financial organizations. We have presented alternative solutions and mechanisms to ensure uninterrupted financial transactions and support our clients in the current environment.	en-US	8
-37	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		ru-RU	13
-55	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N		ru-RU	19
-8	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	<span data-metadata="<!--(figmeta)eyJmaWxlS2V5IjoiSlVQN0dKcTNNRWFTRUU3UVJERHBEWiIsInBhc3RlSUQiOjE2NTI4NzQ1MjIsImRhdGFUeXBlIjoic2NlbmUifQo=(/figmeta)-->"></span><span style="white-space-collapse: preserve;">В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.</span>	en-US	3
-20	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	ru-RU	7
-24	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	由于俄罗斯和中国之间的国际支付出现困难，SA International与银行和金融组织的代表举行了一系列研讨会和会议。 我们已经提出了替代的解决方案和机制，以确保不间断的金融交易和支持我们的客户在当前的环境。	zh-CN	8
-38	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		en-US	13
-56	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N		en-US	19
-9	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	<span data-metadata="<!--(figmeta)eyJmaWxlS2V5IjoiSlVQN0dKcTNNRWFTRUU3UVJERHBEWiIsInBhc3RlSUQiOjE2NTI4NzQ1MjIsImRhdGFUeXBlIjoic2NlbmUifQo=(/figmeta)-->"></span><span style="white-space-collapse: preserve;">В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.</span>	zh-CN	3
-21	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	zh-CN	7
-22	2025-02-21 18:21:16.057	2025-02-21 19:47:37.722514	\N	В связи с возникающими трудностями в международных платежах между Россией и Китаем, SA International провела серию семинаров и встреч с представителями банков и финансовых организаций. Мы представили альтернативные решения и механизмы для обеспечения бесперебойных финансовых операций и поддержки наших клиентов в текущих условиях.	ru-RU	8
-39	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		zh-CN	13
-57	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N		zh-CN	19
-10	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	ru-RU	4
-25	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		ru-RU	9
-40	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		ru-RU	14
-11	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	en-US	4
-26	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		en-US	9
-41	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		en-US	14
-12	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	zh-CN	4
-27	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		zh-CN	9
-42	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N		zh-CN	14
-13	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	ru-RU	5
-28	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		en-US	10
-43	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N		ru-RU	15
-14	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	en-US	5
-29	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		ru-RU	10
-44	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N		zh-CN	15
-15	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	zh-CN	5
-30	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N		zh-CN	10
-45	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N		en-US	15
-16	2025-02-20 11:55:23.454	2025-02-20 12:25:23.408431	\N	В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.	ru-RU	6
-31	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	<div>Официальное заявление о подписании соглашения о строительстве завода по производству портового оборудования в России.</div><div><br></div>	ru-RU	11
-46	2025-02-24 07:54:55.55	2025-02-24 08:21:21.870102	\N	<div>We offer comprehensive solutions for creating production lines fully adapted to your business needs.</div>	ru-RU	16
-17	2025-02-20 11:55:23.454	2025-02-21 18:12:23.349095	\N	As part of the Eastern Economic Forum held in Vladivostok, SA International signed a strategic agreement with the Government of the Russian Federation on the construction of a plant for the production of port equipment. This project will be an important step in developing the infrastructure of Russian ports and strengthening economic cooperation between China and Russia.	en-US	6
-32	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	An official statement on the signing of an agreement on the construction of a plant for the production of port equipment in Russia.	en-US	11
-47	2025-02-24 07:54:55.55	2025-02-24 08:21:21.871891	\N	<div>We offer comprehensive solutions for creating production lines fully adapted to your business needs.</div>	en-US	16
-18	2025-02-20 11:55:23.454	2025-02-21 18:12:23.35045	\N	作为在符拉迪沃斯托克举行的东部经济论坛的一部分，SA International与俄罗斯联邦政府签署了一项关于建设港口设备生产工厂的战略协议。 该项目将是发展俄罗斯港口基础设施和加强中俄经济合作的重要一步。	zh-CN	6
-33	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	关于签署关于在俄罗斯建造港口设备生产工厂的协议的正式声明。	zh-CN	11
-48	2025-02-24 07:54:55.55	2025-02-24 08:21:21.87175	\N	<div>我们提供全面的解决方案，打造完全适应您业务需求的生产线。</div><div><br></div>	zh-CN	16
-34	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA International объявляет о создании нового логистического подразделения, призванного улучшить качество и эффективность логистических услуг для наших клиентов.	ru-RU	12
-49	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N		ru-RU	17
-35	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA International announces the creation of a new logistics division dedicated to improving the quality and efficiency of logistics services for our customers.	en-US	12
-50	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N		zh-CN	17
-36	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA International宣布成立一个新的物流部门，致力于为我们的客户提高物流服务的质量和效率。	zh-CN	12
-51	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N		en-US	17
-52	2025-02-24 08:07:25.591	2025-02-24 20:39:11.641479	\N	We provide reliable and modern construction equipment necessary for the successful execution of projects of any complexity.&nbsp;	en-US	18
-2	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	test	en-US	1
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	В рамках Восточного экономического форума, проходившего во Владивостоке, SA International подписала стратегическое соглашение с правительством Российской Федерации о строительстве завода по производству портового оборудования. Этот проект станет важным шагом в развитии инфраструктуры российских портов и укреплении экономического сотрудничества между Китаем и Россией.	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	During the Eastern Economic Forum held in Vladivostok, SA International signed a strategic agreement with the Russian Federation government to construct a plant for port equipment manufacturing. This project will be a significant step in developing the infrastructure of Russian ports and strengthening economic cooperation between China and Russia.	en-US	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	在东方经济论坛（VEF）期间，上海亚际机电有限公司与俄罗斯联邦政府签署了关于建设港口设备制造厂的战略协议。该项目将成为推动俄罗斯港口基础设施发展的重要一步，并进一步加强中俄经济合作。	zh-CN	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	В связи с возникающими трудностями вмеждународных платежах между Россией иКитаем, SA International провела серию семинаров и встреч с представителями банков и финансовых организаций. Мы представили альтернативные решения и механизмы для обеспечения бесперебойных финансовых операций и поддержки наших клиентов в текущих условиях.	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Amid difficulties in international payments between Russia and China, SA International held a series of seminars and meetings with representatives of banks and financial organizations. We introduced alternative solutions and mechanisms to ensure smooth financial operations and support our clients in current conditions.	en-US	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	由于中俄国际支付中遇到的困难，上海亚际机电有限公司举行了一系列研讨会与银行和金融机构的代表会晤。我们提出了替代解决方案和机制，以确保国际支付的顺畅进行，并为我们的客户提供支持。	zh-CN	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA International объявляет о создании SALogistics, специализированного подразделения в составе SIBC Group, которое будет отвечать за все аспекты логистики. Новая компания предоставит полный спектр логистических услуг, включая транспортировку, складирование, таможенное оформление и управление цепочками поставок, что позволит нашим клиентам получить комплексное обслуживание "под ключ".	ru-RU	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA International announces the creation of SA Logistics, a specialized division within SIBC Group, responsible for all aspects of logistics. The new company will provide a full range of logistics services, including transportation, warehousing, customs clearance, and supply chain management, offering our clients comprehensive turnkey services.<br>	en-US	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司宣布成立上海亚际物流有限公司，作为 SIBC集团的一个专业部门，负责处理所有物流方面的事务。新公司将提供全面的物流服务，包括运输、仓储、海关清关和供应链管理，确保为我们的客户提供一站式服务。	zh-CN	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	4
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	4
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	5
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	5
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	6
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	6
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	7
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	8
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	8
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	8
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Официальное заявление о подписании соглашения о строительстве завода по производству портового оборудования в России.	ru-RU	9
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	An official statement on signing an agreement for constructing a plant for port equipment manufacturing in Russia.	en-US	9
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	在东方经济论坛（VEF）上，关于建设港口设备制造厂的协议正式签署。	zh-CN	9
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA International объявляет о создании нового логистического подразделения, призванного улучшить качество и эффективность логистических услуг для наших клиентов.	ru-RU	10
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	An official statement on signing an agreement for constructing a plant for port equipment manufacturing in Russia.	en-US	10
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司宣布成立新的物流部门，旨在提高我们的客户物流服务的质量和效率。	zh-CN	10
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	An official announcement of the start of construction for a robotic manipulator manufacturing plant aimed at developing industrial automation in the region.	en-US	11
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Официальный анонс начала строительства завода по производству роботизированных манипуляторов, направленного на развитие промышленной автоматизации в регионе	ru-RU	11
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	宣布在俄罗斯启动机器人操控器制造厂建设，推动地区工业自动化发展。	zh-CN	11
+34	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We provide reliable and modern construction equipment necessary for the successful execution of projects of any complexity.<br>	en-US	12
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供可靠且现代化的建筑设备，这些设备对于成功完成任何复杂项目的必要条件。<br>	zh-CN	12
+35	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<span data-metadata="<!--(figmeta)eyJmaWxlS2V5IjoiSlVQN0dKcTNNRWFTRUU3UVJERHBEWiIsInBhc3RlSUQiOjcwNzk0ODE0NywiZGF0YVR5cGUiOiJzY2VuZSJ9Cg==(/figmeta)-->"></span><span data-buffer="<!--(figma)ZmlnLWtpd2lQAAAAbloAALW9CZxsSVXgHffmUlWv3tL7xr6723Q3i7u5VVW+l1vnzarXzThWZ1XeepW8rMw0b9br95gNERERERERERERERERERERERERERERERERERnGYRjGYRjGYZjvf07EXbJeNfr9vt/Xv351I06cOHHixIkTJ07EvfnWXDOMov6FsHdlGhpz89l2vbUd9ErdnuG/Vrta265slFrrtYCstxnUupm8r9i1VpV0Lqivt0oNUvmgd2+jRqKgie2gJrSKiquUt4Nz9c52t9Zol6TmUqvdq6/dux1stDcb1e3Nznq3VJX6yy65XW23JL8S57u1tW4t2AB0IqjUWrVtwJ2N7bs3a917Aa5mgd1apyHAk9X62hrPU5VGvdbqbZe7tF4pBcLb6QxvZ9ubXfpRE87OBL1urdS0JeSvcXnb42vrrV6tW6r06lt0slGHMSsayq7r1irtVqtWobMZZmIOrz++OOb1BuWHVrbrrUq31oTfUoNSVweMG3Vk4Ku3GaSt3lS6PIwYlntIGyHklXZ3GV5A8F3dbreUvNHM+W69J5W81mQQdvb7UQgarZV62neQmu0tTXrnh+PBcHyhezgSnFa79ZRat02BaVe1XChY/bmTwhogU21XNoVvkl6l1NoqBaT89W57s0Mit9YtNQUvX263G7VSa7vdQZS9ersFsLBFJ9tdUkV6KM+lRl3JLtcajXonkOQK4ujRb9W0E93a+maj1N3utBv3riuRVZpqVWtVEVuCd7JXu0dYOsVwVQRwOri3WW6L1p6pt2ispVDGuV45J6K6NtgodWrb5+u9jW1X9zo3Csrg9RUZh3KjXTlH7obz9eq6avuN0GpKT29q1qr1EombN+rrGw3+SfEtAQRsZ291yW2E3W2UpNHbzpeCjfp2j5bJPWir1K2Xysr/g3su8RBNbFeQB7mHxihurj2M7ukMengpCOoBA7oN5famlD3iaq2tNVTFKHxkQki46VII8FHNdnVTW320xV+ngNxjbK7bPk/msUzITrsVKFVl4nEqmkq7CdhS/yqR4Han1JOZ+9VanBH61yigUS93SzpHvlbza3Vt+es0QydqIvWvL3c3dfp/Q7PUKq3TPSZmvbUO5Bt73VIrWGt3m2RurzSD7W69kozd45lhouBC5I5gvz8Nzw/n+73w8tyq70ODuzdL3RqlBsk6TfMY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(/figma)-->"></span><span style="white-space-collapse: preserve;">Мы предоставляем надежное и современное строительное оборудование, необходимое для успешного выполнения проектов любой сложности</span>	ru-RU	12
+37	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Мы предлагаем оборудование для дорожного строительства и ремонта,соответствующее высоким стандартам качества	ru-RU	13
+38	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We offer equipment for road construction and repair that meets high quality standards.<br>	en-US	13
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供符合高质量标准的道路建设和维修设备。<br>	zh-CN	13
+40	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们为冶金工业提供高科技设备。<br>	zh-CN	14
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We supply high-tech equipment for the metallurgical industry.<br>	en-US	14
+42	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Поставляем высокотехнологичное оборудование дляметаллургической промышленности	ru-RU	14
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Предоставляем оборудование для эффективной и безопасной добычи полезных ископаемых<br>	ru-RU	15
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We provide equipment for efficient and safe extraction of minerals.<br>	en-US	15
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供用于高效且安全开采矿物的设备。<br>	zh-CN	15
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We supply equipment for the chemical industry that meets strict safety and efficiency requirements.<br>	en-US	16
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Поставляем оборудование для химической промышленности, отвечающее строгим требованиям безопасности и эффективности<br>	ru-RU	16
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们为化工行业提供符合严格的安全性和效率要求的设备。<br>	zh-CN	16
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Предлагаем современные решения для пищевой промышленности, обеспечивающие высокое качество и безопасность продукции<br>	ru-RU	17
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们为食品工业提供现代化的解决方案，确保产品的高质量和安全性。<br>	zh-CN	17
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We offer modern solutions for the food industry, ensuring high quality and product safety.<br>	en-US	17
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производим надежные и функциональные вилочные погрузчики для различных сфер применения<br>	ru-RU	18
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We manufacture reliable and functional forklifts for various applications.<br>	en-US	18
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们生产适用于各种用途的可靠且功能强大的叉车。<br>	zh-CN	18
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We produce conveyor systems for efficient material transportation.<br>	en-US	19
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производим конвейерные системы для эффективной транспортировки материалов<br>	ru-RU	19
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们生产用于高效运输材料的输送系统。<br>	zh-CN	19
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Предлагаем комплексные решения по созданию производственных линий, полностью адаптированных под ваши бизнес-задачи<br>	ru-RU	20
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们提供全面的解决方案，打造完全适应您业务需求的生产线。<br>	zh-CN	20
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We offer comprehensive solutions for creating production lines fully adapted to your business needs.<br>	en-US	20
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	We manufacture equipment for concrete production and transportation.<br>	en-US	21
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производим оборудование для производства и транспортировки бетона<br>	ru-RU	21
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	我们生产用于混凝土生产和运输的设备。<br>	zh-CN	21
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	22
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	22
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	22
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<br>	ru-RU	23
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	<br>	en-US	23
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	23
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	24
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	24
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	24
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	25
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	25
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	25
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	26
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	26
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	26
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	27
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	27
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	27
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		ru-RU	28
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		zh-CN	28
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N		en-US	28
 \.
 
 
@@ -4396,9 +4425,13 @@ COPY public.records_description_value (id, "createdAt", "updatedAt", "deletedAt"
 --
 
 COPY public.records_sections_pages_sections ("recordsId", "pagesSectionsId") FROM stdin;
-13	2
-14	3
-16	3
+20	1
+22	2
+23	2
+24	2
+27	2
+25	2
+28	2
 \.
 
 
@@ -4407,21 +4440,34 @@ COPY public.records_sections_pages_sections ("recordsId", "pagesSectionsId") FRO
 --
 
 COPY public.records_seo (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
-1	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N
-2	2025-02-20 11:55:23.454	2025-02-20 11:55:23.454	\N
-3	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N
-4	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N
-5	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-6	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-7	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-8	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-9	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-10	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-11	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N
-12	2025-02-24 07:54:55.55	2025-02-24 07:54:55.55	\N
-13	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-14	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-15	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
 \.
 
 
@@ -4430,36 +4476,6 @@ COPY public.records_seo (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
 --
 
 COPY public.records_seo_params (id, "createdAt", "updatedAt", "deletedAt", content, lang, "fieldType", "recordSeoId") FROM stdin;
-1	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	ru-RU	title	1
-2	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 CH	zh-CN	title	1
-3	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	ru-RU	description	1
-4	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 EN	en-US	title	1
-5	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	ru-RU	keywords	1
-6	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 CH	zh-CN	description	1
-7	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 EN	en-US	keywords	1
-8	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 EN	en-US	description	1
-9	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2 CH	zh-CN	keywords	1
-10	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  EN	en-US	description	\N
-11	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1	ru-RU	description	\N
-12	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  EN	en-US	keywords	\N
-13	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  CH	zh-CN	title	\N
-14	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  EN	en-US	title	\N
-15	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1	ru-RU	title	\N
-16	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  CH	zh-CN	description	\N
-17	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1  CH	zh-CN	keywords	\N
-18	2025-02-20 11:58:44.784	2025-02-20 11:58:44.784	\N	Новость 1	ru-RU	keywords	\N
-19	2025-02-20 11:59:40.141	2025-02-20 11:59:40.141	\N	Новость 1	ru-RU	description	\N
-20	2025-02-20 11:59:40.141	2025-02-20 11:59:40.141	\N	Новость 1	ru-RU	title	\N
-21	2025-02-20 11:59:40.141	2025-02-20 11:59:40.141	\N	Новость 1	ru-RU	keywords	\N
-22	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1	ru-RU	title	2
-23	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1	ru-RU	keywords	2
-24	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1	ru-RU	description	2
-25	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 EN	en-US	description	2
-26	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 EN	en-US	keywords	2
-27	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 EN	en-US	title	2
-28	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 CH	zh-CN	title	2
-29	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 CH	zh-CN	description	2
-30	2025-02-20 12:01:40.727	2025-02-20 12:01:40.727	\N	Новость 1 CH	zh-CN	keywords	2
 \.
 
 
@@ -4468,25 +4484,34 @@ COPY public.records_seo_params (id, "createdAt", "updatedAt", "deletedAt", conte
 --
 
 COPY public.records_title (id, "createdAt", "updatedAt", "deletedAt") FROM stdin;
-1	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N
-2	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N
-3	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N
-4	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N
-5	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N
-6	2025-02-20 11:55:23.454	2025-02-20 11:55:23.454	\N
-7	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N
-8	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N
-9	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-10	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-11	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-12	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N
-13	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-14	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N
-15	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N
-16	2025-02-24 07:54:55.55	2025-02-24 07:54:55.55	\N
-17	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-18	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N
-19	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N
 \.
 
 
@@ -4495,63 +4520,90 @@ COPY public.records_title (id, "createdAt", "updatedAt", "deletedAt") FROM stdin
 --
 
 COPY public.records_title_value (id, "createdAt", "updatedAt", "deletedAt", value, lang, "recordTitleId") FROM stdin;
-1	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	test	ru-RU	1
-3	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	tse	zh-CN	1
-53	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	CONSTRUCTION EQUIPMENT	en-US	18
-4	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	ru-RU	2
-54	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	建筑设备	zh-CN	18
-5	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	en-US	2
-6	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	test	zh-CN	2
-7	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	Участие SA International на Восточном экономическом форуме (ВЭФ)	ru-RU	3
-19	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	ru-RU	7
-22	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	Проблемы с платежами из России в Китай и альтернативные подходы	ru-RU	8
-37	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	test	ru-RU	13
-55	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	Внедрение инновационных технологий	ru-RU	19
-8	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	Участие SA International на Восточном экономическом форуме (ВЭФ)	zh-CN	3
-20	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	en-US	7
-23	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	俄罗斯向中国付款的问题和替代方法	zh-CN	8
-38	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	test	zh-CN	13
-56	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	Implementation of Innovative Technologies	en-US	19
-9	2025-02-20 11:38:14.743	2025-02-20 11:38:14.743	\N	Участие SA International на Восточном экономическом форуме (ВЭФ)	en-US	3
-21	2025-02-21 12:56:00.592	2025-02-21 12:56:00.592	\N	Новая новость	zh-CN	7
-24	2025-02-21 18:21:16.057	2025-02-21 18:21:16.057	\N	Problems with payments from Russia to China and alternative approaches	en-US	8
-39	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	test	en-US	13
-57	2025-02-25 06:31:22.261	2025-02-25 06:31:22.261	\N	创新技术的实施	zh-CN	19
-10	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	ru-RU	4
-25	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Решение проблем международных платежей: опыт SA International	ru-RU	9
-40	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	test	ru-RU	14
-11	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	zh-CN	4
-26	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	解决国际支付问题：SA国际的经验	zh-CN	9
-41	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	test	en-US	14
-12	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	tset1	en-US	4
-27	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Solving problems of international payments: the experience of SA International	en-US	9
-42	2025-02-24 06:54:52.143	2025-02-24 06:54:52.143	\N	tset	zh-CN	14
-13	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	en-US	5
-28	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Обзор текущих вызовов в сфере международных финансовых операций между Россией и Китаем и представление эффективных альтернативных подходов	ru-RU	10
-43	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N	test	ru-RU	15
-14	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	ru-RU	5
-29	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	俄罗斯和中国之间国际金融交易领域当前挑战的概述以及提出有效的替代方法	zh-CN	10
-44	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N	test	en-US	15
-15	2025-02-20 11:46:23.95	2025-02-20 11:46:23.951	\N	Новость 2	zh-CN	5
-30	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	An overview of current challenges in the field of international financial transactions between Russia and China and the presentation of effective alternative approaches	en-US	10
-45	2025-02-24 07:51:14.311	2025-02-24 07:51:14.311	\N	tset	zh-CN	15
-16	2025-02-20 11:55:23.454	2025-02-20 12:25:23.377442	\N	Участие SA International на Восточном экономическом форуме (ВЭФ)	ru-RU	6
-31	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA International подписывает соглашение с правительством РФ на ВЭФ	ru-RU	11
-46	2025-02-24 07:54:55.55	2025-02-24 08:21:21.860163	\N	Производственные линии под ключ	ru-RU	16
-17	2025-02-20 11:55:23.454	2025-02-21 18:12:23.345311	\N	SA International's participation in the Eastern Economic Forum (EEF)	en-US	6
-32	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA International signs agreement with the Government of the Russian Federation at the WEF	en-US	11
-47	2025-02-24 07:54:55.55	2025-02-24 08:21:21.87049	\N	交钥匙生产线	zh-CN	16
-18	2025-02-20 11:55:23.454	2025-02-21 18:12:23.344633	\N	SA国际参与东方经济论坛(EEF)	zh-CN	6
-33	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA国际在世界经济论坛与俄罗斯联邦政府签署协议	zh-CN	11
-48	2025-02-24 07:54:55.55	2025-02-24 08:21:21.870776	\N	Turnkey Production Lines	en-US	16
-34	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	Официальный запуск SA Logistics	ru-RU	12
-49	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Услуги по выбору оборудования	ru-RU	17
-35	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	The official launch of SA Logistics	en-US	12
-50	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	设备选型服务	zh-CN	17
-36	2025-02-21 20:49:50.236	2025-02-21 20:49:50.237	\N	SA物流正式启动	zh-CN	12
-51	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	Equipment Selection Services	en-US	17
-52	2025-02-24 08:07:25.591	2025-02-24 08:07:25.592	\N	СТРОИТЕЛЬНОЕ ОБОРУДОВАНИЕ 	ru-RU	18
-2	2025-02-20 11:36:57.323	2025-02-20 11:36:57.323	\N	test	en-US	1
+1	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	УЧАСТИЕ SA INTERNATIONAL HA ВОСТОЧНОМ ЭКОНОМИЧЕСКОМ	ru-RU	1
+2	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司参加东方经济论坛（VEF）	zh-CN	1
+3	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PARTICIPATION OF SA INTERNATIONAL IN THE EASTERN ECONOMIC FORUM (EEF)	en-US	1
+4	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ПРОБЛЕМЫ С ПЛАТЕЖАМИ ИЗ РОССИИ В КИТАЙ И АЛЬТЕРНАТИВНЫЕ ПОДХОДЫ	ru-RU	2
+5	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	关于从俄罗斯向中国支付的困难及替代方法	zh-CN	2
+6	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	CHALLENGES IN PAYMENTS FROM RUSSIA TO CHINA AND ALTERNATIVE APPROACHES	en-US	2
+7	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ЗАПУСК SA LOGISTICS - НОВОГО ПОДРАЗДЕЛЕНИЯ SIBC GROUP	ru-RU	3
+8	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际物流有限公司启动 —— SIBC集团新部门	zh-CN	3
+9	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	LAUNCH OF SA LOGISTICS - A NEW DIVISION OF SIBC GROUP	en-US	3
+10	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	РЕШЕНИЕ ПРОБЛЕМ МЕЖДУНАРОДНЫХ ПЛАТЕЖЕЙ: ОПЫТ SA INTERNATIONAL	ru-RU	4
+11	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SOLVING INTERNATIONAL PAYMENT ISSUES: THE EXPERIENCE OF SA INTERNATIONAL	en-US	4
+12	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	国际支付问题解决方案：上海亚际机电有限公司的经验	zh-CN	4
+13	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ОБЗОР ТЕКУЩИХ ВЫЗОВОВ В СФЕРЕ МЕЖДУНАРОДНЫХ ФИНАНСОВЫХ ОПЕРАЦИЙ МЕЖДУ РОССИЕЙ И КИТАЕМ И ПРЕДСТАВЛЕНИЕ ЭФФЕКТИВНЫХ АЛЬТЕРНАТИВНЫХ ПОДХОДОВ	ru-RU	5
+14	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	OVERVIEW OF CURRENT CHALLENGES IN INTERNATIONAL FINANCIAL OPERATIONS BETWEEN RUSSIA AND CHINA AND PRESENTING EFFECTIVE ALTERNATIVE APPROACHES	en-US	5
+15	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	俄罗斯与中国之间的国际金融操作现状及有效替代方案	zh-CN	5
+16	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ТЕНДЕНЦИИ В ЛОГИСТИКЕ: СОЗДАНИЕ SA LOGISTICS	ru-RU	6
+17	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	LOGISTICS TRENDS: THE CREATION OF SA LOGISTICS	en-US	6
+18	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	俄罗斯与中国之间的国际金融操作现状及有效替代方案	zh-CN	6
+19	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	РАЗВИТИЕ ПОРТОВОЙ ИНФРАСТРУКТУРЫ В РОССИИ	ru-RU	7
+20	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	俄罗斯港口基础设施的发展	zh-CN	7
+21	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	PORT INFRASTRUCTURE DEVELOPMENT IN RUSSIA	en-US	7
+22	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ЗНАЧЕНИЕ СТРОИТЕЛЬСТВА ЗАВОДА ПОРТОВОГО ОБОРУДОВАНИЯ ДЛЯ ЭКОНОМИКИ РОССИИ И УКРЕПЛЕНИЯ МЕЖДУНАРОДНОГО СОТРУДНИЧЕСТВА	ru-RU	8
+23	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	THE IMPORTANCE OF BUILDING A PORT EQUIPMENT PLANT FOR RUSSIA’S ECONOMY AND STRENGTHENING INTERNATIONAL COOPERATION	en-US	8
+24	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	建设港口设备制造厂对俄罗斯经济和加强国际合作的意义	zh-CN	8
+25	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL ПОДПИСЫВАЕТ СОГЛАШЕНИЕ С ПРАВИТЕЛЬСТВОМ РФ НА ВЭФ	ru-RU	9
+26	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL SIGNS AGREEMENT WITH THE RUSSIAN GOVERNMENT AT EEF	en-US	9
+27	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际机电有限公司签署与俄罗斯政府的协议	zh-CN	9
+28	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	ОФИЦИАЛЬНЫЙ ЗАПУСК SA LOGISTICS	ru-RU	10
+29	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	上海亚际物流有限公司正式启动	zh-CN	10
+30	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	SA INTERNATIONAL SIGNS AGREEMENT WITH THE RUSSIAN GOVERNMENT AT EEF	en-US	10
+31	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	СТАРТ ПРОЕКТА ПО ПРОИЗВОДСТВУ РОБОТОВ-МАНИПУЛЯТОРОВ В РОССИИ	ru-RU	11
+32	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	机器人操控器生产项目启动	zh-CN	11
+33	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	LAUNCH OF THE ROBOT MANIPULATOR MANUFACTURING PROJECT IN RUSSIA	en-US	11
+36	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	建筑设备	zh-CN	12
+39	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	公路设备	zh-CN	13
+41	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	冶金设备	zh-CN	14
+43	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Горнодобывающее оборудование	ru-RU	15
+44	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Mining Equipment	en-US	15
+45	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	采矿设备	zh-CN	15
+46	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Химическое оборудование	ru-RU	16
+47	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Chemical Equipment	en-US	16
+48	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	化工设备	zh-CN	16
+49	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Пищевое оборудование	ru-RU	17
+50	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Food Equipment	en-US	17
+51	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	食品设备	zh-CN	17
+52	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Вилочные погрузчики	ru-RU	18
+53	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Forklifts	en-US	18
+54	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	叉车	zh-CN	18
+55	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Конвейерные ленты	ru-RU	19
+56	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Conveyor Belts	en-US	19
+57	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	输送带	zh-CN	19
+58	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Производственные линии под ключ	ru-RU	20
+59	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Turnkey Production Lines	en-US	20
+60	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	交钥匙生产线	zh-CN	20
+61	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Бетонное оборудование	ru-RU	21
+62	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	混凝土设备	zh-CN	21
+63	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Concrete Equipment	en-US	21
+64	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Услуги по выбору оборудования	ru-RU	22
+65	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	设备选型服务	zh-CN	22
+66	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Equipment Selection Services	en-US	22
+67	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Оптимизация производственных процессов	ru-RU	23
+68	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Optimization of Production Processes	en-US	23
+40	2025-02-25 18:46:18.553	2025-02-28 06:24:05.52579	\N	Металлургическое оборудование 	ru-RU	14
+37	2025-02-25 18:46:18.553	2025-02-28 06:21:40.728087	\N	Дорожное оборудование	ru-RU	13
+38	2025-02-25 18:46:18.553	2025-02-28 06:21:40.7341	\N	Road equipment	en-US	13
+35	2025-02-25 18:46:18.553	2025-02-28 06:21:48.298557	\N	Construction equipment	en-US	12
+42	2025-02-25 18:46:18.553	2025-02-28 06:24:05.535094	\N	Metaлlurgical equipment	en-US	14
+69	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	生产流程优化	zh-CN	23
+70	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Внедрение инновационных технологий	ru-RU	24
+71	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Implementation of Innovative Technologies	en-US	24
+72	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	创新技术的实施	zh-CN	24
+73	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Оптимизация производственных процессов	ru-RU	25
+74	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Optimization of Production Processes	en-US	25
+75	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	生产流程优化	zh-CN	25
+76	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Международная торговля	ru-RU	26
+77	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	International Trade	en-US	26
+78	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	国际贸易	zh-CN	26
+79	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Экспорт оборудования и технологий	ru-RU	27
+80	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	设备与技术出口	zh-CN	27
+81	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Export of Equipment and Technologies	en-US	27
+82	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Импорт в Китай	ru-RU	28
+83	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	进口到中国	zh-CN	28
+84	2025-02-25 18:46:18.553	2025-02-25 18:46:18.553	\N	Import into China	en-US	28
+34	2025-02-25 18:46:18.553	2025-02-28 06:21:16.03768	\N	Строительное оборудование 	ru-RU	12
 \.
 
 
@@ -4591,8 +4643,8 @@ COPY public.reference_book_instances_value (id, "createdAt", "updatedAt", "delet
 -- Data for Name: settings; Type: TABLE DATA; Schema: public; Owner: postgress
 --
 
-COPY public.settings (id, "createdAt", "updatedAt", "deletedAt", title, description, vk, facebook, viber, whatsapp, telegram, phone, email, "urlBitrix", "amoClientId", "amoClientSecret", "amoDomain", "amoBearer", discord, "linkedIn", instagram) FROM stdin;
-1	2025-02-03 19:14:13.386	2025-02-22 20:03:38.30821	\N	Interco	Interco	https://vk.com/		https://vk.com/	https://vk.com/	https://web.telegram.org/k/	+7 (800) 000 - 00 00	info@inter-sa.com						https://discord.com/	https://careers.linkedin.cn/	https://www.instagram.com/
+COPY public.settings (id, "createdAt", "updatedAt", "deletedAt", title, description, vk, facebook, viber, whatsapp, telegram, discord, "linkedIn", instagram, phone, email, "urlBitrix", "amoClientId", "amoClientSecret", "amoDomain", "amoBearer") FROM stdin;
+1	2025-02-25 19:21:00.998	2025-02-25 19:44:45.678785	\N	Interco	Interco	https://vk.com/				https://web.telegram.org/k/	https://discord.com/	https://careers.linkedin.cn/	https://www.instagram.com/	+7 (800) 000 - 00 00	info@inter-sa.com					
 \.
 
 
@@ -4625,7 +4677,7 @@ COPY public.settings_menu_item (id, "createdAt", "updatedAt", "deletedAt", title
 --
 
 COPY public."user" (id, "createdAt", "updatedAt", "deletedAt", "isActive", "lastName", "firstName", "middleName", email, password, role) FROM stdin;
-1	2025-02-03 19:14:13.386	2025-02-03 19:14:13.386	\N	t	Яковлев	Андрей	Сергеевич	ya.andreyi96@yandex.ru	$2b$10$D2iYjF4Mx.sng0Gl6p6oauSDQWuwSKFBzkb2AoEIW2lJJNHjn3pNW	admin
+1	2025-02-25 19:21:00.998	2025-02-25 19:21:00.998	\N	t	Яковлев	Андрей	Сергеевич	ya.andreyi96@yandex.ru	$2b$10$FosxRAzmJoWNGGuKlbDjJO.CuLvCYwNK75zPIm.UmNhGCB5Zh0Egi	admin
 \.
 
 
@@ -4683,7 +4735,14 @@ SELECT pg_catalog.setval('public.callback_instances_value_id_seq', 1, false);
 -- Name: library_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.library_files_id_seq', 51, true);
+SELECT pg_catalog.setval('public.library_files_id_seq', 30, true);
+
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 1, true);
 
 
 --
@@ -4704,63 +4763,56 @@ SELECT pg_catalog.setval('public."pages-components_id_seq"', 1, false);
 -- Name: pages_iblock_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_fields_id_seq', 90, true);
+SELECT pg_catalog.setval('public.pages_iblock_fields_id_seq', 84, true);
 
 
 --
 -- Name: pages_iblock_fields_label_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_fields_label_id_seq', 270, true);
-
-
---
--- Name: pages_iblock_fields_records_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
---
-
-SELECT pg_catalog.setval('public.pages_iblock_fields_records_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_iblock_fields_label_id_seq', 252, true);
 
 
 --
 -- Name: pages_iblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_id_seq', 24, true);
+SELECT pg_catalog.setval('public.pages_iblock_id_seq', 23, true);
 
 
 --
 -- Name: pages_iblock_records_field_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_records_field_id_seq', 224, true);
+SELECT pg_catalog.setval('public.pages_iblock_records_field_id_seq', 218, true);
 
 
 --
 -- Name: pages_iblock_records_field_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_records_field_value_id_seq', 708, true);
+SELECT pg_catalog.setval('public.pages_iblock_records_field_value_id_seq', 654, true);
 
 
 --
 -- Name: pages_iblock_records_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_records_id_seq', 56, true);
+SELECT pg_catalog.setval('public.pages_iblock_records_id_seq', 58, true);
 
 
 --
 -- Name: pages_iblock_section_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_section_id_seq', 4, true);
+SELECT pg_catalog.setval('public.pages_iblock_section_id_seq', 2, true);
 
 
 --
 -- Name: pages_iblock_section_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_iblock_section_value_id_seq', 16, true);
+SELECT pg_catalog.setval('public.pages_iblock_section_value_id_seq', 6, true);
 
 
 --
@@ -4774,28 +4826,21 @@ SELECT pg_catalog.setval('public.pages_id_seq', 12, true);
 -- Name: pages_params_field_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_params_field_id_seq', 27, true);
+SELECT pg_catalog.setval('public.pages_params_field_id_seq', 91, true);
 
 
 --
 -- Name: pages_params_field_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_params_field_value_id_seq', 54, true);
+SELECT pg_catalog.setval('public.pages_params_field_value_id_seq', 183, true);
 
 
 --
 -- Name: pages_params_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_params_id_seq', 13, true);
-
-
---
--- Name: pages_params_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
---
-
-SELECT pg_catalog.setval('public.pages_params_value_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_params_id_seq', 12, true);
 
 
 --
@@ -4809,7 +4854,7 @@ SELECT pg_catalog.setval('public.pages_sections_description_value_id_seq', 6, tr
 -- Name: pages_sections_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_sections_id_seq', 3, true);
+SELECT pg_catalog.setval('public.pages_sections_id_seq', 2, true);
 
 
 --
@@ -4820,73 +4865,66 @@ SELECT pg_catalog.setval('public.pages_sections_title_value_id_seq', 6, true);
 
 
 --
--- Name: pages_sections_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
---
-
-SELECT pg_catalog.setval('public.pages_sections_value_id_seq', 3, true);
-
-
---
 -- Name: pages_seo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_seo_id_seq', 8, true);
+SELECT pg_catalog.setval('public.pages_seo_id_seq', 10, true);
 
 
 --
 -- Name: pages_seo_params_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.pages_seo_params_id_seq', 72, true);
+SELECT pg_catalog.setval('public.pages_seo_params_id_seq', 90, true);
 
 
 --
 -- Name: records_description_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_description_id_seq', 19, true);
+SELECT pg_catalog.setval('public.records_description_id_seq', 28, true);
 
 
 --
 -- Name: records_description_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_description_value_id_seq', 57, true);
+SELECT pg_catalog.setval('public.records_description_value_id_seq', 84, true);
 
 
 --
 -- Name: records_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_id_seq', 16, true);
+SELECT pg_catalog.setval('public.records_id_seq', 28, true);
 
 
 --
 -- Name: records_seo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_seo_id_seq', 15, true);
+SELECT pg_catalog.setval('public.records_seo_id_seq', 28, true);
 
 
 --
 -- Name: records_seo_params_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_seo_params_id_seq', 30, true);
+SELECT pg_catalog.setval('public.records_seo_params_id_seq', 1, false);
 
 
 --
 -- Name: records_title_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_title_id_seq', 19, true);
+SELECT pg_catalog.setval('public.records_title_id_seq', 28, true);
 
 
 --
 -- Name: records_title_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgress
 --
 
-SELECT pg_catalog.setval('public.records_title_value_id_seq', 57, true);
+SELECT pg_catalog.setval('public.records_title_value_id_seq', 84, true);
 
 
 --
@@ -5057,27 +5095,11 @@ ALTER TABLE ONLY public.records_title
 
 
 --
--- Name: pages_iblock_fields_records PK_2f1b29b4773b9cba807d41337ae; Type: CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_iblock_fields_records
-    ADD CONSTRAINT "PK_2f1b29b4773b9cba807d41337ae" PRIMARY KEY (id);
-
-
---
 -- Name: callback PK_3120f6061b840c2605321da3947; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
 ALTER TABLE ONLY public.callback
     ADD CONSTRAINT "PK_3120f6061b840c2605321da3947" PRIMARY KEY (id);
-
-
---
--- Name: pages_params_value PK_31f9ecdb1d5fde9da1c0858820c; Type: CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_params_value
-    ADD CONSTRAINT "PK_31f9ecdb1d5fde9da1c0858820c" PRIMARY KEY (id);
 
 
 --
@@ -5161,6 +5183,14 @@ ALTER TABLE ONLY public.callback_instances_value
 
 
 --
+-- Name: migrations PK_8c82d7f526340ab734260ea46be; Type: CONSTRAINT; Schema: public; Owner: postgress
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY (id);
+
+
+--
 -- Name: pages PK_8f21ed625aa34c8391d636b7d3b; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
@@ -5174,14 +5204,6 @@ ALTER TABLE ONLY public.pages
 
 ALTER TABLE ONLY public.records_seo
     ADD CONSTRAINT "PK_8fdbfa9dec79b858c082393ffcb" PRIMARY KEY (id);
-
-
---
--- Name: pages_sections_value PK_8fe62e2de32b4714a4f1b76fedd; Type: CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_sections_value
-    ADD CONSTRAINT "PK_8fe62e2de32b4714a4f1b76fedd" PRIMARY KEY (id);
 
 
 --
@@ -5337,35 +5359,35 @@ ALTER TABLE ONLY public.records_description_value
 
 
 --
--- Name: records UQ_0b294cd175a264787d609315ba5; Type: CONSTRAINT; Schema: public; Owner: postgress
+-- Name: records REL_0b294cd175a264787d609315ba; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
 ALTER TABLE ONLY public.records
-    ADD CONSTRAINT "UQ_0b294cd175a264787d609315ba5" UNIQUE ("descriptionId");
+    ADD CONSTRAINT "REL_0b294cd175a264787d609315ba" UNIQUE ("descriptionId");
 
 
 --
--- Name: records UQ_67fe1339b944fb02568867554bf; Type: CONSTRAINT; Schema: public; Owner: postgress
+-- Name: records REL_67fe1339b944fb02568867554b; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
 ALTER TABLE ONLY public.records
-    ADD CONSTRAINT "UQ_67fe1339b944fb02568867554bf" UNIQUE ("seoId");
+    ADD CONSTRAINT "REL_67fe1339b944fb02568867554b" UNIQUE ("seoId");
 
 
 --
--- Name: pages UQ_a5f09c91bfe53121be839fd5754; Type: CONSTRAINT; Schema: public; Owner: postgress
+-- Name: pages REL_a5f09c91bfe53121be839fd575; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
 ALTER TABLE ONLY public.pages
-    ADD CONSTRAINT "UQ_a5f09c91bfe53121be839fd5754" UNIQUE ("seoId");
+    ADD CONSTRAINT "REL_a5f09c91bfe53121be839fd575" UNIQUE ("seoId");
 
 
 --
--- Name: records UQ_e818af141fb00405011ff5ee1ef; Type: CONSTRAINT; Schema: public; Owner: postgress
+-- Name: records REL_e818af141fb00405011ff5ee1e; Type: CONSTRAINT; Schema: public; Owner: postgress
 --
 
 ALTER TABLE ONLY public.records
-    ADD CONSTRAINT "UQ_e818af141fb00405011ff5ee1ef" UNIQUE ("titleId");
+    ADD CONSTRAINT "REL_e818af141fb00405011ff5ee1e" UNIQUE ("titleId");
 
 
 --
@@ -5555,14 +5577,6 @@ ALTER TABLE ONLY public.pages_params_field
 
 
 --
--- Name: pages_params_value FK_4bbad71088a1ac92f7a02b0ad9c; Type: FK CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_params_value
-    ADD CONSTRAINT "FK_4bbad71088a1ac92f7a02b0ad9c" FOREIGN KEY ("recordId") REFERENCES public.records(id);
-
-
---
 -- Name: pages_iblock_records_field_value FK_4f1a7deb7b7f84a540dfc7e6019; Type: FK CONSTRAINT; Schema: public; Owner: postgress
 --
 
@@ -5608,14 +5622,6 @@ ALTER TABLE ONLY public.records
 
 ALTER TABLE ONLY public.users_comments_like
     ADD CONSTRAINT "FK_6b3e0c5f255dc2934f4e08bf110" FOREIGN KEY ("pagesCommentsId") REFERENCES public."pages-comments"(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: pages_params_value FK_733eb052add03e4e666e54fd6cb; Type: FK CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_params_value
-    ADD CONSTRAINT "FK_733eb052add03e4e666e54fd6cb" FOREIGN KEY ("paramsId") REFERENCES public.pages_params(id);
 
 
 --
@@ -5680,14 +5686,6 @@ ALTER TABLE ONLY public.pages_iblock_fields_label
 
 ALTER TABLE ONLY public.pages_iblock_records
     ADD CONSTRAINT "FK_ac05c90b7748d12564a17aa946f" FOREIGN KEY ("iblockId") REFERENCES public.pages_iblock(id);
-
-
---
--- Name: pages_sections_value FK_afa2aabe8bdc8cb98f9ae84bada; Type: FK CONSTRAINT; Schema: public; Owner: postgress
---
-
-ALTER TABLE ONLY public.pages_sections_value
-    ADD CONSTRAINT "FK_afa2aabe8bdc8cb98f9ae84bada" FOREIGN KEY ("sectionId") REFERENCES public.pages_sections(id);
 
 
 --

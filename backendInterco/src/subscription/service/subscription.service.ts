@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { SubscriptionRepository } from '../repository/subscription.repository';
 import { SubscriptionDto } from '../dto/subscription.dto';
 import { ResultSubscriptionDto } from '../dto/response-subscription.dto';
+import { TaskDto } from 'src/task/dto/task.dto';
 
 @Injectable()
 export class SubscriptionService {
