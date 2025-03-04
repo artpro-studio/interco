@@ -15,39 +15,39 @@ export default defineSsrMiddleware(({ app, resolve, render, serve }) => {
 		render(/* the ssrContext: */ { req, res })
 			.then((html) => {
 				// now let's send the rendered html to the client
-				const yandexMetrikaCode = `
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-      k.async=1;
-      k.defer=1;
-      k.src=r;
-      a.parentNode.insertBefore(k,a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+				// 				const yandexMetrikaCode = `
+				//   <script type="text/javascript">
+				//     (function(m,e,t,r,i,k,a){
+				//       m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+				//       m[i].l=1*new Date();
+				//       k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+				//       k.async=1;
+				//       k.defer=1;
+				//       k.src=r;
+				//       a.parentNode.insertBefore(k,a);
+				//     })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    // Используем setTimeout, чтобы попытаться вызвать ym после загрузки скрипта
-    setTimeout(function() {
-      if (window.ym) {
-        ym(100147884, "init", {
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          trackHash: false,
-          watchParams: false
-        });
-      } else {
-        console.error('Ошибка инициализации Яндекс.Метрики');
-      }
-    }, 1000); // Попытка через 1 секунду после загрузки скрипта
-  </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/100147884" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
-`;
+				//     // Используем setTimeout, чтобы попытаться вызвать ym после загрузки скрипта
+				//     setTimeout(function() {
+				//       if (window.ym) {
+				//         ym(1001478841, "init", {
+				//           clickmap: true,
+				//           trackLinks: true,
+				//           accurateTrackBounce: true,
+				//           trackHash: false,
+				//           watchParams: false
+				//         });
+				//       } else {
+				//         console.error('Ошибка инициализации Яндекс.Метрики');
+				//       }
+				//     }, 1000); // Попытка через 1 секунду после загрузки скрипта
+				//   </script>
+				//   <noscript>
+				//     <div><img src="https://mc.yandex.ru/watch/100147884" style="position:absolute; left:-9999px;" alt="" /></div>
+				//   </noscript>
+				// `;
 
-				html = html.replace('</head>', `${yandexMetrikaCode}</head>`);
+				// html = html.replace('</head>', `${yandexMetrikaCode}</head>`);
 				res.send(html);
 			})
 			.catch((err: RenderError) => {
