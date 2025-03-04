@@ -18,9 +18,6 @@ import {
   defineSsrServeStaticContent,
   defineSsrRenderPreloadTag
 } from '#q-app/wrappers';
-import dotenv from 'dotenv';
-dotenv.config();
-
 
 /**
  * Create your webserver and return its instance.
