@@ -1,33 +1,35 @@
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { computed } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
 	const { t } = useI18n();
 
-	const principles = ref([
-		{
-			title: t('aboutPrinciplesItem1Title'),
-			text: t('aboutPrinciplesItem1Text'),
-			isFull: true,
-		},
-		{
-			title: t('aboutPrinciplesItem2Title'),
-			text: t('aboutPrinciplesItem2Text'),
-			isFull: true,
-		},
-		{
-			title: t('aboutPrinciplesItem3Title'),
-			text: t('aboutPrinciplesItem3Text'),
-		},
-		{
-			title: t('aboutPrinciplesItem4Title'),
-			text: t('aboutPrinciplesItem4Text'),
-		},
-		{
-			title: t('aboutPrinciplesItem5Title'),
-			text: t('aboutPrinciplesItem5Text'),
-		}
-	])
+	const getPrinciples = computed(() => {
+		return [
+			{
+				title: t('aboutPrinciplesItem1Title'),
+				text: t('aboutPrinciplesItem1Text'),
+				isFull: true,
+			},
+			{
+				title: t('aboutPrinciplesItem2Title'),
+				text: t('aboutPrinciplesItem2Text'),
+				isFull: true,
+			},
+			{
+				title: t('aboutPrinciplesItem3Title'),
+				text: t('aboutPrinciplesItem3Text'),
+			},
+			{
+				title: t('aboutPrinciplesItem4Title'),
+				text: t('aboutPrinciplesItem4Text'),
+			},
+			{
+				title: t('aboutPrinciplesItem5Title'),
+				text: t('aboutPrinciplesItem5Text'),
+			},
+		];
+	});
 </script>
 
 <template>
@@ -43,12 +45,7 @@
 				</div>
 			</div>
 			<div data-aos="zoom-in" class="about-principles__body row q-gutter-lg">
-				<div
-					v-for="(item, index) in principles"
-					:key="index"
-					class="about-principles__item"
-					:class="{isFull: item.isFull}"
-				>
+				<div v-for="(item, index) in getPrinciples" :key="index" class="about-principles__item" :class="{ isFull: item.isFull }">
 					<h5 class="about-principles__item__title fonts-oswald">{{ item.title }}</h5>
 					<p class="about-principles__item__text">{{ item.text }}</p>
 				</div>
@@ -58,7 +55,7 @@
 </template>
 <style lang="scss" scoped>
 	.about-principles {
-		background-color: #F5F5F5;
+		background-color: #f5f5f5;
 
 		&__header {
 			margin-bottom: 64px;
@@ -114,7 +111,6 @@
 				width: calc(50% - 24px);
 			}
 
-
 			&__title {
 				color: var(--red);
 				font-size: 1.55em;
@@ -137,7 +133,6 @@
 
 				&__text {
 					font-size: 1.12em;
-
 				}
 			}
 		}

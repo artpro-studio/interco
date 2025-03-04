@@ -1,7 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CallbackController } from './controller/callback.controller';
-import { CallbackRepository } from './repository/callback.repository'
+import { CallbackRepository } from './repository/callback.repository';
 import { CallbackEntity } from './entity/callback.entity';
 import { CallbackFieldEntity } from './entity/callback-field.entity';
 import { CallbackInstancesEntity } from './entity/callback-instances.entity';
@@ -24,6 +24,7 @@ import { AmoCustmoFieldsEntity } from './entity/amo-custom-fields.entity';
 import { AmoCustomFieldsController } from './controller/amo-custom-fields.controller';
 import { PublicCallbackService } from './service/public-callback.service';
 import { PublicCallbackController } from './controller/public-callback.controller';
+import { LibraryFilesModule } from 'src/library-files/library-files.module';
 
 const repository = [
     CallbackRepository,
@@ -31,7 +32,7 @@ const repository = [
     CallbackInstancesRepository,
     CallbackInstancesValueRepository,
     AmoCustomRepository,
-]
+];
 
 const service = [
     CallbackFieldService,
@@ -39,7 +40,7 @@ const service = [
     BitrixService,
     AmoCrmService,
     PublicCallbackService,
-]
+];
 
 @Module({
     imports: [
@@ -49,16 +50,23 @@ const service = [
             CallbackFieldEntity,
             CallbackInstancesEntity,
             CallbackInstancesValueEntity,
-            AmoCustmoFieldsEntity
+            AmoCustmoFieldsEntity,
         ]),
         HttpModule.register({
             timeout: 10000,
             maxRedirects: 5,
         }),
         forwardRef(() => NodeMailerModule),
-        forwardRef(() => SettingsModule)
+        forwardRef(() => SettingsModule),
+        forwardRef(() => LibraryFilesModule),
     ],
-    controllers: [CallbackController, CallbackFieldController, CallbackInstancesController, AmoCustomFieldsController, PublicCallbackController],
+    controllers: [
+        CallbackController,
+        CallbackFieldController,
+        CallbackInstancesController,
+        AmoCustomFieldsController,
+        PublicCallbackController,
+    ],
     providers: [...repository, ...service],
     exports: [...repository, ...service],
 })

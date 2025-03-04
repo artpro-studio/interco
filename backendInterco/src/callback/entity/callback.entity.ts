@@ -3,28 +3,49 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { CallbackFieldEntity } from './callback-field.entity';
 import { CallbackInstancesEntity } from './callback-instances.entity';
+import { LibraryFilesEntity } from 'src/library-files/entities/library-files.entity';
 
 @Entity({
-    name: 'callback'
+    name: 'callback',
 })
 export class CallbackEntity extends DefaultBaseEntity {
-    @ApiProperty({ example: 'Название', nullable: false, description: 'Название формы' })
+    @ApiProperty({
+        example: 'Название',
+        nullable: false,
+        description: 'Название формы',
+    })
     @Column({ nullable: false, length: 1024 })
     name: string;
 
-    @ApiProperty({ example: 'name', nullable: false, description: 'Символьный код' })
+    @ApiProperty({
+        example: 'name',
+        nullable: false,
+        description: 'Символьный код',
+    })
     @Column({ nullable: false, length: 1024 })
     slug: string;
 
-    @ApiProperty({ example: false, nullable: false, description: 'Синхронизация с битрикс24' })
+    @ApiProperty({
+        example: false,
+        nullable: false,
+        description: 'Синхронизация с битрикс24',
+    })
     @Column({ type: 'bool', default: false, nullable: false })
     syncBitrix: boolean;
 
-    @ApiProperty({ example: false, nullable: false, description: 'Синхронизация с AmoCRM' })
+    @ApiProperty({
+        example: false,
+        nullable: false,
+        description: 'Синхронизация с AmoCRM',
+    })
     @Column({ type: 'bool', default: false, nullable: false })
     syncAmo: boolean;
 
-    @ApiProperty({ example: 'test@mail.ru', nullable: true, description: 'E-mail' })
+    @ApiProperty({
+        example: 'test@mail.ru',
+        nullable: true,
+        description: 'E-mail',
+    })
     @Column({ nullable: true, length: 1024 })
     email: string;
 
@@ -35,5 +56,4 @@ export class CallbackEntity extends DefaultBaseEntity {
     @ApiProperty({ description: 'Записи заявок' })
     @OneToMany(() => CallbackInstancesEntity, (field) => field.callback)
     instances: CallbackInstancesEntity[];
-
 }

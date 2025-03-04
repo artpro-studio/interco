@@ -19,35 +19,40 @@
 	const SLUG_COMPANY = 'about-company';
 	const SLUG_KEY_MILESTONES = 'key-milestones';
 	const SLUG_COMMAND = 'command';
+	const SLUG_GROUP_COMPANY = 'group-compnay';
 
 	const pagePublic = ref<PagesPublicDto | null>(null);
 
-	const getCompany = computed(() => {
-		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMPANY)?.records
+	const getGroupCompnay = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_GROUP_COMPANY)?.records;
 		return data?.length ? data[0] : null;
-	})
+	});
 
-	const getKeyMilestones= computed(() => {
-		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_KEY_MILESTONES)?.records
-		return data;
-	})
+	const getCompany = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMPANY)?.records;
+		return data?.length ? data[0] : null;
+	});
 
-	const getCommand= computed(() => {
-		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMMAND)?.records
+	const getKeyMilestones = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_KEY_MILESTONES)?.records;
 		return data;
-	})
+	});
+
+	const getCommand = computed(() => {
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_COMMAND)?.records;
+		return data;
+	});
 
 	const getInfo = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('about')
-		.then((data) => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('about').then((data) => {
 			pagePublic.value = data.entity;
-		})
-	}
+		});
+	};
 
 	onMounted(() => {
 		useGetMeta('about');
 		getInfo();
-	})
+	});
 </script>
 
 <template>
@@ -60,16 +65,13 @@
 		width-title="957px"
 		:dense="false"
 	/>
-	<about-years :data="getKeyMilestones"/>
+	<about-years :data="getKeyMilestones" />
 	<about-mission />
-	<about-group />
+	<about-group :data="getGroupCompnay" />
 	<about-maps />
 	<about-team :data="getCommand" />
 	<about-culture />
 	<about-principles />
 	<banner-callback />
-	<banner-sa-international
-		:title="t('aboutBannerTitle')"
-		:description="t('aboutBannerDescription')"
-	/>
+	<banner-sa-international :title="t('aboutBannerTitle')" :description="t('aboutBannerDescription')" />
 </template>

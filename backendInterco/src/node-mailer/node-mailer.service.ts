@@ -35,6 +35,7 @@ export class NodeMailerService {
 
     // Отправка данных с сайта
     async callbackTemplate(data: ISendData[], callback: CallbackDto) {
+        console.log('callbackTemplate');
         const result: ResultDto = await this.mailerService
             .sendMail({
                 to: callback.email,

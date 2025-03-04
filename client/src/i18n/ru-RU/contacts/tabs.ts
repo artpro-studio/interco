@@ -6,4 +6,5 @@ export default {
 	contactsGeneral: 'Общий',
 	contactsTotalSales: 'Отдел продаж',
 	contactsSupportText: 'Техническая поддержка',
-}
+	contactsTextMaps: 'Посмотреть на карте Baidu Maps',
+};

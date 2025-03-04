@@ -88,7 +88,7 @@
                             <q-input v-model="form.email" color="primary" label="Email" :rules="[isRequiredEmail]" outlined />
                         </div>
                         <div class="q-mb-md">
-                            <q-input v-model="form.password" color="primary" label="Пароль" :rules="[isRequired]" outlined />
+                            <q-input type="password" v-model="form.password" color="primary" label="Пароль" :rules="[isRequired]" outlined />
                         </div>
                         <div class="q-mb-md">
                             <q-btn color="primary" type="submit" class="full">Войти</q-btn>

@@ -6,4 +6,5 @@ export default {
 	contactsGeneral: '总机',
 	contactsTotalSales: '销售部门',
 	contactsSupportText: '技术支持',
-}
+	contactsTextMaps: '查看在百度地图',
+};

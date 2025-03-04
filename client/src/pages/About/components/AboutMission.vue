@@ -1,38 +1,42 @@
 <script lang="ts" setup>
-	import { reactive } from 'vue';
-import { useI18n } from 'vue-i18n';
+	import { computed } from 'vue';
+	import { useI18n } from 'vue-i18n';
 
 	const { t } = useI18n();
 
-	const missionData = reactive([
-		{
-			title: t('aboutMissionList1Title'),
-			text: t('aboutMissionList1Text'),
-		},
-		{
-			title: t('aboutMissionList2Title'),
-			text: t('aboutMissionList2Text'),
-		},
-		{
-			title: t('aboutMissionList3Title'),
-			text: t('aboutMissionList3Text'),
-		},
-		{
-			title: t('aboutMissionList4Title'),
-			text: t('aboutMissionList4Text'),
-		},
-		{
-			title: t('aboutMissionList5Title'),
-			text: t('aboutMissionList5Text'),
-		},
-	])
+	const missionData = computed(() => {
+		return [
+			{
+				title: t('aboutMissionList1Title'),
+				text: t('aboutMissionList1Text'),
+			},
+			{
+				title: t('aboutMissionList2Title'),
+				text: t('aboutMissionList2Text'),
+			},
+			{
+				title: t('aboutMissionList3Title'),
+				text: t('aboutMissionList3Text'),
+			},
+			{
+				title: t('aboutMissionList4Title'),
+				text: t('aboutMissionList4Text'),
+			},
+			{
+				title: t('aboutMissionList5Title'),
+				text: t('aboutMissionList5Text'),
+			},
+		];
+	});
 </script>
 
 <template>
 	<div class="about-mission pt-8 pb-8 bg-white">
 		<div class="container">
 			<div class="about-mission__header">
-				<h3 data-aos="fade-right" class="about-mission__header__title headline-1 text-gradient text-uppercase">{{ t('aboutMissionTitle') }}</h3>
+				<h3 data-aos="fade-right" class="about-mission__header__title headline-1 text-gradient text-uppercase">
+					{{ t('aboutMissionTitle') }}
+				</h3>
 			</div>
 			<div class="about-mission__body row no-wrap">
 				<div data-aos="fade-right" class="about-mission__item info">
@@ -41,11 +45,7 @@ import { useI18n } from 'vue-i18n';
 				</div>
 				<div data-aos="fade-left" class="about-mission__item">
 					<h5 class="fonts-oswald">{{ t('aboutMissionSubTitle2') }}</h5>
-					<div
-						v-for="(item, index) in missionData"
-						:key="index"
-						class="about-mission__item__content"
-					>
+					<div v-for="(item, index) in missionData" :key="index" class="about-mission__item__content">
 						<h6>{{ item.title }}</h6>
 						<p>{{ item.text }}</p>
 					</div>
@@ -111,6 +111,4 @@ import { useI18n } from 'vue-i18n';
 			}
 		}
 	}
-
-
 </style>

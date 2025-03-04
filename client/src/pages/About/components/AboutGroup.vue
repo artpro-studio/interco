@@ -2,7 +2,12 @@
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import { useI18n } from 'vue-i18n';
 
-	const { t } = useI18n();
+	interface IProps {
+		data?: any;
+	}
+	defineProps<IProps>();
+
+	const { t, locale } = useI18n();
 </script>
 
 <template>
@@ -13,11 +18,11 @@
 			</div>
 			<div class="about-group__body row no-wrap">
 				<div data-aos="fade-right" class="about-group__content">
-					<h5 class="fonts-oswald text-red text-uppercase">SIBC Group</h5>
-					<p> — это динамично развивающаяся группа компаний, основанная в 2017 году, специализирующаяся на консалтинговых услугах, подборе оборудования и внедрении современных технологий в промышленность. SA International играет ключевую роль в составе группы, отвечая за международное развитие, расширение продуктовой линейки и реализацию стратегических проектов.</p>
+					<h5 class="fonts-oswald text-red text-uppercase">{{ data?.fields?.subtitle[locale]?.value }}</h5>
+					<p v-html="data?.fields?.description[locale]?.value"></p>
 				</div>
 				<div data-aos="fade-left" class="about-group__info">
-					<p class="fonts-oswald">Наша интеграция в SIBC Group позволяет нам использовать обширный опыт и ресурсы группы для предоставления комплексных решений и укрепления позиций на глобальном рынке.</p>
+					<p class="fonts-oswald" v-html="data?.fields?.text[locale]?.value"></p>
 				</div>
 			</div>
 		</div>
@@ -25,7 +30,7 @@
 </template>
 <style lang="scss" scoped>
 	.about-group {
-		&__body  {
+		&__body {
 			@media (max-width: 768px) {
 				flex-wrap: wrap;
 			}

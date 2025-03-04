@@ -17979,18 +17979,32 @@ export class PublicCallbackControllerClient extends BaseApiClient {
 
     /**
      * Создание и отправка новой заявки
+     * @param slug (optional) Символьный код формы
+     * @param file (optional) Файл
+     * @param data (optional) Данные
      */
-    create(body: PublicCallbackDto): Promise<ResultDto> {
+    create(slug?: string | undefined, file?: FileParameter | undefined, data?: any | undefined): Promise<ResultDto> {
         let url_ = this.baseUrl + "/api/callback-public";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
+        const content_ = new FormData();
+        if (slug === null || slug === undefined)
+            throw new Error("The parameter 'slug' cannot be null.");
+        else
+            content_.append("slug", slug.toString());
+        if (file === null || file === undefined)
+            throw new Error("The parameter 'file' cannot be null.");
+        else
+            content_.append("file", file.data, file.fileName ? file.fileName : "file");
+        if (data === null || data === undefined)
+            throw new Error("The parameter 'data' cannot be null.");
+        else
+            content_.append("data", JSON.stringify(data));
 
         let options_: RequestInit = {
             body: content_,
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -21488,15 +21502,6 @@ export interface ResultAmoCustmoFieldstDto {
     [key: string]: any;
 }
 
-export interface PublicCallbackDto {
-    /** Символьный код формы */
-    slug: string;
-    /** Данные */
-    data: any;
-
-    [key: string]: any;
-}
-
 export enum ILangSubscription {
     RuRU = "ru-RU",
     EnUS = "en-US",
@@ -21574,6 +21579,25 @@ export interface SendsSubscriptionDescriptionDto {
     [key: string]: any;
 }
 
+export interface TaskDto {
+    id?: number | null;
+    createdAt?: string | null;
+    updatedAt?: string | null;
+    deletedAt?: string | null;
+    /** ID задачи */
+    idTask: string;
+    /** Название задачи */
+    name: string;
+    /** Прогресс */
+    progress: number;
+    /** Статус задачи */
+    status: TaskDtoStatus;
+    /** Тип задачи */
+    type: TaskDtoType;
+
+    [key: string]: any;
+}
+
 export interface SendsSubscriptionDto {
     id?: number | null;
     createdAt?: string | null;
@@ -21583,6 +21607,8 @@ export interface SendsSubscriptionDto {
     title?: SendsSubscriptionTitleDto[] | null;
     /** Запись */
     description?: SendsSubscriptionDescriptionDto[] | null;
+    /** Задача */
+    task?: TaskDto | null;
 
     [key: string]: any;
 }
@@ -21700,6 +21726,24 @@ export enum CreateReferenceBookAttributesDtoType {
     Image = "image",
     Gallary = "gallary",
     Array = "array",
+}
+
+export enum TaskDtoStatus {
+    Active = "active",
+    Error = "error",
+    Cancel = "cancel",
+    Waiting = "waiting",
+    Completed = "completed",
+    Failed = "failed",
+}
+
+export enum TaskDtoType {
+    SendMessage = "sendMessage",
+    GenerateGraph = "generateGraph",
+    DeleteGraph = "deleteGraph",
+    UpdateGraph = "updateGraph",
+    ExportReports = "exportReports",
+    ExportReportsToEmail = "exportReportsToEmail",
 }
 
 export interface FileParameter {

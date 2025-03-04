@@ -3,7 +3,7 @@
 	import { useI18n } from 'vue-i18n';
 
 	interface IProps {
-		data: any
+		data: any;
 	}
 	const props = defineProps<IProps>();
 
@@ -21,7 +21,7 @@
 					address: {
 						text: el.fields?.address[locale.value]?.value,
 						link: {
-							text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
+							text: t('contactsTextMaps') + ' (https://map.baidu.com/)',
 							src: el.fields?.link[locale.value]?.value,
 						},
 					},
@@ -31,126 +31,23 @@
 						support: el.fields['technical-phone'][locale.value]?.value,
 					},
 					email: {
-						common:el.fields['general-email'][locale.value]?.value,
+						common: el.fields['general-email'][locale.value]?.value,
 						salesDepartment: el.fields['general-email'][locale.value]?.value,
 						support: el.fields['general-email'][locale.value]?.value,
 					},
-					time: el.fields['time-job'][locale.value]?.value
-				}
-			})
-		})
+					time: el.fields['time-job'][locale.value]?.value,
+				},
+			});
+		});
 		return result;
-	})
-
-	const dataTabs = reactive([
-		{
-			key: 'contact1',
-			name: t('contactsTabsTitle1'),
-			data: {
-				address: {
-					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
-					link: {
-						text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
-						src: '/',
-					},
-				},
-				phone: {
-					common:' +86 (021) 5432 2755',
-					salesDepartment: '+86 (021) 5432 2755 (ext. 813)',
-					support: ' +86 (021) 5432 2755 (ext. 804)',
-				},
-				email: {
-					common:'info@inter-sa.com',
-					salesDepartment: 'sales@inter-sa.com',
-					support: 'support@inter-sa.com',
-				},
-				time: 'Понедельник – Пятница: 9:00 – 18:00<br>Суббота: 10:00 – 16:00<br>Воскресенье: выходной'
-			}
-		},
-		{
-			key: 'contact2',
-			name: t('contactsTabsTitle2'),
-			data: {
-				address: {
-					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
-					link: {
-						text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
-						src: '/',
-					},
-				},
-				phone: {
-					common:' +86 (021) 5432 2755',
-					salesDepartment: '+86 (021) 5432 2755 (ext. 813)',
-					support: ' +86 (021) 5432 2755 (ext. 804)',
-				},
-				email: {
-					common:'info@inter-sa.com',
-					salesDepartment: 'sales@inter-sa.com',
-					support: 'support@inter-sa.com',
-				},
-				time: 'Понедельник – Пятница: 9:00 – 18:00<br>Суббота: 10:00 – 16:00<br>Воскресенье: выходной'
-			}
-		},
-		{
-			key: 'contact3',
-			name: t('contactsTabsTitle3'),
-			data: {
-				address: {
-					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
-					link: {
-						text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
-						src: '/',
-					},
-				},
-				phone: {
-					common:' +86 (021) 5432 2755',
-					salesDepartment: '+86 (021) 5432 2755 (ext. 813)',
-					support: ' +86 (021) 5432 2755 (ext. 804)',
-				},
-				email: {
-					common:'info@inter-sa.com',
-					salesDepartment: 'sales@inter-sa.com',
-					support: 'support@inter-sa.com',
-				},
-				time: 'Понедельник – Пятница: 9:00 – 18:00<br>Суббота: 10:00 – 16:00<br>Воскресенье: выходной'
-			}
-		},
-		{
-			key: 'contact4',
-			name: t('contactsTabsTitle4'),
-			data: {
-				address: {
-					text: 'Китай, г. Шанхай, район Миньхан, улица Синьцзюньхуань, дом 115, корпус 1, офисы 503-505',
-					link: {
-						text: 'Посмотреть на карте Baidu Maps (https://map.baidu.com/)',
-						src: '/',
-					},
-				},
-				phone: {
-					common:' +86 (021) 5432 2755',
-					salesDepartment: '+86 (021) 5432 2755 (ext. 813)',
-					support: ' +86 (021) 5432 2755 (ext. 804)',
-				},
-				email: {
-					common:'info@inter-sa.com',
-					salesDepartment: 'sales@inter-sa.com',
-					support: 'support@inter-sa.com',
-				},
-				time: 'Понедельник – Пятница: 9:00 – 18:00<br>Суббота: 10:00 – 16:00<br>Воскресенье: выходной'
-			}
-		},
-	])
+	});
 </script>
 
 <template>
 	<div class="contacts-tabs pb-8">
 		<div data-aos="fade-up" class="container">
 			<div class="contacts-tabs__body">
-				<q-tabs
-					v-model="tab"
-					align="left"
-					class="contacts-tabs__tabs"
-				>
+				<q-tabs v-model="tab" align="left" class="contacts-tabs__tabs">
 					<q-tab
 						v-for="(item, index) in getData"
 						:key="index"
@@ -159,17 +56,8 @@
 						:label="item.name"
 					/>
 				</q-tabs>
-				<q-tab-panels
-					v-model="tab"
-					class="contacts-tabs__panels"
-					animated
-				>
-					<q-tab-panel
-						v-for="(item, index) in getData"
-						:key="index"
-						:name="item.key"
-						class="contacts-tabs__panel"
-					>
+				<q-tab-panels v-model="tab" class="contacts-tabs__panels" animated>
+					<q-tab-panel v-for="(item, index) in getData" :key="index" :name="item.key" class="contacts-tabs__panel">
 						<div class="contacts-tabs__content row no-wrap">
 							<div class="contacts-tabs__item">
 								<h5 class="contacts-tabs__item__title">{{ t('address') }}</h5>
@@ -178,7 +66,6 @@
 									<div v-if="item.data.address.link" class="contacts-tabs__item__info__link">
 										<a :href="item.data.address.link.src">{{ item.data.address.link.text }}</a>
 									</div>
-
 								</div>
 							</div>
 							<div class="contacts-tabs__item">
@@ -296,7 +183,7 @@
 		&__item {
 			width: 25%;
 			font-size: 1em;
-			border-right: 2px #CFD1D8 solid;
+			border-right: 2px #cfd1d8 solid;
 			padding-right: 20px;
 			margin-right: 34px;
 
@@ -313,7 +200,7 @@
 				width: 100%;
 				margin-right: 0;
 				border-right: none;
-				border-bottom: 2px #CFD1D8 solid;
+				border-bottom: 2px #cfd1d8 solid;
 				margin-bottom: 20px;
 				padding-bottom: 20px;
 

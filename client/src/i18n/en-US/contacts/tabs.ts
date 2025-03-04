@@ -6,4 +6,5 @@ export default {
 	contactsGeneral: 'General',
 	contactsTotalSales: 'Sales Department',
 	contactsSupportText: 'Technical support',
-}
+	contactsTextMaps: 'View on Baidu Maps',
+};

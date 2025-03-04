@@ -23,8 +23,8 @@
 </script>
 
 <template>
-	<div data-aos="fade-up" class="service-product full pb-8" :id="id ? id : ''">
-		<div class="container" v-if="!isHiddenTitle">
+	<div class="service-product full pb-8" :id="id ? id : ''">
+		<div data-aos="fade-up" class="container" v-if="!isHiddenTitle">
 			<div class="service-product__header row no-wrap items-center justify-between">
 				<div class="service-product__header__title row no-wrap items-center">
 					<q-img src="icons/arrow-red.svg" width="40px" class="service-product__header__title__arrow" />
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="service-product__body">
+		<div data-aos="fade-up" class="service-product__body">
 			<div class="service-product__item">
 				<div class="container">
 					<div class="service-product__item__body row no-wrap items-start">
@@ -65,15 +65,13 @@
 									<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
 								</v-btn>
 							</div>
-							<div class="service-product__item__bg-mobile" :style="{backgroundImage: `url(${image})`}"></div>
+							<div class="service-product__item__bg-mobile" :style="{ backgroundImage: `url(${image})` }"></div>
 						</div>
 						<div class="service-product__item__bg">
-							<q-img :src="image" fit="contain" style="width: 100%;" />
+							<q-img :src="image" fit="contain" style="width: 100%" />
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 	</div>
@@ -83,19 +81,19 @@
 </template>
 
 <style lang="scss">
-.service-product {
-	&__header {
-		&__text {
-			p {
-				color: #888891;
-				font-size: 1em;
-				font-family: 'Oswald', sans-serif;
+	.service-product {
+		&__header {
+			&__text {
+				p {
+					color: #888891;
+					font-size: 1em;
+					font-family: 'Oswald', sans-serif;
+				}
 			}
 		}
-	}
-	&__item {
-		&__info {
-			p {
+		&__item {
+			&__info {
+				p {
 					color: #888891;
 				}
 
@@ -129,9 +127,9 @@
 						}
 					}
 				}
+			}
 		}
 	}
-}
 </style>
 <style lang="scss" scoped>
 	.service-product {
@@ -147,7 +145,6 @@
 				&__text {
 					line-height: 140%;
 				}
-
 			}
 			&__text {
 				max-width: 520px;
@@ -199,7 +196,6 @@
 				@media (max-width: $breakpoint-sm-min) {
 					padding: 20px;
 				}
-
 			}
 
 			&__row {
