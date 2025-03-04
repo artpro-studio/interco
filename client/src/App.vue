@@ -15,13 +15,30 @@
 			'ru-RU': 'ru-RU',
 			'en-US': 'en-US',
 			'zh-CN': 'zh-CN',
+		};
+		const req = ssrContext.req;
+		const host = req.headers.host;
+		let urlLocale = '';
+		if (['en', 'ru', 'ch'].includes(host)) {
+			urlLocale = host;
 		}
-		const locale = navigator.language!; // 'ru-RU', 'zh-CN', 'en-US'
+		let locale = '';
+		if (urlLocale && urlLocale.length) {
+			const langsUrl: any = {
+				ru: 'ru-RU',
+				en: 'en-US',
+				ch: 'zh-CN',
+			};
+			locale = langsUrl[urlLocale];
+		} else {
+			locale = navigator.language!;
+		}
+		// 'ru-RU', 'zh-CN', 'en-US'
 		const shortLocale = langs[locale] || 'en-US';
 		useSeo({
 			title: seoData?.title[shortLocale] || '',
 			description: seoData?.description[shortLocale] || '',
-			keywords: seoData?.keywords[shortLocale] || ''
+			keywords: seoData?.keywords[shortLocale] || '',
 		});
 	} else {
 		// Извлекаем данные SEO с мета-тегов (если они были установлены на сервере)
@@ -30,17 +47,16 @@
 		const keywords = document.querySelector('meta[name="keywords"]')?.getAttribute('content');
 		useSeo({
 			title: title || '',
-			description: description|| '',
-			keywords: keywords|| ''
+			description: description || '',
+			keywords: keywords || '',
 		});
 	}
 
 	const getSettings = () => {
-		new SettingsPublicControllerClient(getApiClientInitialParams()).getSettings()
-			.then((res) => {
-				store.commit('settingsModule/setSettings', res.entity)
-			})
-	}
+		new SettingsPublicControllerClient(getApiClientInitialParams()).getSettings().then((res) => {
+			store.commit('settingsModule/setSettings', res.entity);
+		});
+	};
 
 	onMounted(() => {
 		isLoading.value = false;
@@ -48,8 +64,7 @@
 		if (!ssrContext) {
 			getSettings();
 		}
-	})
-
+	});
 </script>
 <template>
 	<div v-if="isLoading" class="preloader"></div>
