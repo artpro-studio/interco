@@ -15,6 +15,23 @@ function getUserLocale() {
 	return shortLocale; // Если нет в списке, ставим английский
 }
 
+function getHostLang(host: string): string {
+	const subdomain = host.split('.')[0]!;
+	let urlLocale = '';
+	if (['en', 'ru', 'ch'].includes(subdomain)) {
+		urlLocale = subdomain;
+	}
+	if (urlLocale && urlLocale.length) {
+		const langsUrl: any = {
+			ru: 'ru-RU',
+			en: 'en-US',
+			ch: 'zh-CN',
+		};
+		return langsUrl[urlLocale];
+	}
+	return '';
+}
+
 export type MessageLanguages = keyof typeof messages;
 // Type-define 'en-US' as the master schema for the resource
 export type MessageSchema = (typeof messages)['en-US'];
@@ -36,20 +53,17 @@ declare module 'vue-i18n' {
 export default defineBoot(({ app, ssrContext }) => {
 	let locale = getUserLocale();
 	if (ssrContext) {
-		const req = ssrContext.req;
+		const req = ssrContext.req!;
 		const host = req.headers.host!;
-		const subdomain = host.split('.')[0]!;
-		let urlLocale = '';
-		if (['en', 'ru', 'ch'].includes(subdomain)) {
-			urlLocale = subdomain;
+		const thisLang = getHostLang(host);
+		if (thisLang && thisLang.length) {
+			locale = thisLang as any;
 		}
-		if (urlLocale && urlLocale.length) {
-			const langsUrl: any = {
-				ru: 'ru-RU',
-				en: 'en-US',
-				ch: 'zh-CN',
-			};
-			locale = langsUrl[urlLocale];
+	} else {
+		const host = window.location.hostname;
+		const thisLang = getHostLang(host);
+		if (thisLang && thisLang.length) {
+			locale = thisLang as any;
 		}
 	}
 	const i18n = createI18n<{ message: MessageSchema }, MessageLanguages>({
