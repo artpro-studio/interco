@@ -33,7 +33,10 @@
 	const onChange = () => {
 		formRef.value?.validate().then(async (success) => {
 			if (success) {
-				const result = await new PublicSubscriptionControllerClient(getApiClientInitialParams()).create(form.value);
+				const result = await new PublicSubscriptionControllerClient(getApiClientInitialParams()).create({
+					...form.value,
+					lang: locale.value as ILangSubscription,
+				});
 
 				if (result.isSuccess) {
 					isSuccess.value = true;
