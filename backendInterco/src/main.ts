@@ -8,32 +8,35 @@ import { join } from 'path';
 import { ValidationPipe } from './pipes/validation.pipe';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const httpAdapter = app.get(HttpAdapterHost);
-  app.setGlobalPrefix('api');
-  app.enableCors({
-    origin: [
-        'http://localhost:9002',
-        'http://localhost:9003',
-        'http://localhost:9150',
-        'http://admin.andreyi96.beget.tech',
-        'http://interco.andreyi96.beget.tech',
-      ],
-  });
-  app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
-  app.useStaticAssets(join(__dirname, '../', 'public'));
-  app.useGlobalPipes(new ValidationPipe());
-  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const httpAdapter = app.get(HttpAdapterHost);
+    app.setGlobalPrefix('api');
+    app.enableCors({
+        origin: [
+            'http://localhost:9002',
+            'http://localhost:9003',
+            'http://localhost:9150',
+            'http://admin.andreyi96.beget.tech',
+            'http://interco.andreyi96.beget.tech',
+            'http://ru.interco.andreyi96.beget.tech',
+            'http://en.interco.andreyi96.beget.tech',
+            'http://ch.interco.andreyi96.beget.tech',
+        ],
+    });
+    app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
+    app.useStaticAssets(join(__dirname, '../', 'public'));
+    app.useGlobalPipes(new ValidationPipe());
+    useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  const config = new DocumentBuilder()
-    .setTitle('Cms')
-    .setDescription('The cms API')
-    .setVersion('1.0')
-    .addTag('cms')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+    const config = new DocumentBuilder()
+        .setTitle('Cms')
+        .setDescription('The cms API')
+        .setVersion('1.0')
+        .addTag('cms')
+        .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+    await app.listen(3000);
 }
 bootstrap();
