@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
-import { RouterName } from 'src/router/routerName';
+	import { RouterName } from 'src/router/routerName';
 	import { useSlots } from 'vue';
 	import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
+	import { useRouter } from 'vue-router';
 
 	interface IProps {
 		data?: any;
@@ -13,11 +14,11 @@ import { useRouter } from 'vue-router';
 
 	const router = useRouter();
 	const { t, locale } = useI18n();
-	const slots = useSlots()
+	const slots = useSlots();
 
 	const onRouterContacts = () => {
-		router.push({name: RouterName.Contacts})
-	}
+		router.push({ name: RouterName.Contacts });
+	};
 </script>
 
 <template>
@@ -27,19 +28,25 @@ import { useRouter } from 'vue-router';
 			<div data-aos="fade-up" class="clients-contacts__body row justify-between no-wrap">
 				<template v-if="data">
 					<div class="clients-contacts__item">
-						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitleEmail')}}</h6>
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">
+							{{ t('serviceContactsTitleEmail') }}
+						</h6>
 						<div v-if="data?.fields?.email[locale]?.value" class="clients-contacts__item__link">
 							<a :href="'mailto:' + data?.fields?.email[locale]?.value">{{ data?.fields?.email[locale]?.value }}</a>
 						</div>
 					</div>
 					<div class="clients-contacts__item">
-						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitlePhone')}}</h6>
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">
+							{{ t('serviceContactsTitlePhone') }}
+						</h6>
 						<div v-if="data?.fields?.phone[locale]?.value" class="clients-contacts__item__link">
-							<a :href="'tel:' + data?.fields?.phone[locale]?.value">{{ data?.fields?.phone[locale]?.value }}</a>
+							<a :href="formatterPhone(data?.fields?.phone[locale]?.value)">{{ data?.fields?.phone[locale]?.value }}</a>
 						</div>
 					</div>
 					<div class="clients-contacts__item">
-						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ t('serviceContactsTitleAddress')}}</h6>
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">
+							{{ t('serviceContactsTitleAddress') }}
+						</h6>
 						<div v-if="data?.fields?.address[locale]?.value" class="clients-contacts__item__link">
 							<p>{{ data?.fields?.address[locale]?.value }}</p>
 						</div>
@@ -96,7 +103,7 @@ import { useRouter } from 'vue-router';
 				color: var(--white);
 				text-decoration: none;
 				font-size: 1.22em;
-				transition: .4s all;
+				transition: 0.4s all;
 				font-family: 'Oswald', sans-serif;
 
 				&:hover {

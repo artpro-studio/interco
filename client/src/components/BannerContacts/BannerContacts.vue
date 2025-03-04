@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 	interface IProps {
 		title: string;
 		description?: string;
@@ -19,7 +20,7 @@
 			<div class="banner-contacts__body row no-wrap items-center justify-between fonts-oswald">
 				<div data-aos="fade-right" class="banner-contacts__info">
 					<div class="banner-contacts__info__item">
-						<a :href="'tel:' + phone">{{ phone }}</a>
+						<a :href="formatterPhone(phone)">{{ phone }}</a>
 					</div>
 					<div class="banner-contacts__info__item">
 						<a :href="'mailto:' + email">{{ email }}</a>
@@ -42,7 +43,6 @@
 		&__description {
 			margin-top: 24px;
 			font-size: 1.35em;
-
 		}
 
 		&__body {
@@ -67,7 +67,7 @@
 				a {
 					color: var(--white);
 					text-decoration: none;
-					transition: .4s all;
+					transition: 0.4s all;
 
 					&:hover {
 						color: var(--red);

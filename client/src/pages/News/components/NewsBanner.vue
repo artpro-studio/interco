@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 
 	interface IProps {
-		data: any
+		data: any;
 	}
 	defineProps<IProps>();
 
@@ -12,17 +13,23 @@
 <template>
 	<div class="news-banner pt-8 pb-8">
 		<div class="container">
-			<h4 data-aos="fade-right" class="news-banner__title headline-1 text-gradient text-uppercase">{{ data?.fields?.title[locale].value }}</h4>
+			<h4 data-aos="fade-right" class="news-banner__title headline-1 text-gradient text-uppercase">
+				{{ data?.fields?.title[locale].value }}
+			</h4>
 			<div data-aos="fade-left" class="news-banner__body row no-wrap justify-between">
 				<div class="news-banner__info fonts-oswald">
 					<p>{{ data?.fields?.description[locale].value }}</p>
 				</div>
 				<div class="news-banner__contacts">
 					<div class="news-banner__link" v-if="data?.fields?.phone">
-						<a :href="'tel:' + data?.fields?.phone[locale].value" class="headline-2">{{ data?.fields?.phone[locale].value }}</a>
+						<a :href="formatterPhone(data?.fields?.phone[locale].value)" class="headline-2">{{
+							data?.fields?.phone[locale].value
+						}}</a>
 					</div>
 					<div class="news-banner__link" v-if="data?.fields?.email">
-						<a :href="'mailto:' + data?.fields?.email[locale].value" class="headline-2">{{ data?.fields?.email[locale].value }}</a>
+						<a :href="'mailto:' + data?.fields?.email[locale].value" class="headline-2">{{
+							data?.fields?.email[locale].value
+						}}</a>
 					</div>
 					<p v-if="data?.fields?.address">{{ data?.fields?.address[locale].value }}</p>
 				</div>
@@ -47,7 +54,7 @@
 
 			&__item {
 				width: 350px;
-				opacity: .15;
+				opacity: 0.15;
 
 				&:first-child {
 					position: relative;

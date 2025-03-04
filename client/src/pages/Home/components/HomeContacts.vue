@@ -1,26 +1,33 @@
 <script lang="ts" setup>
 	import { useI18n } from 'vue-i18n';
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 
 	interface IProps {
-		data: any
+		data: any;
 	}
 	defineProps<IProps>();
 
-	const {locale} = useI18n();
+	const { locale } = useI18n();
 </script>
 
 <template>
 	<div class="home-contacts pt-8 pb-12">
 		<div class="container">
-			<h4 data-aos="fade-right" class="home-contacts__title fonts-oswald headline-1 text-gradient">{{ data?.fields?.title[locale]?.value }}</h4>
+			<h4 data-aos="fade-right" class="home-contacts__title fonts-oswald headline-1 text-gradient">
+				{{ data?.fields?.title[locale]?.value }}
+			</h4>
 			<div data-aos="fade-left" class="home-contacts__body row no-wrap justify-between items-center">
 				<p class="fonts-oswald">{{ data?.fields?.description[locale]?.value }}</p>
 				<div class="home-contacts__info">
 					<div class="home-contacts__info__item">
-						<a :href="'tel:' + data?.fields?.phone[locale]?.value" class="fonts-oswald">{{ data?.fields?.phone[locale]?.value }}</a>
+						<a :href="formatterPhone(data?.fields?.phone[locale]?.value)" class="fonts-oswald">{{
+							data?.fields?.phone[locale]?.value
+						}}</a>
 					</div>
 					<div class="home-contacts__info__item">
-						<a :href="'mailto:' + data?.fields?.email[locale]?.value" class="fonts-oswald">{{ data?.fields?.email[locale]?.value }}</a>
+						<a :href="'mailto:' + data?.fields?.email[locale]?.value" class="fonts-oswald">{{
+							data?.fields?.email[locale]?.value
+						}}</a>
 					</div>
 				</div>
 			</div>
@@ -38,7 +45,6 @@
 		&__body {
 			font-size: 2.45em;
 			p {
-
 				max-width: 737px;
 			}
 		}
@@ -51,7 +57,7 @@
 				text-decoration: none;
 				line-height: 10%;
 				color: var(--dark-blue);
-				transition: .4s all;
+				transition: 0.4s all;
 				white-space: nowrap;
 
 				&:hover {

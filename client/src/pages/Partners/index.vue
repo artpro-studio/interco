@@ -11,6 +11,7 @@
 	import PartnersForm from './components/PartnersForm.vue';
 	import ClientsContacts from 'src/components/ClientsContacts/ClientsContacts.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 	import { useI18n } from 'vue-i18n';
 	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
@@ -23,21 +24,20 @@
 	const pagePublic = ref<PagesPublicDto | null>(null);
 
 	const getContacts = computed(() => {
-		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_CONTACTS)?.records
+		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_CONTACTS)?.records;
 		return data;
-	})
+	});
 
 	const getInfo = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('partners')
-		.then((data) => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('partners').then((data) => {
 			pagePublic.value = data.entity;
-		})
-	}
+		});
+	};
 
 	onMounted(() => {
 		useGetMeta('partners');
 		getInfo();
-	})
+	});
 </script>
 <template>
 	<head-global
@@ -59,17 +59,13 @@
 	<partners-info />
 	<partners-form />
 	<clients-contacts>
-		<template
-			v-slot:default
-		>
-			<div
-				v-for="(item, index) in getContacts"
-				:key="index"
-				class="clients-contacts__item"
-			>
-				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ item.fields.title[locale].value }}</h6>
+		<template v-slot:default>
+			<div v-for="(item, index) in getContacts" :key="index" class="clients-contacts__item">
+				<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">
+					{{ item.fields.title[locale].value }}
+				</h6>
 				<div v-if="item.fields.phone[locale].value" class="clients-contacts__item__link">
-					<a :href="'tel:' + item.fields.phone[locale].value">{{ item.fields.phone[locale].value }}</a>
+					<a :href="formatterPhone(item.fields.phone[locale].value)">{{ item.fields.phone[locale].value }}</a>
 				</div>
 				<div v-if="item.fields.email[locale].value" class="clients-contacts__item__link">
 					<a :href="'mailto:' + item.fields.email[locale].value">{{ item.fields.email[locale].value }}</a>

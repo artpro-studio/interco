@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-	import { computed, reactive, ref } from 'vue';
+	import { computed, ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 
 	interface IProps {
 		data: any;
@@ -72,15 +73,15 @@
 								<h5 class="contacts-tabs__item__title">{{ t('phone') }}</h5>
 								<div class="contacts-tabs__item__contact row">
 									<span>{{ t('contactsGeneral') }}:</span>
-									<a :href="'tel:' + item.data.phone.common">{{ item.data.phone.common }}</a>
+									<a :href="formatterPhone(item.data.phone.common)">{{ item.data.phone.common }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
 									<span>{{ t('contactsTotalSales') }}:</span>
-									<a :href="'tel:' + item.data.phone.salesDepartment">{{ item.data.phone.salesDepartment }}</a>
+									<a :href="formatterPhone(item.data.phone.salesDepartment)">{{ item.data.phone.salesDepartment }}</a>
 								</div>
 								<div class="contacts-tabs__item__contact row">
 									<span>{{ t('contactsSupportText') }}:</span>
-									<a :href="'tel:' + item.data.phone.support">{{ item.data.phone.support }}</a>
+									<a :href="formatterPhone(item.data.phone.support)">{{ item.data.phone.support }}</a>
 								</div>
 							</div>
 							<div class="contacts-tabs__item">

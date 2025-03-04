@@ -2,6 +2,7 @@
 	import SectionTitle from 'src/components/SectionTitle/SectionTitle.vue';
 	import { useSlots } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import { formatterPhone } from 'src/helpers/formatterPhone';
 
 	interface IProps {
 		data?: any;
@@ -9,7 +10,7 @@
 	defineProps<IProps>();
 
 	const { t, locale } = useI18n();
-	const slots = useSlots()
+	const slots = useSlots();
 </script>
 
 <template>
@@ -18,14 +19,12 @@
 			<section-title :title="t('clientsContactsTitle')" color="gold" class="clients-contacts__title" />
 			<div data-aos="fade-up" class="clients-contacts__body row justify-between no-wrap">
 				<template v-if="data">
-					<div
-						v-for="(item, index) in data"
-						:key="index"
-						class="clients-contacts__item"
-					>
-						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">{{ item.fields.title[locale].value }}</h6>
+					<div v-for="(item, index) in data" :key="index" class="clients-contacts__item">
+						<h6 class="clients-contacts__item__title text-gradient text-uppercase fonts-oswald">
+							{{ item.fields.title[locale].value }}
+						</h6>
 						<div v-if="item.fields.phone[locale].value" class="clients-contacts__item__link">
-							<a :href="'tel:' + item.fields.phone[locale].value">{{ item.fields.phone[locale].value }}</a>
+							<a :href="formatterPhone(item.fields.phone[locale].value)">{{ item.fields.phone[locale].value }}</a>
 						</div>
 						<div v-if="item.fields.email[locale].value" class="clients-contacts__item__link">
 							<a :href="'mailto:' + item.fields.email[locale].value">{{ item.fields.email[locale].value }}</a>
@@ -78,7 +77,7 @@
 				color: var(--white);
 				text-decoration: none;
 				font-size: 1.22em;
-				transition: .4s all;
+				transition: 0.4s all;
 				font-family: 'Oswald', sans-serif;
 
 				&:hover {
