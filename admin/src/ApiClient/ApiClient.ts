@@ -17979,32 +17979,18 @@ export class PublicCallbackControllerClient extends BaseApiClient {
 
     /**
      * Создание и отправка новой заявки
-     * @param slug (optional) Символьный код формы
-     * @param file (optional) Файл
-     * @param data (optional) Данные
      */
-    create(slug?: string | undefined, file?: FileParameter | undefined, data?: any | undefined): Promise<ResultDto> {
+    create(body: PublicCallbackDto): Promise<ResultDto> {
         let url_ = this.baseUrl + "/api/callback-public";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = new FormData();
-        if (slug === null || slug === undefined)
-            throw new Error("The parameter 'slug' cannot be null.");
-        else
-            content_.append("slug", slug.toString());
-        if (file === null || file === undefined)
-            throw new Error("The parameter 'file' cannot be null.");
-        else
-            content_.append("file", file.data, file.fileName ? file.fileName : "file");
-        if (data === null || data === undefined)
-            throw new Error("The parameter 'data' cannot be null.");
-        else
-            content_.append("data", JSON.stringify(data));
+        const content_ = JSON.stringify(body);
 
         let options_: RequestInit = {
             body: content_,
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             }
         };
@@ -21502,6 +21488,15 @@ export interface ResultAmoCustmoFieldstDto {
     [key: string]: any;
 }
 
+export interface PublicCallbackDto {
+    /** Символьный код формы */
+    slug: string;
+    /** Данные */
+    data: any;
+
+    [key: string]: any;
+}
+
 export enum ILangSubscription {
     RuRU = "ru-RU",
     EnUS = "en-US",
@@ -21777,7 +21772,7 @@ export class ApiException extends Error {
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): any {
     if (result !== null && result !== undefined)
-        throw result;
+        return result;
     else
         throw new ApiException(message, status, response, headers, null);
 }
