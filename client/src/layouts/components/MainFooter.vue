@@ -5,7 +5,8 @@
 	import { RouterName } from 'src/router/routerName';
 	import { useRoute, useRouter } from 'vue-router';
 	import { useStore } from 'src/store';
-import { FullSettingsDto } from 'src/ApiClient/ApiClient';
+	import { FullSettingsDto } from 'src/ApiClient/ApiClient';
+	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
 
 	const route = useRoute();
 	const router = useRouter();
@@ -13,38 +14,39 @@ import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 	const store = useStore();
 
 	const footerMenu = ref(menuFooter);
+	const isOpenDialog = ref(false);
 
 	const getSettings = computed((): FullSettingsDto | undefined => {
-		return store.getters['settingsModule/getSettings']
-	})
+		return store.getters['settingsModule/getSettings'];
+	});
 
 	const isWhite = computed(() => {
 		return route.meta.background === 'white';
-	})
+	});
 
 	const getUrlPath = (name: RouterName) => {
 		const path = router.resolve({
-			name
+			name,
 		});
 
 		return path.fullPath;
-	}
+	};
 
 	const getPath = (name: RouterName, hash?: string) => {
-		const path = router.resolve({name, hash: hash ? `#${hash}` : undefined})
+		const path = router.resolve({ name, hash: hash ? `#${hash}` : undefined });
 		return path.fullPath;
-	}
+	};
 </script>
 
 <template>
-	<footer class="footer pt-12 pb-12" :class="{white: isWhite}">
+	<footer class="footer pt-12 pb-12" :class="{ white: isWhite }">
 		<div class="container">
 			<div class="footer__body row items-start justify-between">
 				<div class="footer__left">
 					<div class="footer__logo">
 						<router-link to="/" title="SA International" class="row items-center">
 							<q-img src="images/logo.svg" height="42px" width="28px" fit="contain" />
-							<span>SA<br>International</span>
+							<span>SA<br />International</span>
 						</router-link>
 					</div>
 					<div class="footer__social row no-wrap items-center">
@@ -58,13 +60,16 @@ import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 							<q-img src="icons/telegram.svg" width="24px" />
 						</a>
 					</div>
-					<router-link :to="getUrlPath(RouterName.Policy)" class="footer__link fonts-oswald text-white">{{ t('footerConsent') }}</router-link>
+					<router-link :to="getUrlPath(RouterName.Policy)" class="footer__link fonts-oswald text-white">{{
+						t('footerConsent')
+					}}</router-link>
 				</div>
 				<div v-for="(item, index) in footerMenu" :key="index" class="footer__menu">
 					<nav>
 						<ul>
 							<li v-for="(el, indx) in item" :key="indx">
-								<router-link :to="getPath(el.link, el.hash)">{{ t(el.title) }}</router-link>
+								<router-link v-if="!el.isModal" :to="getPath(el.link, el.hash)">{{ t(el.title) }}</router-link>
+								<a v-else class="cursor-pointer" @click="isOpenDialog = true">{{ t(el.title) }}</a>
 							</li>
 						</ul>
 					</nav>
@@ -72,6 +77,9 @@ import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 			</div>
 		</div>
 	</footer>
+	<q-dialog v-model="isOpenDialog">
+		<modal-application @on-close="isOpenDialog = false" />
+	</q-dialog>
 </template>
 <style lang="scss" scoped>
 	.footer {
@@ -93,11 +101,11 @@ import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 		&__social {
 			margin-bottom: 74px;
 			&__item {
-				background-color: rgba(50, 62, 102, .7);
+				background-color: rgba(50, 62, 102, 0.7);
 				padding: 8px;
 				border-radius: 8px;
 				margin: 0 8px;
-				transition: .4s all;
+				transition: 0.4s all;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -128,7 +136,7 @@ import { FullSettingsDto } from 'src/ApiClient/ApiClient';
 						font-size: 1.23em;
 						line-height: 220%;
 						text-decoration: none;
-						transition: .4s all;
+						transition: 0.4s all;
 
 						&:hover {
 							color: var(--red);

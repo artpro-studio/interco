@@ -1,4 +1,4 @@
-import { RouterName } from "src/router/routerName";
+import { RouterName } from 'src/router/routerName';
 
 export const menuData = [
 	{
@@ -21,7 +21,7 @@ export const menuData = [
 		title: 'menuContacts',
 		path: RouterName.Contacts,
 	},
-]
+];
 
 export const menuFooter = [
 	[
@@ -36,21 +36,22 @@ export const menuFooter = [
 		{
 			link: RouterName.Clients,
 			title: 'footerFaq',
-			hash: 'faq'
+			hash: 'faq',
 		},
 	],
 	[
 		{
 			link: RouterName.Home,
-			title: 'footerStatus'
+			title: 'footerStatus',
+			isModal: true,
 		},
 		{
 			link: RouterName.Partners,
-			title: 'footerPartner'
+			title: 'footerPartner',
 		},
 		{
 			link: RouterName.Career,
-			title: 'footerJobs'
+			title: 'footerJobs',
 		},
 	],
 ];
