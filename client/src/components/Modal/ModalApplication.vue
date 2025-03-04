@@ -34,7 +34,7 @@
 
 	const onCloseSuccess = () => {
 		isSuccess.value = false;
-		///emit('on-close');
+		emit('on-close');
 	};
 
 	const onChange = async () => {
