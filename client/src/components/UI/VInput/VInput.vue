@@ -29,6 +29,7 @@
 			:rules="rules"
 			:lazy-rules="lazyRules"
 			:mask="mask"
+			:error-message="rules && rules[0] ? rules[0](currentValue) : ''"
 		/>
 	</div>
 </template>
