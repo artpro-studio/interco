@@ -18,9 +18,10 @@
 		};
 		const req = ssrContext.req;
 		const host = req.headers.host;
+		const subdomain = host.split('.')[0];
 		let urlLocale = '';
-		if (['en', 'ru', 'ch'].includes(host)) {
-			urlLocale = host;
+		if (['en', 'ru', 'ch'].includes(subdomain)) {
+			urlLocale = subdomain;
 		}
 		let locale = '';
 		if (urlLocale && urlLocale.length) {
