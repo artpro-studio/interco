@@ -1,18 +1,35 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+	import { computed } from 'vue';
 
 	interface IProps {
 		modelValue: string;
 		placeholder?: string;
-		color?: 'gray'
+		color?: 'gray';
 	}
 	const props = defineProps<IProps>();
 	const emit = defineEmits(['update:model-value']);
+	const maxRows = 3;
 
 	const currentValue = computed({
 		get: () => props.modelValue,
-		set: (value: string) => emit('update:model-value', value)
-	})
+		set: (value: string) => emit('update:model-value', value),
+	});
+
+	const limitLines = () => {
+		const lines = currentValue.value.split('\n');
+
+		if (lines.length > maxRows) {
+			currentValue.value = lines.slice(0, maxRows).join('\n'); // Обрезаем лишние строки
+		}
+	};
+
+	const preventExtraLine = (event: any) => {
+		const lines = currentValue.value.split('\n');
+
+		if (lines.length >= maxRows) {
+			event.preventDefault(); // Блокируем Enter, если строк уже 2
+		}
+	};
 </script>
 
 <template>
@@ -25,9 +42,10 @@ import { computed } from 'vue';
 			type="textarea"
 			:placeholder="placeholder"
 			rows="3"
+			@update:model-value="limitLines"
+			@keydown.enter="preventExtraLine"
 		/>
 	</div>
-
 </template>
 <style lang="scss">
 	.v-text-area {
@@ -45,7 +63,8 @@ import { computed } from 'vue';
 			left: 0;
 			pointer-events: none;
 
-			&::before, &::after {
+			&::before,
+			&::after {
 				content: '';
 				display: block;
 				height: 100%;
@@ -68,7 +87,8 @@ import { computed } from 'vue';
 				overflow: hidden;
 			}
 			.q-field__control {
-				&::after, &::before {
+				&::after,
+				&::before {
 					display: none;
 				}
 			}
@@ -76,14 +96,14 @@ import { computed } from 'vue';
 
 		&.gray {
 			.v-text-area__lines {
-				&::before, &::after {
-					background: repeating-linear-gradient(to bottom, #E3E3E3 0, #E3E3E3 1px, transparent 1px, transparent 64px);
+				&::before,
+				&::after {
+					background: repeating-linear-gradient(to bottom, #e3e3e3 0, #e3e3e3 1px, transparent 1px, transparent 64px);
 				}
 			}
 			textarea {
 				color: var(--dark-blue) !important;
 			}
-
 		}
 	}
 </style>
