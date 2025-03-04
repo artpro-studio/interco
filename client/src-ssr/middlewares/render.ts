@@ -30,7 +30,7 @@ export default defineSsrMiddleware(({ app, resolve, render, serve }) => {
     // Используем setTimeout, чтобы попытаться вызвать ym после загрузки скрипта
     setTimeout(function() {
       if (window.ym) {
-        ym(1001478841, "init", {
+        ym(100147884, "init", {
           clickmap: true,
           trackLinks: true,
           accurateTrackBounce: true,
