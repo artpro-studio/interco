@@ -21,7 +21,7 @@
 	const isChecked = ref(true);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Заявка',
+		title: 'Форма обраной связи',
 		lastName: '',
 		name: '',
 		secondName: '',
