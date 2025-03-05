@@ -44,7 +44,7 @@
 					color: 'negative',
 					textColor: 'white',
 					icon: 'warning',
-					message: 'Вы не не дали согласие на обработку персональных данных',
+					message: t('fromValidateChecked'),
 				});
 				return;
 			}

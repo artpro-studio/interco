@@ -3,18 +3,60 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import { Notify, QForm } from 'quasar';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
+	import useValidationRules from 'src/helpers/useValidationRules';
+	import useMaskPhone from 'src/helpers/useMaskPhone';
+	import { PublicCallbackControllerClient } from 'src/ApiClient/ApiClient';
+	import { getApiClientInitialParams } from 'src/ApiClient/BaseApiClient';
 
 	const { t } = useI18n();
+	const { isRequired, isRequiredEmail } = useValidationRules();
+	const maskPhone = useMaskPhone();
 
+	const SLUG_FORM: string = 'application';
 	const isChecked = ref(false);
+	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		firstName: '',
+		title: 'Поддрежка',
+		lastName: '',
+		name: '',
+		secondName: '',
 		email: '',
 		phone: '',
-		message: '',
+		delivary: '',
+		comments: '',
 	});
+	const isSuccess = ref(false);
+
+	const onCloseSuccess = () => {
+		isSuccess.value = false;
+	};
+
+	const onChange = async () => {
+		formRef.value!.validate().then(async (success: boolean) => {
+			if (!isChecked.value) {
+				Notify.create({
+					color: 'negative',
+					textColor: 'white',
+					icon: 'warning',
+					message: t('fromValidateChecked'),
+				});
+				return;
+			}
+			if (success) {
+				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
+					slug: SLUG_FORM,
+					data: form.value,
+				});
+
+				if (result.isSuccess) {
+					isSuccess.value = true;
+				}
+			}
+		});
+	};
 </script>
 
 <template>
@@ -30,28 +72,47 @@
 				<p>{{ t('contactsFormDescription') }}</p>
 			</div>
 			<div data-aos="fade-up" class="contacts-form__body">
-				<q-form class="contacts-form__form">
+				<q-form ref="formRef" class="contacts-form__form" @submit="onChange">
 					<div class="contacts-form__form__columns row no-wrap">
 						<div class="contacts-form__form__column">
 							<div class="contacts-form__form__field">
-								<v-input v-model="form.firstName" color="gray" :placeholder="t('contactsFormFistName')" />
+								<v-input
+									v-model="form.name"
+									color="gray"
+									:placeholder="t('contactsFormFistName')"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 							<div class="contacts-form__form__field">
-								<v-input v-model="form.email" color="gray" :placeholder="t('contactsFormEmail')" />
+								<v-input
+									v-model="form.email"
+									color="gray"
+									:placeholder="t('contactsFormEmail')"
+									lazy-rules
+									:rules="[isRequiredEmail]"
+								/>
 							</div>
 							<div class="contacts-form__form__field">
-								<v-input v-model="form.phone" color="gray" :placeholder="t('contactsFormPhone')" />
+								<v-input
+									v-model="form.phone"
+									color="gray"
+									:mask="maskPhone"
+									:placeholder="t('contactsFormPhone')"
+									lazy-rules
+									:rules="[isRequired]"
+								/>
 							</div>
 						</div>
 						<div class="contacts-form__form__column">
-							<v-input-text v-model="form.message" color="gray" :placeholder="t('contactsFormMessage')" :rows="10" />
+							<v-input-text v-model="form.comments" color="gray" :placeholder="t('contactsFormMessage')" :rows="10" />
 						</div>
 					</div>
 					<div class="contacts-form__form__bottom row no-wrap justify-between items-center">
 						<div class="contacts-form__form__bottom__left">
 							<q-checkbox v-model="isChecked" class="contacts-form__form__checked" :label="t('contactsFormConfirm')" />
 						</div>
-						<v-btn color="primary" class="contacts-form__form__bottom__btn">
+						<v-btn type="sumbti" color="primary" class="contacts-form__form__bottom__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('contactsFormBtnText') }}</span>
 								<q-img src="icons/arrow-red.svg" width="16px" class="q-ml-md" />
@@ -127,7 +188,7 @@
 			}
 
 			&__field {
-				margin-bottom: 19px;
+				margin-bottom: 0px;
 				&:last-child {
 					margin-bottom: 0;
 				}
