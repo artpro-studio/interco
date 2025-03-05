@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 	import VBtnRed from 'src/components/UI/VBtnRed/VBtnRed.vue';
-	import ModalApplication from 'src/components/Modal/ModalApplication.vue';
+	import ModalCallback from 'src/components/Modal/ModalCallback.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
-	const {t} = useI18n();
+	const { t } = useI18n();
 
 	const isOpenDialog = ref(false);
 </script>
@@ -15,7 +15,12 @@
 				<div class="clients-banner__wrapper">
 					<div class="clients-banner__header row no-wrap justify-between items-center">
 						<h4 class="clients-banner__header__title text-white text-uppercase">{{ t('clientSupportBannerTitle') }}</h4>
-						<v-btn-red class="clients-banner__header__btn" style="width: 250px;" :text="t('clientSupportBannerBtnText')" @on-click="isOpenDialog = true"></v-btn-red>
+						<v-btn-red
+							class="clients-banner__header__btn"
+							style="width: 250px"
+							:text="t('clientSupportBannerBtnText')"
+							@on-click="isOpenDialog = true"
+						></v-btn-red>
 					</div>
 					<div class="clients-banner__content">
 						<h5>{{ t('clientSupportBannerItem1Title') }}</h5>
@@ -39,9 +44,8 @@
 						</div>
 					</div>
 					<div class="clients-banner__mobile-button desktop-hide">
-						<v-btn-red class="clients-banner__mobile-button__btn" text="отправить сообщение" style="width: 240px;"></v-btn-red>
+						<v-btn-red class="clients-banner__mobile-button__btn" text="отправить сообщение" style="width: 240px"></v-btn-red>
 					</div>
-
 				</div>
 
 				<div class="clients-banner__arrows row no-wrap justify-end">
@@ -52,7 +56,7 @@
 		</div>
 	</div>
 	<q-dialog v-model="isOpenDialog">
-		<modal-application @on-close="isOpenDialog = false" />
+		<modal-callback @on-close="isOpenDialog = false" />
 	</q-dialog>
 </template>
 <style lang="scss" scoped>
@@ -141,7 +145,7 @@
 			}
 			p {
 				font-size: 1em;
-				color: #E3E3E3;
+				color: #e3e3e3;
 			}
 
 			@media (max-width: $breakpoint-sm-min) {
@@ -172,7 +176,7 @@
 						color: var(--yellow);
 						text-decoration: none;
 						margin-left: 5px;
-						transition: .4s all;
+						transition: 0.4s all;
 
 						&:hover {
 							color: var(--white);

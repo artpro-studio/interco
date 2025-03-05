@@ -5,37 +5,37 @@
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
-	const {t} = useI18n();
+	const { t } = useI18n();
 
 	const swiperRef = ref();
 	const breakpoints: any = {
 		'901': {
-			slidesPerView: 2
+			slidesPerView: 2,
 		},
 		'300': {
-            slidesPerView: 'auto',
-			spaceBetween: 20
-        },
-	}
+			slidesPerView: 'auto',
+			spaceBetween: 20,
+		},
+	};
 
 	const setEqualHeight = () => {
 		const slides = document.querySelectorAll('.swiper-slide');
 		let maxHeight = 0;
-		 // Сброс высоты
-		 slides.forEach((slide: any) => {
-          slide.style.height = 'auto';
-        });
+		// Сброс высоты
+		slides.forEach((slide: any) => {
+			slide.style.height = 'auto';
+		});
 
-        // Нахождение максимальной высоты
-        slides.forEach((slide: any) => {
-          maxHeight = Math.max(maxHeight, slide.offsetHeight);
-        });
+		// Нахождение максимальной высоты
+		slides.forEach((slide: any) => {
+			maxHeight = Math.max(maxHeight, slide.offsetHeight);
+		});
 
-        // Установка одинаковой высоты
-        slides.forEach((slide: any) => {
-          slide.style.height = maxHeight + 'px';
-        });
-	}
+		// Установка одинаковой высоты
+		slides.forEach((slide: any) => {
+			slide.style.height = maxHeight + 'px';
+		});
+	};
 </script>
 
 <template>
@@ -53,7 +53,7 @@
 					:centeredSlides="false"
 					:breakpoints="breakpoints"
 					@init="setEqualHeight"
-      				@resize="setEqualHeight"
+					@resize="setEqualHeight"
 				>
 					<swiper-slide>
 						<div class="support__section">
@@ -90,19 +90,27 @@
 									<h6>{{ t('clientsSupportTechItem2Title') }}</h6>
 									<ul class="support__section__body__item__list__number">
 										<li>
-											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List1Title') }}</p>
+											<p class="support__section__body__item__list__number__title">
+												{{ t('clientsSupportTechItem2List1Title') }}
+											</p>
 											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List1Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List2Title') }}</p>
+											<p class="support__section__body__item__list__number__title">
+												{{ t('clientsSupportTechItem2List2Title') }}
+											</p>
 											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List2Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List3Title') }}</p>
+											<p class="support__section__body__item__list__number__title">
+												{{ t('clientsSupportTechItem2List3Title') }}
+											</p>
 											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List3Text') }}</p>
 										</li>
 										<li>
-											<p class="support__section__body__item__list__number__title">{{ t('clientsSupportTechItem2List4Title') }}</p>
+											<p class="support__section__body__item__list__number__title">
+												{{ t('clientsSupportTechItem2List4Title') }}
+											</p>
 											<p class="support__section__body__item__list__number__text">{{ t('clientsSupportTechItem2List4Text') }}</p>
 										</li>
 									</ul>
@@ -256,7 +264,6 @@
 						h6 {
 							margin-bottom: 8px;
 						}
-
 					}
 				}
 			}
