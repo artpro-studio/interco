@@ -26,15 +26,17 @@ export default defineRouter(function (/* { store, ssrContext } */) {
 			} else if (to.hash) {
 				return new Promise((resolve) => {
 					nextTick(() => {
-						const element = document.querySelector(to.hash);
-						if (element) {
-							const headerOffset = 110; // 50px шапка + 5px отступ
-							const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-							const offsetPosition = elementPosition - headerOffset;
-							resolve({ left: 0, top: offsetPosition, behavior: 'smooth' });
-						} else {
-							resolve({ el: to.hash, behavior: 'smooth' }); // Фолбэк на стандартное поведение
-						}
+						setTimeout(() => {
+							const element = document.querySelector(to.hash);
+							if (element) {
+								const headerOffset = 110;
+								const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+								const offsetPosition = elementPosition - headerOffset;
+								resolve({ left: 0, top: offsetPosition, behavior: 'smooth' });
+							} else {
+								resolve({ el: to.hash, behavior: 'smooth' });
+							}
+						}, 300); // небольшая задержка (можно поэкспериментировать)
 					});
 				});
 			}
