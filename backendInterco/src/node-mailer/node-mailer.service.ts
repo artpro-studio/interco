@@ -2,7 +2,7 @@ import { ResultDto } from './../dto/reponse.dto';
 import { CreateRegisterDto } from './dto/create-register.dto';
 import { join } from 'path';
 import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Put } from '@nestjs/common';
 import * as fs from 'fs';
 import { ISendData } from 'src/callback/interface';
 import { CallbackDto } from 'src/callback/dto/callback/callback.dto';
@@ -17,10 +17,10 @@ export class NodeMailerService {
         name: string;
         email: string;
     }) {
-        const result: ResultDto = await this.mailerService
+        await this.mailerService
             .sendMail({
                 to: data.email,
-                subject: 'Заявка с сайта',
+                subject: 'Новое событие от SA International',
                 template: join('template-mail/subscription'),
                 context: {
                     title: data.title,
@@ -30,6 +30,9 @@ export class NodeMailerService {
             })
             .then(() => {
                 return { isSuccess: true, message: 'Сообщение отправлено' };
+            })
+            .catch((e) => {
+                console.log(e);
             });
     }
 
