@@ -199,7 +199,7 @@
 		}
 
 		&__body {
-			padding-left: 40px;
+			padding-left: 0px;
 
 			@media (max-width: $breakpoint-md-min) {
 				padding-left: 0;
