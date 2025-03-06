@@ -21,7 +21,7 @@
 	const isChecked = ref(true);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Форма обраной связи',
+		title: 'Запрос в техническую поддержку',
 		lastName: '',
 		name: '',
 		secondName: '',
@@ -79,19 +79,19 @@
 				<q-form ref="formRef" class="modal-callback__form" @submit="onChange">
 					<div class="modal-callback__form__columns row no-wrap">
 						<div class="modal-callback__form__column">
-							<div class="modal-application__form__field">
+							<div class="modal-callback__form__field">
 								<v-input v-model="form.name" color="gray" :placeholder="t('firstName')" lazy-rules :rules="[isRequired]" />
 							</div>
-							<div class="modal-application__form__field">
+							<div class="modal-callback__form__field">
 								<v-input v-model="form.lastName" color="gray" :placeholder="t('lastName')" lazy-rules :rules="[isRequired]" />
 							</div>
-							<div class="modal-application__form__field not-validate">
+							<div class="modal-callback__form__field not-validate">
 								<v-input v-model="form.secondName" color="gray" :placeholder="t('middleName')" />
 							</div>
-							<div class="modal-application__form__field">
+							<div class="modal-callback__form__field">
 								<v-input v-model="form.email" color="gray" :placeholder="t('formEmail')" lazy-rules :rules="[isRequiredEmail]" />
 							</div>
-							<div class="modal-application__form__field">
+							<div class="modal-callback__form__field">
 								<v-input
 									v-model="form.phone"
 									color="gray"
@@ -102,10 +102,10 @@
 								/>
 							</div>
 						</div>
-						<div class="modal-application__form__column">
-							<div class="modal-application__form__field__label row no-wrap items-center fonts-oswald">
+						<div class="modal-callback__form__column">
+							<div class="modal-callback__form__field__label row no-wrap items-center fonts-oswald">
 								{{ t('formRequest') }}
-								<div class="modal-application__form__field__label__icon">
+								<div class="modal-callback__form__field__label__icon">
 									<q-icon name="question_mark" />
 									<q-tooltip anchor="top middle" self="bottom middle">
 										{{ t('formRequestText') }}
@@ -199,7 +199,7 @@
 		}
 
 		&__body {
-			padding-left: 0px;
+			padding-left: 40px;
 
 			@media (max-width: $breakpoint-md-min) {
 				padding-left: 0;
