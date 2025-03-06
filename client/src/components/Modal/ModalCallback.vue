@@ -17,7 +17,7 @@
 	const { isRequired, isRequiredEmail } = useValidationRules();
 	const maskPhone = useMaskPhone();
 
-	const SLUG_FORM: string = 'callback';
+	const SLUG_FORM: string = 'application';
 	const isChecked = ref(true);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
