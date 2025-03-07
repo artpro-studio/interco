@@ -39,7 +39,12 @@
 					<li v-for="(item, index) in data?.fields?.conditions[locale]?.value" :key="index">{{ item }}</li>
 				</ul>
 			</template>
-			<v-btn-gradient class="job-openings__slide__btn" :height="44" @on-click="isOpenDialog = true">{{ t('careerJobTextButton') }}</v-btn-gradient>
+			<v-btn-gradient
+				class="job-openings__slide__btn"
+				:height="44"
+				:href="'https://forms.yandex.ru/u/67cabcebd046880c82a83630/'"
+				>{{ t('careerJobTextButton') }}</v-btn-gradient
+			>
 		</div>
 		<q-dialog v-model="isOpenDialog">
 			<modal-application @on-close="isOpenDialog = false" />
@@ -134,7 +139,6 @@
 					margin-top: 16px;
 				}
 			}
-	}
+		}
 	}
 </style>
-

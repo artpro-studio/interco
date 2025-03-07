@@ -27,7 +27,7 @@
 				<div class="career-form__form pb-8">
 					<div class="career-form__form__header row items-center no-wrap justify-between">
 						<h4 class="career-form__form__title headline-2">{{ t('careerFormTitle2') }}</h4>
-						<v-btn color="primary" @on-click="isOpenDialog = true">
+						<v-btn href="https://forms.yandex.ru/u/67cabcebd046880c82a83630/" color="primary">
 							<div class="row no-wrap">
 								<span class="text-white">{{ t('careerFormTextButton') }}</span>
 								<q-img src="icons/arrow-red.svg" fit="contain" class="q-ml-md" width="16px" />
@@ -51,7 +51,7 @@
 		position: relative;
 
 		@media (max-width: 1200px) {
-			font-size: .8em;
+			font-size: 0.8em;
 		}
 
 		@media (max-width: 870px) {

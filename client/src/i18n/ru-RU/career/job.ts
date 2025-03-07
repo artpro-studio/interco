@@ -4,5 +4,5 @@ export default {
 	careerJobRequirements: 'Требования',
 	careerJobResponsibilities: 'Обязанности',
 	careerJobTerm: 'Условия',
-	careerJobTextButton: 'Отправить резюме',
-}
+	careerJobTextButton: 'Заполнить анкету',
+};

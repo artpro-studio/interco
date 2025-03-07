@@ -18,7 +18,7 @@
 	const isSuccess = ref(false);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Готовы обсудить возможности сотрудничества?',
+		title: 'Заявка',
 		name: '',
 		email: '',
 		company: '',

@@ -40,6 +40,9 @@ export default {
 	middleName: 'Middle name',
 	position: 'Post',
 	formTitle: 'Application',
+	formCallbackTitle: 'SUPPORT FORM',
+	formCallbackText:
+		'We are here to assist with any technical questions or issues. Please fill out the form so we can contact you promptly and provide the necessary support.',
 	formEmail: 'Your e-mail',
 	formCompany: 'Company',
 	formMessage: 'Message',

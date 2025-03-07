@@ -20,7 +20,7 @@
 	const SLUG_FORM = 'application';
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Готовы обсудить ваш проект?',
+		title: 'Заявка',
 		comments: '',
 		name: '',
 		email: '',

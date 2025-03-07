@@ -18,6 +18,7 @@
 	const isSuccess = ref(false);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
+		title: 'Заявка',
 		name: '',
 		email: '',
 		company: '',

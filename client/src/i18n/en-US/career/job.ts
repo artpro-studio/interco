@@ -4,5 +4,5 @@ export default {
 	careerJobRequirements: 'Requirements',
 	careerJobResponsibilities: 'Responsibilities',
 	careerJobTerm: 'Conditions',
-	careerJobTextButton: 'Send a resume',
-}
+	careerJobTextButton: 'Fill Out Application Form',
+};

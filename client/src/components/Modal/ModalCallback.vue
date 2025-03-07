@@ -22,13 +22,11 @@
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
 		title: 'Запрос в техническую поддержку',
-		lastName: '',
 		name: '',
-		secondName: '',
 		email: '',
 		phone: '',
-		delivary: '',
 		comments: '',
+		company: '',
 	});
 	const isSuccess = ref(false);
 
@@ -67,13 +65,13 @@
 		<q-btn class="modal-callback__close" @click="emit('on-close')" flat><q-icon name="close" /></q-btn>
 		<div class="container">
 			<section-title
-				:title="t('clientsFormTitleForm')"
+				:title="t('formCallbackTitle')"
 				color-text="black"
 				class="modal-callback__title"
 				style="margin-bottom: 30px"
 			/>
 			<div class="modal-callback__description">
-				<p>{{ t('clientsFormTextForm') }}</p>
+				<p>{{ t('formCallbackText') }}</p>
 			</div>
 			<div class="modal-callback__body">
 				<q-form ref="formRef" class="modal-callback__form" @submit="onChange">
@@ -81,12 +79,6 @@
 						<div class="modal-callback__form__column">
 							<div class="modal-callback__form__field">
 								<v-input v-model="form.name" color="gray" :placeholder="t('firstName')" lazy-rules :rules="[isRequired]" />
-							</div>
-							<div class="modal-callback__form__field">
-								<v-input v-model="form.lastName" color="gray" :placeholder="t('lastName')" lazy-rules :rules="[isRequired]" />
-							</div>
-							<div class="modal-callback__form__field not-validate">
-								<v-input v-model="form.secondName" color="gray" :placeholder="t('middleName')" />
 							</div>
 							<div class="modal-callback__form__field">
 								<v-input v-model="form.email" color="gray" :placeholder="t('formEmail')" lazy-rules :rules="[isRequiredEmail]" />
@@ -101,19 +93,12 @@
 									:rules="[isRequired]"
 								/>
 							</div>
+							<div class="modal-callback__form__field">
+								<v-input v-model="form.company" color="gray" :placeholder="t('formCompany')" />
+							</div>
 						</div>
 						<div class="modal-callback__form__column">
-							<div class="modal-callback__form__field__label row no-wrap items-center fonts-oswald">
-								{{ t('formRequest') }}
-								<div class="modal-callback__form__field__label__icon">
-									<q-icon name="question_mark" />
-									<q-tooltip anchor="top middle" self="bottom middle">
-										{{ t('formRequestText') }}
-									</q-tooltip>
-								</div>
-							</div>
-							<v-text-area v-model="form.comments" color="gray" :rows="10" />
-							<v-input v-model="form.delivary" color="gray" :placeholder="t('formDelivary')" />
+							<v-text-area v-model="form.comments" :placeholder="t('formMessage')" color="gray" :rows="7" />
 						</div>
 					</div>
 					<div class="modal-callback__form__bottom row no-wrap justify-between items-center">

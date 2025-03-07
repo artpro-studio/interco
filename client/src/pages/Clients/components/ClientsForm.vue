@@ -17,7 +17,7 @@
 	const SLUG_FORM = 'application';
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Как оставить отзыв?',
+		title: 'Отзыв',
 		name: '',
 		email: '',
 		company: '',

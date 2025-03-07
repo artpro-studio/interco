@@ -19,7 +19,7 @@
 	const isChecked = ref(false);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
-		title: 'Поддрежка',
+		title: 'Запрос в техническую поддержку',
 		lastName: '',
 		name: '',
 		secondName: '',

@@ -4,5 +4,5 @@ export default {
 	careerJobRequirements: '要求',
 	careerJobResponsibilities: '职责',
 	careerJobTerm: '条件',
-	careerJobTextButton: '发送简历',
-}
+	careerJobTextButton: '填写申请表',
+};

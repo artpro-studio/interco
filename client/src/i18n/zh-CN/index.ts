@@ -39,6 +39,8 @@ export default {
 	position: '职位',
 	phone: '電話',
 	formTitle: '申请表格',
+	formCallbackTitle: '技术支援表格',
+	formCallbackText: '我们将会协助处理任何技术问题或故障。请填写此表格，以便我们能迅速与您联系并提供所需的支持。',
 	formEmail: '你的电子邮件',
 	formCompany: '公司简介 ',
 	formMessage: '信息',
