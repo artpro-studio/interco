@@ -113,7 +113,10 @@ export class BitrixService {
                 `${settings.urlBitrix}/crm.lead.add.json`,
                 {
                     params: {
-                        FIELDS: FIELDS,
+                        FIELDS: {
+                            ...FIELDS,
+                            SOURCE_ID: 'WEB',
+                        },
                     },
                 }
             );

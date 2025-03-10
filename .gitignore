@@ -31,6 +31,7 @@ node_modules
 /backendInterco/dist
 /backendInterco/node_modules
 /backendInterco/.env
+backendInterco/.env
 /admin/node_modules
 /admin/.vscode
 
