@@ -36,7 +36,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
 							} else {
 								resolve({ el: to.hash, behavior: 'smooth' });
 							}
-						}, 300); // небольшая задержка (можно поэкспериментировать)
+						}, 700); // небольшая задержка (можно поэкспериментировать)
 					});
 				});
 			}
