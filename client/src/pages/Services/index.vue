@@ -8,20 +8,28 @@
 	import ProductsServicesForm from 'src/components/ProductsServices/ProductsServicesForm.vue';
 	import BannerSaInternational from 'src/components/BannerSaInternational/BannerSaInternational.vue';
 	import ServiceFilter from './components/ServiceFilter.vue';
+	import Loader from 'src/components/Loader/Loader.vue';
 	import { useI18n } from 'vue-i18n';
 	import { computed, onMounted, ref } from 'vue';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
-	import { getApiClientInitialParams, PagesIblockPublicDto, PagesPublicControllerClient, PublicPagesSectionsDto, RecordsPublicDto } from 'src/ApiClient/ApiClient';
+	import {
+		getApiClientInitialParams,
+		PagesIblockPublicDto,
+		PagesPublicControllerClient,
+		PublicPagesSectionsDto,
+		RecordsPublicDto,
+	} from 'src/ApiClient/ApiClient';
 
 	const { t, locale } = useI18n();
 
-	const SLUG_SERVICE = 'service'
-	const SLUG_CONTACTS = 'service-contacts'
+	const SLUG_SERVICE = 'service';
+	const SLUG_CONTACTS = 'service-contacts';
 
 	const isLoading = ref(true);
+	const isLoader = ref(true);
 	const rows = ref<RecordsPublicDto[]>([]);
 	const iblock = ref<PagesIblockPublicDto | null>(null);
-	const sections = ref<PublicPagesSectionsDto[]>([])
+	const sections = ref<PublicPagesSectionsDto[]>([]);
 
 	const getContacts = computed(() => {
 		const data = iblock.value;
@@ -34,40 +42,40 @@
 			const ids: number[] = el.sections.map((item: any) => item.id);
 			return ids.includes(sectionID);
 		});
-	}
+	};
 
-	const getIblock = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlug(SLUG_CONTACTS)
-			.then((res) => {
-				iblock.value = res.entity
-			})
-	}
+	const fetchData = async () => {
+		const apiClient = new PagesPublicControllerClient(getApiClientInitialParams());
 
-	const getSection = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getPagesSections(SLUG_SERVICE)
-			.then((res) => {
-				sections.value = res.entity || []
-			})
-	}
+		try {
+			const [sectionsResponse, recordsResponse, iblockResponse] = await Promise.all([
+				apiClient.getPagesSections(SLUG_SERVICE),
+				apiClient.getRecordsBlogs('', 1, 100, SLUG_SERVICE),
+				apiClient.getIblockForSlug(SLUG_CONTACTS),
+			]);
 
-	const getInfo = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getRecordsBlogs('', 1, 100, SLUG_SERVICE)
-			.then((res) => {
-				rows.value = res.entity?.entity || [];
-				isLoading.value = false;
-			})
-	}
+			sections.value = sectionsResponse.entity || [];
+			rows.value = recordsResponse.entity?.entity || [];
+			iblock.value = iblockResponse.entity;
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		} finally {
+			isLoading.value = false;
+			setTimeout(() => {
+				isLoader.value = false;
+			}, 700);
+		}
+	};
 
 	onMounted(() => {
 		useGetMeta(SLUG_SERVICE);
-		getSection();
-		getInfo();
-		getIblock();
-	})
 
+		fetchData();
+	});
 </script>
 
 <template>
+	<loader v-if="isLoader" />
 	<products-services-head
 		:title="t('servicesHeadTitle')"
 		:text="t('servicesHeadDescription')"
@@ -78,27 +86,16 @@
 		minHeightText="162px"
 	/>
 	<div v-if="isLoading" class="q-pa-md flex flex-center">
-		<q-circular-progress
-			indeterminate
-			rounded
-			color="primary"
-			size="30px"
-		/>
+		<q-circular-progress indeterminate rounded color="primary" size="30px" />
 	</div>
 	<template v-else>
 		<service-filter :data="sections" />
 		<div class="container pb-8">
 			<div class="full">
-				<div v-for="section in sections" :key="section.id!" :id="'service-' + section.id!.toString()" style="width: 100%;">
-					<product-service-section
-						:title="section.title[locale]"
-						:text="section.description[locale]"
-					/>
+				<div v-for="section in sections" :key="section.id!" :id="'service-' + section.id!.toString()" style="width: 100%">
+					<product-service-section :title="section.title[locale]" :text="section.description[locale]" />
 					<div class="row q-gutter-lg">
-						<template
-							v-for="(item, index) in getSectionsData(section.id!)"
-							:key="index"
-						>
+						<template v-for="(item, index) in getSectionsData(section.id!)" :key="index">
 							<template v-if="item.paramsField?.image[locale]">
 								<products-services-item
 									:title="item.title[locale]"
@@ -121,9 +118,7 @@
 							</template>
 						</template>
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 	</template>
@@ -140,10 +135,6 @@
 		:item-text-4="t('advantagesServicesItem4Text')"
 	/>
 	<products-services-form />
-	<banner-sa-international
-		:title="t('serviceBannerTitle')"
-		:description="t('serviceBannerText')"
-		:is-black="true"
-	/>
+	<banner-sa-international :title="t('serviceBannerTitle')" :description="t('serviceBannerText')" :is-black="true" />
 	<products-service-contacts :data="getContacts" />
 </template>

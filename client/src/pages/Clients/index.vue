@@ -10,11 +10,13 @@
 	import { computed, onMounted, ref } from 'vue';
 	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
+	import Loader from 'src/components/Loader/Loader.vue';
 
 	const { t } = useI18n();
 
 	const SLUG_FAQ = 'faq';
 	const SLUG_CONCTACTS = 'clients-contacts';
+	const isLoader = ref(true);
 
 	const pagePublic = ref<PagesPublicDto | null>(null);
 
@@ -41,6 +43,10 @@
 	const getInfo = () => {
 		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('clients').then((data) => {
 			pagePublic.value = data.entity;
+
+			setTimeout(() => {
+				isLoader.value = false;
+			}, 700);
 		});
 	};
 
@@ -51,6 +57,7 @@
 </script>
 
 <template>
+	<loader v-if="isLoader" />
 	<head-global
 		width-title="957px"
 		width-text="653px"
