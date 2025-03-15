@@ -21,6 +21,8 @@ async function bootstrap() {
             'http://ru.interco.andreyi96.beget.tech',
             'http://en.interco.andreyi96.beget.tech',
             'http://ch.interco.andreyi96.beget.tech',
+            'http://inter-sa.com',
+            'http://admin.inter-sa.com',
         ],
     });
     app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));

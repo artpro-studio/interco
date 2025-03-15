@@ -8,51 +8,32 @@
 	import ClientsSectionText from './components/ClientsSectionText.vue';
 	import { useI18n } from 'vue-i18n';
 	import { computed, onMounted, ref } from 'vue';
-	import { getApiClientInitialParams, PagesPublicControllerClient, PagesPublicDto } from 'src/ApiClient/ApiClient';
+	import { getApiClientInitialParams, PagesIblockPublicDto, PagesPublicControllerClient } from 'src/ApiClient/ApiClient';
 	import { useGetMeta } from 'src/hooks/useGetMeta';
 	import Loader from 'src/components/Loader/Loader.vue';
 
 	const { t } = useI18n();
 
-	const SLUG_FAQ = 'faq';
 	const SLUG_CONCTACTS = 'clients-contacts';
 	const isLoader = ref(true);
 
-	const pagePublic = ref<PagesPublicDto | null>(null);
-
-	const getQuestions = computed(() => {
-		const sections: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_FAQ)?.sections;
-		const records: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_FAQ)?.records;
-		return sections?.map((el: any) => {
-			const data = records.filter((item: any) => {
-				const ids: any[] = item.sections?.map((section: any) => section.id);
-				return ids.includes(el.id);
-			});
-			return {
-				...el,
-				data,
-			};
-		});
-	});
+	const iblocks = ref<PagesIblockPublicDto | null>(null);
 
 	const getContacts = computed(() => {
-		const data: any = pagePublic.value?.iblocks?.find((el) => el.slug === SLUG_CONCTACTS)?.records;
+		const data: any = iblocks.value?.records;
 		return data;
 	});
 
-	const getInfo = () => {
-		new PagesPublicControllerClient(getApiClientInitialParams()).getOneForSlug('clients').then((data) => {
-			pagePublic.value = data.entity;
-
-			setTimeout(() => {
-				isLoader.value = false;
-			}, 700);
+	const getIblocks = () => {
+		new PagesPublicControllerClient(getApiClientInitialParams()).getIblockForSlug(SLUG_CONCTACTS).then((res) => {
+			iblocks.value = res.entity;
+			isLoader.value = false;
 		});
 	};
 
 	onMounted(() => {
 		useGetMeta('clients');
-		getInfo();
+		getIblocks();
 	});
 </script>
 
@@ -68,7 +49,7 @@
 	/>
 	<support />
 	<clients-banner />
-	<faq :data="getQuestions" />
+	<faq />
 	<clients-form />
 	<clients-contacts :data="getContacts" />
 	<clients-section-text />

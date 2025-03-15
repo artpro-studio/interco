@@ -80,15 +80,7 @@
                                     <q-input color="primary" v-model="form!.description" label="Описание" outlined lazy-rules :rules="[isRequired]" />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input
-                                        color="primary"
-                                        v-model="form!.phone"
-                                        label="Телефон"
-                                        mask="+7 (###) ### - ## ##"
-                                        outlined
-                                        lazy-rules
-                                        :rules="[isRequired]"
-                                    />
+                                    <q-input color="primary" v-model="form!.phone" label="Телефон" outlined lazy-rules :rules="[isRequired]" />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
                                     <q-input color="primary" v-model="form!.email" label="E-mail" outlined lazy-rules :rules="[isRequiredEmail]" />
@@ -128,17 +120,17 @@
                             <q-tab-panel name="callback">
                                 <h4 class="text-h5 q-mb-lg">Битрикс 24</h4>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.urlBitrix" label="Ссылка на Bitrix" outlined/>
+                                    <q-input color="primary" v-model="form!.urlBitrix" label="Ссылка на Bitrix" outlined />
                                 </div>
                                 <h4 class="text-h5 q-mb-lg">AmoCRM</h4>
                                 <div class="section-create-form__field q-mb-md">
                                     <q-input color="primary" v-model="form!.amoDomain" label="Домен" outlined />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoClientId" label="Клиент id" outlined  />
+                                    <q-input color="primary" v-model="form!.amoClientId" label="Клиент id" outlined />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
-                                    <q-input color="primary" v-model="form!.amoClientSecret" label="Секретный ключ" outlined  />
+                                    <q-input color="primary" v-model="form!.amoClientSecret" label="Секретный ключ" outlined />
                                 </div>
                                 <div class="section-create-form__field q-mb-md">
                                     <q-input color="primary" v-model="form!.amoBearer" label="Токен" outlined />
