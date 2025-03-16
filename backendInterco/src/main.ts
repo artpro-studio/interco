@@ -21,6 +21,11 @@ async function bootstrap() {
             'http://ch.inter-sa.com',
             'http://ru.inter-sa.com',
             'http://admin.inter-sa.com',
+            'https://inter-sa.com',
+            'https://en.inter-sa.com',
+            'https://ch.inter-sa.com',
+            'https://ru.inter-sa.com',
+            'https://admin.inter-sa.com',
         ],
     });
     app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
