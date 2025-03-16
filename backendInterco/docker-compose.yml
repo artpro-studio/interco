@@ -59,6 +59,8 @@ services:
             - '9001:9001'
         volumes:
             - 'minio_data:/data'
+            - './minio-certs:/certs'
+        command: server --certs-dir /certs /data
         extra_hosts:
             - 'host.docker.internal:host-gateway'
 networks:
