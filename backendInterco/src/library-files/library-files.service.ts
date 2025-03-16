@@ -39,7 +39,7 @@ export class LibraryFilesService {
     ) {
         this.minioClient = new Minio.Client({
             endPoint: this.configService.get('MINIO_ENDPOINT'),
-            port: Number(this.configService.get('MINIO_PORT')),
+            // port: Number(this.configService.get('MINIO_PORT')),
             useSSL: this.configService.get('MINIO_USE_SSL') === 'true',
             accessKey: this.configService.get('MINIO_ACCESS_KEY'),
             secretKey: this.configService.get('MINIO_SECRET_KEY'),
