@@ -115,9 +115,7 @@ export class LibraryFilesService {
 
     // Получение url файла в облаке
     getUrlCloud(filename: string): string {
-        return `${this.configService.get(
-            'MINIO_DOMEN'
-        )}:${this.configService.get('MINIO_PORT')}/${
+        return `${this.configService.get('MINIO_DOMEN')}/${
             this.bucketName
         }/${filename}`;
     }
@@ -311,9 +309,7 @@ export class LibraryFilesService {
             if (el.type !== FileType.DIRECTORY) {
                 return {
                     ...el,
-                    path: `${this.configService.get(
-                        'MINIO_DOMEN'
-                    )}:${this.configService.get('MINIO_PORT')}/${
+                    path: `${this.configService.get('MINIO_DOMEN')}/${
                         this.bucketName
                     }/${el.filename}`,
                 };
