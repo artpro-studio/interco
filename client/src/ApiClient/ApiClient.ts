@@ -21740,6 +21740,8 @@ export interface ResultAmoCustmoFieldstDto {
 export interface PublicCallbackDto {
     /** Символьный код формы */
     slug: string;
+    /** Токен */
+    token: string;
     /** Данные */
     data: any;
 

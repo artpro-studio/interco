@@ -3,10 +3,11 @@
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
+	import Captcha from 'src/components/Captcha/Captcha.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import useValidationRules from 'src/helpers/useValidationRules';
-	import { QForm } from 'quasar';
+	import { QForm, Notify } from 'quasar';
 	import { getApiClientInitialParams, PublicCallbackControllerClient } from 'src/ApiClient/ApiClient';
 	import useMaskPhone from 'src/helpers/useMaskPhone';
 
@@ -15,6 +16,7 @@
 	const maskPhone = useMaskPhone();
 
 	const SLUG_FORM = 'application';
+	const captchaRef = ref<any>(null);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
 		title: 'Отзыв',
@@ -36,10 +38,21 @@
 	};
 
 	const onChange = () => {
+		const token = captchaRef.value?.token;
+		if (!token) {
+			Notify.create({
+				color: 'negative',
+				textColor: 'white',
+				icon: 'warning',
+				message: t('formCaptchaText'),
+			});
+			return;
+		}
 		formRef.value?.validate().then(async (success) => {
 			if (success) {
 				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
 					slug: SLUG_FORM,
+					token: token,
 					data: form.value,
 				});
 
@@ -103,6 +116,9 @@
 							class="clients-form__form__comment"
 							:placeholder="t('formMessage')"
 						/>
+						<div class="q-mt-md">
+							<captcha ref="captchaRef" />
+						</div>
 						<v-btn type="submit" color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('clientsFormTextBtn') }}</span>

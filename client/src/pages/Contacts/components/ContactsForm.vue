@@ -3,6 +3,7 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VInputText from 'src/components/UI/VInputText/VInputText.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
+	import Captcha from 'src/components/Captcha/Captcha.vue';
 	import { Notify, QForm } from 'quasar';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
@@ -17,6 +18,7 @@
 
 	const SLUG_FORM: string = 'application';
 	const isChecked = ref(false);
+	const captchaRef = ref<any>(null);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
 		title: 'Запрос в техническую поддержку',
@@ -35,6 +37,16 @@
 	};
 
 	const onChange = async () => {
+		const token = captchaRef.value?.token;
+		if (!token) {
+			Notify.create({
+				color: 'negative',
+				textColor: 'white',
+				icon: 'warning',
+				message: t('formCaptchaText'),
+			});
+			return;
+		}
 		formRef.value!.validate().then(async (success: boolean) => {
 			if (!isChecked.value) {
 				Notify.create({
@@ -48,6 +60,7 @@
 			if (success) {
 				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
 					slug: SLUG_FORM,
+					token: token,
 					data: form.value,
 				});
 
@@ -108,6 +121,7 @@
 							<v-input-text v-model="form.comments" color="gray" :placeholder="t('contactsFormMessage')" :rows="10" />
 						</div>
 					</div>
+					<captcha ref="captchaRef" />
 					<div class="contacts-form__form__bottom row no-wrap justify-between items-center">
 						<div class="contacts-form__form__bottom__left">
 							<q-checkbox v-model="isChecked" class="contacts-form__form__checked" :label="t('contactsFormConfirm')" />

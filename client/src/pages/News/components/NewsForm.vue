@@ -2,6 +2,7 @@
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
+	import Captcha from 'src/components/Captcha/Captcha.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
 	import useValidationRules from 'src/helpers/useValidationRules';
@@ -17,6 +18,7 @@
 	const { isRequired, isRequiredEmail } = useValidationRules();
 
 	const isSuccess = ref(false);
+	const captchaRef = ref<any>(null);
 	const formRef = ref<QForm | null>(null);
 	const form = ref<SubscriptionDto>({
 		name: '',
@@ -31,11 +33,21 @@
 	};
 
 	const onChange = () => {
+		if (!isChecked.value) {
+			Notify.create({
+				color: 'negative',
+				textColor: 'white',
+				icon: 'warning',
+				message: t('fromValidateChecked'),
+			});
+			return;
+		}
 		formRef.value?.validate().then(async (success) => {
 			if (success) {
 				const result = await new PublicSubscriptionControllerClient(getApiClientInitialParams()).create({
 					...form.value,
 					lang: locale.value as ILangSubscription,
+					token: token,
 				});
 
 				if (result.isSuccess) {
@@ -77,6 +89,7 @@
 								:rules="[isRequiredEmail]"
 							/>
 						</div>
+						<captcha ref="captchaRef" />
 						<v-btn type="submit" color="primary" class="clients-form__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('newsFormBtnText') }}</span>

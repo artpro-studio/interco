@@ -53,6 +53,7 @@ export default {
 	formFile: 'Attach a file',
 	formPolicy: 'I give my consent to the processing of personal data in accordance with the privacy policy',
 	formBtn: 'Submit',
+	formCaptchaText: 'Captcha required field',
 	fromValidateChecked: 'You have not given your consent to the processing of personal data',
 	validateTextRequired: 'Required field',
 	validateTextEmail: 'Invalid email',

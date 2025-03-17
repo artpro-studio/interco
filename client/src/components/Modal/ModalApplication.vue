@@ -5,10 +5,10 @@
 	import VTextArea from '../UI/VTextArea/VTextArea.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalSuccess from './ModalSuccess.vue';
+	import Captcha from 'src/components/Captcha/Captcha.vue';
 	import { ref } from 'vue';
 	import { useI18n } from 'vue-i18n';
-	import { QForm } from 'quasar';
-	import { Notify } from 'quasar';
+	import { QForm, Notify } from 'quasar';
 	import useValidationRules from 'src/helpers/useValidationRules';
 	import useMaskPhone from 'src/helpers/useMaskPhone';
 
@@ -19,6 +19,7 @@
 
 	const SLUG_FORM: string = 'application';
 	const isChecked = ref(true);
+	const captchaRef = ref<any>(null);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
 		title: 'Заявка',
@@ -38,6 +39,16 @@
 	};
 
 	const onChange = async () => {
+		const token = captchaRef.value?.token;
+		if (!token) {
+			Notify.create({
+				color: 'negative',
+				textColor: 'white',
+				icon: 'warning',
+				message: t('formCaptchaText'),
+			});
+			return;
+		}
 		formRef.value!.validate().then(async (success: boolean) => {
 			if (!isChecked.value) {
 				Notify.create({
@@ -51,6 +62,7 @@
 			if (success) {
 				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
 					slug: SLUG_FORM,
+					token: token,
 					data: form.value,
 				});
 
@@ -108,6 +120,7 @@
 							<v-input v-model="form.delivary" color="gray" :placeholder="t('formDelivary')" />
 						</div>
 					</div>
+					<captcha ref="captchaRef" id="modal_callback_application" />
 					<div class="modal-application__form__bottom row no-wrap justify-between items-center">
 						<div class="modal-application__form__bottom__left">
 							<q-checkbox v-model="isChecked" class="modal-application__form__checked" :label="t('formPolicy')" />

@@ -51,6 +51,7 @@ export default {
 	formFile: '附加档案',
 	formPolicy: '本人同意根据私隐政策处理个人资料',
 	formBtn: '提交',
+	formCaptchaText: '验证码必填字段',
 	fromValidateChecked: '您尚未同意处理个人数据',
 	validateTextRequired: '必填字段',
 	validateTextEmail: '无效电子邮件',

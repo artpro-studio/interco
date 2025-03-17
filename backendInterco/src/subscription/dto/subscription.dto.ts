@@ -5,6 +5,14 @@ import { IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
 
 export class SubscriptionDto extends DefaultBaseDto {
     @ApiProperty({
+        example: 'token',
+        nullable: false,
+        required: false,
+        description: 'Токен',
+    })
+    token?: string;
+
+    @ApiProperty({
         example: 'ФИО',
         nullable: false,
         description: 'ФИО',

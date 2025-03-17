@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-	import { ref, onMounted } from 'vue';
+	import { ref } from 'vue';
 	import VTextArea from 'src/components/UI/VTextArea/VTextArea.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
 	import ModalSuccess from 'src/components/Modal/ModalSuccess.vue';
+	import Captcha from 'src/components/Captcha/Captcha.vue';
 	import { useI18n } from 'vue-i18n';
 	import { useStore } from 'src/store';
 	import { computed } from 'vue';
 	import { FullSettingsDto, PublicCallbackControllerClient, getApiClientInitialParams } from 'src/ApiClient/ApiClient';
-	import { QForm } from 'quasar';
+	import { QForm, Notify } from 'quasar';
 	import useValidationRules from 'src/helpers/useValidationRules';
 	import useMaskPhone from 'src/helpers/useMaskPhone';
 
@@ -17,9 +18,8 @@
 	const { isRequired, isRequiredEmail } = useValidationRules();
 	const maskPhone = useMaskPhone();
 
-	const token = ref('');
-
 	const SLUG_FORM = 'application';
+	const captchaRef = ref<any>(null);
 	const formRef = ref<QForm | null>(null);
 	const form = ref({
 		title: 'Заявка',
@@ -44,26 +44,29 @@
 	};
 
 	const onChange = () => {
+		const token = captchaRef.value?.token;
+		if (!token) {
+			Notify.create({
+				color: 'negative',
+				textColor: 'white',
+				icon: 'warning',
+				message: t('formCaptchaText'),
+			});
+			return;
+		}
 		formRef.value?.validate().then(async (success) => {
 			if (success) {
 				const result = await new PublicCallbackControllerClient(getApiClientInitialParams()).create({
 					slug: SLUG_FORM,
+					token: token,
 					data: form.value,
 				});
-
 				if (result.isSuccess) {
 					isSuccess.value = true;
 				}
 			}
 		});
 	};
-
-	onMounted(() => {
-		window.turnstile.render('#turnstile-container', {
-			sitekey: import.meta.env.VITE_APP_SITE_KEY,
-			callback: (res) => (token.value = res), // Записываем токен
-		});
-	});
 </script>
 
 <template>
@@ -117,8 +120,7 @@
 								:rules="[isRequired]"
 							/>
 						</div>
-						{{ token }}
-						<div id="turnstile-container"></div>
+						<captcha ref="captchaRef" />
 						<v-btn type="submit" color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('submitApplication') }}</span>

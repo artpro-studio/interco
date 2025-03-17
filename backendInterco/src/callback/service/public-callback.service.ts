@@ -10,6 +10,7 @@ import { ISendData } from '../interface';
 import { NodeMailerService } from 'src/node-mailer/node-mailer.service';
 import { MainFile } from 'src/library-files/interface';
 import { LibraryFilesService } from 'src/library-files/library-files.service';
+import { CaptchaService } from './сaptcha.service';
 
 @Injectable()
 export class PublicCallbackService {
@@ -20,11 +21,20 @@ export class PublicCallbackService {
         private readonly callbackInstancesValueRepository: CallbackInstancesValueRepository,
         private readonly bitrixService: BitrixService,
         private readonly nodeMailerService: NodeMailerService,
-        private readonly libraryFilesService: LibraryFilesService
+        private readonly libraryFilesService: LibraryFilesService,
+        private readonly captchaService: CaptchaService
     ) {}
 
     async create(body: PublicCallbackDto): Promise<ResultDto> {
         const data = body.data;
+
+        const validateCaptch = await this.captchaService.verifyCaptcha(
+            body.token
+        );
+
+        if (!validateCaptch) {
+            return { isSuccess: false, message: 'Капча не валидна' };
+        }
 
         const callback = await this.callbackRepository.getForSlug(body.slug);
         const getFileds = await this.callbackFieldRepository.getForSlugForm(

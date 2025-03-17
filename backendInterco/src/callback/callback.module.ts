@@ -25,6 +25,7 @@ import { AmoCustomFieldsController } from './controller/amo-custom-fields.contro
 import { PublicCallbackService } from './service/public-callback.service';
 import { PublicCallbackController } from './controller/public-callback.controller';
 import { LibraryFilesModule } from 'src/library-files/library-files.module';
+import { CaptchaService } from './service/сaptcha.service';
 
 const repository = [
     CallbackRepository,
@@ -40,6 +41,7 @@ const service = [
     BitrixService,
     AmoCrmService,
     PublicCallbackService,
+    CaptchaService,
 ];
 
 @Module({

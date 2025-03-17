@@ -14,6 +14,7 @@ import { SendsSubscriptionDescriptionRepository } from './repository/sends-subsc
 import { SendsSubscriptionService } from './service/sends-subscription.service';
 import { SendsSubscriptionController } from './controller/sends-subscription.controller';
 import { TaskModule } from 'src/task/task.module';
+import { CallbackModule } from 'src/callback/callback.module';
 
 const repository = [
     SubscriptionRepository,
@@ -32,6 +33,7 @@ const service = [SubscriptionService, SendsSubscriptionService];
             SendsSubscriptionDescriptoinEntity,
         ]),
         forwardRef(() => TaskModule),
+        forwardRef(() => CallbackModule),
     ],
     controllers: [
         SubscriptionController,

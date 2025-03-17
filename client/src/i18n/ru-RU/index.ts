@@ -52,6 +52,7 @@ export default {
 	formFile: 'Прикрепить файл',
 	formPolicy: 'Даю согласие на обработку персональных данных, согласно политике конфиденциальности',
 	formBtn: 'Отправить',
+	formCaptchaText: 'Капча обязательное поле',
 	fromValidateChecked: 'Вы не не дали согласие на обработку персональных данных',
 	validateTextRequired: 'Обязательное поле',
 	validateTextEmail: 'Некорректный email',
