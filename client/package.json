@@ -16,7 +16,7 @@
     "build": "quasar build",
     "analyze": "quasar build --mode analyze",
     "postinstall": "quasar prepare",
-	"startpm": "pm2 start ./dist/ssr/index.js"
+    "startpm": "pm2 start ./dist/ssr/index.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",

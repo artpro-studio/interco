@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { ref } from 'vue';
+	import { ref, onMounted } from 'vue';
 	import VTextArea from 'src/components/UI/VTextArea/VTextArea.vue';
 	import VInput from 'src/components/UI/VInput/VInput.vue';
 	import VBtn from 'src/components/UI/VBtn/VBtn.vue';
@@ -16,6 +16,8 @@
 	const store = useStore();
 	const { isRequired, isRequiredEmail } = useValidationRules();
 	const maskPhone = useMaskPhone();
+
+	const token = ref('');
 
 	const SLUG_FORM = 'application';
 	const formRef = ref<QForm | null>(null);
@@ -55,6 +57,13 @@
 			}
 		});
 	};
+
+	onMounted(() => {
+		window.turnstile.render('#turnstile-container', {
+			sitekey: import.meta.env.VITE_APP_SITE_KEY,
+			callback: (res) => (token.value = res), // Записываем токен
+		});
+	});
 </script>
 
 <template>
@@ -108,6 +117,8 @@
 								:rules="[isRequired]"
 							/>
 						</div>
+						{{ token }}
+						<div id="turnstile-container"></div>
 						<v-btn type="submit" color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
 								<span>{{ t('submitApplication') }}</span>
