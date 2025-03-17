@@ -5,7 +5,7 @@
 	import { useI18n } from 'vue-i18n';
 
 	interface IProps {
-		data: any
+		data: any;
 	}
 	defineProps<IProps>();
 
@@ -16,30 +16,30 @@
 
 	const breakpoints: any = {
 		'901': {
-			spaceBetween: 40
+			spaceBetween: 40,
 		},
 		'300': {
-			spaceBetween: 20
-        },
-	}
+			spaceBetween: 20,
+		},
+	};
 
 	watch(widthScreen, () => {
 		getSilderWidth();
-	})
+	});
 
 	const getStyleWidth = computed(() => {
 		return `calc(100% + ${widthSlider.value}px)`;
-	})
+	});
 
 	const getSilderWidth = () => {
 		if (widthScreen._value > 1312) {
 			widthSlider.value = (widthScreen._value - 1312) / 2 + 14;
 		}
-	}
+	};
 
 	onMounted(() => {
 		getSilderWidth();
-	})
+	});
 </script>
 
 <template>
@@ -54,7 +54,7 @@
 					<p>{{ t('aboutTeamDescription') }}</p>
 				</div>
 			</div>
-			<div data-aos="fade-up" class="about-team__body" :style="{width: getStyleWidth}">
+			<div data-aos="fade-up" class="about-team__body" :style="{ width: getStyleWidth }">
 				<swiper
 					class="swiper-container"
 					:slidesPerView="'auto'"
@@ -63,12 +63,14 @@
 					:auto-height="true"
 					:breakpoints="breakpoints"
 				>
-					<swiper-slide
-						v-for="(item, index) in data"
-						:key="index"
-					>
+					<swiper-slide v-for="(item, index) in data" :key="index">
 						<div class="about-team__item">
-							<q-img :src="item.fields?.image[locale]?.value?.path || ''" height="510px" fit="cover" class="about-team__item__img" />
+							<q-img
+								:src="item.fields?.image[locale]?.value?.path || ''"
+								height="510px"
+								fit="cover"
+								class="about-team__item__img"
+							/>
 							<h5 class="about-team__item__title text-red fonts-oswald text-uppercase">{{ item.fields?.fio[locale]?.value }}</h5>
 							<p class="about-team__item__info">{{ item.fields?.post[locale]?.value }}</p>
 							<div class="about-team__item__text">
@@ -79,7 +81,7 @@
 				</swiper>
 			</div>
 			<div class="about-team__column row no-wrap items-center">
-				<div data-aos="fade-right" class="about-team__column__item ">
+				<div data-aos="fade-right" class="about-team__column__item">
 					<p>{{ t('aboutTeamBottomText1') }}</p>
 				</div>
 				<div data-aos="fade-left" class="about-team__column__item info fonts-oswald">
@@ -104,12 +106,16 @@
 </style>
 <style lang="scss" scoped>
 	.about-team {
-		background-color: #F5F5F5;
+		background-color: #f5f5f5;
 		&__column {
 			margin-top: 80px;
 			&__item {
 				padding-right: 20px;
 				width: 50%;
+
+				&__img {
+					background-color: #fff;
+				}
 
 				p {
 					font-size: 1.22em;
