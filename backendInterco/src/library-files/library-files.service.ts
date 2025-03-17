@@ -416,7 +416,7 @@ export class LibraryFilesService {
                 .filter((el) => !el.isSystem)
                 .map((el) => el.id);
             if (fileNameDeletesFile.length) {
-                await this.minioClient.removeObjects(
+                this.minioClient.removeObjects(
                     this.bucketName,
                     fileNameDeletesFile
                 );
