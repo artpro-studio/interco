@@ -370,10 +370,7 @@ export class LibraryFilesService {
             }
 
             if (entity.type !== FileType.DIRECTORY && entity.filename) {
-                await this.minioClient.removeObject(
-                    this.bucketName,
-                    entity.filename
-                );
+                this.minioClient.removeObject(this.bucketName, entity.filename);
             }
 
             await this.libraryFilesRepository.softDelete(id);
