@@ -113,10 +113,6 @@
 				padding-right: 20px;
 				width: 50%;
 
-				&__img {
-					background-color: #fff;
-				}
-
 				p {
 					font-size: 1.22em;
 					font-weight: bold;
@@ -211,6 +207,7 @@
 		&__item {
 			&__img {
 				margin-bottom: 40px;
+				background-color: #fff;
 			}
 
 			&__title {
