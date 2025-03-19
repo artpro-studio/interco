@@ -16,8 +16,10 @@
 		PagesPublicControllerClient,
 		RecordsPublicDto,
 	} from 'src/ApiClient/ApiClient';
+	import { useRoute } from 'vue-router';
 
 	const { t, locale } = useI18n();
+	const route = useRoute();
 
 	const SLUG_PRODUCT = 'products';
 	const SLUG_CONTACTS = 'products-contacts';
@@ -50,7 +52,20 @@
 
 			setTimeout(() => {
 				isLoader.value = false;
+				handleScroll();
 			}, 700);
+		}
+	};
+
+	const handleScroll = () => {
+		if (route.hash) {
+			const element = document.querySelector(route.hash);
+			if (element) {
+				const headerOffset = 110;
+				const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+				const offsetPosition = elementPosition - headerOffset;
+				window.scrollTo({ left: 0, top: offsetPosition, behavior: 'smooth' });
+			}
 		}
 	};
 
