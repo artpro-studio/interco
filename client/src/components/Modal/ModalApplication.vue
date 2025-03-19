@@ -108,7 +108,6 @@
 						</div>
 						<div class="modal-application__form__column">
 							<div class="modal-application__form__field__label row no-wrap items-center fonts-oswald">
-								{{ t('formRequest') }}
 								<div class="modal-application__form__field__label__icon">
 									<q-icon name="question_mark" />
 									<q-tooltip anchor="top middle" self="bottom middle">
@@ -116,7 +115,7 @@
 									</q-tooltip>
 								</div>
 							</div>
-							<v-text-area v-model="form.comments" color="gray" :rows="10" />
+							<v-text-area v-model="form.comments" :placeholder="t('formRequest')" color="gray" :rows="10" />
 							<v-input v-model="form.delivary" color="gray" :placeholder="t('formDelivary')" />
 						</div>
 					</div>
@@ -263,7 +262,7 @@
 						align-items: center;
 						justify-content: center;
 						border-radius: 50%;
-						margin-left: 8px;
+						margin-left: 0px;
 					}
 				}
 			}

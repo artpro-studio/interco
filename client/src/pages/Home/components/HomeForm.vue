@@ -120,6 +120,9 @@
 								:rules="[isRequired]"
 							/>
 						</div>
+						<div class="home-form__right__form__field comments">
+							<v-text-area v-model="form.comments" :placeholder="t('homeFormComment')" color="gray" :rows="2" />
+						</div>
 						<captcha ref="captchaRef" />
 						<v-btn type="submit" color="primary" class="home-form__right__form__btn">
 							<div class="row no-wrap items-center">
@@ -219,6 +222,7 @@
 			@media (max-width: 850px) {
 				width: 100%;
 				padding-right: 0;
+				display: none;
 
 				&__fields {
 					padding-top: 0px;
@@ -285,6 +289,10 @@
 					&:last-child {
 						margin-bottom: 0;
 					}
+
+					&.comments {
+						display: none;
+					}
 				}
 
 				&__btn {
@@ -313,7 +321,12 @@
 					text-align: center;
 
 					&__field {
-						margin-bottom: 40px;
+						margin-bottom: 0px;
+
+						&.comments {
+							display: block;
+							margin-bottom: 20px;
+						}
 					}
 
 					&__btn {

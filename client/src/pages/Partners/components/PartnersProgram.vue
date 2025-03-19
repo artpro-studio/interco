@@ -9,40 +9,40 @@
 	<div class="partners-programs pt-8 pb-8">
 		<div class="container">
 			<div class="partners-programs__header row no-wrap justify-between items-center">
-				<section-title :title="t('partnersProgramTitle')" class="partners-programs__title" style="margin-bottom: 0;" />
+				<section-title :title="t('partnersProgramTitle')" class="partners-programs__title" style="margin-bottom: 0" />
 
 				<div data-aos="fade-left" class="partners-programs__header__info">
-					<p>{{t('partnersProgramDescription')}}</p>
+					<p>{{ t('partnersProgramDescription') }}</p>
 				</div>
 			</div>
-			<h4 data-aos="fade-up" class="partners-programs__subtitle headline-2">{{t('partnersProgramSubTitle')}}</h4>
+			<h4 data-aos="fade-up" class="partners-programs__subtitle headline-2">{{ t('partnersProgramSubTitle') }}</h4>
 			<div class="partners-programs__body row">
 				<div data-aos="fade-right" class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem1Title')}}</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{ t('partnersProgramItem1Title') }}</h5>
 					<ul>
-						<li>{{t('partnersProgramItem1Text1')}}</li>
-						<li>{{t('partnersProgramItem1Text2')}}</li>
+						<li>{{ t('partnersProgramItem1Text1') }}</li>
+						<li>{{ t('partnersProgramItem1Text2') }}</li>
 					</ul>
 				</div>
 				<div data-aos="fade-left" class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem2Title')}}</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{ t('partnersProgramItem2Title') }}</h5>
 					<ul>
-						<li>{{t('partnersProgramItem2Text1')}}</li>
-						<li>{{t('partnersProgramItem2Text2')}}</li>
+						<li>{{ t('partnersProgramItem2Text1') }}</li>
+						<li>{{ t('partnersProgramItem2Text2') }}</li>
 					</ul>
 				</div>
 				<div data-aos="fade-right" class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem3Title')}}</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{ t('partnersProgramItem3Title') }}</h5>
 					<ul>
-						<li>{{t('partnersProgramItem3Text1')}}</li>
-						<li>{{t('partnersProgramItem3Text2')}}</li>
+						<li>{{ t('partnersProgramItem3Text1') }}</li>
+						<li>{{ t('partnersProgramItem3Text2') }}</li>
 					</ul>
 				</div>
 				<div data-aos="fade-left" class="partners-programs__item">
-					<h5 class="text-gradient fonts-oswald text-bold">{{t('partnersProgramItem4Title')}}</h5>
+					<h5 class="text-gradient fonts-oswald text-bold">{{ t('partnersProgramItem4Title') }}</h5>
 					<ul>
-						<li>{{t('partnersProgramItem4Text1')}}</li>
-						<li>{{t('partnersProgramItem4Text2')}}</li>
+						<li>{{ t('partnersProgramItem4Text1') }}</li>
+						<li>{{ t('partnersProgramItem4Text2') }}</li>
 					</ul>
 				</div>
 			</div>
@@ -89,19 +89,18 @@
 			@media (max-width: 800px) {
 				margin: 0;
 			}
-
 		}
 		&__item {
 			width: calc(50% - 32px);
 			margin: 0 16px;
 			border-radius: 10px;
-    		background-color: rgba(35, 36, 57, 0.6);
+			background-color: rgba(35, 36, 57, 0.6);
 			padding: 40px;
 			margin-bottom: 40px;
 			position: relative;
 
 			&::before {
-				content: "";
+				content: '';
 				width: 324px;
 				height: 100%;
 				background-image: url(/icons/arrow-big-blue.svg);
@@ -117,6 +116,7 @@
 				margin-bottom: 40px;
 				font-size: 1.55em;
 				line-height: 140%;
+				position: relative;
 			}
 
 			h6 {
@@ -199,5 +199,4 @@
 			}
 		}
 	}
-
 </style>
