@@ -25,6 +25,10 @@ async function bootstrap() {
             'https://en.inter-sa.com',
             'https://ch.inter-sa.com',
             'https://ru.inter-sa.com',
+            'https://www.inter-sa.com',
+            'https://www.en.inter-sa.com',
+            'https://www.ch.inter-sa.com',
+            'https://www.ru.inter-sa.com',
             'https://admin.inter-sa.com',
         ],
     });
