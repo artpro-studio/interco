@@ -21,7 +21,7 @@
 				'sitekey': import.meta.env.VITE_APP_SITE_KEY,
 				'language': lang,
 				'action': 'strict_check',
-				'execution': 'render',
+				'execution': 'execute',
 				'cData': 'force-interaction',
 				'refresh-expired': 'never',
 				'response-field': false,
