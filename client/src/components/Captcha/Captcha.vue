@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import { onUnmounted } from 'vue';
 	import { ref, onMounted } from 'vue';
 	import { useI18n } from 'vue-i18n';
 
@@ -27,12 +26,7 @@
 				'refresh-expired': 'never',
 				'response-field': false,
 				'callback': (res) => {
-					if (!userInteracted) {
-						console.log('Turnstile решена автоматически, перезапускаем...');
-						window.turnstile.reset(`#${props.id}`);
-					} else {
-						token.value = res;
-					}
+					token.value = res;
 				}, // Записываем токен
 			});
 		});
@@ -42,11 +36,11 @@
 		});
 	});
 
-	onUnmounted(() => {
-		document?.getElementById(`${props.id}`)?.removeEventListener('click', () => {
-			userInteracted = false;
-		});
-	});
+	// onUnmounted(() => {
+	// 	document?.getElementById(`${props.id}`)?.removeEventListener('click', () => {
+	// 		userInteracted = false;
+	// 	});
+	// });
 
 	defineExpose({
 		token,
