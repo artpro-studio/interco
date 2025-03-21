@@ -19,6 +19,7 @@
 			window.turnstile.render(`#${props.id}`, {
 				'sitekey': import.meta.env.VITE_APP_SITE_KEY,
 				'language': lang,
+				'action': 'strict_check',
 				'execution': 'render',
 				'cData': 'force-interaction',
 				'refresh-expired': 'never',
