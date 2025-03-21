@@ -15,11 +15,15 @@
 
 	onMounted(() => {
 		const lang = locale.value;
+		if (window.turnstile) {
+			window.turnstile.remove(`#${props.id}`); // Удаляем старую капчу
+		}
 		window.turnstile.render(`#${props.id}`, {
 			sitekey: import.meta.env.VITE_APP_SITE_KEY,
 			language: lang,
 			action: 'login',
 			execution: 'render',
+			cData: 'force-interaction',
 			callback: (res) => (token.value = res), // Записываем токен
 		});
 	});
