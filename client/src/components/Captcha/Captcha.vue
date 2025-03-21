@@ -15,13 +15,13 @@
 
 	onMounted(() => {
 		const lang = locale.value;
-		const turnstileWidget = window.turnstile.render(`#${props.id}`, {
+		window.turnstile.render(`#${props.id}`, {
 			sitekey: import.meta.env.VITE_APP_SITE_KEY,
 			language: lang,
-			execution: 'execute',
+			action: 'login',
+			execution: 'render',
 			callback: (res) => (token.value = res), // Записываем токен
 		});
-		window.turnstile.execute(turnstileWidget);
 	});
 
 	defineExpose({
