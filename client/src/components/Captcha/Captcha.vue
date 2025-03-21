@@ -21,7 +21,6 @@
 				'language': lang,
 				'execution': 'render',
 				'cData': 'force-interaction',
-				'retry': false,
 				'refresh-expired': 'never',
 				'response-field': false,
 				'callback': (res) => (token.value = res), // Записываем токен
