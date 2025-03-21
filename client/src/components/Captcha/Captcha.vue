@@ -18,14 +18,11 @@
 		const lang = locale.value;
 		window.turnstile.ready(function () {
 			window.turnstile.render(`#${props.id}`, {
-				'sitekey': import.meta.env.VITE_APP_SITE_KEY,
-				'language': lang,
-				'action': 'strict_check',
-				'execution': 'execute',
-				'cData': 'force-interaction',
-				'refresh-expired': 'never',
-				'response-field': false,
-				'callback': (res) => {
+				sitekey: import.meta.env.VITE_APP_SITE_KEY,
+				language: lang,
+				action: 'strict_check',
+				cData: 'force-interaction',
+				callback: (res) => {
 					token.value = res;
 				}, // Записываем токен
 			});
