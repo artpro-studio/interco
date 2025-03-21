@@ -15,13 +15,11 @@
 
 	onMounted(() => {
 		const lang = locale.value;
-		window.turnstile.remove(`#${props.id}`);
 		window.turnstile.render(`#${props.id}`, {
 			sitekey: import.meta.env.VITE_APP_SITE_KEY,
 			language: lang,
 			action: 'login',
 			execution: 'render',
-			size: 'compact',
 			callback: (res) => (token.value = res), // Записываем токен
 		});
 	});
