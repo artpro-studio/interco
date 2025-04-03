@@ -77,6 +77,9 @@
 		}
 
 		&__body {
+			position: relative;
+			z-index: 2;
+
 			@media (max-width: $breakpoint-sm-min) {
 				flex-wrap: wrap;
 			}
@@ -84,10 +87,13 @@
 
 		&__title {
 			margin-bottom: 40px;
+			position: relative;
+			z-index: 2;
 		}
 		&__info {
 			max-width: 600px;
 			padding-right: 10px;
+
 			p {
 				font-size: 1.22em;
 				text-transform: uppercase;

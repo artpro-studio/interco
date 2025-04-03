@@ -7,7 +7,9 @@
 <template>
 	<div class="clients-section-text pt-8 pb-12">
 		<div class="container">
-			<h5 data-aos="fade-up" class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">{{ t('clientsBannerTitle') }}</h5>
+			<h5 data-aos="fade-up" class="clients-section-text__title headline-1 text-gradient fonts-oswald text-uppercase text-center">
+				{{ t('clientsBannerTitle') }}
+			</h5>
 			<p data-aos="fade-up" class="clients-section-text__text fonts-oswald text-uppercase text-center">
 				{{ t('clientsBannerText') }}
 			</p>
@@ -23,9 +25,15 @@
 		position: relative;
 		overflow: hidden;
 
+		.container {
+			position: relative;
+			z-index: 2;
+		}
+
 		&__title {
 			margin-bottom: 40px;
 			position: relative;
+			z-index: 2;
 		}
 		&__text {
 			font-size: 1.22em;
@@ -34,6 +42,7 @@
 			color: var(--white);
 			line-height: 140%;
 			position: relative;
+			z-index: 2;
 
 			@media (max-width: $breakpoint-sm-min) {
 				font-size: 1em;
@@ -47,7 +56,7 @@
 
 			&__item {
 				width: 300px;
-				opacity: .15;
+				opacity: 0.15;
 
 				&:first-child {
 					position: relative;

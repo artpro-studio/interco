@@ -46,6 +46,11 @@
 	.clients-contacts {
 		position: relative;
 
+		.container {
+			position: relative;
+			z-index: 2;
+		}
+
 		&::before {
 			content: '';
 			width: 100%;
